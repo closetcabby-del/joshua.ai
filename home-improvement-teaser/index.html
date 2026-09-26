@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#11100e" />
+  <title>Haven & Hammer | Residential Improvements</title>
+  <meta name="description" content="A premium residential home improvement teaser website with a locked full-site experience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#15130f;
+      --cream:#f4efe5;
+      --paper:#fbf8f2;
+      --clay:#b66f4a;
+      --sage:#7c8c74;
+      --line:rgba(21,19,15,.13);
+      --muted:#6f6a61;
+      --shadow:0 30px 80px rgba(35,25,15,.17);
+      --radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"DM Sans",sans-serif;
+      background:var(--paper);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
+    .shell{width:min(1180px,calc(100% - 36px));margin:auto}
+    .topbar{
+      position:fixed;inset:16px 0 auto;z-index:40;
+      pointer-events:none;
+    }
+    .nav{
+      pointer-events:auto;
+      width:min(1180px,calc(100% - 36px));margin:auto;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 14px 12px 18px;
+      border:1px solid rgba(255,255,255,.34);
+      background:rgba(24,21,17,.66);
+      color:#fff;
+      backdrop-filter:blur(18px);
+      border-radius:999px;
+      box-shadow:0 18px 55px rgba(0,0,0,.18);
+    }
+    .brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:-.02em}
+    .mark{
+      width:34px;height:34px;border-radius:50%;
+      display:grid;place-items:center;
+      background:linear-gradient(145deg,#f0d8c8,#b66f4a);
+      color:#2b1910;font-family:"Playfair Display",serif;font-weight:700;
+    }
+    .navlinks{display:flex;align-items:center;gap:24px;font-size:14px;color:rgba(255,255,255,.78)}
+    .nav-cta{
+      border:0;border-radius:999px;padding:11px 17px;
+      background:#fff;color:#17130f;font-weight:700;cursor:pointer;
+    }
+    .hero{
+      min-height:94vh;
+      display:grid;align-items:end;
+      padding:160px 0 62px;
+      position:relative;color:#fff;
+      background:
+        linear-gradient(90deg,rgba(14,12,10,.77) 0%,rgba(14,12,10,.48) 44%,rgba(14,12,10,.18) 76%),
+        linear-gradient(0deg,rgba(14,12,10,.68) 0%,transparent 47%),
+        url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2200&q=88") center/cover;
+    }
+    .hero::after{
+      content:"";position:absolute;inset:auto 0 0;height:180px;
+      background:linear-gradient(transparent,var(--paper));
+      pointer-events:none;
+    }
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(270px,.65fr);gap:64px;align-items:end;position:relative;z-index:2}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;
+      font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+      color:rgba(255,255,255,.76);margin-bottom:20px;
+    }
+    .eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+    h1{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(58px,8vw,118px);
+      line-height:.86;letter-spacing:-.055em;margin:0;
+      max-width:900px;
+    }
+    h1 em{font-weight:600;color:#e8c7b4}
+    .hero-copy{font-size:18px;line-height:1.6;color:rgba(255,255,255,.82);max-width:450px;margin-top:28px}
+    .hero-actions{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      border-radius:999px;padding:14px 20px;border:1px solid transparent;
+      font-weight:700;cursor:pointer;transition:.25s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:#fff;color:var(--ink)}
+    .btn-ghost{border-color:rgba(255,255,255,.34);color:#fff;background:rgba(255,255,255,.08);backdrop-filter:blur(12px)}
+    .hero-card{
+      margin-bottom:12px;padding:24px;border-radius:24px;
+      background:rgba(24,21,17,.48);backdrop-filter:blur(15px);
+      border:1px solid rgba(255,255,255,.18);
+    }
+    .hero-card strong{font-size:36px;display:block;font-family:"Playfair Display",serif}
+    .hero-card span{color:rgba(255,255,255,.68);font-size:14px}
+    section{padding:92px 0}
+    .intro{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+    .kicker{font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--clay);font-weight:700}
+    .intro h2,.section-title{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(38px,5vw,72px);
+      line-height:1.02;letter-spacing:-.035em;margin:12px 0 0;
+    }
+    .intro p{font-size:19px;line-height:1.75;color:var(--muted);margin:0}
+    .trust-row{
+      margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);
+    }
+    .trust{padding:24px 12px 0 0}
+    .trust b{display:block;font-size:15px;margin-bottom:5px}
+    .trust span{font-size:13px;color:var(--muted)}
+    .preview-banner{
+      margin:18px auto 0;width:min(1180px,calc(100% - 36px));
+      border:1px solid rgba(182,111,74,.32);
+      background:#fff7f1;
+      color:#6c3d27;
+      border-radius:18px;padding:14px 18px;
+      display:flex;align-items:center;justify-content:space-between;gap:18px;
+      font-size:14px;
+    }
+    .preview-banner b{color:#412419}
+    .locked-zone{position:relative}
+    .locked-content{
+      filter:blur(11px);user-select:none;pointer-events:none;
+      transform:translateZ(0);
+    }
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
+    .service{
+      min-height:260px;border:1px solid var(--line);border-radius:var(--radius);
+      padding:28px;background:#fff;display:flex;flex-direction:column;justify-content:space-between;
+    }
+    .service .num{font-family:"Playfair Display",serif;font-size:34px;color:#c7b7a8}
+    .service h3{font-size:24px;margin:0 0 8px}
+    .service p{color:var(--muted);line-height:1.6;margin:0}
+    .gallery{display:grid;grid-template-columns:1.2fr .8fr;grid-template-rows:300px 300px;gap:18px;margin-top:42px}
+    .gallery div{border-radius:var(--radius);background-size:cover;background-position:center;min-height:260px}
+    .g1{grid-row:1/3;background-image:url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85")}
+    .g2{background-image:url("https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1000&q=85")}
+    .g3{background-image:url("https://images.unsplash.com/photo-1564540583246-934409427776?auto=format&fit=crop&w=1000&q=85")}
+    .paywall{
+      position:absolute;inset:115px 0 auto;z-index:8;
+      display:flex;justify-content:center;padding:0 18px;
+    }
+    .paywall-card{
+      width:min(680px,100%);
+      text-align:center;padding:40px;
+      border-radius:32px;
+      background:rgba(251,248,242,.94);
+      border:1px solid rgba(21,19,15,.12);
+      box-shadow:var(--shadow);backdrop-filter:blur(20px);
+    }
+    .lock-icon{
+      width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+      margin:0 auto 18px;background:var(--ink);color:#fff;font-size:21px;
+    }
+    .paywall-card h3{
+      font-family:"Playfair Display",serif;font-size:42px;line-height:1.05;
+      margin:0 0 14px;letter-spacing:-.03em;
+    }
+    .paywall-card p{color:var(--muted);line-height:1.65;margin:0 auto 22px;max-width:520px}
+    .paywall-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .paywall-actions .btn-primary{background:var(--ink);color:#fff}
+    .btn-outline{border-color:var(--line);background:#fff;color:var(--ink)}
+    .micro{margin-top:14px;font-size:12px!important;color:#8d867d!important}
+    .cta{
+      margin:20px 0 80px;border-radius:38px;padding:64px;
+      background:var(--ink);color:#fff;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;
+    }
+    .cta h2{font-family:"Playfair Display",serif;font-size:clamp(38px,5vw,65px);margin:0;line-height:1}
+    .cta p{color:rgba(255,255,255,.67);max-width:600px;line-height:1.65}
+    footer{padding:30px 0 50px;color:#777066;font-size:13px}
+    .footer-row{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:24px}
+    .toast{
+      position:fixed;left:50%;bottom:26px;transform:translate(-50%,30px);
+      z-index:100;background:#111;color:#fff;border-radius:999px;padding:12px 18px;
+      font-size:13px;opacity:0;pointer-events:none;transition:.25s ease;
+    }
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    body.unlocked .locked-content{filter:none;user-select:auto;pointer-events:auto}
+    body.unlocked .paywall,.unlocked-only{display:none}
+    body.unlocked .preview-banner{display:none}
+    @media(max-width:850px){
+      .navlinks{display:none}
+      .hero{min-height:90vh}
+      .hero-grid,.intro,.cta{grid-template-columns:1fr;gap:34px}
+      .hero-card{display:none}
+      .services{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr;grid-template-rows:none}
+      .g1{grid-row:auto}
+      .gallery div{min-height:320px}
+      .trust-row{grid-template-columns:1fr;gap:22px}
+      .preview-banner{align-items:flex-start;flex-direction:column}
+      .paywall{top:80px}
+      .paywall-card{padding:30px 22px}
+      .paywall-card h3{font-size:34px}
+      .cta{padding:40px 28px}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <nav class="nav">
+      <a class="brand" href="#top"><span class="mark">H</span> Haven & Hammer</a>
+      <div class="navlinks">
+        <a href="#approach">Approach</a>
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+      </div>
+      <button class="nav-cta" data-unlock>View full site</button>
+    </nav>
+  </div>
+
+  <main id="top">
+    <header class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <div class="eyebrow">Residential improvements • Built with intention</div>
+          <h1>Make home feel <em>finished.</em></h1>
+          <p class="hero-copy">Thoughtful remodeling, repairs, and interior upgrades for homeowners who care about the details—but do not want the chaos.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#approach">See the concept</a>
+            <button class="btn btn-ghost" data-unlock>Unlock full website</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <strong>01–06</strong>
+          <span>A complete digital experience is already designed beyond this preview.</span>
+        </div>
+      </div>
+    </header>
+
+    <section id="approach">
+      <div class="shell intro">
+        <div>
+          <div class="kicker">The feeling</div>
+          <h2>Premium without pretending to be a giant contractor.</h2>
+        </div>
+        <div>
+          <p>This concept is built for a local residential improvement company that wins through trust, craft, and responsiveness. The design intentionally feels established and high-end while keeping the voice personal enough for a small business.</p>
+          <div class="trust-row">
+            <div class="trust"><b>Clear estimates</b><span>No mystery scope or vague next steps.</span></div>
+            <div class="trust"><b>Respectful crews</b><span>Homes are treated like homes, not job sites.</span></div>
+            <div class="trust"><b>Detail driven</b><span>Finish quality is part of the brand promise.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="preview-banner unlocked-only">
+      <div><b>Preview mode:</b> You are seeing the teaser. The service system, project gallery, conversion flow, and final call-to-action are intentionally locked.</div>
+      <button class="btn btn-outline" data-unlock>Unlock preview</button>
+    </div>
+
+    <div class="locked-zone">
+      <div class="paywall" aria-live="polite">
+        <div class="paywall-card">
+          <div class="lock-icon">↗</div>
+          <div class="kicker">Full website ready to reveal</div>
+          <h3>The rest is behind the curtain.</h3>
+          <p>The finished concept includes a full service architecture, project gallery, homeowner conversion flow, and polished mobile experience. Unlock access to view the complete presentation.</p>
+          <div class="paywall-actions">
+            <button class="btn btn-primary" id="purchaseBtn">Unlock full website</button>
+            <button class="btn btn-outline" id="ownerPreviewBtn">Owner preview</button>
+          </div>
+          <p class="micro">Demo paywall. Replace the checkout URL in the configuration block with Stripe, Square, PayPal, or your preferred payment link.</p>
+        </div>
+      </div>
+
+      <div class="locked-content">
+        <section id="services">
+          <div class="shell">
+            <div class="kicker">What we improve</div>
+            <h2 class="section-title">Small enough to care.<br>Skilled enough to transform.</h2>
+            <div class="services">
+              <article class="service"><div class="num">01</div><div><h3>Kitchens & baths</h3><p>Finish upgrades, fixture swaps, tile, trim, refreshes, and targeted remodel work.</p></div></article>
+              <article class="service"><div class="num">02</div><div><h3>Interior upgrades</h3><p>Doors, paint, flooring, built-ins, lighting coordination, and room-by-room modernization.</p></div></article>
+              <article class="service"><div class="num">03</div><div><h3>Repairs & punch lists</h3><p>The lingering home projects that deserve a clean, professional finish instead of another weekend.</p></div></article>
+            </div>
+          </div>
+        </section>
+
+        <section id="work">
+          <div class="shell">
+            <div class="kicker">Selected spaces</div>
+            <h2 class="section-title">Work that looks considered.</h2>
+            <div class="gallery">
+              <div class="g1"></div><div class="g2"></div><div class="g3"></div>
+            </div>
+          </div>
+        </section>
+
+        <div class="shell">
+          <section class="cta">
+            <div>
+              <h2>Your home.<br>Handled well.</h2>
+              <p>Tell us what you want to improve. We will help you define the scope, understand the next step, and move the project forward without the usual friction.</p>
+            </div>
+            <a class="btn btn-primary" href="mailto:hello@example.com?subject=Home%20Improvement%20Project">Start a project</a>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="shell footer-row">
+      <span>© 2026 Haven & Hammer Residential Improvements</span>
+      <span>Concept teaser • Replace brand details before launch</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    /*
+      TEASER CONFIGURATION
+      --------------------
+      1) Replace PAYMENT_URL with a real checkout/payment link.
+      2) Configure that checkout to redirect back to this page with ?unlocked=1.
+      3) This is a SOFT client-facing paywall, not secure entitlement enforcement.
+         For paid production access, validate payment server-side before rendering protected content.
+    */
+    const PAYMENT_URL = "REPLACE_WITH_PAYMENT_LINK";
+
+    const toast = document.getElementById("toast");
+    const showToast = (message) => {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
+    };
+
+    const unlock = () => {
+      document.body.classList.add("unlocked");
+      localStorage.setItem("hh-preview-unlocked", "1");
+      history.replaceState({}, "", location.pathname);
+      window.scrollTo({ top: document.getElementById("services").offsetTop - 85, behavior: "smooth" });
+    };
+
+    const openPaywall = () => {
+      document.querySelector(".paywall").scrollIntoView({ behavior: "smooth", block: "center" });
+    };
+
+    document.querySelectorAll("[data-unlock]").forEach(el => el.addEventListener("click", openPaywall));
+
+    document.getElementById("purchaseBtn").addEventListener("click", () => {
+      if (PAYMENT_URL.startsWith("http")) {
+        window.location.href = PAYMENT_URL;
+      } else {
+        showToast("Checkout link is ready to connect. Add your payment URL in the config block.");
+      }
+    });
+
+    document.getElementById("ownerPreviewBtn").addEventListener("click", () => {
+      const code = prompt("Owner preview code");
+      if (code === "BUILD2026") unlock();
+      else if (code !== null) showToast("That preview code is not valid.");
+    });
+
+    const params = new URLSearchParams(location.search);
+    if (params.get("unlocked") === "1" || localStorage.getItem("hh-preview-unlocked") === "1") {
+      document.body.classList.add("unlocked");
+    }
+  </script>
+</body>
+</html>
