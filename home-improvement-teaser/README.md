@@ -1,19 +1,21 @@
 # Galvan Home Improvements LLC — Teaser Website
 
-Standalone client teaser for **Galvan Home Improvements LLC**, intentionally isolated from all Jeff Electric repositories and projects.
+This branch is intentionally isolated from all Jeff Electric repositories and projects.
 
-## Brand system implemented
+## Brand implementation
 
-- Existing Galvan logo is embedded from the supplied image without redrawing or recoloring.
+The teaser follows the supplied Galvan Home Improvements LLC brand system:
+
+- Existing Galvan logo used as supplied, without redesign or recoloring
 - Bronze: `#816F3F`
 - Gray: `#8E8E8C`
 - Charcoal: `#252525`
 - Warm White: `#F8F7F3`
 - White: `#FFFFFF`
-- Headlines/navigation: Montserrat
-- Body: Inter
+- Headline / navigation font: Montserrat
+- Body font: Inter
 - Tagline: **Built Right. Finished Clean.**
-- Brand character: reliable, skilled, professional, straightforward, established
+- Voice: established, skilled, professional, straightforward, approachable, dependable
 
 ## Homepage structure
 
@@ -25,25 +27,25 @@ Standalone client teaser for **Galvan Home Improvements LLC**, intentionally iso
 6. Customer Reviews
 7. Request an Estimate
 
-The public teaser exposes the hero, services, and project presentation. The remainder is intentionally locked behind a polished paywall overlay.
+The public teaser exposes the hero, services, and project presentation. The remaining website is intentionally locked behind the teaser paywall.
 
 ## Paywall
 
-This is currently a **soft teaser paywall** intended for proposal/demo use.
+This is currently a **soft teaser paywall** for client sales/demo use.
 
-- Checkout hook: `PAYMENT_URL`
-- Successful checkout can return with `?unlocked=1`
-- Owner preview code is configured in the page script
-- For true paid access, validate payment/authentication server-side before protected content is served
+- Checkout hook: `PAYMENT_URL` in `index.html`
+- Checkout success can return with `?unlocked=1`
+- Owner preview code: `GALVAN2026`
+- Production paid access should validate payment/authentication server-side before serving protected content
 
 ## Before public launch
 
-- Replace concept project photos with real Galvan project photography
+- Replace design-preview project images with real Galvan project photography
 - Replace review placeholders with verified Galvan customer reviews
-- Add real phone, email, service area, and domain
-- Connect the estimate form to the preferred lead intake
+- Add the real phone number, email, domain, and service area
+- Connect the estimate form to Galvan's preferred lead intake system
 - Connect the paywall CTA to Stripe, Square, PayPal, or another checkout
-- Add privacy/terms pages if collecting customer data
+- Add privacy/terms pages if lead information will be collected
 
 ## Isolation
 
