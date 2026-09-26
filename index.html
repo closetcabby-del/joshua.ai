@@ -511,19 +511,15 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
   .reveal{opacity:1;transform:none}
 }
 
-/* Evidence-first portfolio refinement — 2026-09-26 */
+/* Evidence-first refinement, rebuilt from last known-good version */
 .hero{min-height:calc(92svh - 72px)}
-.hero-lede{max-width:780px}
 .statement{padding:88px 0}
 .statement h2{font-size:clamp(40px,4.6vw,68px)}
 .statement-copy .big{font-size:clamp(21px,2.3vw,30px)}
 .flagship{padding-top:96px}
 .flagship-head{margin-bottom:44px}
 .flagship h2{font-size:clamp(44px,5.2vw,74px);max-width:900px}
-.proof-strip{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  border-top:1px solid #444;border-bottom:1px solid #444
-}
+.proof-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid #444;border-bottom:1px solid #444}
 .proof-strip article{padding:28px 30px 30px 0;min-height:215px}
 .proof-strip article:nth-child(even){border-left:1px solid #444;padding-left:30px}
 .proof-strip article:nth-child(n+3){border-top:1px solid #444}
@@ -534,52 +530,35 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
 .evidence-intro h3{font-size:29px;font-weight:560;margin:12px 0}
 .evidence-intro p:last-child{font-size:13px;color:#9f9f9f;line-height:1.7}
 .evidence-items{border-top:1px solid #444}
-.evidence-item{
-  width:100%;display:grid;grid-template-columns:120px 1fr auto;gap:18px;align-items:center;
-  text-align:left;background:transparent;color:#fff;border:0;border-bottom:1px solid #353535;
-  padding:18px 0;cursor:pointer
-}
+.evidence-item{width:100%;display:grid;grid-template-columns:120px 1fr auto;gap:18px;align-items:center;text-align:left;background:transparent;color:#fff;border:0;border-bottom:1px solid #353535;padding:18px 0;cursor:pointer}
 .evidence-item:hover{background:#ffffff06}
-.evidence-item strong{font-size:15px}
-.evidence-item small{color:#9b9b9b;font-size:12px}
-.evidence-item.static{cursor:default}
+.evidence-item strong{font-size:15px}.evidence-item small{color:#9b9b9b;font-size:12px}.evidence-item.static{cursor:default}
 .evidence-state{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#bdbdbd}
-.evidence-state.live{color:#9fd3a8}
-.evidence-state.active{color:#b7c4ff}
+.evidence-state.live{color:#9fd3a8}.evidence-state.active{color:#b7c4ff}
 .handoff{margin-top:48px}
-
+.work{padding-bottom:50px}
 .featured-work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line-strong)}
-.featured-work{min-height:360px;padding:30px 32px 32px 0;border-bottom:1px solid var(--line);position:relative}
-.featured-work+.featured-work{border-left:1px solid var(--line);padding-left:32px}
-.featured-work-top{display:flex;justify-content:space-between;gap:20px;font-size:11px;color:var(--muted)}
-.featured-work h3{font-size:38px;line-height:1.08;font-weight:610;margin:58px 0 16px}
-.featured-work p{font-size:15px;line-height:1.72;color:var(--muted);max-width:520px}
-.prototype-flag{display:inline-block;margin:2px 0 18px;color:var(--accent);font-size:12px;font-weight:650}
-.featured-work .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.featured-work .tags span{font-size:11px;color:var(--muted)}
-.case-link{margin-top:28px;border:0;background:transparent;padding:0;color:var(--accent);font-weight:650;cursor:pointer}
-
-.experiments{padding:96px 0 108px;border-bottom:1px solid var(--line)}
+.featured-work-grid .project{min-height:355px;padding:30px 32px 32px 0;border-bottom:1px solid var(--line)}
+.featured-work-grid .project:nth-child(2){border-left:1px solid var(--line);padding-left:32px}
+.featured-work-grid .project h3{font-size:36px;margin-top:54px}
+.featured-work-grid .project:nth-child(n+3){display:none}
+.prototype-flag{display:block;margin-top:14px;color:var(--accent);font-size:12px;font-weight:650}
+.experiments{padding:52px 0 108px;border-bottom:1px solid var(--line)}
 .experiment-list{border-top:1px solid var(--line-strong)}
-.experiment-row{
-  width:100%;display:grid;grid-template-columns:54px 1fr auto 28px;gap:16px;align-items:center;
-  padding:18px 0;border:0;border-bottom:1px solid var(--line);background:transparent;text-align:left;cursor:pointer
-}
-.experiment-row:hover{background:rgba(255,255,255,.32)}
-.experiment-index{font-size:11px;color:var(--muted)}
-.experiment-main strong{display:block;font-size:18px;font-weight:610;letter-spacing:-.02em}
-.experiment-main small{display:block;margin-top:4px;color:var(--muted);font-size:12px}
-.experiment-arrow{color:var(--accent);font-size:18px}
-.map-shell{min-height:560px}
-.map-svg{height:560px}
-.map-node text{font-size:15px}
-.map-node .node-small{font-size:11px}
+.experiment-list .project{min-height:0!important;margin:0!important;padding:18px 0!important;border-left:0!important;border-bottom:1px solid var(--line)!important;display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:16px;align-items:center}
+.experiment-list .project:hover{background:rgba(255,255,255,.32)}
+.experiment-list .project-top{display:contents}
+.experiment-list .project-index{grid-column:1;grid-row:1/3}
+.experiment-list .status{grid-column:3;grid-row:1/3;align-self:center}
+.experiment-list .project h3{grid-column:2;grid-row:1;font-size:19px;margin:0;max-width:none}
+.experiment-list .project p{grid-column:2;grid-row:2;font-size:12px;line-height:1.5;margin:3px 0 0;max-width:720px}
+.experiment-list .tags,.experiment-list .project-arrow{display:none}
+.system-map{padding-top:96px}.map-shell{min-height:560px}.map-svg{height:560px}
+.map-node text{font-size:15px}.map-node .node-small{font-size:11px}
 .map-caption{margin:16px 0 0;max-width:680px;color:var(--muted);font-size:13px;line-height:1.7}
-.system-map{padding-top:96px}
 .map-note{display:none!important}
 .practice{padding:92px 0}
-.contact{padding:96px 0 110px}
-.contact-head{margin-bottom:42px}
+.contact{padding:96px 0 110px}.contact-head{margin-bottom:42px}
 .contact-paths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong)}
 .contact-paths a{padding:30px 34px 34px 0;min-height:270px;display:flex;flex-direction:column}
 .contact-paths a+a{border-left:1px solid var(--line);padding-left:34px}
@@ -587,44 +566,29 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
 .contact-paths h3{font-size:30px;line-height:1.15;font-weight:600;margin:40px 0 14px;max-width:500px}
 .contact-paths p{font-size:14px;line-height:1.7;color:var(--muted);max-width:520px}
 .contact-paths strong{margin-top:auto;padding-top:20px;color:var(--accent);font-size:14px}
-.evidence-first{background:rgba(49,89,215,.05);padding:22px;margin-inline:-18px;padding-inline:18px;border-radius:12px}
-.dialog-section li{margin-bottom:5px}
-.status{font-size:12px}
-.tag,.project .tags span,.featured-work .tags span{font-size:12px}
-
+.status,.tag,.project .tags span{font-size:12px}
 @media(max-width:900px){
   .proof-strip,.featured-work-grid,.contact-paths{grid-template-columns:1fr}
   .proof-strip article,.proof-strip article:nth-child(even){border-left:0;padding-left:0;padding-right:0}
   .proof-strip article+article{border-top:1px solid #444}
-  .featured-work,.featured-work+.featured-work{border-left:0;padding-left:0;padding-right:0}
+  .featured-work-grid .project,.featured-work-grid .project:nth-child(2){border-left:0;padding-left:0;padding-right:0}
   .evidence-rail{grid-template-columns:1fr;gap:26px}
   .contact-paths a,.contact-paths a+a{border-left:0;padding-left:0;padding-right:0}
   .contact-paths a+a{border-top:1px solid var(--line)}
 }
 @media(max-width:640px){
-  .hero{min-height:auto;padding-top:68px}
-  .hero h1{font-size:clamp(48px,14.5vw,68px)}
-  .hero-lede{font-size:19px;line-height:1.5}
-  .flagship{padding-top:68px}
-  .flagship h2{font-size:43px}
-  .proof-strip article{min-height:0;padding-block:22px}
-  .proof-strip h3{font-size:21px}
-  .evidence-item{grid-template-columns:88px 1fr;gap:10px}
-  .evidence-item small{grid-column:2}
-  .flow-item{grid-template-columns:26px 92px 1fr}
-  .featured-work h3{font-size:31px;margin-top:40px}
-  .experiment-row{grid-template-columns:36px 1fr auto;gap:10px}
-  .experiment-row .status{grid-column:2;font-size:10px;width:max-content}
-  .experiment-arrow{grid-column:3;grid-row:1/3}
-  .map-shell{min-height:410px;margin-inline:-18px}
-  .map-svg{height:410px}
-  .map-node text{font-size:12px}
-  .map-node .node-small{font-size:8px}
-  .system-map{padding-top:72px}
+  .hero{min-height:auto;padding-top:68px}.hero h1{font-size:clamp(48px,14.5vw,68px)}.hero-lede{font-size:19px;line-height:1.5}
+  .flagship{padding-top:68px}.flagship h2{font-size:43px}
+  .proof-strip article{min-height:0;padding-block:22px}.proof-strip h3{font-size:21px}
+  .evidence-item{grid-template-columns:88px 1fr;gap:10px}.evidence-item small{grid-column:2}
+  .featured-work-grid .project h3{font-size:30px;margin-top:38px}
+  .experiment-list .project{grid-template-columns:36px minmax(0,1fr);gap:10px}
+  .experiment-list .status{grid-column:2;grid-row:3;width:max-content;margin-top:4px}
+  .system-map{padding-top:72px}.map-shell{min-height:410px;margin-inline:-18px}.map-svg{height:410px}
+  .map-node text{font-size:12px}.map-node .node-small{font-size:8px}
   .statement,.practice,.experiments,.work{padding-block:72px}
   .contact-paths h3{font-size:25px;margin-top:28px}
 }
-
 </style>
 </head>
 <body>
@@ -659,7 +623,6 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
   </div>
 </section>
 
-
 <section class="flagship" id="jeff">
   <div class="wrap">
     <div class="flagship-head reveal">
@@ -689,7 +652,7 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
       <article>
         <span>04 / Operational effect</span>
         <h3>Ownership and next actions are designed into the workflow.</h3>
-        <p>The system now represents customer context, state, ownership, and next action explicitly. I do not claim revenue or time savings here without measurement.</p>
+        <p>The system represents customer context, state, ownership, and next action explicitly. I do not claim revenue or time savings here without measurement.</p>
       </article>
     </div>
 
@@ -697,7 +660,7 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
       <div class="evidence-intro">
         <p class="kicker">Inspectable evidence</p>
         <h3>See the work, not just the claim.</h3>
-        <p>Artifacts are labeled by maturity so a live system is not presented the same way as a prototype or planned capability.</p>
+        <p>Artifacts are labeled by maturity so live systems, active builds, and concepts are not presented as the same thing.</p>
       </div>
       <div class="evidence-items">
         <a class="evidence-item" href="https://jeffelectric.online/" target="_blank" rel="noopener">
@@ -728,7 +691,6 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
   </div>
 </section>
 
-<section class="work"
 <section class="statement">
   <div class="wrap statement-grid">
     <div class="reveal">
@@ -742,45 +704,43 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
   </div>
 </section>
 
-<section class="system-map"
 <section class="playbook" id="playbook">
   <div class="wrap">
     <div class="playbook-intro reveal">
       <div>
-        <p class="kicker">The playbook</p>
+        <p class="kicker">The approach</p>
         <h2>A repeatable path through ambiguity.</h2>
       </div>
-      <p>I am actively testing a simple idea: better AI outcomes usually start before the prompt. They start with better discovery, clearer requirements, deliberate scope, and an explicit definition of what “good” means.</p>
+      <p>Better AI outcomes usually start before the prompt. They start with better discovery, clearer requirements, deliberate scope, and an explicit definition of what “good” means.</p>
     </div>
     <div class="steps">
       <article class="step reveal">
         <span class="step-num">01</span><h3>Discover</h3>
-        <div><p>Understand the people, problem, current workflow, desired outcome, dependencies, and constraints before proposing a solution.</p><div class="step-tags"><span class="tag">Stakeholders</span><span class="tag">Pain points</span><span class="tag">Process mapping</span><span class="tag">Current state</span></div></div>
+        <div><p>Understand the people, problem, current workflow, desired outcome, dependencies, and constraints.</p><div class="step-tags"><span class="tag">Stakeholders</span><span class="tag">Pain points</span><span class="tag">Process mapping</span></div></div>
       </article>
       <article class="step reveal">
         <span class="step-num">02</span><h3>Define</h3>
-        <div><p>Translate what was learned into requirements that can be discussed, tested, and changed without losing the original intent.</p><div class="step-tags"><span class="tag">Use cases</span><span class="tag">User stories</span><span class="tag">Acceptance criteria</span><span class="tag">Non-functional needs</span></div></div>
+        <div><p>Translate what was learned into requirements that can be discussed, tested, and changed without losing the original intent.</p><div class="step-tags"><span class="tag">Use cases</span><span class="tag">User stories</span><span class="tag">Acceptance criteria</span></div></div>
       </article>
       <article class="step reveal">
         <span class="step-num">03</span><h3>Prioritize</h3>
-        <div><p>Separate the first useful version from everything that could eventually exist. Make tradeoffs visible instead of hiding them inside the build.</p><div class="step-tags"><span class="tag">Must</span><span class="tag">Should</span><span class="tag">Could</span><span class="tag">Won’t yet</span><span class="tag">MVP</span></div></div>
+        <div><p>Separate the first useful version from everything that could eventually exist. Make tradeoffs visible.</p><div class="step-tags"><span class="tag">Must</span><span class="tag">Should</span><span class="tag">Could</span><span class="tag">Won’t yet</span><span class="tag">MVP</span></div></div>
       </article>
       <article class="step reveal">
         <span class="step-num">04</span><h3>Orchestrate</h3>
-        <div><p>Design how AI receives context, reasons, uses tools, hands work to other agents or software, and returns consequential decisions to a person.</p><div class="step-tags"><span class="tag">Prompt engineering</span><span class="tag">Context design</span><span class="tag">Agents</span><span class="tag">Human checkpoints</span></div></div>
+        <div><p>Design how AI receives context, reasons, uses tools, and hands consequential decisions back to a person.</p><div class="step-tags"><span class="tag">Prompt design</span><span class="tag">Context</span><span class="tag">Agents</span><span class="tag">Human checkpoints</span></div></div>
       </article>
       <article class="step reveal">
         <span class="step-num">05</span><h3>Prototype</h3>
-        <div><p>Make the idea tangible quickly enough to learn from it: wireframes, working HTML, lightweight apps, workflows, prompts, and integrations.</p><div class="step-tags"><span class="tag">Wireframes</span><span class="tag">Prototypes</span><span class="tag">Workflow design</span><span class="tag">Implementation briefs</span></div></div>
+        <div><p>Make the idea tangible quickly enough to learn from it: wireframes, working HTML, lightweight apps, workflows, prompts, and integrations.</p><div class="step-tags"><span class="tag">Wireframes</span><span class="tag">Prototypes</span><span class="tag">Implementation briefs</span></div></div>
       </article>
       <article class="step reveal">
         <span class="step-num">06</span><h3>Validate + iterate</h3>
-        <div><p>Test against the requirements, observe what fails, preserve evidence, and refine the system instead of assuming the first output is the answer.</p><div class="step-tags"><span class="tag">UAT</span><span class="tag">Verification</span><span class="tag">Feedback loops</span><span class="tag">Continuous improvement</span></div></div>
+        <div><p>Test against the requirements, observe what fails, preserve evidence, and refine the system.</p><div class="step-tags"><span class="tag">UAT</span><span class="tag">Verification</span><span class="tag">Feedback loops</span></div></div>
       </article>
     </div>
   </div>
 </section>
-
 
 <section class="work" id="work">
   <div class="wrap">
@@ -789,12 +749,11 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
         <p class="kicker">Selected work</p>
         <h2>Two more projects you can inspect.</h2>
       </div>
-      <p>These are deliberately separated from the lab because they have a concrete deliverable you can open and use.</p>
+      <p>BuildBrief and the Sprint & Backlog Planner are separated from the lab because they have working deliverables you can open and use.</p>
     </div>
-    <div class="featured-work-grid" id="featuredGrid"></div>
+    <div class="work-grid featured-work-grid" id="projectGrid"></div>
   </div>
 </section>
-
 
 <section class="system-map" id="connections">
   <div class="wrap">
@@ -811,46 +770,38 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
         <path class="map-line" d="M310 140 L785 135 M785 135 L880 310 M880 310 L785 490 M785 490 L310 492 M310 492 L218 316"/>
         <g class="map-node map-core" tabindex="0" transform="translate(552 305)">
           <circle r="83"/><circle class="node-dot" r="5" cy="-48"/>
-          <text text-anchor="middle" y="-5">Useful outcome</text>
-          <text class="node-small" text-anchor="middle" y="18">AI-enabled system</text>
+          <text text-anchor="middle" y="-5">Useful outcome</text><text class="node-small" text-anchor="middle" y="18">AI-enabled system</text>
         </g>
         <g class="map-node" tabindex="0" transform="translate(310 140)">
           <circle r="67"/><circle class="node-dot" r="4" cy="-39"/>
-          <text text-anchor="middle" y="-2">Business context</text>
-          <text class="node-small" text-anchor="middle" y="18">People · goals · constraints</text>
+          <text text-anchor="middle" y="-2">Business context</text><text class="node-small" text-anchor="middle" y="18">People · goals · constraints</text>
         </g>
         <g class="map-node" tabindex="0" transform="translate(785 135)">
           <circle r="67"/><circle class="node-dot" r="4" cy="-39"/>
-          <text text-anchor="middle" y="-2">Requirements</text>
-          <text class="node-small" text-anchor="middle" y="18">Scope · stories · criteria</text>
+          <text text-anchor="middle" y="-2">Requirements</text><text class="node-small" text-anchor="middle" y="18">Scope · stories · criteria</text>
         </g>
         <g class="map-node" tabindex="0" transform="translate(880 310)">
           <circle r="67"/><circle class="node-dot" r="4" cy="-39"/>
-          <text text-anchor="middle" y="-2">AI design</text>
-          <text class="node-small" text-anchor="middle" y="18">Prompts · context · agents</text>
+          <text text-anchor="middle" y="-2">AI design</text><text class="node-small" text-anchor="middle" y="18">Prompts · context · agents</text>
         </g>
         <g class="map-node" tabindex="0" transform="translate(785 490)">
           <circle r="67"/><circle class="node-dot" r="4" cy="-39"/>
-          <text text-anchor="middle" y="-2">Tools + data</text>
-          <text class="node-small" text-anchor="middle" y="18">Systems · records · APIs</text>
+          <text text-anchor="middle" y="-2">Tools + data</text><text class="node-small" text-anchor="middle" y="18">Systems · records · APIs</text>
         </g>
         <g class="map-node" tabindex="0" transform="translate(310 492)">
           <circle r="67"/><circle class="node-dot" r="4" cy="-39"/>
-          <text text-anchor="middle" y="-2">Feedback</text>
-          <text class="node-small" text-anchor="middle" y="18">Test · evidence · iterate</text>
+          <text text-anchor="middle" y="-2">Feedback</text><text class="node-small" text-anchor="middle" y="18">Test · evidence · iterate</text>
         </g>
         <g class="map-node" tabindex="0" transform="translate(218 316)">
           <circle r="67"/><circle class="node-dot" r="4" cy="-39"/>
-          <text text-anchor="middle" y="-2">Human judgment</text>
-          <text class="node-small" text-anchor="middle" y="18">Decide · correct · own</text>
+          <text text-anchor="middle" y="-2">Human judgment</text><text class="node-small" text-anchor="middle" y="18">Decide · correct · own</text>
         </g>
       </svg>
     </div>
-    <p class="map-caption reveal">A readable default comes first. Motion only traces relationships; it does not carry meaning by itself.</p>
+    <p class="map-caption reveal">Motion traces relationships, but the map remains understandable without animation.</p>
   </div>
 </section>
 
-<section class="playbook"
 <section class="experiments" id="experiments">
   <div class="wrap">
     <div class="section-head reveal">
@@ -858,18 +809,17 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
         <p class="kicker">Experiments + concepts</p>
         <h2>Work in progress, without pretending it is finished.</h2>
       </div>
-      <p>Architecture, prototypes, applied workflows, and partial builds. Status is part of the story.</p>
+      <p>Architecture, prototypes, applied workflows, and partial builds. The status travels with the work.</p>
     </div>
     <div class="experiment-list" id="experimentList"></div>
   </div>
 </section>
 
-
-<section class="practice" id="about"><section class="practice">
+<section class="practice" id="about">
   <div class="wrap practice-grid">
     <div class="reveal">
-      <p class="kicker">What this portfolio is</p>
-      <h2>A business-analysis practice applied to AI.</h2>
+      <p class="kicker">About the practice</p>
+      <h2>Business-analysis discipline applied to AI.</h2>
     </div>
     <div class="practice-copy reveal">
       <p class="big">I use business-analysis discipline to make AI work inspectable: discovery, requirements, scope, human decision points, prompts, prototypes, and validation.</p>
@@ -883,7 +833,6 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
     </div>
   </div>
 </section>
-
 
 <section class="contact" id="contact">
   <div class="wrap">
@@ -910,7 +859,7 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
     </div>
   </div>
 </section>
-</main></main>
+</main>
 
 <footer>
   <div class="wrap footer-row"><span>Joshua Ly © 2026</span><span>Business Analysis × AI Product × Hands-on Building</span></div>
@@ -923,11 +872,11 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
     <h2 id="caseTitle"></h2>
     <p class="dialog-deck" id="caseSolution"></p>
     <div id="caseDemoActions"></div>
-    <section class="dialog-section evidence-first"><h3>Evidence / work covered</h3><ul id="caseEvidence"></ul></section>
     <section class="dialog-section"><h3>The problem</h3><p id="caseProblem"></p></section>
     <section class="dialog-section"><h3>What exists</h3><p id="caseBuilt"></p></section>
     <section class="dialog-section"><h3>My contribution</h3><p id="caseRole"></p></section>
-    <section class="dialog-section"><h3>Process + decision flow</h3><div class="modal-flow" id="caseFlow"></div></section>
+    <section class="dialog-section"><h3>Process</h3><div class="modal-flow" id="caseFlow"></div></section>
+    <section class="dialog-section"><h3>Evidence / work covered</h3><ul id="caseEvidence"></ul></section>
     <p class="dialog-section" id="caseNote"></p>
   </div>
 </dialog>
@@ -955,28 +904,11 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
     }).join("");
   }
 
-  var featuredIds=["buildbrief","planner"];
-  var featured=featuredIds.map(function(id){return byId[id];}).filter(Boolean);
-  var experiments=projects.filter(function(p){return p.id!=="jeff" && featuredIds.indexOf(p.id)===-1;});
-
-  var featuredGrid=document.getElementById("featuredGrid");
-  featuredGrid.innerHTML=featured.map(function(p,i){
+  var ordered=projects.filter(function(p){return p.id!=="jeff";});
+  var grid=document.getElementById("projectGrid");
+  grid.innerHTML=ordered.map(function(p,i){
     var summary=p.benefit || p.solution || p.problem;
     var tags=(p.tags||[]).slice(0,3).map(function(t){return "<span>"+escapeHtml(t)+"</span>";}).join("");
-    var sampleLabel=(p.sample && assets[p.sample])?'<span class="prototype-flag">Working prototype available</span>':'';
-    return '<article class="featured-work reveal" data-project="'+escapeHtml(p.id)+'">'+
-      '<div class="featured-work-top"><span>'+String(i+1).padStart(2,"0")+' / Featured</span><span class="status">'+escapeHtml(p.status||"In progress")+'</span></div>'+
-      '<h3>'+escapeHtml(p.title)+'</h3><p>'+escapeHtml(summary)+'</p>'+sampleLabel+
-      '<div class="tags">'+tags+'</div><button class="case-link" type="button" data-project="'+escapeHtml(p.id)+'">Read case study →</button></article>';
-  }).join("");
-
-  var experimentList=document.getElementById("experimentList");
-  experimentList.innerHTML=experiments.map(function(p,i){
-    return '<button class="experiment-row reveal" type="button" data-project="'+escapeHtml(p.id)+'">'+
-      '<span class="experiment-index">'+String(i+1).padStart(2,"0")+'</span>'+
-      '<span class="experiment-main"><strong>'+escapeHtml(p.title)+'</strong><small>'+escapeHtml(p.category||"Experiment")+'</small></span>'+
-      '<span class="status">'+escapeHtml(p.status||"In progress")+'</span><span class="experiment-arrow">→</span></button>';
-  }).join("");
     return '<article class="project reveal" tabindex="0" role="button" data-project="'+escapeHtml(p.id)+'" aria-label="Open '+escapeHtml(p.title)+' case study">'+
       '<div class="project-top"><span class="project-index">'+String(i+1).padStart(2,"0")+'</span><span class="status">'+escapeHtml(p.status||"In progress")+'</span></div>'+
       '<h3>'+escapeHtml(p.title)+'</h3><p>'+escapeHtml(summary)+'</p><div class="tags">'+tags+'</div><span class="project-arrow">↗</span></article>';
@@ -985,13 +917,11 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
   var caseDialog=document.getElementById("caseDialog");
   var demoDialog=document.getElementById("demoDialog");
   var currentDemoUrl=null;
-  var lastTrigger=null;
 
   function escapeHtml(v){
     return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});
   }
   function openProject(id){
-    lastTrigger=document.activeElement;
     var p=byId[id];
     if(!p)return;
     var pos=projects.findIndex(function(x){return x.id===id;})+1;
@@ -1044,7 +974,6 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
     if(t && (e.key==="Enter" || e.key===" ")){e.preventDefault();openProject(t.getAttribute("data-project"));}
   });
   document.getElementById("closeCase").onclick=function(){caseDialog.close();};
-  caseDialog.addEventListener("close",function(){if(lastTrigger && typeof lastTrigger.focus==="function") lastTrigger.focus();});
   document.getElementById("closeDemo").onclick=function(){demoDialog.close();document.getElementById("demoFrame").src="about:blank";};
   caseDialog.addEventListener("click",function(e){if(e.target===caseDialog)caseDialog.close();});
   demoDialog.addEventListener("click",function(e){if(e.target===demoDialog)demoDialog.close();});
@@ -1061,6 +990,41 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
     reveals.forEach(function(el){io.observe(el);});
   } else {
     reveals.forEach(function(el){el.classList.add("in");});
+  }
+})();
+</script>
+
+<script>
+(function(){
+  function organizeProjects(){
+    var source=document.getElementById("projectGrid");
+    var target=document.getElementById("experimentList");
+    if(!source||!target)return;
+    var cards=Array.prototype.slice.call(source.querySelectorAll(".project"));
+    cards.forEach(function(card,i){
+      if(i<2){
+        var p=document.createElement("span");
+        p.className="prototype-flag";
+        p.textContent="Working prototype available — open the case study to launch it.";
+        var meta=card.querySelector(".tags");
+        if(meta && !card.querySelector(".prototype-flag")) meta.parentNode.insertBefore(p,meta);
+      } else {
+        target.appendChild(card);
+      }
+    });
+  }
+  organizeProjects();
+
+  var caseDialog=document.getElementById("caseDialog");
+  var lastTrigger=null;
+  document.addEventListener("click",function(e){
+    var trigger=e.target.closest && e.target.closest("[data-project]");
+    if(trigger) lastTrigger=trigger;
+  },true);
+  if(caseDialog){
+    caseDialog.addEventListener("close",function(){
+      if(lastTrigger && typeof lastTrigger.focus==="function") lastTrigger.focus();
+    });
   }
 })();
 </script>
