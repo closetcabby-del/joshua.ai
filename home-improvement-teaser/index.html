@@ -145,6 +145,43 @@
   .hero:after{transform:none!important}
 }
 
+
+/* ===== Built Right mini game ===== */
+.gameSection{padding:76px 0;background:#252525;color:#fff;border-top:1px solid #353532;border-bottom:1px solid #353532}
+.gameWrap{display:grid;grid-template-columns:.82fr 1.18fr;gap:34px;align-items:center}
+.gameIntro h2{font-size:clamp(34px,4.6vw,58px);letter-spacing:-.045em;margin:12px 0 14px}
+.gameIntro p{color:#C9C7C1;max-width:520px}
+.gameBadge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:8px 11px;font:700 11px Montserrat,sans-serif;color:#D9CFB2}
+.gameCard{background:#F8F7F3;color:#252525;border:1px solid #D7D2C7;border-radius:24px;padding:26px;box-shadow:0 24px 60px rgba(0,0,0,.22)}
+.gameTop{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.gameTop h3{font-size:22px;margin:0 0 5px}
+.gameTop p{margin:0;color:#6B6963;font-size:13px}
+.gameScore{font:800 13px Montserrat,sans-serif;color:#816F3F;white-space:nowrap}
+.gameBoard{position:relative;background:#EEEAE1;border:1px solid #D8D3C9;border-radius:18px;padding:24px;overflow:hidden}
+.nailScene{display:flex;align-items:flex-end;justify-content:center;gap:34px;min-height:150px;margin-bottom:22px}
+.woodBlock{position:relative;width:116px;height:56px;border-radius:10px;background:linear-gradient(180deg,#B79865,#8D6F43);box-shadow:inset 0 -7px 0 rgba(0,0,0,.08)}
+.woodBlock:before,.woodBlock:after{content:"";position:absolute;left:12px;right:12px;height:2px;background:rgba(69,49,24,.18);border-radius:999px}
+.woodBlock:before{top:18px}.woodBlock:after{top:34px}
+.nail{position:absolute;left:50%;bottom:45px;transform:translateX(-50%);width:8px;height:68px;border-radius:4px;background:linear-gradient(90deg,#888,#D4D4D2,#777);transition:height .22s ease,bottom .22s ease}
+.nail:before{content:"";position:absolute;left:50%;top:-5px;transform:translateX(-50%);width:28px;height:7px;border-radius:50%;background:#B7B7B4}
+.hammerIcon{font-size:46px;transform-origin:75% 75%;transition:transform .16s ease}
+.hammerIcon.swinging{transform:rotate(-42deg) translateY(6px)}
+.meterLabel{display:flex;justify-content:space-between;gap:12px;font:700 11px Montserrat,sans-serif;color:#77736A;margin-bottom:7px}
+.powerMeter{position:relative;height:20px;border-radius:999px;background:#D5D0C5;overflow:hidden;border:1px solid #C7C1B5}
+.targetZone{position:absolute;left:40%;width:20%;top:0;bottom:0;background:rgba(129,111,63,.82);box-shadow:inset 0 0 0 2px rgba(255,255,255,.28)}
+.meterMarker{position:absolute;top:-4px;width:6px;height:28px;border-radius:999px;background:#252525;left:0;transform:translateX(-50%);will-change:left}
+.gameStatus{min-height:46px;margin:16px 0 0;padding:12px 14px;border-radius:12px;background:#fff;border:1px solid #DDD8CE;color:#55524C;font-size:13px}
+.gameStatus strong{color:#252525}
+.gameActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.gameActions .btn{min-width:132px}
+.gameStats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.gameStat{background:#fff;border:1px solid #DDD8CE;border-radius:12px;padding:11px;text-align:center}
+.gameStat b{display:block;font:800 18px Montserrat,sans-serif;color:#816F3F}
+.gameStat span{font-size:11px;color:#77736A}
+@media(max-width:860px){.gameWrap{grid-template-columns:1fr}.gameIntro{max-width:650px}.gameCard{padding:20px}}
+@media(max-width:520px){.gameBoard{padding:18px}.nailScene{gap:20px}.hammerIcon{font-size:40px}.woodBlock{width:102px}.gameStats{grid-template-columns:1fr 1fr 1fr}.gameActions .btn{flex:1;min-width:0}}
+@media(prefers-reduced-motion:reduce){.meterMarker,.nail,.hammerIcon{transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -223,6 +260,59 @@
     </div>
   </div>
 </section>
+
+<section class="gameSection" id="built-right-game" aria-labelledby="game-title">
+  <div class="shell gameWrap">
+    <div class="gameIntro motion-reveal">
+      <div class="gameBadge">GALVAN MINI GAME</div>
+      <div class="eyebrow" style="margin-top:18px;color:#BBAA76">Built Right Challenge</div>
+      <h2 id="game-title">Can you finish clean?</h2>
+      <p>Three nails. One bronze sweet spot. Time each swing as the marker passes through the target and see how cleanly you can finish the job.</p>
+    </div>
+
+    <div class="gameCard motion-reveal" data-built-right-game>
+      <div class="gameTop">
+        <div>
+          <h3>Nail It.</h3>
+          <p>Tap Swing when the marker is centered in bronze.</p>
+        </div>
+        <div class="gameScore" aria-live="polite">Score: <span data-score>0</span></div>
+      </div>
+
+      <div class="gameBoard">
+        <div class="nailScene" aria-hidden="true">
+          <div class="hammerIcon" data-hammer>🔨</div>
+          <div class="woodBlock">
+            <div class="nail" data-nail></div>
+          </div>
+        </div>
+
+        <div class="meterLabel"><span>Too soft</span><span>Built Right Zone</span><span>Too hard</span></div>
+        <div class="powerMeter" data-meter>
+          <div class="targetZone"></div>
+          <div class="meterMarker" data-marker></div>
+        </div>
+
+        <div class="gameStatus" data-status aria-live="polite">
+          <strong>Ready.</strong> Press Start, then time your swing.
+        </div>
+
+        <div class="gameActions">
+          <button class="btn bronze" type="button" data-start>Start Game</button>
+          <button class="btn dark" type="button" data-swing disabled>Swing</button>
+          <button class="btn outline" type="button" data-reset>Reset</button>
+        </div>
+
+        <div class="gameStats" aria-label="Game progress">
+          <div class="gameStat"><b data-nails>0/3</b><span>Nails finished</span></div>
+          <div class="gameStat"><b data-best>—</b><span>Best hit</span></div>
+          <div class="gameStat"><b data-grade>—</b><span>Finish grade</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="teaser"><div><strong>Client teaser mode:</strong> The concept continues with Why Galvan, How It Works, Reviews, and the estimate flow. Those sections are intentionally locked.</div><button class="btn bronze" data-unlock>Unlock Full Website</button></div>
 <div class="lockedZone"><div class="paywall"><div class="payCard"><div class="lock">G</div><div class="eyebrow">Complete concept ready</div><h3>Unlock the full Galvan website.</h3><p>The public teaser shows the brand direction, core messaging, services, and project presentation. Unlock the complete experience to review credibility sections, process, reviews, and the estimate conversion flow.</p><div class="payBtns"><button class="btn bronze" id="purchaseBtn">Unlock Full Website</button><button class="btn outline" id="ownerPreviewBtn">Owner Preview</button></div><p class="micro">Demo paywall. Connect the unlock button to a checkout before client delivery. Secure production access should validate payment server-side.</p></div></div>
 <div class="locked">
@@ -285,6 +375,142 @@ const PAYMENT_URL="REPLACE_WITH_PAYMENT_LINK",OWNER_PREVIEW_CODE="GALVAN2026";co
     }, {passive:true});
     updateHero();
   }
+})();
+</script>
+
+
+<script>
+(() => {
+  const root=document.querySelector('[data-built-right-game]');
+  if(!root || root.dataset.ready==='1') return;
+  root.dataset.ready='1';
+
+  const marker=root.querySelector('[data-marker]');
+  const nail=root.querySelector('[data-nail]');
+  const hammer=root.querySelector('[data-hammer]');
+  const status=root.querySelector('[data-status]');
+  const startBtn=root.querySelector('[data-start]');
+  const swingBtn=root.querySelector('[data-swing]');
+  const resetBtn=root.querySelector('[data-reset]');
+  const scoreEl=root.querySelector('[data-score]');
+  const nailsEl=root.querySelector('[data-nails]');
+  const bestEl=root.querySelector('[data-best]');
+  const gradeEl=root.querySelector('[data-grade]');
+
+  let running=false, position=0, direction=1, raf=0, last=0, nails=0, score=0, best=0;
+  const targetMin=40, targetMax=60;
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setMarker(){
+    marker.style.left=position+'%';
+  }
+  function loop(ts){
+    if(!running) return;
+    if(!last) last=ts;
+    const dt=Math.min(32,ts-last);
+    last=ts;
+    position+=direction*dt*(reduced?0.045:0.075);
+    if(position>=100){position=100;direction=-1}
+    if(position<=0){position=0;direction=1}
+    setMarker();
+    raf=requestAnimationFrame(loop);
+  }
+  function hitQuality(){
+    const center=50;
+    const distance=Math.abs(position-center);
+    const accuracy=Math.max(0,Math.round(100-distance*2));
+    return accuracy;
+  }
+  function gradeFor(value){
+    if(value>=270) return 'A';
+    if(value>=225) return 'B';
+    if(value>=170) return 'C';
+    return 'D';
+  }
+  function resetGame(){
+    running=false;
+    cancelAnimationFrame(raf);
+    position=0;direction=1;last=0;nails=0;score=0;best=0;
+    setMarker();
+    nail.style.height='68px';
+    nail.style.bottom='45px';
+    scoreEl.textContent='0';
+    nailsEl.textContent='0/3';
+    bestEl.textContent='—';
+    gradeEl.textContent='—';
+    status.innerHTML='<strong>Ready.</strong> Press Start, then time your swing.';
+    startBtn.disabled=false;
+    swingBtn.disabled=true;
+    startBtn.textContent='Start Game';
+  }
+  function startGame(){
+    if(running) return;
+    if(nails>=3) resetGame();
+    running=true;
+    last=0;
+    startBtn.disabled=true;
+    swingBtn.disabled=false;
+    status.innerHTML='<strong>Go.</strong> Swing when the marker is inside the bronze zone.';
+    raf=requestAnimationFrame(loop);
+    swingBtn.focus({preventScroll:true});
+  }
+  function swing(){
+    if(!running || nails>=3) return;
+    const quality=hitQuality();
+    const inZone=position>=targetMin && position<=targetMax;
+    const points=inZone ? Math.max(70,quality) : Math.max(20,Math.round(quality*.55));
+    score+=points;
+    best=Math.max(best,quality);
+    nails+=1;
+
+    hammer.classList.add('swinging');
+    setTimeout(()=>hammer.classList.remove('swinging'),170);
+
+    const remaining=Math.max(14,68-(nails*18));
+    nail.style.height=remaining+'px';
+    nail.style.bottom=(45-(nails*5))+'px';
+
+    scoreEl.textContent=String(score);
+    nailsEl.textContent=nails+'/3';
+    bestEl.textContent=best+'%';
+
+    if(inZone){
+      status.innerHTML='<strong>Clean hit.</strong> '+quality+'% accuracy. '+(nails<3?'Line up the next nail.':'');
+    }else if(position<targetMin){
+      status.innerHTML='<strong>A little soft.</strong> '+quality+'% accuracy. Aim closer to center.';
+    }else{
+      status.innerHTML='<strong>A little heavy.</strong> '+quality+'% accuracy. Ease it toward center.';
+    }
+
+    if(nails>=3){
+      running=false;
+      cancelAnimationFrame(raf);
+      swingBtn.disabled=true;
+      startBtn.disabled=false;
+      startBtn.textContent='Play Again';
+      const grade=gradeFor(score);
+      gradeEl.textContent=grade;
+      const finish = grade==='A' ? 'Built right. Finished clean.' :
+                     grade==='B' ? 'Solid work.' :
+                     grade==='C' ? 'Needs one more pass.' : 'Call Galvan.';
+      status.innerHTML='<strong>Job complete — Grade '+grade+'.</strong> '+finish+' Final score: '+score+'.';
+    }
+  }
+
+  startBtn.addEventListener('click',startGame);
+  swingBtn.addEventListener('click',swing);
+  resetBtn.addEventListener('click',resetGame);
+
+  root.addEventListener('keydown',e=>{
+    const tag=(e.target.tagName||'').toLowerCase();
+    if(tag==='input'||tag==='textarea'||tag==='select') return;
+    if(e.code==='Space' && document.activeElement===swingBtn){
+      e.preventDefault();
+      swing();
+    }
+  });
+
+  resetGame();
 })();
 </script>
 
