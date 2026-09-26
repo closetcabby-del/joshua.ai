@@ -1,29 +1,50 @@
-# Home Improvement Teaser / Paywall Concept
+# Galvan Home Improvements LLC — Teaser Website
 
-This branch is intentionally separate from all Jeff Electric work.
+Standalone client teaser for **Galvan Home Improvements LLC**, intentionally isolated from all Jeff Electric repositories and projects.
 
-## Location
-`/home-improvement-teaser/index.html`
+## Brand system implemented
 
-## Concept
-A premium teaser site for a residential home-improvement small business. The public experience reveals the hero and positioning, then intentionally locks the service architecture, gallery, and conversion section behind a polished teaser paywall.
+- Existing Galvan logo is embedded from the supplied image without redrawing or recoloring.
+- Bronze: `#816F3F`
+- Gray: `#8E8E8C`
+- Charcoal: `#252525`
+- Warm White: `#F8F7F3`
+- White: `#FFFFFF`
+- Headlines/navigation: Montserrat
+- Body: Inter
+- Tagline: **Built Right. Finished Clean.**
+- Brand character: reliable, skilled, professional, straightforward, established
 
-## Current paywall behavior
-This build uses a **soft paywall** suitable for a client teaser/demo:
-- Public visitors see the teaser.
-- Locked sections are blurred and non-interactive.
-- The main CTA is ready for a payment URL.
-- A checkout can redirect back with `?unlocked=1`.
-- Owner preview code: `BUILD2026`.
+## Homepage structure
 
-A soft paywall is not secure entitlement enforcement because the frontend code is public. For a real paid-access product, validate payment/authentication server-side (for example Stripe Checkout + a serverless function/session) before returning protected content.
+1. Hero / primary brand message
+2. Services
+3. Recent Projects
+4. Why Galvan
+5. How It Works
+6. Customer Reviews
+7. Request an Estimate
 
-## Before client launch
-1. Replace "Haven & Hammer" with the actual business name.
-2. Replace sample email address.
-3. Replace sample imagery with client work.
-4. Replace `PAYMENT_URL` in the configuration block.
-5. If the user is purchasing the website itself rather than site access, reword the lock copy to "Approve & Purchase This Website" and send checkout success to an ownership/handoff flow.
+The public teaser exposes the hero, services, and project presentation. The remainder is intentionally locked behind a polished paywall overlay.
+
+## Paywall
+
+This is currently a **soft teaser paywall** intended for proposal/demo use.
+
+- Checkout hook: `PAYMENT_URL`
+- Successful checkout can return with `?unlocked=1`
+- Owner preview code is configured in the page script
+- For true paid access, validate payment/authentication server-side before protected content is served
+
+## Before public launch
+
+- Replace concept project photos with real Galvan project photography
+- Replace review placeholders with verified Galvan customer reviews
+- Add real phone, email, service area, and domain
+- Connect the estimate form to the preferred lead intake
+- Connect the paywall CTA to Stripe, Square, PayPal, or another checkout
+- Add privacy/terms pages if collecting customer data
 
 ## Isolation
-No files in `Jeffelectric` or `Jeff-Electric-PowerScope` are changed by this work.
+
+No files in `Jeffelectric` or `Jeff-Electric-PowerScope` are modified by this work.
