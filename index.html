@@ -645,6 +645,48 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
   }
 }
 
+/* Visual proof cards and case study */
+#gallery{scroll-margin-top:86px}
+.artifact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.artifact-card{display:block;min-width:0;padding:0 0 18px;text-align:left;border:1px solid #464646;background:#202020;color:#fff;cursor:pointer;transition:transform .2s var(--ease),border-color .2s var(--ease)}
+.artifact-card:hover,.artifact-card:focus-visible{transform:translateY(-3px);border-color:#a8a8a8}
+.artifact-image{height:215px;overflow:hidden;background:#101010}
+.artifact-image img{width:100%;height:100%;object-fit:cover;object-position:top left}
+.artifact-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:17px 18px 10px;color:#c6c6c6;font-size:11px}
+.artifact-card strong{display:block;margin:0 18px;font-size:20px;line-height:1.25}
+.artifact-card p{margin:9px 18px 0;font-size:13px;line-height:1.55;color:#c5c5c5}
+.workflow-preview{display:flex;align-items:center;justify-content:center;gap:8px;padding:20px;background:radial-gradient(circle at 75% 15%,#293a61,#121925 65%)}
+.workflow-preview span{flex:1;padding:18px 8px;border:1px solid #6e83b8;border-radius:10px;background:#202d48;text-align:center;font-size:12px;font-weight:650;line-height:1.35;color:#f3f5ff}
+.workflow-preview i{font-style:normal;color:#aebff5}
+.case-visual{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-top:28px}
+.case-visual[hidden],.case-decisions[hidden]{display:none}
+.case-visual-image,.case-visual-story{min-width:0;background:#e8e6df;border:1px solid var(--line)}
+.case-visual-image img{width:100%;height:255px;object-fit:cover;object-position:top left}
+.case-visual-image span{display:block;padding:12px 15px;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.case-visual-story{padding:20px}
+.case-visual-story h3{font-size:22px;margin:10px 0 16px;line-height:1.2}
+.case-visual-story ol{margin:0;padding-left:20px;font-size:13px;line-height:1.9}
+.case-visual-story p{font-size:12px;color:var(--muted);line-height:1.6;margin:16px 0 0}
+.case-decisions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.case-decisions p{border-top:1px solid var(--line);padding-top:12px;font-size:13px;line-height:1.55;color:#45433f}
+.case-decisions strong{display:block;color:var(--ink);margin-bottom:6px}
+.method-details{border-top:1px solid var(--line-strong);margin-top:28px}
+.method-details summary{cursor:pointer;padding:18px 0;font-size:15px;font-weight:650;color:var(--accent)}
+.method-details summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.method-details .steps{margin-top:4px}
+.featured-work-grid .project{min-height:475px}
+.featured-work-grid .project h3{margin-top:23px}
+.project-visual{display:none;position:relative;height:150px;margin-top:22px;padding:16px;overflow:hidden;background:#e4e7ec;border:1px solid #cbd0d8;border-radius:10px;color:#303745}
+.featured-work-grid .project-visual{display:block}
+.project-visual small{display:block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#5e6672}
+.project-visual strong{display:block;margin-top:16px;font-size:18px;line-height:1.15}
+.project-visual p{margin:10px 0 0!important;font-size:11px!important;color:#566071!important;max-width:260px}
+.project-visual::after{content:"Illustrative preview";position:absolute;right:13px;bottom:12px;font-size:10px;color:#596477}
+.project-visual.planner{background:#e8ece7;border-color:#cdd6cb}
+.project-visual.planner .visual-lanes{display:flex;gap:7px;margin-top:17px}
+.project-visual.planner .visual-lanes i{display:block;width:30%;height:56px;background:linear-gradient(#b6c7b6 9px,transparent 9px),#f6f8f4;border:1px solid #cad5c9;border-radius:4px}
+@media(max-width:900px){.artifact-grid,.case-visual{grid-template-columns:1fr}.case-decisions{grid-template-columns:1fr;gap:0}}
+@media(max-width:640px){.artifact-image{height:185px}.workflow-preview{gap:4px;padding:10px}.workflow-preview span{padding:12px 4px;font-size:10px}}
 </style>
 </head>
 <body>
@@ -712,28 +754,25 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
       </article>
     </div>
 
-    <div class="evidence-rail reveal">
+    <div class="evidence-rail reveal" id="gallery">
       <div class="evidence-intro">
-        <p class="kicker">Inspectable evidence</p>
-        <h3>See the work, not just the claim.</h3>
-        <p>Artifacts are labeled by maturity so live systems, active builds, and concepts are not presented as the same thing.</p>
+        <p class="kicker">Selected evidence</p>
+        <h3>What the work looks like.</h3>
+        <p>One public production screen and one illustrated workflow. The illustration explains the proposed handoff; it is not a screenshot of a live internal system.</p>
       </div>
-      <div class="evidence-items">
-        <a class="evidence-item" href="https://jeffelectric.online/" target="_blank" rel="noopener">
-          <span class="evidence-state live">Live</span>
+      <div class="artifact-grid">
+        <a class="artifact-card" href="https://jeffelectric.online/" target="_blank" rel="noopener noreferrer">
+          <div class="artifact-image"><img src="assets/jeff-electric-live-preview.jpg" alt="Screenshot of the live Jeff Electric homepage, showing its customer-first headline and estimate actions" loading="lazy"></div>
+          <span class="artifact-meta"><span class="evidence-state live">Live website</span><span>Open site ↗</span></span>
           <strong>Customer-facing website</strong>
-          <small>Production surface ↗</small>
+          <p>A clearer path from a homeowner’s concern to a call or estimate request.</p>
         </a>
-        <button class="evidence-item" type="button" data-project="jeff">
-          <span class="evidence-state active">Active build</span>
-          <strong>Operations case study</strong>
-          <small>Requirements, workflow, role and evidence →</small>
+        <button class="artifact-card" type="button" data-project="jeff">
+          <div class="artifact-image workflow-preview" aria-hidden="true"><span>Customer inquiry</span><i>→</i><span>Context + owner</span><i>→</i><span>Next action</span></div>
+          <span class="artifact-meta"><span class="evidence-state active">Illustrated workflow</span><span>Explore case study →</span></span>
+          <strong>Lead-to-action design</strong>
+          <p>How an inquiry could become a structured record with a human owner and a visible next step.</p>
         </button>
-        <div class="evidence-item static">
-          <span class="evidence-state active">Active build</span>
-          <strong>Lead-to-action workflow</strong>
-          <small>Customer context → ownership → next action</small>
-        </div>
       </div>
     </div>
 
@@ -769,6 +808,7 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
       </div>
       <p>Better AI outcomes usually start before the prompt. They start with better discovery, clearer requirements, deliberate scope, and an explicit definition of what “good” means.</p>
     </div>
+    <details class="method-details"><summary>Explore the six-step method</summary>
     <div class="steps">
       <article class="step reveal">
         <span class="step-num">01</span><h3>Discover</h3>
@@ -795,6 +835,7 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
         <div><p>Test against the requirements, observe what fails, preserve evidence, and refine the system.</p><div class="step-tags"><span class="tag">UAT</span><span class="tag">Verification</span><span class="tag">Feedback loops</span></div></div>
       </article>
     </div>
+    </details>
   </div>
 </section>
 
@@ -928,6 +969,11 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
     <h2 id="caseTitle"></h2>
     <p class="dialog-deck" id="caseSolution"></p>
     <div id="caseDemoActions"></div>
+    <div id="jeffCaseVisual" class="case-visual" hidden>
+      <div class="case-visual-image"><img src="assets/jeff-electric-live-preview.jpg" alt="Live Jeff Electric homepage" loading="lazy"><span>01 / Live customer website</span></div>
+      <div class="case-visual-story"><span class="kicker">02 / Workflow illustration</span><h3>From inquiry to owned action</h3><ol><li>Customer describes a concern</li><li>Context and follow-up are captured</li><li>A person owns the next decision</li></ol><p>Conceptual handoff. Some internal integrations remain in development.</p></div>
+    </div>
+    <div id="jeffCaseDecisions" class="case-decisions" hidden><p><strong>Design decision</strong> Keep customer context and the next action explicit across tools.</p><p><strong>Human checkpoint</strong> The dispatcher or owner decides what to quote, schedule, or escalate.</p><p><strong>Current scope</strong> Public website is live; internal workflows and integrations are at different build stages.</p></div>
     <section class="dialog-section"><h3>The problem</h3><p id="caseProblem"></p></section>
     <section class="dialog-section"><h3>What exists</h3><p id="caseBuilt"></p></section>
     <section class="dialog-section"><h3>My contribution</h3><p id="caseRole"></p></section>
@@ -965,9 +1011,10 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
   grid.innerHTML=ordered.map(function(p,i){
     var summary=p.benefit || p.solution || p.problem;
     var tags=(p.tags||[]).slice(0,3).map(function(t){return "<span>"+escapeHtml(t)+"</span>";}).join("");
+    var visual=i===0?'<div class="project-visual" aria-label="Illustrative preview of a BuildBrief handoff document"><small>Requirements handoff</small><strong>BuildBrief</strong><p>Problem → scope → acceptance criteria</p></div>':i===1?'<div class="project-visual planner" aria-label="Illustrative preview of a sprint planning board"><small>Sprint planning view</small><div class="visual-lanes"><i></i><i></i><i></i></div></div>':'';
     return '<article class="project reveal" tabindex="0" role="button" data-project="'+escapeHtml(p.id)+'" aria-label="Open '+escapeHtml(p.title)+' case study">'+
       '<div class="project-top"><span class="project-index">'+String(i+1).padStart(2,"0")+'</span><span class="status">'+escapeHtml(p.status||"In progress")+'</span></div>'+
-      '<h3>'+escapeHtml(p.title)+'</h3><p>'+escapeHtml(summary)+'</p><div class="tags">'+tags+'</div><span class="project-arrow">↗</span></article>';
+      visual+'<h3>'+escapeHtml(p.title)+'</h3><p>'+escapeHtml(summary)+'</p><div class="tags">'+tags+'</div><span class="project-arrow">↗</span></article>';
   }).join("");
 
   var caseDialog=document.getElementById("caseDialog");
@@ -988,6 +1035,8 @@ dialog::backdrop{background:rgba(12,12,12,.55);backdrop-filter:blur(4px)}
     document.getElementById("caseProblem").textContent=p.problem||"";
     document.getElementById("caseBuilt").textContent=p.built||"";
     document.getElementById("caseRole").textContent=p.role||"";
+    document.getElementById("jeffCaseVisual").hidden=id!=="jeff";
+    document.getElementById("jeffCaseDecisions").hidden=id!=="jeff";
     document.getElementById("caseFlow").innerHTML=(p.flow||[]).map(function(item){
       return "<div><strong>"+escapeHtml(item[0])+"</strong><span>"+escapeHtml(item[1])+"</span></div>";
     }).join("");
