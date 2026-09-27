@@ -1,0 +1,1015 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contractor Systems — Wireframe</title>
+  <meta name="description" content="Digital systems for contractors: websites, lead systems, operations and automation.">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f7f7f7;
+      --text: #0a0a0a;
+      --muted: #666666;
+      --line: #d6d6d6;
+      --strong: #111111;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+
+    .wrap {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .wire-note {
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      min-width: 180px;
+    }
+
+    .brand strong {
+      font-size: 16px;
+      letter-spacing: .02em;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .nav-links a {
+      padding: 10px 0;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      border-color: var(--text);
+      outline: none;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border: 1px solid var(--text);
+      background: var(--text);
+      color: #fff;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: var(--text);
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 2px;
+    }
+
+    .mobile-toggle { display: none; }
+
+    section {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      margin-bottom: 24px;
+      font-size: clamp(48px, 7vw, 92px);
+      line-height: .98;
+      letter-spacing: -.05em;
+      max-width: 850px;
+    }
+
+    h2 {
+      margin-bottom: 16px;
+      font-size: clamp(32px, 4.5vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -.04em;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      font-size: 20px;
+      line-height: 1.15;
+    }
+
+    .lead {
+      max-width: 730px;
+      color: #333;
+      font-size: clamp(18px, 2.2vw, 24px);
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(330px, .8fr);
+      gap: 64px;
+      align-items: center;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .wire-box {
+      border: 1px dashed #999;
+      background: var(--surface);
+      padding: 24px;
+    }
+
+    .system-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .system-row {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .system-row strong { font-size: 14px; }
+    .system-row span { color: var(--muted); font-size: 12px; text-align: right; }
+    .arrow { text-align: center; color: var(--muted); }
+
+    .four-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 24px;
+    }
+
+    .card .num {
+      display: block;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .flow {
+      margin-top: 40px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .flow-track {
+      min-width: 920px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0;
+      align-items: center;
+    }
+
+    .flow-step {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -14px;
+      z-index: 2;
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      color: var(--muted);
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .placeholder {
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      border: 1px dashed #999;
+      background:
+        linear-gradient(45deg, transparent 49%, #ddd 50%, transparent 51%),
+        linear-gradient(-45deg, transparent 49%, #ddd 50%, transparent 51%),
+        var(--surface);
+      background-size: 40px 40px;
+      text-align: center;
+      color: #555;
+      padding: 24px;
+    }
+
+    .case-list {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .case-list .card { min-height: 150px; }
+
+    .before-after {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .before-after .panel {
+      min-height: 250px;
+      border: 1px solid var(--line);
+      padding: 24px;
+      background: #fff;
+    }
+
+    .bars {
+      display: grid;
+      gap: 10px;
+      margin: 28px 0;
+    }
+
+    .bar { height: 12px; background: #ddd; }
+    .bar:nth-child(1) { width: 92%; }
+    .bar:nth-child(2) { width: 67%; }
+    .bar:nth-child(3) { width: 83%; }
+    .bar:nth-child(4) { width: 48%; }
+
+    .after-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 8px;
+      margin: 28px 0;
+    }
+
+    .after-grid span {
+      border: 1px solid var(--line);
+      padding: 12px 8px;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .pricing-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 32px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4,minmax(0,1fr));
+      gap: 14px;
+      margin-top: 38px;
+    }
+
+    .price-card {
+      position: relative;
+      min-height: 440px;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price-card.featured {
+      border: 2px solid var(--text);
+    }
+
+    .tag {
+      display: inline-block;
+      align-self: flex-start;
+      margin-bottom: 16px;
+      padding: 5px 8px;
+      border: 1px solid var(--text);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .price {
+      margin: 10px 0 4px;
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -.04em;
+    }
+
+    .price-card ul,
+    .care-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 22px 0;
+      display: grid;
+      gap: 10px;
+      color: #444;
+      font-size: 13px;
+    }
+
+    .price-card li::before,
+    .care-card li::before {
+      content: "—";
+      margin-right: 8px;
+      color: #888;
+    }
+
+    .price-card .select-package {
+      margin-top: auto;
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid var(--text);
+      background: #fff;
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .price-card .select-package:hover,
+    .price-card .select-package:focus-visible,
+    .price-card.active .select-package {
+      background: #000;
+      color: #fff;
+      outline: none;
+    }
+
+    .package-detail {
+      margin-top: 16px;
+      border: 1px dashed #999;
+      background: var(--surface);
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .package-detail strong { display: block; margin-bottom: 6px; }
+    .package-detail p { margin: 0; color: #444; font-size: 14px; }
+    .package-detail .hours { color: var(--muted); font-size: 12px; white-space: nowrap; }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(5,minmax(0,1fr));
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    .process .card { min-height: 130px; }
+
+    .scope-box {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .scope-box .card { background: var(--surface); }
+
+    .care-grid {
+      display: grid;
+      grid-template-columns: repeat(4,minmax(0,1fr));
+      gap: 14px;
+      margin-top: 40px;
+    }
+
+    .care-card {
+      border: 1px solid var(--line);
+      padding: 22px;
+      background: #fff;
+    }
+
+    .care-card .price { font-size: 32px; }
+
+    .assessment {
+      display: grid;
+      grid-template-columns: 1fr .7fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .score {
+      min-height: 250px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      border: 1px dashed #999;
+      background: var(--surface);
+      padding: 28px;
+    }
+
+    .score strong {
+      display: block;
+      font-size: 64px;
+      line-height: 1;
+      letter-spacing: -.05em;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 110px 0;
+    }
+
+    .cta h2 {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta p {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .cta .actions { justify-content: center; }
+
+    footer {
+      padding: 30px 0 50px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links { display: none; }
+      .mobile-toggle {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        border: 1px solid var(--text);
+        background: #fff;
+        padding: 0 13px;
+      }
+      .nav.open .nav-links {
+        display: flex;
+        position: absolute;
+        left: 16px;
+        right: 16px;
+        top: 70px;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 18px;
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+      .nav.open .nav-links a { padding: 10px; border: 1px solid var(--line); }
+      .nav > .btn { display: none; }
+      .hero, .case-grid, .assessment { grid-template-columns: 1fr; }
+      .four-grid, .pricing-grid, .care-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .process { grid-template-columns: repeat(3,minmax(0,1fr)); }
+    }
+
+    @media (max-width: 680px) {
+      .section { padding: 64px 0; }
+      .wire-note { font-size: 10px; }
+      h1 { font-size: clamp(46px, 15vw, 72px); }
+      .four-grid,
+      .pricing-grid,
+      .care-grid,
+      .before-after,
+      .case-list,
+      .scope-box,
+      .process { grid-template-columns: 1fr; }
+      .pricing-intro { align-items: start; flex-direction: column; }
+      .package-detail { grid-template-columns: 1fr; }
+      .package-detail .hours { white-space: normal; }
+      .after-grid { grid-template-columns: repeat(2,1fr); }
+      .trust { display: grid; gap: 8px; }
+      .placeholder { min-height: 240px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wire-note">Black + white wireframe — brand, photography and final typography intentionally deferred</div>
+
+  <header>
+    <div class="wrap nav" id="nav">
+      <a class="brand" href="#top" aria-label="Contractor Systems home">
+        <strong>CONTRACTOR SYSTEMS</strong>
+        <span>Digital infrastructure for the trades</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#case-study">Case Study</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#process">How It Works</a>
+        <a href="#care">Care Plans</a>
+      </nav>
+
+      <a class="btn" href="#pricing">Start a Project</a>
+      <button class="mobile-toggle" id="mobile-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section>
+      <div class="wrap section hero">
+        <div>
+          <span class="eyebrow">Built for small contractors</span>
+          <h1>Get the lead.<br>Win the job.<br>Run the business.</h1>
+          <p class="lead">Websites, lead systems, operations and automation for electricians, plumbers, HVAC companies, remodelers and other growing trades businesses.</p>
+          <div class="actions">
+            <a class="btn" href="#pricing">See Packages</a>
+            <a class="btn secondary" href="#case-study">See Jeff Electric</a>
+          </div>
+          <div class="trust">
+            <span>✓ Clear project scope</span>
+            <span>✓ Two structured revision rounds</span>
+            <span>✓ QA + launch support included</span>
+          </div>
+        </div>
+
+        <aside class="wire-box" aria-label="Contractor system overview">
+          <span class="eyebrow">The system behind a contractor</span>
+          <div class="system-stack">
+            <div class="system-row"><strong>1. Get Found</strong><span>Website · Google · Reviews</span></div>
+            <div class="arrow">↓</div>
+            <div class="system-row"><strong>2. Convert</strong><span>Forms · CRM · Follow-Up</span></div>
+            <div class="arrow">↓</div>
+            <div class="system-row"><strong>3. Deliver</strong><span>Estimate · Job · Payment</span></div>
+            <div class="arrow">↓</div>
+            <div class="system-row"><strong>4. Operate</strong><span>SOPs · Training · Automation</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap section">
+        <span class="eyebrow">What we build</span>
+        <h2>One partner across the customer journey and the systems behind it.</h2>
+        <div class="four-grid">
+          <article class="card">
+            <span class="num">01</span>
+            <h3>Get Found</h3>
+            <p>Professional websites, local-search foundations, service pages, service areas and trust signals.</p>
+          </article>
+          <article class="card">
+            <span class="num">02</span>
+            <h3>Convert Leads</h3>
+            <p>Quote forms, lead intake, CRM structure, follow-up workflows and sales visibility.</p>
+          </article>
+          <article class="card">
+            <span class="num">03</span>
+            <h3>Run Operations</h3>
+            <p>Internal portals, SOPs, price books, forms, training resources and company knowledge.</p>
+          </article>
+          <article class="card">
+            <span class="num">04</span>
+            <h3>Automate</h3>
+            <p>Workflow automation and AI where they reduce repetitive work and improve visibility.</p>
+          </article>
+        </div>
+
+        <div class="flow" aria-label="Lead-to-cash process">
+          <div class="flow-track">
+            <div class="flow-step">Google / Website</div>
+            <div class="flow-step">Lead</div>
+            <div class="flow-step">CRM</div>
+            <div class="flow-step">Estimate</div>
+            <div class="flow-step">Job</div>
+            <div class="flow-step">Payment</div>
+            <div class="flow-step">Review</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="case-study">
+      <div class="wrap section">
+        <span class="eyebrow">Flagship case study</span>
+        <h2>Jeff Electric: more than a website.</h2>
+        <p class="lead">A growing electrical contractor needed customer-facing systems and internal operating structure. The work expanded from web presence into lead management, sales, knowledge and operations.</p>
+
+        <div class="case-grid">
+          <div class="placeholder">
+            <div>
+              <strong>CASE STUDY VISUAL AREA</strong>
+              <p class="small">Replace with website screenshots, CRM views, HQ screenshots and system diagrams after branding.</p>
+            </div>
+          </div>
+
+          <div class="case-list">
+            <article class="card">
+              <span class="eyebrow">Customer acquisition</span>
+              <h3>Website + Growth</h3>
+              <p>Website, service messaging, conversion improvements, promotions and local-search strategy.</p>
+            </article>
+            <article class="card">
+              <span class="eyebrow">Sales</span>
+              <h3>Lead-to-Cash</h3>
+              <p>Lead intake, CRM fields, quote status, next actions, follow-up and sales resources.</p>
+            </article>
+            <article class="card">
+              <span class="eyebrow">Operations</span>
+              <h3>Internal HQ</h3>
+              <p>Company portal, SOP organization, price-book resources, training and Workspace structure.</p>
+            </article>
+            <article class="card">
+              <span class="eyebrow">Automation</span>
+              <h3>AI + Workflows</h3>
+              <p>Knowledge access, process automation, AI-assisted workflows and continuous-improvement concepts.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="before-after">
+          <div class="panel">
+            <span class="eyebrow">Before</span>
+            <h3>Disconnected tools and tribal knowledge.</h3>
+            <div class="bars">
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            </div>
+            <p class="small">Information spread across texts, spreadsheets, files and individual memory.</p>
+          </div>
+          <div class="panel">
+            <span class="eyebrow">After</span>
+            <h3>One connected operating structure.</h3>
+            <div class="after-grid">
+              <span>Leads</span><span>Sales</span><span>Ops</span><span>Docs</span><span>AI</span><span>Reporting</span>
+            </div>
+            <p class="small">Clearer ownership, standardized processes and better visibility across the business.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="wrap section">
+        <div class="pricing-intro">
+          <div>
+            <span class="eyebrow">Packages</span>
+            <h2>Start where the business needs help.</h2>
+            <p class="lead">Project pricing includes discovery, the build, client review, revisions, QA, launch and stabilization—not only the first draft.</p>
+          </div>
+          <p class="small">Additional out-of-scope work: $125/hr</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card" data-package="website">
+            <span class="eyebrow">Foundation</span>
+            <div class="price">$2,250</div>
+            <h3>Contractor Website</h3>
+            <p class="small">For businesses that need a polished, credible lead-generating presence.</p>
+            <ul>
+              <li>Up to ~5 core pages</li>
+              <li>Responsive/mobile build</li>
+              <li>Local SEO foundation</li>
+              <li>Quote/contact forms</li>
+              <li>Two revision rounds</li>
+              <li>QA, launch + post-launch fixes</li>
+            </ul>
+            <button class="select-package" type="button">View delivery scope</button>
+          </article>
+
+          <article class="price-card featured active" data-package="growth">
+            <span class="tag">Most Popular</span>
+            <span class="eyebrow">Growth Engine</span>
+            <div class="price">$4,000</div>
+            <h3>Website + Growth System</h3>
+            <p class="small">For contractors ready to improve both visibility and lead conversion.</p>
+            <ul>
+              <li>Conversion-focused website</li>
+              <li>Service + area structure</li>
+              <li>Reviews + GBP guidance</li>
+              <li>Analytics + lead intake</li>
+              <li>Two revision rounds</li>
+              <li>Launch + stabilization</li>
+            </ul>
+            <button class="select-package" type="button">View delivery scope</button>
+          </article>
+
+          <article class="price-card" data-package="lead">
+            <span class="eyebrow">Systemize sales</span>
+            <div class="price">$6,500</div>
+            <h3>Lead-to-Cash System</h3>
+            <p class="small">For contractors losing visibility between inquiry, estimate and booked work.</p>
+            <ul>
+              <li>Growth Engine foundation</li>
+              <li>CRM + lead pipeline</li>
+              <li>Quote-status tracking</li>
+              <li>Follow-up workflows</li>
+              <li>Sales process resources</li>
+              <li>Team training + UAT</li>
+            </ul>
+            <button class="select-package" type="button">View delivery scope</button>
+          </article>
+
+          <article class="price-card" data-package="ops">
+            <span class="eyebrow">Run the company</span>
+            <div class="price">$9,500+</div>
+            <h3>Operations System</h3>
+            <p class="small">For growing businesses that need structure behind sales and field operations.</p>
+            <ul>
+              <li>Lead-to-Cash system</li>
+              <li>Internal company HQ</li>
+              <li>SOP + knowledge structure</li>
+              <li>Workspace + forms</li>
+              <li>Training resources</li>
+              <li>Basic automation</li>
+            </ul>
+            <button class="select-package" type="button">View delivery scope</button>
+          </article>
+        </div>
+
+        <div class="package-detail" id="package-detail" aria-live="polite">
+          <div>
+            <strong>Growth Engine — $4,000</strong>
+            <p>Includes discovery, design/build, client presentation, two structured feedback rounds, service and service-area work, analytics, lead intake, QA, launch and short post-launch stabilization.</p>
+          </div>
+          <div class="hours">Target delivery: 22–28 total hours</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="wrap section">
+        <span class="eyebrow">How projects work</span>
+        <h2>A controlled process protects the client and the project.</h2>
+        <p class="lead">Client meetings, feedback, revisions, QA and launch are already part of the delivery model.</p>
+
+        <div class="process">
+          <article class="card"><span class="num">01</span><h3>Discover</h3><p>Goals, services, customers, current systems and content.</p></article>
+          <article class="card"><span class="num">02</span><h3>Design + Build</h3><p>Create the first working version against agreed scope.</p></article>
+          <article class="card"><span class="num">03</span><h3>Client Review</h3><p>Present the system and collect consolidated feedback.</p></article>
+          <article class="card"><span class="num">04</span><h3>Revise + Test</h3><p>Two structured revision rounds plus responsive QA/UAT.</p></article>
+          <article class="card"><span class="num">05</span><h3>Launch</h3><p>Deployment, handoff and a defined stabilization period.</p></article>
+        </div>
+
+        <div class="scope-box">
+          <article class="card">
+            <span class="eyebrow">Revision boundary</span>
+            <h3>Two structured rounds</h3>
+            <p>One consolidated feedback list per round. New functionality is separately scoped.</p>
+          </article>
+          <article class="card">
+            <span class="eyebrow">Delivery principle</span>
+            <h3>Total client time counts</h3>
+            <p>Kickoff, presentations, feedback, revisions, testing and launch are treated as real delivery work.</p>
+          </article>
+          <article class="card">
+            <span class="eyebrow">Scope changes</span>
+            <h3>Protect the outcome</h3>
+            <p>Major direction changes, added pages or additional workflows are quoted before work begins.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="care">
+      <div class="wrap section">
+        <span class="eyebrow">Ongoing support</span>
+        <h2>Keep the system healthy after launch.</h2>
+        <p class="lead">Optional monthly plans create a clear support boundary while giving clients a long-term technology partner.</p>
+
+        <div class="care-grid">
+          <article class="care-card">
+            <span class="eyebrow">Care</span>
+            <div class="price">$199<span class="small">/mo</span></div>
+            <h3>Website Care</h3>
+            <ul><li>Monitoring + form checks</li><li>Small content updates</li><li>Up to 30 minutes changes</li></ul>
+          </article>
+          <article class="care-card">
+            <span class="eyebrow">Growth</span>
+            <div class="price">$399<span class="small">/mo</span></div>
+            <h3>Growth Care</h3>
+            <ul><li>SEO + offers</li><li>Analytics review</li><li>Up to 2 hours improvements</li></ul>
+          </article>
+          <article class="care-card">
+            <span class="eyebrow">Systems</span>
+            <div class="price">$750<span class="small">/mo</span></div>
+            <h3>Systems Care</h3>
+            <ul><li>CRM + forms</li><li>Automation support</li><li>Up to 4 hours systems work</li></ul>
+          </article>
+          <article class="care-card">
+            <span class="eyebrow">Partner</span>
+            <div class="price">$1,250<span class="small">/mo</span></div>
+            <h3>Digital Partner</h3>
+            <ul><li>Prioritized improvements</li><li>Web + systems + AI</li><li>Ongoing technology partnership</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap section assessment">
+        <div>
+          <span class="eyebrow">Lead magnet concept</span>
+          <h2>How organized is your contracting business?</h2>
+          <p class="lead">A short assessment can score lead capture, sales follow-up, operations and automation—then point the owner toward the system that needs attention first.</p>
+          <div class="actions">
+            <a class="btn" href="#pricing">Preview Recommended Packages</a>
+          </div>
+        </div>
+        <div class="score">
+          <div>
+            <span class="eyebrow">Example systems score</span>
+            <strong>54<span style="font-size:22px">/100</span></strong>
+            <p>Biggest opportunity:<br><b>Lead Follow-Up</b></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap cta">
+        <span class="eyebrow">Next step</span>
+        <h2>Your business shouldn't depend on texts, spreadsheets and memory.</h2>
+        <p>Build the system behind the work.</p>
+        <div class="actions">
+          <a class="btn" href="#pricing">Choose a Starting Point</a>
+          <a class="btn secondary" href="#case-study">Review the Case Study</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span>Contractor Systems — wireframe</span>
+      <span>Houston-area contractors · Website · Sales · Operations · Automation</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.getElementById('nav');
+      var toggle = document.getElementById('mobile-toggle');
+
+      toggle.addEventListener('click', function () {
+        var open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.textContent = open ? 'Close' : 'Menu';
+      });
+
+      nav.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          nav.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.textContent = 'Menu';
+        });
+      });
+
+      var packages = {
+        website: {
+          title: 'Contractor Website — $2,250',
+          hours: 'Target delivery: 12–15 total hours',
+          text: 'Includes discovery, content organization, design/build, client presentation, two structured revision rounds, responsive QA, forms/basic SEO, launch and short post-launch cleanup.'
+        },
+        growth: {
+          title: 'Growth Engine — $4,000',
+          hours: 'Target delivery: 22–28 total hours',
+          text: 'Includes discovery, design/build, client presentation, two structured feedback rounds, service and service-area work, analytics, lead intake, QA, launch and short post-launch stabilization.'
+        },
+        lead: {
+          title: 'Lead-to-Cash System — $6,500',
+          hours: 'Target delivery: 34–42 total hours',
+          text: 'Includes the Growth Engine plus CRM structure, lead stages, quote tracking, follow-up workflows, sales resources, team training, user acceptance testing and launch stabilization.'
+        },
+        ops: {
+          title: 'Operations System — $9,500+',
+          hours: 'Target delivery: 50–60 total hours',
+          text: 'Includes Lead-to-Cash plus an internal HQ, SOP architecture, Workspace organization, forms, training resources, basic automations, team review and operational stabilization.'
+        }
+      };
+
+      var detail = document.getElementById('package-detail');
+
+      document.querySelectorAll('.price-card').forEach(function (card) {
+        var button = card.querySelector('.select-package');
+        button.addEventListener('click', function () {
+          document.querySelectorAll('.price-card').forEach(function (other) {
+            other.classList.remove('active');
+          });
+
+          card.classList.add('active');
+          var pkg = packages[card.getAttribute('data-package')];
+
+          detail.innerHTML =
+            '<div><strong>' + pkg.title + '</strong><p>' + pkg.text + '</p></div>' +
+            '<div class="hours">' + pkg.hours + '</div>';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
