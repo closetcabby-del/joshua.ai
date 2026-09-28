@@ -6,6 +6,10 @@
   <title>Contractor Systems | Digital Systems for the Trades</title>
   <meta name="description" content="Websites, lead systems, operations and automation for electricians, plumbers, HVAC companies, remodelers and other growing trades businesses.">
   <meta name="theme-color" content="#111111">
+  <meta property="og:title" content="Contractor Systems | Digital Systems for the Trades">
+  <meta property="og:description" content="Websites, lead systems and operations infrastructure for growing contractors.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 105'%3E%3Crect width='120' height='105' rx='22' fill='%23111111'/%3E%3Cline x1='60' y1='22' x2='25' y2='82' stroke='%23F7F5F0' stroke-width='12' stroke-linecap='round'/%3E%3Cline x1='60' y1='22' x2='95' y2='82' stroke='%23F15A24' stroke-width='12' stroke-linecap='round'/%3E%3Cline x1='25' y1='82' x2='95' y2='82' stroke='%2377736D' stroke-width='12' stroke-linecap='round'/%3E%3Ccircle cx='60' cy='22' r='15' fill='%23111111' stroke='%23F15A24' stroke-width='8'/%3E%3Ccircle cx='25' cy='82' r='15' fill='%23111111' stroke='%23F7F5F0' stroke-width='8'/%3E%3Ccircle cx='95' cy='82' r='15' fill='%23111111' stroke='%2377736D' stroke-width='8'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -104,13 +108,36 @@
     .case-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.case-list .card{min-height:178px}
     .privacy-note{margin-top:16px;padding:18px;border:1px solid #34343a;background:#18181b;font-size:13px;color:#aaaab0}
     .founder-section{background:var(--paper)}
-    .founder-grid{display:grid;grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);gap:56px;align-items:center}
-    .founder-photo{width:min(100%,380px);margin:0 auto}
-    .founder-photo img{display:block;width:100%;aspect-ratio:1;object-fit:cover;object-position:center 43%;border-radius:50%;border:1px solid var(--line);background:var(--ink)}
-    .founder-copy{max-width:700px}
-    .founder-copy .lead{max-width:680px}
-    .founder-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+    .founder-grid{display:grid;grid-template-columns:minmax(230px,.62fr) minmax(0,1.38fr);gap:56px;align-items:center}
+    .founder-photo{width:min(100%,320px);aspect-ratio:1;margin:0 auto;border-radius:50%;overflow:hidden;border:4px solid #fff;background:var(--ink);box-shadow:0 18px 50px rgba(17,17,17,.14)}
+    .founder-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 49%;transform:scale(1.15);transform-origin:center}
+    .founder-copy{max-width:690px}
+    .founder-role{margin:-4px 0 16px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .founder-copy .lead{max-width:650px;font-size:clamp(17px,1.7vw,21px)}
+    .founder-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
     .founder-meta span{display:inline-flex;align-items:center;min-height:34px;padding:0 11px;border:1px solid var(--line);background:#fff;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#55514b}
+
+    .operations-map{margin-top:34px;border:1px solid var(--line);background:var(--ink);color:#fff;padding:28px}
+    .operations-map-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:22px}
+    .operations-map-head h3{margin:0;font-size:24px}
+    .operations-map-head p{margin:0;max-width:560px;color:#aaaab0;font-size:13px}
+    .ops-lanes{display:grid;gap:10px}
+    .ops-lane{display:grid;grid-template-columns:155px repeat(4,minmax(0,1fr));gap:8px;align-items:stretch}
+    .ops-label{display:flex;align-items:center;padding:12px 14px;color:#aaaab0;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .ops-node{min-height:58px;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px 12px;border:1px solid #333338;background:#171719;font-size:12px;font-weight:800;position:relative}
+    .ops-node.active{border-color:var(--accent)}
+    .ops-node:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);z-index:2;color:var(--accent);background:var(--ink);width:18px}
+
+    .assessment{margin-top:34px;display:grid;gap:14px}
+    .assessment-question{margin:0;border:1px solid var(--line);background:var(--paper);padding:22px}
+    .assessment-question legend{padding:0 8px 0 0;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:17px}
+    .assessment-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+    .assessment-choice{display:flex;align-items:flex-start;gap:10px;min-height:76px;padding:14px;border:1px solid var(--line);background:#fff;cursor:pointer}
+    .assessment-choice:has(input:checked){border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:var(--accent-soft)}
+    .assessment-choice input{margin-top:3px;accent-color:var(--accent)}
+    .assessment-choice span{font-size:13px;color:#45423d}
+    .assessment-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:4px}
+    .assessment-note{font-size:12px;color:var(--muted)}
     .pricing-intro{display:flex;justify-content:space-between;align-items:end;gap:32px}.pricing-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:40px}
     .price-card{min-height:492px;border:1px solid var(--line);background:#fff;padding:26px;display:flex;flex-direction:column;border-radius:10px}.price-card.featured{border:2px solid var(--accent);position:relative}
     .price-card.featured::after{content:"";position:absolute;left:26px;right:26px;top:0;height:3px;background:var(--accent)}
@@ -136,7 +163,7 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.card,.finder-option,.btn{transition:none}}
     @media(max-width:980px){
       .nav-links{display:none}.mobile-toggle{display:inline-flex}.nav.open .nav-links{display:flex;position:absolute;left:16px;right:16px;top:76px;flex-direction:column;align-items:stretch;padding:18px;border:1px solid var(--line-dark);background:#0f0f11}.nav.open .nav-links a{padding:10px;border:1px solid var(--line-dark)}.nav>.btn{display:none}
-      .hero,.case-grid,.intake-layout,.founder-grid{grid-template-columns:1fr}.four-grid,.pricing-grid,.care-grid,.proof-strip,.finder-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.process{grid-template-columns:repeat(3,minmax(0,1fr))}.scope-detail,.addon-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.live-frame{height:520px}.founder-photo{width:min(100%,310px)}
+      .hero,.case-grid,.intake-layout,.founder-grid{grid-template-columns:1fr}.four-grid,.pricing-grid,.care-grid,.proof-strip,.finder-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.process{grid-template-columns:repeat(3,minmax(0,1fr))}.scope-detail,.addon-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.live-frame{height:520px}.founder-photo{width:min(100%,280px)}.operations-map-head{align-items:flex-start;flex-direction:column}.ops-lane{grid-template-columns:120px repeat(4,minmax(130px,1fr));overflow-x:auto}.assessment-options{grid-template-columns:1fr}
     }
     @media(max-width:680px){
       .section{padding:68px 0}.topline{font-size:9px}.brand-copy .contractor{display:none}.brand-copy .systems{display:block}.brand{min-width:0}h1{font-size:clamp(48px,15vw,72px)}
@@ -178,8 +205,8 @@
         <div>
           <span class="eyebrow">Built for small contractors</span>
           <h1>Get the lead.<br>Win the job.<br><span class="accent">Run the business.</span></h1>
-          <p class="lead">Websites, lead systems, operations and automation for electricians, plumbers, HVAC companies, remodelers and other growing trades businesses.</p>
-          <div class="actions"><a class="btn accent-btn" href="#finder">Find My Starting Point</a><a class="btn secondary" href="#case-study">See Jeff Electric</a></div>
+          <p class="lead">Websites, lead systems and operations infrastructure for growing contractors.</p>
+          <div class="actions"><a class="btn accent-btn" href="#finder">Get a Systems Assessment</a><a class="btn secondary" href="#case-study">See What We Built for Jeff Electric</a></div>
           <div class="trust"><span>Clear project scope</span><span>Two structured revision rounds</span><span>QA + launch support included</span></div>
         </div>
         <aside class="system-panel">
@@ -216,18 +243,57 @@
           <article class="card"><span class="num">04</span><h3>Automate</h3><p>Workflow automation and AI where they reduce repetitive work and improve visibility.</p></article>
         </div>
         <div class="flow"><div class="flow-track"><div class="flow-step">Google / Website</div><div class="flow-step">Lead</div><div class="flow-step">CRM</div><div class="flow-step">Estimate</div><div class="flow-step">Job</div><div class="flow-step">Payment</div><div class="flow-step">Review</div></div></div>
+        <div class="operations-map">
+          <div class="operations-map-head"><h3>Built from real contractor operations.</h3><p>The customer journey is only half the system. Contractor Systems also connects the internal layer that keeps sales, delivery, knowledge and automation moving together.</p></div>
+          <div class="ops-lanes">
+            <div class="ops-lane"><div class="ops-label">Customer flow</div><div class="ops-node">Lead Capture</div><div class="ops-node active">Sales Pipeline</div><div class="ops-node">Job Delivery</div><div class="ops-node">Review + Growth</div></div>
+            <div class="ops-lane"><div class="ops-label">Operating layer</div><div class="ops-node">Forms + CRM</div><div class="ops-node active">Follow-Up + Estimates</div><div class="ops-node">SOPs + Company HQ</div><div class="ops-node">Automation + Reporting</div></div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section id="finder" class="finder-section">
       <div class="wrap section reveal">
-        <span class="eyebrow">Package finder</span><h2>What is breaking first?</h2><p class="lead">Choose the problem that sounds most like your business. The technology comes second.</p>
-        <div class="finder-grid">
-          <button class="finder-option" type="button" data-recommend="website"><strong>I just need a better website.</strong><span>Outdated, weak on mobile, hard to trust or hard to contact.</span></button>
-          <button class="finder-option" type="button" data-recommend="growth"><strong>I need more leads to convert.</strong><span>Traffic exists, but calls, forms, reviews and local visibility need work.</span></button>
-          <button class="finder-option" type="button" data-recommend="lead"><strong>We lose track of leads and estimates.</strong><span>Follow-up is inconsistent and nobody has a clean view of the pipeline.</span></button>
-          <button class="finder-option" type="button" data-recommend="ops"><strong>Our whole operation feels messy.</strong><span>Processes, SOPs, files, systems and team knowledge are spread everywhere.</span></button>
-        </div>
+        <span class="eyebrow">Systems assessment</span><h2>Find the first system to fix.</h2><p class="lead">Answer four quick questions. You’ll get a recommended starting point based on where the business is actually breaking down.</p>
+        <form class="assessment" id="systems-assessment">
+          <fieldset class="assessment-question">
+            <legend>1 · How is your website performing?</legend>
+            <div class="assessment-options">
+              <label class="assessment-choice"><input type="radio" name="site" value="website:4" required><span>No website, outdated, weak on mobile or hard to trust.</span></label>
+              <label class="assessment-choice"><input type="radio" name="site" value="growth:3"><span>Looks decent, but it is not producing enough calls or form leads.</span></label>
+              <label class="assessment-choice"><input type="radio" name="site" value="none:0"><span>The website is not our main problem.</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="assessment-question">
+            <legend>2 · What happens with new leads?</legend>
+            <div class="assessment-options">
+              <label class="assessment-choice"><input type="radio" name="leads" value="growth:4" required><span>We need more visibility, reviews or better conversion.</span></label>
+              <label class="assessment-choice"><input type="radio" name="leads" value="lead:3"><span>Leads come in, but follow-up is inconsistent.</span></label>
+              <label class="assessment-choice"><input type="radio" name="leads" value="none:0"><span>Lead volume and response are reasonably healthy.</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="assessment-question">
+            <legend>3 · Can you clearly see every lead and estimate?</legend>
+            <div class="assessment-options">
+              <label class="assessment-choice"><input type="radio" name="pipeline" value="lead:5" required><span>No. We use texts, memory, spreadsheets or scattered tools.</span></label>
+              <label class="assessment-choice"><input type="radio" name="pipeline" value="lead:3"><span>We have a CRM, but the pipeline or statuses are messy.</span></label>
+              <label class="assessment-choice"><input type="radio" name="pipeline" value="none:0"><span>Yes. Ownership, status and next action are clear.</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="assessment-question">
+            <legend>4 · How organized are your internal operations?</legend>
+            <div class="assessment-options">
+              <label class="assessment-choice"><input type="radio" name="ops" value="ops:5" required><span>SOPs, files, forms and team knowledge are scattered everywhere.</span></label>
+              <label class="assessment-choice"><input type="radio" name="ops" value="ops:3"><span>We have some structure, but growth is exposing gaps.</span></label>
+              <label class="assessment-choice"><input type="radio" name="ops" value="none:0"><span>Operations are documented and easy for the team to follow.</span></label>
+            </div>
+          </fieldset>
+          <div class="assessment-actions">
+            <span class="assessment-note">No email required. This only recommends a starting point.</span>
+            <button class="btn accent-btn" type="submit">Show My Starting Point</button>
+          </div>
+        </form>
         <div class="finder-result" id="finder-result" aria-live="polite"></div>
       </div>
     </section>
@@ -260,8 +326,9 @@
         <div class="founder-copy">
           <span class="eyebrow">Who is behind Contractor Systems</span>
           <h2>Built from inside contractor operations.</h2>
-          <p class="lead">I'm Joshua Ly. Contractor Systems grew out of hands-on work building websites, lead systems, internal operations, automation and AI-enabled workflows for a working electrical contractor. The goal is simple: give small contractors practical systems that make the business easier to run.</p>
-          <div class="founder-meta"><span>Technology + Operations</span><span>Houston Area</span><span>Built for the Trades</span></div>
+          <div class="founder-role">Joshua Ly · Founder · Technology &amp; Operations</div>
+          <p class="lead">Contractor Systems grew out of hands-on work building the website, lead flow, internal operations and automation behind a working electrical contractor. The focus is practical: fewer dropped handoffs, clearer processes and systems the business actually owns.</p>
+          <div class="founder-meta"><span>Houston Area</span><span>Contractor Systems</span><span>Business-Owned Infrastructure</span></div>
         </div>
       </div>
     </section>
@@ -398,13 +465,31 @@
       renderPackage('growth');
 
       var finderResult=document.getElementById('finder-result');
+      var assessment=document.getElementById('systems-assessment');
       var finderCopy={
-        website:{name:'Contractor Website — $2,250',text:'Start by fixing credibility, mobile experience and lead capture before adding more systems.'},
-        growth:{name:'Growth Engine — $4,000',text:'Start with the website plus conversion, service-area structure, reviews and lead measurement.'},
-        lead:{name:'Lead-to-Cash — $6,500',text:'Your main problem is not the website. Build visibility from inquiry through estimate and follow-up.'},
-        ops:{name:'Operations System — $9,500+',text:'Start with the operating structure: sales, internal HQ, SOPs, knowledge and targeted automation.'}
+        website:{name:'Contractor Website — $2,250',text:'Your first priority is credibility and lead capture. Fix the customer-facing foundation before adding more internal systems.'},
+        growth:{name:'Growth Engine — $4,000',text:'Your foundation exists, but visibility and conversion need work. Focus on service structure, local search, reviews, analytics and stronger lead capture.'},
+        lead:{name:'Lead-to-Cash — $6,500',text:'The biggest gap is between inquiry and booked work. Build a clear pipeline, quote statuses, follow-up and next-action ownership.'},
+        ops:{name:'Operations System — $9,500+',text:'The business needs an operating layer behind sales: internal HQ, SOPs, forms, knowledge structure and targeted automation.'}
       };
-      document.querySelectorAll('.finder-option').forEach(function(button){button.addEventListener('click',function(){document.querySelectorAll('.finder-option').forEach(function(b){b.classList.remove('active');});button.classList.add('active');var r=finderCopy[button.getAttribute('data-recommend')];finderResult.innerHTML='<span class="eyebrow">Recommended starting point</span><strong>'+r.name+'</strong><p>'+r.text+'</p><div class="actions" style="margin-top:14px"><a class="btn secondary" href="#pricing">Review package scope</a><a class="btn accent-btn" href="#intake">Start intake</a></div>';finderResult.classList.add('show');});});
+      assessment.addEventListener('submit',function(event){
+        event.preventDefault();
+        var formData=new FormData(assessment);
+        var scores={website:0,growth:0,lead:0,ops:0};
+        ['site','leads','pipeline','ops'].forEach(function(name){
+          var value=formData.get(name);
+          if(!value){return;}
+          var parts=String(value).split(':');
+          if(parts[0] !== 'none' && Object.prototype.hasOwnProperty.call(scores,parts[0])){scores[parts[0]]+=Number(parts[1])||0;}
+        });
+        var order=['ops','lead','growth','website'];
+        var winner=order.reduce(function(best,key){return scores[key]>scores[best]?key:best;},'website');
+        if(Object.values(scores).every(function(v){return v===0;})){winner='growth';}
+        var r=finderCopy[winner];
+        finderResult.innerHTML='<span class="eyebrow">Recommended starting point</span><strong>'+r.name+'</strong><p>'+r.text+'</p><div class="actions" style="margin-top:14px"><a class="btn secondary" href="#pricing">Review package scope</a><a class="btn accent-btn" href="#intake">Start project intake</a></div>';
+        finderResult.classList.add('show');
+        finderResult.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});
+      });
 
       var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if(!reduced && 'IntersectionObserver' in window){
