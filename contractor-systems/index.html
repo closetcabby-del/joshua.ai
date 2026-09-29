@@ -365,6 +365,170 @@
     @media(prefers-reduced-motion:reduce){
       .cos-link-motion,.cos-dot,.cos-core-ring{animation:none!important}
     }
+
+    /* Mobile-first conversion pass */
+    .mobile-system-strip,.cos-mobile,.assessment-progress,.assessment-back,.mobile-sticky-cta{display:none}
+
+    @media(max-width:680px){
+      body{padding-bottom:0}
+      .section{padding:50px 0}
+      .hero{padding:50px 0 46px;gap:0}
+      .hero .actions{margin-top:22px}
+      .hero .trust{margin-top:18px}
+      .hero .system-panel{display:none}
+      .mobile-system-strip{
+        display:flex;align-items:center;gap:6px;margin-top:20px;padding:11px 12px;
+        border:1px solid #303036;background:#151517;border-radius:10px;
+        overflow:hidden;white-space:nowrap;color:#d7d7db;font-size:10px;font-weight:800
+      }
+      .mobile-system-strip span{flex:0 0 auto}.mobile-system-strip b{color:var(--accent);font-weight:700}
+      .hero h1{font-size:clamp(43px,13vw,56px)}
+      .hero .lead{font-size:17px}
+      .trust{font-size:12px}
+
+      .case-section .section{padding-top:48px;padding-bottom:50px}
+      .case-grid{gap:18px}
+      .live-frame{height:420px}
+      .case-list .eyebrow{font-size:10px}
+      .case-list .card p{font-size:13px;line-height:1.55}
+
+      #services .flow{display:none}
+      #services .four-grid{margin-top:24px}
+      #services .card{padding:18px}
+      #services .card .num{margin-bottom:10px}
+      #services .card p{font-size:13px;line-height:1.55}
+
+      .cos-head{margin-bottom:22px}
+      .cos-head p{font-size:14px}
+      .cos-scroll{display:none}
+      .cos-shell{margin-inline:0;border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+      .cos-caption{padding:14px 16px}
+      .cos-swipe{display:none}
+      .cos-mobile{display:block;position:relative;height:470px;max-width:390px;margin:0 auto}
+      .cos-mobile-lines{position:absolute;inset:12px 0 auto;width:100%;height:390px;overflow:visible}
+      .cos-mobile-line,.cos-mobile-signal{fill:none;vector-effect:non-scaling-stroke}
+      .cos-mobile-line{stroke:#c8c3ba;stroke-width:1;stroke-dasharray:4 7}
+      .cos-mobile-signal{stroke:var(--accent);stroke-width:1.8;stroke-dasharray:2 20;animation:cosTravel 11s linear infinite;animation-play-state:paused}
+      .cos-section.motion-active .cos-mobile-signal{animation-play-state:running}
+      .cos-mobile-core{
+        position:absolute;left:50%;top:195px;transform:translate(-50%,-50%);
+        width:126px;height:126px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+        background:var(--ink);color:#fff;border:1px solid #2d2d31;
+        box-shadow:0 0 0 14px rgba(241,90,36,.06),0 20px 45px rgba(17,17,17,.16)
+      }
+      .cos-mobile-core span{font-size:7px;letter-spacing:.2em;color:#aaaab0;font-weight:800}
+      .cos-mobile-core strong{font-family:"Space Grotesk";font-size:17px;letter-spacing:-.04em}
+      .cos-mobile-node{
+        position:absolute;width:92px;min-height:66px;padding:8px 7px;border:1px solid #bdb8af;border-radius:12px;
+        background:var(--paper);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;
+        box-shadow:0 6px 18px rgba(17,17,17,.05);cursor:pointer;transition:.2s ease
+      }
+      .cos-mobile-node span{font-family:"Space Grotesk";font-size:13px;font-weight:700;line-height:1.05}
+      .cos-mobile-node small{margin-top:4px;font-size:9px;line-height:1.15;color:var(--muted)}
+      .cos-mobile-node.active{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent),0 8px 24px rgba(241,90,36,.09);background:#fff}
+      .node-website{left:50%;top:22px;transform:translateX(-50%)}
+      .node-leads{left:10px;top:88px}
+      .node-sales{right:10px;top:88px}
+      .node-jobs{right:10px;top:252px}
+      .node-ops{left:50%;top:308px;transform:translateX(-50%)}
+      .node-ai{left:10px;top:252px}
+      .cos-mobile-detail{
+        position:absolute;left:14px;right:14px;bottom:10px;min-height:62px;padding:12px 14px;
+        border-top:1px solid var(--line);background:rgba(247,245,240,.94);backdrop-filter:blur(8px)
+      }
+      .cos-mobile-detail strong{display:block;font-family:"Space Grotesk";font-size:14px;margin-bottom:3px}
+      .cos-mobile-detail span{font-size:12px;line-height:1.45;color:var(--muted)}
+      .cos-link-motion,.cos-dot,.cos-core-ring{animation-play-state:paused}
+      .cos-section.motion-active .cos-link-motion,
+      .cos-section.motion-active .cos-dot,
+      .cos-section.motion-active .cos-core-ring{animation-play-state:running}
+
+      .assessment{margin-top:22px}
+      .assessment-progress{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+      .assessment-progress>span{font-size:12px;font-weight:800;color:var(--muted);white-space:nowrap}
+      .assessment-progress-track{height:4px;flex:1;background:var(--line);border-radius:999px;overflow:hidden}
+      .assessment-progress-track i{display:block;width:25%;height:100%;background:var(--accent);border-radius:999px;transition:width .25s ease}
+      .assessment-question{display:none;padding:18px;min-height:320px}
+      .assessment-question.is-current{display:block}
+      .assessment-question legend{font-size:19px;line-height:1.2;margin-bottom:4px}
+      .assessment-options{gap:10px;margin-top:16px}
+      .assessment-choice{min-height:68px;padding:14px}
+      .assessment-choice span{font-size:14px;line-height:1.4}
+      .assessment-actions{grid-template-columns:auto 1fr;align-items:center;margin-top:10px}
+      .assessment-back{
+        display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 13px;
+        border:1px solid var(--line);background:#fff;border-radius:8px;font-weight:800;color:#55514b
+      }
+      .assessment-back:disabled{opacity:.35}
+      .assessment-note{font-size:12px}
+      #assessment-submit{display:none;grid-column:1/-1}
+      .assessment.is-final #assessment-submit{display:flex}
+      .finder-result{margin-top:14px}
+
+      .founder-role{font-size:11px}
+      .founder-meta span{font-size:10px}
+      .small{font-size:12px}
+
+      .pricing-grid{
+        display:grid;grid-template-columns:1fr;gap:10px;overflow:visible;margin:24px 0 0;padding:0
+      }
+      .price-card{
+        display:block;min-height:0;padding:18px;border-radius:10px
+      }
+      .price-card.featured{border-width:1px}
+      .price-card.featured::after{display:none}
+      .price-card .tag{margin-bottom:8px}
+      .price-card .eyebrow{margin-bottom:5px}
+      .price-card .price{font-size:31px;margin:2px 0}
+      .price-card h3{font-size:19px;margin-bottom:6px}
+      .price-card>ul{display:none}
+      .price-card>p.small{font-size:13px;line-height:1.45}
+      .price-card .select-package{min-height:48px;margin-top:14px}
+      .price-card .package-detail{margin-top:14px;padding:15px}
+      #pricing>.wrap>.package-detail{display:none}
+      .scope-detail{grid-template-columns:1fr}
+      .scope-detail>div{padding:13px}
+      .scope-detail ul{display:grid}
+      .addon-grid{grid-template-columns:1fr}
+      .addon{padding:14px 15px}
+
+      .care-grid{display:grid;grid-template-columns:1fr;gap:9px;overflow:visible;margin:24px 0 0;padding:0}
+      .care-card{
+        position:relative;display:block;padding:16px 46px 16px 17px;cursor:pointer;min-height:0
+      }
+      .care-card::after{
+        content:"+";position:absolute;right:17px;top:18px;font-family:"Space Grotesk";font-size:24px;color:var(--accent)
+      }
+      .care-card.open::after{content:"–"}
+      .care-card .eyebrow{margin-bottom:4px}
+      .care-card .price{font-size:28px;margin:2px 0}
+      .care-card h3{font-size:18px;margin-bottom:0}
+      .care-card ul{display:none;margin:14px 0 0}
+      .care-card.open ul{display:grid}
+      .care-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+      .process{margin-top:24px}
+      .process .card p{font-size:13px}
+      .scope-box{margin-top:14px}
+
+      .mobile-sticky-cta{
+        position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:80;
+        display:flex;align-items:center;justify-content:space-between;gap:10px;
+        padding:9px 9px 9px 13px;border:1px solid #343438;background:rgba(17,17,17,.96);color:#fff;
+        border-radius:13px;box-shadow:0 16px 45px rgba(0,0,0,.26);backdrop-filter:blur(14px);
+        transform:translateY(140%);opacity:0;pointer-events:none;transition:.25s ease
+      }
+      .mobile-sticky-cta.show{transform:none;opacity:1;pointer-events:auto}
+      .mobile-sticky-cta span{font-size:11px;color:#b8b8bd}
+      .mobile-sticky-cta a{flex:0 0 auto;padding:11px 12px;background:var(--accent);color:#111;border-radius:8px;font-size:12px;font-weight:900}
+      .nav.open~.mobile-sticky-cta{display:none}
+      footer{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      .cos-mobile-signal{animation:none!important}
+      .mobile-sticky-cta{transition:none}
+    }
 </style>
   <!-- deployment refresh: founder-section-2026-09-28 -->
 </head>
@@ -403,6 +567,9 @@
           <p class="lead">Websites, business systems, automation and AI built around how contractors actually work.</p>
           <div class="actions"><a class="btn accent-btn" href="#case-study">See a Real System</a><a class="btn secondary" href="#finder">Find What You Need</a></div>
           <div class="trust"><span>Built around contractor operations</span><span>You own what we build</span><span>No forced monthly contract</span></div>
+          <div class="mobile-system-strip" aria-label="Contractor system flow">
+            <span>Website</span><b>→</b><span>Leads</span><b>→</b><span>Jobs</span><b>→</b><span>Operations</span><b>→</b><span>AI</span>
+          </div>
         </div>
         <aside class="system-panel">
           <span class="eyebrow">The system behind a contractor</span>
@@ -424,7 +591,7 @@
           <div>
             <div class="case-browser">
               <div class="browser-bar"><i></i><i></i><i></i><span class="small" style="margin-left:8px">Live Jeff Electric website</span></div>
-              <iframe class="live-frame" src="https://jeffelectric.online/" title="Live Jeff Electric website preview" loading="lazy"></iframe>
+              <iframe class="live-frame" data-src="https://jeffelectric.online/" title="Live Jeff Electric website preview" loading="lazy"></iframe>
             </div>
             <div class="mobile-case-link">
               <strong>See the live Jeff Electric website</strong>
@@ -470,6 +637,25 @@
         </div>
 
         <div class="cos-shell reveal">
+          <div class="cos-mobile" id="cos-mobile" aria-label="Interactive contractor operating system">
+            <svg class="cos-mobile-lines" viewBox="0 0 360 390" aria-hidden="true">
+              <path class="cos-mobile-line" d="M180 195 L180 56 M180 195 L65 108 M180 195 L295 108 M180 195 L295 282 M180 195 L180 334 M180 195 L65 282"/>
+              <path class="cos-mobile-signal" d="M180 195 L180 56 M180 195 L65 108 M180 195 L295 108 M180 195 L295 282 M180 195 L180 334 M180 195 L65 282"/>
+            </svg>
+            <button class="cos-mobile-node node-website active" type="button" data-system="website"><span>Website</span><small>Get found</small></button>
+            <button class="cos-mobile-node node-leads" type="button" data-system="leads"><span>Leads</span><small>Calls + forms</small></button>
+            <button class="cos-mobile-node node-sales" type="button" data-system="sales"><span>Sales</span><small>CRM + estimates</small></button>
+            <button class="cos-mobile-node node-jobs" type="button" data-system="jobs"><span>Jobs</span><small>Schedule + pay</small></button>
+            <button class="cos-mobile-node node-ops" type="button" data-system="operations"><span>Operations</span><small>SOPs + files</small></button>
+            <button class="cos-mobile-node node-ai" type="button" data-system="ai"><span>AI</span><small>Automate work</small></button>
+            <div class="cos-mobile-core" aria-hidden="true">
+              <span>CONTRACTOR</span><strong>SYSTEMS</strong>
+            </div>
+            <div class="cos-mobile-detail" id="cos-mobile-detail" aria-live="polite">
+              <strong>Website</strong>
+              <span>Service pages, local search, trust signals and lead capture.</span>
+            </div>
+          </div>
           <div class="cos-scroll">
             <svg class="cos-svg" viewBox="0 0 1100 660" role="img" aria-label="Animated contractor operating system map connecting website, leads, CRM, estimates, scheduling, payments, SOPs, files, automation and AI">
               <defs>
@@ -556,32 +742,36 @@
       <div class="wrap section reveal">
         <span class="eyebrow">Systems assessment</span><h2>Find the first system to fix.</h2><p class="lead">Answer four quick questions. You’ll get a recommended starting point based on where the business is actually breaking down.</p>
         <form class="assessment" id="systems-assessment">
-          <fieldset class="assessment-question">
-            <legend>1 · Is your website helping you win work?</legend>
+          <div class="assessment-progress" aria-hidden="true">
+            <span id="assessment-step-label">1 of 4</span>
+            <div class="assessment-progress-track"><i id="assessment-progress-bar"></i></div>
+          </div>
+          <fieldset class="assessment-question is-current" data-step="1">
+            <legend tabindex="-1">1 · Is your website helping you win work?</legend>
             <div class="assessment-options">
               <label class="assessment-choice"><input type="radio" name="site" value="website:4" required><span>No website, outdated, weak on mobile or hard to trust.</span></label>
               <label class="assessment-choice"><input type="radio" name="site" value="growth:3"><span>It looks decent, but it is not producing enough calls or form leads.</span></label>
               <label class="assessment-choice"><input type="radio" name="site" value="none:0"><span>The website is not our main problem.</span></label>
             </div>
           </fieldset>
-          <fieldset class="assessment-question">
-            <legend>2 · What happens when a new lead comes in?</legend>
+          <fieldset class="assessment-question" data-step="2">
+            <legend tabindex="-1">2 · What happens when a new lead comes in?</legend>
             <div class="assessment-options">
               <label class="assessment-choice"><input type="radio" name="leads" value="growth:4" required><span>We need more of them—visibility, reviews or conversion are weak.</span></label>
               <label class="assessment-choice"><input type="radio" name="leads" value="lead:3"><span>Leads come in, but follow-up is inconsistent.</span></label>
               <label class="assessment-choice"><input type="radio" name="leads" value="none:0"><span>Lead flow and response are healthy.</span></label>
             </div>
           </fieldset>
-          <fieldset class="assessment-question">
-            <legend>3 · Do you know exactly where every lead and estimate stands?</legend>
+          <fieldset class="assessment-question" data-step="3">
+            <legend tabindex="-1">3 · Do you know exactly where every lead and estimate stands?</legend>
             <div class="assessment-options">
               <label class="assessment-choice"><input type="radio" name="pipeline" value="lead:5" required><span>No. We use texts, memory, spreadsheets or scattered tools.</span></label>
               <label class="assessment-choice"><input type="radio" name="pipeline" value="lead:3"><span>We have a CRM, but the pipeline or statuses are messy.</span></label>
               <label class="assessment-choice"><input type="radio" name="pipeline" value="none:0"><span>Yes. The owner, status and next action are clear.</span></label>
             </div>
           </fieldset>
-          <fieldset class="assessment-question">
-            <legend>4 · Can your team easily find and follow the right process?</legend>
+          <fieldset class="assessment-question" data-step="4">
+            <legend tabindex="-1">4 · Can your team easily find and follow the right process?</legend>
             <div class="assessment-options">
               <label class="assessment-choice"><input type="radio" name="ops" value="ops:5" required><span>SOPs, files, forms and team knowledge are scattered everywhere.</span></label>
               <label class="assessment-choice"><input type="radio" name="ops" value="ops:3"><span>We have some structure, but growth is exposing gaps.</span></label>
@@ -589,8 +779,9 @@
             </div>
           </fieldset>
           <div class="assessment-actions">
+            <button class="assessment-back" id="assessment-back" type="button" disabled>← Back</button>
             <span class="assessment-note">No email required. This only recommends a starting point.</span>
-            <button class="btn accent-btn" type="submit">Show My Starting Point</button>
+            <button class="btn accent-btn" id="assessment-submit" type="submit">Show My Starting Point</button>
           </div>
         </form>
         <div class="finder-result" id="finder-result" aria-live="polite"></div>
@@ -617,8 +808,8 @@
         <div class="pricing-intro"><div><span class="eyebrow">Packages</span><h2>Start where the business needs help.</h2><p class="lead">Each package includes planning, build, review, testing, launch and post-launch support.</p></div><p class="small">Extra work outside the agreed scope: $125/hr</p></div>
         <div class="pricing-grid">
           <article class="price-card" data-package="website"><span class="eyebrow">Foundation</span><div class="price">$2,250</div><h3>Contractor Website</h3><p class="small">For businesses that need a polished, credible lead-generating presence.</p><ul><li>Up to ~5 core pages</li><li>Responsive/mobile build</li><li>Local SEO foundation</li><li>Quote/contact forms</li><li>Two revision rounds</li><li>QA, launch + post-launch fixes</li></ul><button class="select-package" type="button">View full scope</button></article>
-          <article class="price-card featured active" data-package="growth"><span class="tag">Most Popular</span><span class="eyebrow">Lead system</span><div class="price">$4,000</div><h3>Website + Lead System</h3><p class="small">For contractors ready to improve both visibility and lead conversion.</p><ul><li>Conversion-focused website</li><li>Service + area structure</li><li>Reviews + GBP guidance</li><li>Analytics + lead intake</li><li>Two revision rounds</li><li>Launch + stabilization</li></ul><button class="select-package" type="button">View full scope</button></article>
-          <article class="price-card" data-package="lead"><span class="eyebrow">Systemize sales</span><div class="price">$6,500</div><h3>Lead-to-Cash System</h3><p class="small">For contractors losing visibility between inquiry, estimate and booked work.</p><ul><li>Website + Lead System foundation</li><li>CRM + lead pipeline</li><li>Quote-status tracking</li><li>Follow-up workflows</li><li>Sales process resources</li><li>Team training + UAT</li></ul><button class="select-package" type="button">View full scope</button></article>
+          <article class="price-card featured active" data-package="growth"><span class="tag">Most Popular</span><span class="eyebrow">Lead system</span><div class="price">$4,000</div><h3>Website + Lead System</h3><p class="small">For contractors ready to improve both visibility and lead conversion.</p><ul><li>Conversion-focused website</li><li>Service + area structure</li><li>Reviews + GBP guidance</li><li>Analytics + lead intake</li><li>Two revision rounds</li><li>Launch + post-launch support</li></ul><button class="select-package" type="button">View full scope</button></article>
+          <article class="price-card" data-package="lead"><span class="eyebrow">Systemize sales</span><div class="price">$6,500</div><h3>Lead-to-Cash System</h3><p class="small">For contractors losing visibility between inquiry, estimate and booked work.</p><ul><li>Website + Lead System foundation</li><li>CRM + lead pipeline</li><li>Quote-status tracking</li><li>Follow-up workflows</li><li>Sales process resources</li><li>Team training + testing</li></ul><button class="select-package" type="button">View full scope</button></article>
           <article class="price-card" data-package="ops"><span class="eyebrow">Run the company</span><div class="price">$9,500+</div><h3>Business Operations System</h3><p class="small">For growing businesses that need structure behind sales and field operations.</p><ul><li>Lead-to-Cash system</li><li>Internal company HQ</li><li>SOP + knowledge structure</li><li>Workspace + forms</li><li>Training resources</li><li>Basic automation</li></ul><button class="select-package" type="button">View full scope</button></article>
         </div>
         <div class="package-detail" id="package-detail" aria-live="polite"></div>
@@ -727,6 +918,11 @@
     </div>
   </footer>
 
+  <div class="mobile-sticky-cta" id="mobile-sticky-cta" aria-hidden="true">
+    <span id="mobile-sticky-copy">Not sure what you need?</span>
+    <a id="mobile-sticky-link" href="#finder">Take the 1-minute assessment</a>
+  </div>
+
   <script>
     (function(){
       var desktopMedia=window.matchMedia('(min-width:681px)');
@@ -740,8 +936,8 @@
       if(desktopMedia.addEventListener){desktopMedia.addEventListener('change',loadDesktopFrames);}
 
       var nav=document.getElementById('nav'),toggle=document.getElementById('mobile-toggle');
-      toggle.addEventListener('click',function(){var open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'Close':'Menu';});
-      nav.querySelectorAll('a').forEach(function(link){link.addEventListener('click',function(){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='Menu';});});
+      toggle.addEventListener('click',function(){var open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'Close':'Menu';window.setTimeout(function(){if(typeof syncSticky==='function'){syncSticky();}},0);});
+      nav.querySelectorAll('a').forEach(function(link){link.addEventListener('click',function(){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='Menu';window.setTimeout(function(){if(typeof syncSticky==='function'){syncSticky();}},0);});});
 
       var packages={
         website:{title:'Contractor Website — $2,250',hours:'12–15 total delivery hours',timeline:'Typical timeline: 2–3 weeks',payment:'Payment: 50% kickoff / 50% before launch',text:'For businesses that primarily need a credible, mobile-friendly lead-generating web presence.',included:['Discovery + content organization','Up to ~5 core pages','Responsive build','Basic local SEO setup','Quote/contact forms','2 revision rounds','QA + launch + short stabilization'],client:['Logo/brand assets if available','Services + service area details','Project photos/testimonials','Domain/account access as needed'],excluded:['Large content inventories','Custom CRM implementation','Complex integrations','Ongoing SEO or ad management']},
@@ -756,26 +952,67 @@
         '<div class="scope-detail"><div><h4>Included</h4><ul>'+p.included.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div><div><h4>Client provides</h4><ul>'+p.client.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div><div><h4>Not included</h4><ul>'+p.excluded.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div></div>';
       }
       var packageDetail=document.getElementById('package-detail');
+      var mobileMedia=window.matchMedia('(max-width:680px)');
+      var pricingGrid=document.querySelector('.pricing-grid');
+
+      function closeMobilePackage(){
+        document.querySelectorAll('.price-card').forEach(function(c){
+          c.classList.remove('active');
+          var b=c.querySelector('.select-package');
+          if(b){b.textContent='View full scope';}
+        });
+        if(packageDetail.parentElement!==pricingGrid.parentElement){
+          pricingGrid.insertAdjacentElement('afterend',packageDetail);
+        }
+        if(mobileMedia.matches){
+          packageDetail.innerHTML='';
+        }
+      }
+
       document.querySelectorAll('.price-card').forEach(function(card){
         var button=card.querySelector('.select-package');
         button.addEventListener('click',function(){
+          var alreadyOpen=card.classList.contains('active') && mobileMedia.matches && packageDetail.parentElement===card;
+          if(alreadyOpen){
+            closeMobilePackage();
+            return;
+          }
           document.querySelectorAll('.price-card').forEach(function(c){
             c.classList.remove('active');
             var b=c.querySelector('.select-package');
             if(b){b.textContent='View full scope';}
           });
           card.classList.add('active');
-          button.textContent='Scope shown below';
           renderPackage(card.getAttribute('data-package'));
-          packageDetail.setAttribute('tabindex','-1');
-          packageDetail.scrollIntoView({
-            behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',
-            block:'start'
-          });
-          window.setTimeout(function(){packageDetail.focus({preventScroll:true});},350);
+          if(mobileMedia.matches){
+            card.appendChild(packageDetail);
+            button.textContent='Hide scope';
+          }else{
+            pricingGrid.insertAdjacentElement('afterend',packageDetail);
+            button.textContent='Scope shown below';
+            packageDetail.setAttribute('tabindex','-1');
+            packageDetail.scrollIntoView({
+              behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',
+              block:'start'
+            });
+            window.setTimeout(function(){packageDetail.focus({preventScroll:true});},350);
+          }
         });
       });
-      renderPackage('growth');
+
+      function syncPackageLayout(){
+        if(mobileMedia.matches){
+          closeMobilePackage();
+        }else{
+          document.querySelectorAll('.price-card').forEach(function(c){c.classList.remove('active');});
+          var growth=document.querySelector('.price-card[data-package="growth"]');
+          if(growth){growth.classList.add('active');}
+          pricingGrid.insertAdjacentElement('afterend',packageDetail);
+          renderPackage('growth');
+        }
+      }
+      syncPackageLayout();
+      if(mobileMedia.addEventListener){mobileMedia.addEventListener('change',syncPackageLayout);}
 
       var finderResult=document.getElementById('finder-result');
       var assessment=document.getElementById('systems-assessment');
@@ -785,6 +1022,44 @@
         lead:{name:'Lead-to-Cash — $6,500',text:'The biggest gap is between inquiry and booked work. Build a clear pipeline, quote statuses, follow-up and next-action ownership.'},
         ops:{name:'Business Operations System — $9,500+',text:'The business needs an operating layer behind sales: internal HQ, SOPs, forms, knowledge structure and targeted automation.'}
       };
+      var assessmentQuestions=Array.prototype.slice.call(assessment.querySelectorAll('.assessment-question'));
+      var assessmentStep=1;
+      var stepLabel=document.getElementById('assessment-step-label');
+      var progressBar=document.getElementById('assessment-progress-bar');
+      var backButton=document.getElementById('assessment-back');
+      var stickyCta=document.getElementById('mobile-sticky-cta');
+      var stickyCopy=document.getElementById('mobile-sticky-copy');
+      var stickyLink=document.getElementById('mobile-sticky-link');
+
+      function setAssessmentStep(step,focusLegend){
+        assessmentStep=Math.max(1,Math.min(4,step));
+        assessmentQuestions.forEach(function(q){
+          q.classList.toggle('is-current',Number(q.getAttribute('data-step'))===assessmentStep);
+        });
+        assessment.classList.toggle('is-final',assessmentStep===4);
+        if(stepLabel){stepLabel.textContent=assessmentStep+' of 4';}
+        if(progressBar){progressBar.style.width=(assessmentStep*25)+'%';}
+        if(backButton){backButton.disabled=assessmentStep===1;}
+        if(focusLegend && mobileMedia.matches){
+          var legend=assessmentQuestions[assessmentStep-1].querySelector('legend');
+          if(legend){window.setTimeout(function(){legend.focus({preventScroll:true});},120);}
+        }
+      }
+
+      assessment.querySelectorAll('input[type="radio"]').forEach(function(input){
+        input.addEventListener('change',function(){
+          if(!mobileMedia.matches){return;}
+          var parent=input.closest('.assessment-question');
+          var step=Number(parent.getAttribute('data-step'));
+          if(step<4){
+            window.setTimeout(function(){setAssessmentStep(step+1,true);},180);
+          }
+        });
+      });
+
+      backButton.addEventListener('click',function(){setAssessmentStep(assessmentStep-1,true);});
+      setAssessmentStep(1,false);
+
       assessment.addEventListener('submit',function(event){
         event.preventDefault();
         var formData=new FormData(assessment);
@@ -801,8 +1076,97 @@
         var r=finderCopy[winner];
         finderResult.innerHTML='<span class="eyebrow">Recommended starting point</span><strong>'+r.name+'</strong><p>'+r.text+'</p><div class="actions" style="margin-top:14px"><a class="btn secondary" href="#pricing">Review package scope</a><a class="btn accent-btn" href="#intake">Start project intake</a></div>';
         finderResult.classList.add('show');
+        if(stickyCopy){stickyCopy.textContent='Ready to talk?';}
+        if(stickyLink){stickyLink.textContent='Start a Project';stickyLink.setAttribute('href','#intake');}
         finderResult.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});
       });
+
+
+      // Mobile constellation interaction
+      var systemCopy={
+        website:{title:'Website',text:'Service pages, local search, trust signals and lead capture.'},
+        leads:{title:'Leads',text:'Calls and forms get captured instead of disappearing into texts or memory.'},
+        sales:{title:'Sales',text:'CRM, estimates and follow-up show exactly where every opportunity stands.'},
+        jobs:{title:'Jobs',text:'Scheduling, delivery and payment keep the work moving after the sale.'},
+        operations:{title:'Operations',text:'SOPs, files, forms and training give the team one reliable way to work.'},
+        ai:{title:'AI + Automation',text:'Repetitive work gets automated and AI assists where it creates a practical advantage.'}
+      };
+      var mobileDetail=document.getElementById('cos-mobile-detail');
+      document.querySelectorAll('.cos-mobile-node').forEach(function(node){
+        node.addEventListener('click',function(){
+          document.querySelectorAll('.cos-mobile-node').forEach(function(n){n.classList.remove('active');});
+          node.classList.add('active');
+          var item=systemCopy[node.getAttribute('data-system')];
+          if(item&&mobileDetail){mobileDetail.innerHTML='<strong>'+item.title+'</strong><span>'+item.text+'</span>';}
+        });
+      });
+
+      // Expand support plans in place on mobile.
+      document.querySelectorAll('.care-card').forEach(function(card){
+        card.setAttribute('tabindex','0');
+        card.setAttribute('role','button');
+        card.setAttribute('aria-expanded','false');
+        function toggleCare(){
+          if(!mobileMedia.matches){return;}
+          var open=card.classList.toggle('open');
+          card.setAttribute('aria-expanded',String(open));
+        }
+        card.addEventListener('click',toggleCare);
+        card.addEventListener('keydown',function(e){
+          if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleCare();}
+        });
+      });
+
+      // Lazy-load the live Jeff Electric iframe only when it approaches the viewport.
+      var liveFrame=document.querySelector('.live-frame[data-src]');
+      if(liveFrame){
+        if('IntersectionObserver' in window){
+          var frameObserver=new IntersectionObserver(function(entries){
+            entries.forEach(function(entry){
+              if(entry.isIntersecting){
+                liveFrame.setAttribute('src',liveFrame.getAttribute('data-src'));
+                frameObserver.disconnect();
+              }
+            });
+          },{rootMargin:'500px 0px'});
+          frameObserver.observe(liveFrame);
+        }else{
+          liveFrame.setAttribute('src',liveFrame.getAttribute('data-src'));
+        }
+      }
+
+      // Run constellation motion only while the section is visible.
+      var cosSection=document.getElementById('operating-system');
+      if(cosSection && 'IntersectionObserver' in window){
+        var cosObserver=new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){cosSection.classList.toggle('motion-active',entry.isIntersecting);});
+        },{threshold:.15});
+        cosObserver.observe(cosSection);
+      }else if(cosSection){
+        cosSection.classList.add('motion-active');
+      }
+
+      // Show a single mobile action after the hero; hide it near the intake.
+      var heroSection=document.querySelector('.hero-shell');
+      var intakeSection=document.getElementById('intake');
+      var heroVisible=true,intakeVisible=false;
+      function syncSticky(){
+        if(!stickyCta){return;}
+        var show=mobileMedia.matches && !heroVisible && !intakeVisible && !nav.classList.contains('open');
+        stickyCta.classList.toggle('show',show);
+        stickyCta.setAttribute('aria-hidden',String(!show));
+      }
+      if('IntersectionObserver' in window && heroSection){
+        new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){heroVisible=entry.isIntersecting;syncSticky();});
+        },{threshold:.08}).observe(heroSection);
+      }
+      if('IntersectionObserver' in window && intakeSection){
+        new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){intakeVisible=entry.isIntersecting;syncSticky();});
+        },{threshold:.05}).observe(intakeSection);
+      }
+      if(mobileMedia.addEventListener){mobileMedia.addEventListener('change',syncSticky);}
 
       var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if(!reduced && 'IntersectionObserver' in window){
