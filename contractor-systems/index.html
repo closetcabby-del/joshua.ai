@@ -587,6 +587,117 @@
     @keyframes cxLogoDestination{0%{opacity:0;transform:translate(-50%,-50%) scale(.06);filter:blur(18px)}32%{opacity:.52;transform:translate(-50%,-50%) scale(.18);filter:blur(10px)}72%{opacity:1;transform:translate(-50%,-50%) scale(.72);filter:blur(1px)}100%{opacity:1;transform:translate(-50%,-50%) scale(1);filter:blur(0)}}
     @media(max-width:680px){.cx-portal-logo{width:min(44vw,190px)}}
     @media(prefers-reduced-motion:reduce){.cx-portal-logo.show{animation:none;opacity:1;transform:translate(-50%,-50%) scale(1);filter:none}}
+
+    /* Hybrid vertical + tabbed experience */
+    .tab-list{display:flex;gap:8px}
+    .tab-btn,.pricing-tab{
+      min-height:46px;padding:0 15px;border:1px solid var(--line);background:transparent;color:inherit;
+      border-radius:8px;font-weight:800;cursor:pointer;transition:.2s ease
+    }
+    .tab-btn.active,.pricing-tab.active,.tab-btn[aria-selected="true"],.pricing-tab[aria-selected="true"]{
+      background:var(--ink);border-color:var(--ink);color:#fff
+    }
+    .case-section .tab-btn{border-color:#3b3b41;color:#bdbdc2}
+    .case-section .tab-btn.active,.case-section .tab-btn[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#111}
+    .case-tab-module{border:1px solid #303036;background:#18181b;padding:18px}
+    .case-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:14px}
+    .case-tabs .tab-btn{font-size:12px;padding:0 10px}
+    .tab-panel{min-height:230px;padding:22px;background:#1a1a1d;border:1px solid #303036}
+    .tab-panel h3{margin-top:18px;font-size:25px}.tab-panel p{color:#aaaab0;font-size:14px;line-height:1.65}
+    .case-inline-link{display:inline-flex;margin-top:14px;color:var(--accent);font-weight:800;font-size:13px}
+    .status-chip{display:inline-flex;align-items:center;min-height:28px;padding:0 9px;border:1px solid #47474e;border-radius:999px;color:#d2d2d6;font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+    .status-chip.live{border-color:var(--accent);color:var(--accent)}
+    .status-chip.prototype{max-width:100%}
+
+    .system-outcomes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:14px}
+    .system-outcomes>div{padding:15px 16px;border:1px solid var(--line);background:#fff}
+    .system-outcomes strong{display:block;font-family:"Space Grotesk";font-size:14px;margin-bottom:3px}
+    .system-outcomes span{font-size:11px;color:var(--muted)}
+
+    .pricing-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:32px}
+    .pricing-stage{margin-top:12px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:26px}
+    .pricing-stage-head{display:grid;grid-template-columns:1fr auto;gap:22px;align-items:start}
+    .pricing-stage .price{margin:0 0 4px}
+    .pricing-stage-title{font-size:28px;margin-bottom:8px}
+    .pricing-stage-use{max-width:650px;color:#55514b;margin-bottom:0}
+    .pricing-stage-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+    .pricing-stage .package-detail{display:none;margin-top:18px;padding:18px;background:var(--paper)}
+    .pricing-stage.scope-open .package-detail{display:block}
+    .addons-details{margin-top:18px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:0 18px}
+    .addons-details summary{font-weight:800}
+    .addons-details .addon-grid{margin:0 0 18px}
+
+    .founder-section .section{padding-top:56px;padding-bottom:56px}
+    .founder-grid{grid-template-columns:150px minmax(0,1fr);gap:28px}
+    .founder-photo{width:130px}
+    .founder-copy h2{font-size:clamp(28px,3.8vw,42px);margin-bottom:10px}
+    .founder-copy .lead{font-size:16px;line-height:1.6}
+    .founder-role{margin-bottom:10px}
+
+    .working-section{background:#fff}
+    .working-tabs{margin-top:26px}
+    .working-panels{margin-top:12px}
+    .working-panel{border:1px solid var(--line);background:var(--paper);padding:22px;border-radius:10px}
+    .process-compact{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:0}
+    .ownership-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .ownership-grid>div,.support-mini-grid>div{border:1px solid var(--line);background:#fff;padding:18px}
+    .ownership-grid strong,.support-mini-grid strong{display:block;font-family:"Space Grotesk";font-size:15px;margin-bottom:5px}
+    .ownership-grid span{font-size:13px;color:var(--muted);line-height:1.55}
+    .working-lead{font-size:16px;color:#444;margin-bottom:18px}
+    .support-mini-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .support-mini-grid>div{display:flex;flex-direction:column;gap:6px}
+    .support-mini-grid span{color:var(--accent);font-weight:900;font-size:13px}
+
+    .footer-actions{display:flex;align-items:flex-end;flex-direction:column;gap:8px}
+    .footer-portal-link{padding:0;border:0;background:transparent;color:#d2d2d6;font:inherit;font-weight:800;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+    .footer-portal-link:hover,.footer-portal-link:focus-visible{color:var(--accent);outline:none}
+
+    @media(max-width:680px){
+      .case-grid{gap:14px}
+      .case-tab-module{padding:12px}
+      .case-tabs{gap:6px}
+      .case-tabs .tab-btn{min-height:43px;font-size:10.5px}
+      .tab-panel{min-height:180px;padding:17px}
+      .tab-panel h3{font-size:22px}
+      .privacy-note{margin-top:10px}
+
+      .system-outcomes{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+      .system-outcomes>div{padding:12px}
+      .system-outcomes strong{font-size:13px}
+      .system-outcomes span{font-size:10.5px}
+
+      .pricing-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:24px}
+      .pricing-tab{min-height:48px;padding:0 8px}
+      .pricing-stage{padding:18px;margin-top:9px}
+      .pricing-stage-head{grid-template-columns:1fr;gap:4px}
+      .pricing-stage .price{font-size:34px}
+      .pricing-stage-title{font-size:22px}
+      .pricing-stage-use{font-size:13.5px;line-height:1.5}
+      .pricing-stage-actions{display:grid;grid-template-columns:1fr;gap:8px}
+      .pricing-stage-actions .btn,.pricing-stage-actions button{width:100%;min-height:48px}
+      .addons-details{padding:0 14px}
+      .addons-details .addon-grid{grid-template-columns:1fr}
+
+      .founder-section .section{padding-top:42px;padding-bottom:42px}
+      .founder-grid{grid-template-columns:96px minmax(0,1fr);gap:18px;align-items:start;text-align:left}
+      .founder-photo{width:92px;margin:0}
+      .founder-copy h2{font-size:25px}
+      .founder-role{font-size:9px;line-height:1.4}
+      .founder-copy .lead{font-size:14px;line-height:1.55}
+      .founder-meta{grid-column:1/-1;margin-top:10px}
+      .founder-meta span{font-size:9px}
+
+      .working-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:22px}
+      .working-tabs .tab-btn{min-height:46px;padding:0 7px;font-size:11px}
+      .working-panel{padding:14px}
+      .process-compact{grid-template-columns:1fr;gap:8px}
+      .process-compact .card{padding:15px}
+      .ownership-grid,.support-mini-grid{grid-template-columns:1fr;gap:8px}
+      .ownership-grid>div,.support-mini-grid>div{padding:14px}
+      .support-mini-grid>div{flex-direction:row;justify-content:space-between;align-items:center}
+
+      .footer-actions{width:100%;align-items:center;text-align:center}
+    }
 </style>
   <!-- deployment refresh: founder-section-2026-09-28 -->
 </head>
@@ -609,7 +720,7 @@
         <div class="brand-copy"><span class="contractor">CONTRACTOR</span><span class="systems">SYSTEMS</span></div>
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#case-study">Case Study</a><a href="#services">Services</a><a href="#finder">Assessment</a><a href="#about">About</a><a href="#pricing">Pricing</a><a href="#intake">Start</a><a href="#faq">FAQ</a>
+        <a href="#case-study">Work</a><a href="#operating-system">System</a><a href="#pricing">Pricing</a><a href="#intake">Start</a>
       </nav>
       <a class="btn accent-btn" href="#intake">Start a Project</a>
       <button class="mobile-toggle" id="mobile-toggle" type="button" aria-expanded="false">Menu</button>
@@ -643,44 +754,51 @@
 
     <section id="case-study" class="case-section">
       <div class="wrap section reveal">
-        <span class="eyebrow">Real contractor proof</span><h2>A real contractor.<br><span class="accent">One connected system.</span></h2>
-        <p class="lead">See how the same thinking applies across a contractor business—from the live website and lead process to internal knowledge, automation and practical AI.</p>
+        <span class="eyebrow">Real contractor proof</span>
+        <h2>A real contractor.<br><span class="accent">One connected system.</span></h2>
+        <p class="lead">See the system in a real contracting business—from website and leads to operations and automation.</p>
+
         <div class="case-grid">
           <div>
             <div class="case-browser">
               <div class="browser-bar"><i></i><i></i><i></i><span class="small" style="margin-left:8px">Live Jeff Electric website</span></div>
               <iframe class="live-frame" data-src="https://jeffelectric.online/" title="Live Jeff Electric website preview" loading="lazy"></iframe>
             </div>
-            <div class="mobile-case-link">
-              <strong>See the live Jeff Electric website</strong>
-              <p>Open the production site directly instead of loading a desktop-style preview inside your phone.</p>
-              <a class="btn accent-btn" href="https://jeffelectric.online/" target="_blank" rel="noopener">Open Live Site</a>
+          </div>
+
+          <div class="tab-module case-tab-module" data-tabs="case">
+            <div class="tab-list case-tabs" role="tablist" aria-label="Jeff Electric case study">
+              <button class="tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="case-website" data-tab="website">Website</button>
+              <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="case-leads" data-tab="leads">Leads</button>
+              <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="case-ops" data-tab="ops">Operations</button>
+              <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="case-ai" data-tab="ai">AI + Automation</button>
+            </div>
+
+            <div class="tab-panel active" id="case-website" role="tabpanel" data-panel="website">
+              <span class="status-chip live">Live</span>
+              <h3>Get Found</h3>
+              <p>Website, service messaging, local search, trust signals and stronger lead capture.</p>
+              <a class="case-inline-link" href="https://jeffelectric.online/" target="_blank" rel="noopener">Open live site →</a>
+            </div>
+            <div class="tab-panel" id="case-leads" role="tabpanel" data-panel="leads" hidden>
+              <span class="status-chip">Implemented</span>
+              <h3>Manage Leads</h3>
+              <p>Lead intake, CRM, estimate status, next actions and follow-up so the team knows where every opportunity stands.</p>
+            </div>
+            <div class="tab-panel" id="case-ops" role="tabpanel" data-panel="ops" hidden>
+              <span class="status-chip">Implemented</span>
+              <h3>Run the Team</h3>
+              <p>Company HQ, SOPs, price-book access, forms, training and the information the team needs to do the work.</p>
+            </div>
+            <div class="tab-panel" id="case-ai" role="tabpanel" data-panel="ai" hidden>
+              <span class="status-chip prototype">Prototype + operating design</span>
+              <h3>Automate the Work</h3>
+              <p>Automation, knowledge assistants and practical AI concepts aimed at reducing repetitive work.</p>
             </div>
           </div>
-          <div class="case-list">
-            <article class="card"><span class="eyebrow">Live customer-facing work</span><h3>Get Found</h3><p>Website, service messaging, local search, trust signals and stronger lead capture.</p><p style="margin-top:14px"><a href="https://jeffelectric.online/" target="_blank" rel="noopener">Open live site →</a></p></article>
-            <article class="card"><span class="eyebrow">Implemented internal system</span><h3>Manage Leads</h3><p>Lead intake, CRM, estimate status, next actions and follow-up so the team knows where every opportunity stands.</p></article>
-            <article class="card"><span class="eyebrow">Implemented internal system</span><h3>Run the Team</h3><p>Company HQ, SOPs, price-book access, forms, training and information the team needs to do the work.</p></article>
-            <article class="card"><span class="eyebrow">Prototype + operating design</span><h3>Automate the Work</h3><p>Automation, knowledge assistants and practical AI concepts aimed at reducing repetitive work.</p></article>
-          </div>
         </div>
-        <div class="privacy-note"><strong>Case study boundary:</strong> the live website is shown directly. Lead-to-Cash, internal HQ, SOP and automation work is described without exposing private client systems or internal data.</div>
-      </div>
-    </section>
 
-    <section id="services">
-      <div class="wrap section reveal">
-        <span class="eyebrow">What we build</span>
-        <h2>Connect the systems behind every job.</h2>
-        <p class="lead">From the first Google search to the final payment—and everything your team needs in between.</p>
-        <div class="four-grid">
-          <article class="card"><span class="num">01</span><h3>Get Found</h3><p>Websites, service pages, local search, reviews and the trust signals that help customers choose you.</p></article>
-          <article class="card"><span class="num">02</span><h3>Win More Work</h3><p>Lead intake, estimates, follow-up and a clear view of where every opportunity stands.</p></article>
-          <article class="card"><span class="num">03</span><h3>Run the Business</h3><p>SOPs, forms, training, company information and tools that make the operation easier to manage.</p></article>
-          <article class="card"><span class="num">04</span><h3>Automate the Work</h3><p>Automate repetitive tasks and use AI where it makes the business faster, clearer or easier to run.</p></article>
-        </div>
-        <div class="flow"><div class="flow-track"><div class="flow-step">Google / Website</div><div class="flow-step">Lead</div><div class="flow-step">Estimate</div><div class="flow-step">Job</div><div class="flow-step">Payment</div><div class="flow-step">Review</div></div></div>
-        <p class="small" style="margin-top:14px">Contractor Systems connects what happens between those steps so fewer leads, tasks and handoffs fall through the cracks.</p>
+        <div class="privacy-note"><strong>Case study boundary:</strong> live work is shown directly; private internal systems stay private.</div>
       </div>
     </section>
 
@@ -691,7 +809,7 @@
             <span class="eyebrow">The contractor operating system</span>
             <h2>Everything connects.</h2>
           </div>
-          <p>The goal is not more software. It is a business where leads, jobs, information, automation and AI work together around the way your team actually operates.</p>
+          <p>Not more software. One connected business—leads, jobs, knowledge, automation and AI working together.</p>
         </div>
 
         <div class="cos-shell reveal">
@@ -810,20 +928,15 @@
             <span class="cos-swipe">Swipe to explore →</span>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="cx-portal-teaser" aria-labelledby="cx-portal-heading">
-      <div class="wrap cx-portal-teaser-inner">
-        <div class="cx-portal-teaser-copy">
-          <span class="eyebrow" style="color:#8f8f96">Experimental mode</span>
-          <h2 id="cx-portal-heading">Want to see something completely unnecessary?</h2>
-          <p>A one-point-perspective fly-through: lock onto the vanishing point, accelerate forward, and let the geometry whip past the camera.</p>
-          <button class="cx-portal-launch" id="cx-launch-portal" type="button">Click here to see something crazy</button>
-          <span class="cx-portal-note">POV fly-through · best experienced full-screen on your phone</span>
+        <div class="system-outcomes reveal" aria-label="What Contractor Systems helps improve">
+          <div><strong>Get Found</strong><span>Website · local search · trust</span></div>
+          <div><strong>Win Work</strong><span>Leads · estimates · follow-up</span></div>
+          <div><strong>Run Operations</strong><span>Jobs · SOPs · knowledge</span></div>
+          <div><strong>Automate</strong><span>Workflows · AI · reporting</span></div>
         </div>
       </div>
     </section>
+
     <div class="cx-portal-overlay" id="cx-portal-overlay" aria-hidden="true">
       <canvas class="cx-portal-canvas" id="cx-portal-canvas"></canvas>
       <div class="cx-portal-vignette"></div><div class="cx-portal-grain"></div><div class="cx-portal-flash"></div>
@@ -844,7 +957,7 @@
 
     <section id="finder" class="finder-section">
       <div class="wrap section reveal">
-        <span class="eyebrow">Systems assessment</span><h2>Find the first system to fix.</h2><p class="lead">Answer four quick questions. You’ll get a recommended starting point based on where the business is actually breaking down.</p>
+        <span class="eyebrow">Systems assessment</span><h2>Find the first system to fix.</h2><p class="lead">Four questions. Find the first system worth fixing.</p>
         <form class="assessment" id="systems-assessment">
           <div class="assessment-progress" aria-hidden="true">
             <span id="assessment-step-label">1 of 4</span>
@@ -896,6 +1009,43 @@
       </div>
     </section>
 
+    <section id="pricing">
+      <div class="wrap section reveal">
+        <div class="pricing-intro">
+          <div>
+            <span class="eyebrow">Packages</span>
+            <h2>Start where the business needs help.</h2>
+            <p class="lead">Choose a starting point. Every build includes planning, testing, launch and handoff.</p>
+          </div>
+          <p class="small">Extra work outside the agreed scope: $125/hr</p>
+        </div>
+
+        <div class="pricing-tabs tab-list" role="tablist" aria-label="Project packages">
+          <button class="pricing-tab" type="button" role="tab" aria-selected="false" data-package="website">Website</button>
+          <button class="pricing-tab active" type="button" role="tab" aria-selected="true" data-package="growth">Leads</button>
+          <button class="pricing-tab" type="button" role="tab" aria-selected="false" data-package="lead">Sales</button>
+          <button class="pricing-tab" type="button" role="tab" aria-selected="false" data-package="ops">Operations</button>
+        </div>
+
+        <div class="pricing-stage" id="pricing-stage" aria-live="polite"></div>
+
+        <details class="addons-details">
+          <summary>Optional add-ons</summary>
+          <div class="addon-grid">
+            <div class="addon"><strong>Additional service page</strong><span>$250</span></div>
+            <div class="addon"><strong>Additional location page</strong><span>$250</span></div>
+            <div class="addon"><strong>Google Business Profile optimization</strong><span>$450</span></div>
+            <div class="addon"><strong>CRM setup</strong><span>from $750</span></div>
+            <div class="addon"><strong>Additional automation workflow</strong><span>from $500</span></div>
+            <div class="addon"><strong>Internal company portal</strong><span>from $1,500</span></div>
+            <div class="addon"><strong>SOP starter library</strong><span>from $750</span></div>
+            <div class="addon"><strong>Extra change work</strong><span>$125/hr</span></div>
+            <div class="addon"><strong>Custom integration</strong><span>scoped</span></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <section class="founder-section" id="about">
       <div class="wrap section founder-grid reveal">
         <div class="founder-photo">
@@ -905,65 +1055,49 @@
           <span class="eyebrow">Why I build this way</span>
           <h2>Systems thinking, applied to contractors.</h2>
           <div class="founder-role">Joshua Ly · Founder · AI Systems &amp; Operations for Contractors</div>
-          <p class="lead">My background is in business analysis, app development, data and automation—working between business and technical teams to turn messy problems into working systems. I use that same approach with contractors: understand how the business works first, then connect the right tools, automation and AI around it.</p>
+          <p class="lead">My background spans business analysis, app development, data and automation. I use that systems-thinking approach to understand how a contractor operates first, then connect the right tools, automation and AI around it.</p>
           <div class="founder-meta"><span>Business Analysis</span><span>Systems Design</span><span>Automation + AI</span></div>
         </div>
       </div>
     </section>
 
-    <section id="pricing">
+    <section id="working-with-us" class="working-section">
       <div class="wrap section reveal">
-        <div class="pricing-intro"><div><span class="eyebrow">Packages</span><h2>Start where the business needs help.</h2><p class="lead">Each package includes planning, build, review, testing, launch and post-launch support.</p></div><p class="small">Extra work outside the agreed scope: $125/hr</p></div>
-        <div class="pricing-grid">
-          <article class="price-card" data-package="website"><span class="eyebrow">Foundation</span><div class="price">$2,250</div><h3>Contractor Website</h3><p class="small">For businesses that need a polished, credible lead-generating presence.</p><ul><li>Up to ~5 core pages</li><li>Responsive/mobile build</li><li>Local SEO foundation</li><li>Quote/contact forms</li><li>Two revision rounds</li><li>QA, launch + post-launch fixes</li></ul><button class="select-package" type="button">View full scope</button></article>
-          <article class="price-card featured active" data-package="growth"><span class="tag">Most Popular</span><span class="eyebrow">Lead system</span><div class="price">$4,000</div><h3>Website + Lead System</h3><p class="small">For contractors ready to improve both visibility and lead conversion.</p><ul><li>Conversion-focused website</li><li>Service + area structure</li><li>Reviews + GBP guidance</li><li>Analytics + lead intake</li><li>Two revision rounds</li><li>Launch + post-launch support</li></ul><button class="select-package" type="button">View full scope</button></article>
-          <article class="price-card" data-package="lead"><span class="eyebrow">Systemize sales</span><div class="price">$6,500</div><h3>Lead-to-Cash System</h3><p class="small">For contractors losing visibility between inquiry, estimate and booked work.</p><ul><li>Website + Lead System foundation</li><li>CRM + lead pipeline</li><li>Quote-status tracking</li><li>Follow-up workflows</li><li>Sales process resources</li><li>Team training + testing</li></ul><button class="select-package" type="button">View full scope</button></article>
-          <article class="price-card" data-package="ops"><span class="eyebrow">Run the company</span><div class="price">$9,500+</div><h3>Business Operations System</h3><p class="small">For growing businesses that need structure behind sales and field operations.</p><ul><li>Lead-to-Cash system</li><li>Internal company HQ</li><li>SOP + knowledge structure</li><li>Workspace + forms</li><li>Training resources</li><li>Basic automation</li></ul><button class="select-package" type="button">View full scope</button></article>
-        </div>
-        <div class="package-detail" id="package-detail" aria-live="polite"></div>
-        <div style="margin-top:50px">
-          <span class="eyebrow">Optional add-ons</span><h3>Extend the system without changing the whole package.</h3>
-          <div class="addon-grid">
-            <div class="addon"><strong>Additional service page</strong><span>$250</span></div><div class="addon"><strong>Additional location page</strong><span>$250</span></div><div class="addon"><strong>Google Business Profile optimization</strong><span>$450</span></div>
-            <div class="addon"><strong>CRM setup</strong><span>from $750</span></div><div class="addon"><strong>Additional automation workflow</strong><span>from $500</span></div><div class="addon"><strong>Internal company portal</strong><span>from $1,500</span></div>
-            <div class="addon"><strong>SOP starter library</strong><span>from $750</span></div><div class="addon"><strong>Extra revision / change work</strong><span>$125/hr</span></div><div class="addon"><strong>Custom integration</strong><span>scoped</span></div>
-          </div>
-          <div class="package-detail" style="margin-top:28px">
-            <strong>Need something more advanced?</strong>
-            <p>AI assistants, custom automation, integrations and reporting are scoped around the business problem—not added just for the sake of using AI.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+        <span class="eyebrow">Working with Contractor Systems</span>
+        <h2>Simple to start. Clear all the way through.</h2>
 
-    <section id="process">
-      <div class="wrap section reveal">
-        <span class="eyebrow">How projects work</span>
-        <h2>You’ll know what happens at every step.</h2>
-        <p class="lead">A clear process keeps the project moving without burying you in technical language.</p>
-        <div class="process">
-          <article class="card"><span class="num">01</span><h3>Understand the Business</h3><p>We learn your services, customers, current process and the tools you already use.</p></article>
-          <article class="card"><span class="num">02</span><h3>Design the System</h3><p>We map the simplest solution that solves the real problem.</p></article>
-          <article class="card"><span class="num">03</span><h3>Build It</h3><p>You get a working version to review against the agreed scope.</p></article>
-          <article class="card"><span class="num">04</span><h3>Test It Together</h3><p>Your feedback, revisions and team testing happen before launch.</p></article>
-          <article class="card"><span class="num">05</span><h3>Launch + Improve</h3><p>We deploy, fix agreed-scope issues and hand over the finished system.</p></article>
+        <div class="working-tabs tab-list" role="tablist" aria-label="Working with Contractor Systems">
+          <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-work-tab="process">How It Works</button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-work-tab="ownership">Ownership</button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-work-tab="support">Support</button>
         </div>
-        <div class="scope-box">
-          <article class="card"><span class="eyebrow">Reviews</span><h3>Two structured rounds</h3><p>Send one consolidated feedback list per round so changes stay clear and controlled.</p></article>
-          <article class="card"><span class="eyebrow">Payments</span><h3>Simple milestones</h3><p>Smaller projects use 50/50. Larger systems use 40% at kickoff, 30% at review and 30% before launch.</p></article>
-          <article class="card"><span class="eyebrow">Changes</span><h3>Agreed before we build</h3><p>New pages, features or workflows are quoted before extra work starts.</p></article>
-        </div>
-      </div>
-    </section>
 
-    <section id="care" class="care-section">
-      <div class="wrap section reveal">
-        <span class="eyebrow">Ongoing support</span><h2>Need help after launch? Keep us involved.</h2><p class="lead">You do not need a monthly contract. Keep ownership, manage it yourself, or choose ongoing support.</p>
-        <div class="care-grid">
-          <article class="care-card"><span class="eyebrow">Care</span><div class="price">$199<span class="small">/mo</span></div><h3>Website Care</h3><ul><li>Monitoring + form checks</li><li>Small content updates</li><li>Up to 30 minutes changes</li></ul></article>
-          <article class="care-card"><span class="eyebrow">Growth</span><div class="price">$399<span class="small">/mo</span></div><h3>Growth Care</h3><ul><li>SEO + offers</li><li>Analytics review</li><li>Up to 2 hours improvements</li></ul></article>
-          <article class="care-card"><span class="eyebrow">Systems</span><div class="price">$750<span class="small">/mo</span></div><h3>Systems Care</h3><ul><li>CRM + forms</li><li>Automation support</li><li>Up to 4 hours systems work</li></ul></article>
-          <article class="care-card"><span class="eyebrow">Partner</span><div class="price">$1,250<span class="small">/mo</span></div><h3>Digital Partner</h3><ul><li>Prioritized improvements</li><li>Web + systems + AI</li><li>Ongoing technology partnership</li></ul></article>
+        <div class="working-panels">
+          <div class="working-panel active" data-work-panel="process">
+            <div class="process process-compact">
+              <article class="card"><span class="num">01</span><h3>Understand</h3><p>We map the problem, process and tools.</p></article>
+              <article class="card"><span class="num">02</span><h3>Build + Test</h3><p>You review a working system before launch.</p></article>
+              <article class="card"><span class="num">03</span><h3>Launch</h3><p>We deploy, stabilize and hand it over.</p></article>
+            </div>
+          </div>
+
+          <div class="working-panel" data-work-panel="ownership" hidden>
+            <div class="ownership-grid">
+              <div><strong>You own what we build.</strong><span>Your domain, website assets, core accounts and business data stay under your control.</span></div>
+              <div><strong>No forced retainer.</strong><span>Self-manage after handoff or bring us back only when you need help.</span></div>
+              <div><strong>Scope stays clear.</strong><span>Two structured revision rounds are included. New work is agreed before it starts.</span></div>
+            </div>
+          </div>
+
+          <div class="working-panel" data-work-panel="support" hidden>
+            <p class="working-lead">Optional ongoing support starts at <strong>$199/month</strong>. Choose the level that matches the system you want maintained.</p>
+            <div class="support-mini-grid">
+              <div><strong>Website Care</strong><span>$199/mo</span></div>
+              <div><strong>Growth Care</strong><span>$399/mo</span></div>
+              <div><strong>Systems Care</strong><span>$750/mo</span></div>
+              <div><strong>Digital Partner</strong><span>$1,250/mo</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1022,7 +1156,7 @@
         </div>
         <div class="footer-brand-copy"><span>CONTRACTOR</span><span>SYSTEMS</span></div>
       </div>
-      <span>Houston-area contractors · Systems · Integrations · Operations</span>
+      <div class="footer-actions"><span>Houston-area contractors · Systems · Integrations · Operations</span><button class="footer-portal-link" id="cx-launch-portal" type="button">Click here to see something crazy →</button></div>
     </div>
   </footer>
 
@@ -1054,73 +1188,49 @@
         ops:{title:'Business Operations System — $9,500+',hours:'50–60 total delivery hours',timeline:'Typical timeline: 6–8 weeks',payment:'Payment: 40% kickoff / 30% system review / 30% before launch',text:'For growing contractors that need structure behind sales, field operations and internal knowledge.',included:['Lead-to-Cash system','Internal company HQ','SOP structure','Workspace/file structure','Forms + templates','Training resources','Basic automations','Roles/permissions review','Team testing + post-launch support'],client:['Leadership discovery sessions','Access to current systems/files','Process owners for review','Timely approvals + team training'],excluded:['Enterprise ERP implementation','Custom software platform rebuilds','Unlimited integrations','Major change-management programs']}
       };
 
-      function renderPackage(key){
-        var p=packages[key],detail=document.getElementById('package-detail');
-        detail.innerHTML='<div class="package-summary"><div><strong>'+p.title+'</strong><p>'+p.text+'</p><p class="small" style="margin-top:8px">'+p.timeline+' · '+p.payment+'</p></div><div class="hours">'+p.hours+'</div></div>'+
-        '<div class="scope-detail"><div><h4>Included</h4><ul>'+p.included.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div><div><h4>Client provides</h4><ul>'+p.client.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div><div><h4>Not included</h4><ul>'+p.excluded.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div></div>';
-      }
-      var packageDetail=document.getElementById('package-detail');
-      var mobileMedia=window.matchMedia('(max-width:680px)');
-      var pricingGrid=document.querySelector('.pricing-grid');
+      var pricingStage=document.getElementById('pricing-stage');
+      var pricingTabs=Array.prototype.slice.call(document.querySelectorAll('.pricing-tab'));
+      var packageMeta={
+        website:{label:'Foundation',price:'$2,250',name:'Contractor Website'},
+        growth:{label:'Lead system',price:'$4,000',name:'Website + Lead System'},
+        lead:{label:'Systemize sales',price:'$6,500',name:'Lead-to-Cash System'},
+        ops:{label:'Run the company',price:'$9,500+',name:'Business Operations System'}
+      };
+      var selectedPackage='growth';
 
-      function closeMobilePackage(){
-        document.querySelectorAll('.price-card').forEach(function(c){
-          c.classList.remove('active');
-          var b=c.querySelector('.select-package');
-          if(b){b.textContent='View full scope';}
-        });
-        if(packageDetail.parentElement!==pricingGrid.parentElement){
-          pricingGrid.insertAdjacentElement('afterend',packageDetail);
-        }
-        if(mobileMedia.matches){
-          packageDetail.innerHTML='';
-        }
+      function packageDetailsHTML(p){
+        return '<div class="package-detail" id="active-package-detail">'+
+          '<div class="package-summary"><div><strong>Full scope</strong><p class="small">'+p.timeline+' · '+p.payment+'</p></div><div class="hours">'+p.hours+'</div></div>'+
+          '<div class="scope-detail"><div><h4>Included</h4><ul>'+p.included.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>'+
+          '<div><h4>Client provides</h4><ul>'+p.client.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>'+
+          '<div><h4>Not included</h4><ul>'+p.excluded.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div></div></div>';
       }
 
-      document.querySelectorAll('.price-card').forEach(function(card){
-        var button=card.querySelector('.select-package');
-        button.addEventListener('click',function(){
-          var alreadyOpen=card.classList.contains('active') && mobileMedia.matches && packageDetail.parentElement===card;
-          if(alreadyOpen){
-            closeMobilePackage();
-            return;
-          }
-          document.querySelectorAll('.price-card').forEach(function(c){
-            c.classList.remove('active');
-            var b=c.querySelector('.select-package');
-            if(b){b.textContent='View full scope';}
-          });
-          card.classList.add('active');
-          renderPackage(card.getAttribute('data-package'));
-          if(mobileMedia.matches){
-            card.appendChild(packageDetail);
-            button.textContent='Hide scope';
-          }else{
-            pricingGrid.insertAdjacentElement('afterend',packageDetail);
-            button.textContent='Scope shown below';
-            packageDetail.setAttribute('tabindex','-1');
-            packageDetail.scrollIntoView({
-              behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',
-              block:'start'
-            });
-            window.setTimeout(function(){packageDetail.focus({preventScroll:true});},350);
-          }
+      function selectPricingTab(key,openScope){
+        if(!packages[key]){key='growth';}
+        selectedPackage=key;
+        pricingTabs.forEach(function(tab){
+          var active=tab.getAttribute('data-package')===key;
+          tab.classList.toggle('active',active);
+          tab.setAttribute('aria-selected',String(active));
         });
+        var p=packages[key],m=packageMeta[key];
+        pricingStage.classList.toggle('scope-open',!!openScope);
+        pricingStage.innerHTML=
+          '<div class="pricing-stage-head"><div><span class="eyebrow">'+m.label+'</span><div class="price">'+m.price+'</div><h3 class="pricing-stage-title">'+m.name+'</h3><p class="pricing-stage-use">'+p.text+'</p></div><span class="hours">'+p.timeline+'</span></div>'+
+          '<div class="pricing-stage-actions"><button class="select-package btn secondary" type="button">'+(openScope?'Hide full scope':'View full scope')+'</button><a class="btn accent-btn" href="#intake">Start this project</a></div>'+
+          packageDetailsHTML(p);
+        var scopeBtn=pricingStage.querySelector('.select-package');
+        scopeBtn.addEventListener('click',function(){
+          var open=pricingStage.classList.toggle('scope-open');
+          scopeBtn.textContent=open?'Hide full scope':'View full scope';
+        });
+      }
+
+      pricingTabs.forEach(function(tab){
+        tab.addEventListener('click',function(){selectPricingTab(tab.getAttribute('data-package'),false);});
       });
-
-      function syncPackageLayout(){
-        if(mobileMedia.matches){
-          closeMobilePackage();
-        }else{
-          document.querySelectorAll('.price-card').forEach(function(c){c.classList.remove('active');});
-          var growth=document.querySelector('.price-card[data-package="growth"]');
-          if(growth){growth.classList.add('active');}
-          pricingGrid.insertAdjacentElement('afterend',packageDetail);
-          renderPackage('growth');
-        }
-      }
-      syncPackageLayout();
-      if(mobileMedia.addEventListener){mobileMedia.addEventListener('change',syncPackageLayout);}
+      selectPricingTab('growth',false);
 
       var finderResult=document.getElementById('finder-result');
       var assessment=document.getElementById('systems-assessment');
@@ -1182,13 +1292,49 @@
         var winner=order.reduce(function(best,key){return scores[key]>scores[best]?key:best;},'website');
         if(Object.values(scores).every(function(v){return v===0;})){winner='growth';}
         var r=finderCopy[winner];
-        finderResult.innerHTML='<span class="eyebrow">Recommended starting point</span><strong>'+r.name+'</strong><p>'+r.text+'</p><div class="actions" style="margin-top:14px"><a class="btn secondary" href="#pricing">Review package scope</a><a class="btn accent-btn" href="#intake">Start project intake</a></div>';
+        selectPricingTab(winner,false);
+        finderResult.innerHTML='<span class="eyebrow">Recommended starting point</span><strong>'+r.name+'</strong><p>'+r.text+'</p><div class="actions" style="margin-top:14px"><a class="btn secondary" href="#pricing">See your recommended system</a><a class="btn accent-btn" href="#intake">Start project intake</a></div>';
         finderResult.classList.add('show');
         if(stickyCopy){stickyCopy.textContent='Ready to talk?';}
         if(stickyLink){stickyLink.textContent='Start project →';stickyLink.setAttribute('href','#intake');}
         finderResult.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});
       });
 
+
+      // Compact tabbed sections keep the mobile page short without hiding the core story.
+      document.querySelectorAll('[data-tabs="case"]').forEach(function(module){
+        var buttons=Array.prototype.slice.call(module.querySelectorAll('[data-tab]'));
+        var panels=Array.prototype.slice.call(module.querySelectorAll('[data-panel]'));
+        buttons.forEach(function(button,index){
+          button.addEventListener('click',function(){
+            var key=button.getAttribute('data-tab');
+            buttons.forEach(function(b){var active=b===button;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});
+            panels.forEach(function(p){var active=p.getAttribute('data-panel')===key;p.classList.toggle('active',active);p.hidden=!active;});
+          });
+          button.addEventListener('keydown',function(e){
+            if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft'){return;}
+            e.preventDefault();
+            var next=(index+(e.key==='ArrowRight'?1:-1)+buttons.length)%buttons.length;
+            buttons[next].focus();buttons[next].click();
+          });
+        });
+      });
+
+      var workButtons=Array.prototype.slice.call(document.querySelectorAll('[data-work-tab]'));
+      var workPanels=Array.prototype.slice.call(document.querySelectorAll('[data-work-panel]'));
+      workButtons.forEach(function(button,index){
+        button.addEventListener('click',function(){
+          var key=button.getAttribute('data-work-tab');
+          workButtons.forEach(function(b){var active=b===button;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});
+          workPanels.forEach(function(p){var active=p.getAttribute('data-work-panel')===key;p.classList.toggle('active',active);p.hidden=!active;});
+        });
+        button.addEventListener('keydown',function(e){
+          if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft'){return;}
+          e.preventDefault();
+          var next=(index+(e.key==='ArrowRight'?1:-1)+workButtons.length)%workButtons.length;
+          workButtons[next].focus();workButtons[next].click();
+        });
+      });
 
       // Mobile constellation interaction
       var systemCopy={
