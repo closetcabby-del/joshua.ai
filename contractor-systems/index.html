@@ -310,7 +310,61 @@
       .footer-brand{width:100%;justify-content:center}
       .footer-row>span{font-size:11px;line-height:1.5}
     }
-  </style>
+  
+    /* Constellation operating-system map — adapted from the portfolio system-map language */
+    .cos-section{background:var(--paper);overflow:hidden}
+    .cos-head{display:grid;grid-template-columns:1.08fr .92fr;gap:8vw;align-items:end;margin-bottom:42px}
+    .cos-head h2{margin-bottom:0}
+    .cos-head p{max-width:520px;margin:0;color:var(--muted);font-size:15px;line-height:1.75}
+    .cos-shell{position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,0))}
+    .cos-scroll{overflow:hidden}
+    .cos-svg{display:block;width:100%;height:auto;min-height:580px}
+    .cos-link,.cos-ring{fill:none;vector-effect:non-scaling-stroke}
+    .cos-link{stroke:#bdb8af;stroke-width:1.1;stroke-dasharray:5 8}
+    .cos-ring{stroke:#d2cec5;stroke-width:1;stroke-dasharray:2 9}
+    .cos-link-motion{stroke:var(--accent);stroke-width:1.7;stroke-dasharray:2 22;opacity:.9;animation:cosTravel 13s linear infinite}
+    .cos-node{outline:none}
+    .cos-node circle:first-child{fill:var(--paper);stroke:#aaa59b;stroke-width:1.15;transition:fill .25s ease,stroke .25s ease,transform .25s ease}
+    .cos-node:hover circle:first-child{fill:#fff;stroke:var(--accent);transform:scale(1.04)}
+    .cos-node text{fill:var(--ink);font-family:"Space Grotesk","Inter",sans-serif;font-size:15px;font-weight:700;letter-spacing:-.02em}
+    .cos-node .cos-small{fill:var(--muted);font-family:"Inter",sans-serif;font-size:8px;font-weight:700;letter-spacing:.12em}
+    .cos-dot{fill:var(--accent);stroke:none!important;animation:cosBreathe 3.6s ease-in-out infinite}
+    .cos-core-ring{fill:none;stroke:rgba(241,90,36,.28);stroke-width:1.4;stroke-dasharray:3 8;animation:cosSpin 34s linear infinite;transform-origin:center}
+    .cos-core-fill{fill:var(--ink);stroke:var(--ink);stroke-width:1}
+    .cos-core-title{fill:#fff;font-family:"Space Grotesk","Inter",sans-serif;font-size:18px;font-weight:700;letter-spacing:-.03em}
+    .cos-core-small{fill:#aaa6a0;font-family:"Inter",sans-serif;font-size:7px;font-weight:800;letter-spacing:.15em}
+    .cos-mark line{stroke:#f7f5f0;stroke-width:5;stroke-linecap:round}
+    .cos-mark line.orange{stroke:var(--accent)}.cos-mark line.gray{stroke:#77736d}
+    .cos-mark circle{fill:var(--ink);stroke:#f7f5f0;stroke-width:4}
+    .cos-mark .orange-node{stroke:var(--accent)}.cos-mark .gray-node{stroke:#77736d}
+    .cos-caption{display:flex;justify-content:space-between;gap:24px;padding:16px 2px 18px;color:var(--muted);font-size:12px;line-height:1.6}
+    .cos-swipe{display:none;color:var(--accent);font-weight:800;white-space:nowrap}
+    @keyframes cosTravel{to{stroke-dashoffset:-240}}
+    @keyframes cosBreathe{0%,100%{opacity:.55}50%{opacity:1}}
+    @keyframes cosSpin{to{transform:rotate(360deg)}}
+
+    @media(max-width:900px){
+      .cos-head{grid-template-columns:1fr;gap:18px;margin-bottom:28px}
+      .cos-head p{max-width:680px}
+      .cos-scroll{overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+      .cos-scroll::-webkit-scrollbar{display:none}
+      .cos-svg{width:820px;max-width:none;min-height:492px}
+      .cos-swipe{display:inline}
+    }
+    @media(max-width:680px){
+      .cos-section .section{padding-top:58px;padding-bottom:58px}
+      .cos-head h2{font-size:clamp(38px,11vw,46px)}
+      .cos-head p{font-size:14px;line-height:1.65}
+      .cos-shell{margin-inline:-14px}
+      .cos-scroll{padding-left:14px}
+      .cos-svg{width:760px;min-height:456px}
+      .cos-caption{padding:13px 14px 15px;font-size:11px}
+      .cos-caption span:first-child{max-width:220px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .cos-link-motion,.cos-dot,.cos-core-ring{animation:none!important}
+    }
+</style>
   <!-- deployment refresh: founder-section-2026-09-28 -->
 </head>
 <body>
@@ -401,6 +455,99 @@
         </div>
         <div class="flow"><div class="flow-track"><div class="flow-step">Google / Website</div><div class="flow-step">Lead</div><div class="flow-step">Estimate</div><div class="flow-step">Job</div><div class="flow-step">Payment</div><div class="flow-step">Review</div></div></div>
         <p class="small" style="margin-top:14px">Contractor Systems connects what happens between those steps so fewer leads, tasks and handoffs fall through the cracks.</p>
+      </div>
+    </section>
+
+    <section class="cos-section" id="operating-system">
+      <div class="wrap section">
+        <div class="cos-head reveal">
+          <div>
+            <span class="eyebrow">The contractor operating system</span>
+            <h2>Everything connects.</h2>
+          </div>
+          <p>The goal is not more software. It is a business where leads, jobs, information, automation and AI work together around the way your team actually operates.</p>
+        </div>
+
+        <div class="cos-shell reveal">
+          <div class="cos-scroll">
+            <svg class="cos-svg" viewBox="0 0 1100 660" role="img" aria-label="Animated contractor operating system map connecting website, leads, CRM, estimates, scheduling, payments, SOPs, files, automation and AI">
+              <defs>
+                <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#f15a24" stop-opacity=".15"/>
+                  <stop offset="70%" stop-color="#f15a24" stop-opacity=".04"/>
+                  <stop offset="100%" stop-color="#f15a24" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+
+              <circle cx="550" cy="330" r="180" fill="url(#coreGlow)"/>
+
+              <path class="cos-link" d="M550 330 L550 100 M550 330 L802 132 M550 330 L940 270 M550 330 L900 478 M550 330 L695 570 M550 330 L405 570 M550 330 L200 478 M550 330 L160 270 M550 330 L298 132 M550 330 L280 330"/>
+              <path class="cos-link cos-link-motion" d="M550 330 L550 100 M550 330 L802 132 M550 330 L940 270 M550 330 L900 478 M550 330 L695 570 M550 330 L405 570 M550 330 L200 478 M550 330 L160 270 M550 330 L298 132 M550 330 L280 330"/>
+              <path class="cos-ring" d="M550 100 L802 132 L940 270 L900 478 L695 570 L405 570 L200 478 L160 270 L298 132 Z"/>
+
+              <g class="cos-node" transform="translate(550 100)">
+                <circle r="58"/><circle class="cos-dot" cy="-37" r="4"/>
+                <text text-anchor="middle" y="3">Website</text><text class="cos-small" text-anchor="middle" y="24">FOUND + TRUSTED</text>
+              </g>
+              <g class="cos-node" transform="translate(802 132)">
+                <circle r="58"/><circle class="cos-dot" cy="-37" r="4"/>
+                <text text-anchor="middle" y="3">CRM</text><text class="cos-small" text-anchor="middle" y="24">LEADS + STATUS</text>
+              </g>
+              <g class="cos-node" transform="translate(940 270)">
+                <circle r="58"/><circle class="cos-dot" cy="-37" r="4"/>
+                <text text-anchor="middle" y="3">Estimates</text><text class="cos-small" text-anchor="middle" y="24">QUOTE + FOLLOW-UP</text>
+              </g>
+              <g class="cos-node" transform="translate(900 478)">
+                <circle r="58"/><circle class="cos-dot" cy="-37" r="4"/>
+                <text text-anchor="middle" y="3">Scheduling</text><text class="cos-small" text-anchor="middle" y="24">JOBS + TEAM</text>
+              </g>
+              <g class="cos-node" transform="translate(695 570)">
+                <circle r="58"/><circle class="cos-dot" cy="-37" r="4"/>
+                <text text-anchor="middle" y="3">Payments</text><text class="cos-small" text-anchor="middle" y="24">CASH + CLOSEOUT</text>
+              </g>
+              <g class="cos-node" transform="translate(405 570)">
+                <circle r="58"/><circle class="cos-dot" cy="-37" r="4"/>
+                <text text-anchor="middle" y="3">SOPs</text><text class="cos-small" text-anchor="middle" y="24">PROCESS + TRAINING</text>
+              </g>
+              <g class="cos-node" transform="translate(200 478)">
+                <circle r="58"/><circle class="cos-dot" cy="-37" r="4"/>
+                <text text-anchor="middle" y="3">Files</text><text class="cos-small" text-anchor="middle" y="24">KNOWLEDGE + FORMS</text>
+              </g>
+              <g class="cos-node" transform="translate(160 270)">
+                <circle r="58"/><circle class="cos-dot" cy="-37" r="4"/>
+                <text text-anchor="middle" y="3">Automation</text><text class="cos-small" text-anchor="middle" y="24">REPETITIVE WORK</text>
+              </g>
+              <g class="cos-node" transform="translate(298 132)">
+                <circle r="58"/><circle class="cos-dot" cy="-37" r="4"/>
+                <text text-anchor="middle" y="3">AI</text><text class="cos-small" text-anchor="middle" y="24">ASSIST + REASON</text>
+              </g>
+              <g class="cos-node" transform="translate(280 330)">
+                <circle r="58"/><circle class="cos-dot" cy="-37" r="4"/>
+                <text text-anchor="middle" y="3">Leads</text><text class="cos-small" text-anchor="middle" y="24">CALLS + FORMS</text>
+              </g>
+
+              <g class="cos-core" transform="translate(550 330)">
+                <circle class="cos-core-ring" r="102"/>
+                <circle class="cos-core-fill" r="92"/>
+                <g class="cos-mark" transform="translate(0 -34)">
+                  <line x1="0" y1="-18" x2="-20" y2="16"/>
+                  <line x1="0" y1="-18" x2="20" y2="16" class="orange"/>
+                  <line x1="-20" y1="16" x2="20" y2="16" class="gray"/>
+                  <circle cx="0" cy="-18" r="7" class="orange-node"/>
+                  <circle cx="-20" cy="16" r="7"/>
+                  <circle cx="20" cy="16" r="7" class="gray-node"/>
+                </g>
+                <text class="cos-core-title" text-anchor="middle" y="28">Contractor</text>
+                <text class="cos-core-title" text-anchor="middle" y="51">Operating System</text>
+                <text class="cos-core-small" text-anchor="middle" y="72">ONE CONNECTED BUSINESS</text>
+              </g>
+            </svg>
+          </div>
+          <div class="cos-caption">
+            <span>Information moves through the business instead of getting trapped in texts, spreadsheets and memory.</span>
+            <span class="cos-swipe">Swipe to explore →</span>
+          </div>
+        </div>
       </div>
     </section>
 
