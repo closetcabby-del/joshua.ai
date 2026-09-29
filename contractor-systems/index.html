@@ -737,6 +737,30 @@
       .founder-copy .lead{font-size:13px;line-height:1.5}
       .founder-meta{display:none}
     }
+
+    .portal-inline{
+      margin-top:14px;padding:14px 16px;border:1px solid #303036;background:#141416;color:#fff;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;border-radius:10px
+    }
+    .portal-inline>div{display:flex;flex-direction:column;gap:2px}
+    .portal-inline-kicker{font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+    .portal-inline strong{font-family:"Space Grotesk";font-size:15px}
+    .cx-portal-launch-trigger{
+      min-height:44px;padding:0 14px;border:1px solid var(--accent);border-radius:999px;background:var(--accent);
+      color:#111;font-size:12px;font-weight:900;cursor:pointer;white-space:nowrap
+    }
+    .cx-portal-launch-trigger:hover,.cx-portal-launch-trigger:focus-visible{outline:none;transform:translateY(-1px)}
+    .footer-portal-link.cx-portal-launch-trigger{
+      min-height:0;padding:0;border:0;border-radius:0;background:transparent;color:#d2d2d6;
+      white-space:normal;text-decoration:underline;text-underline-offset:4px
+    }
+    .footer-portal-link.cx-portal-launch-trigger:hover,.footer-portal-link.cx-portal-launch-trigger:focus-visible{color:var(--accent);transform:none}
+    @media(max-width:680px){
+      .portal-inline{margin-top:10px;padding:13px;align-items:stretch;flex-direction:column}
+      .portal-inline strong{font-size:14px}
+      .cx-portal-launch-trigger{width:100%;min-height:50px}
+      .footer-portal-link.cx-portal-launch-trigger{width:auto;min-height:0}
+    }
 </style>
   <!-- deployment refresh: founder-section-2026-09-28 -->
 </head>
@@ -973,6 +997,13 @@
           <div><strong>Run Operations</strong><span>Jobs · SOPs · knowledge</span></div>
           <div><strong>Automate</strong><span>Workflows · AI · reporting</span></div>
         </div>
+        <div class="portal-inline reveal">
+          <div>
+            <span class="portal-inline-kicker">Experimental mode</span>
+            <strong>Want to see something crazy?</strong>
+          </div>
+          <button class="cx-portal-launch-trigger" type="button">Enter the portal →</button>
+        </div>
       </div>
     </section>
 
@@ -1179,7 +1210,7 @@
         </div>
         <div class="footer-brand-copy"><span>CONTRACTOR</span><span>SYSTEMS</span></div>
       </div>
-      <div class="footer-actions"><span>Houston-area contractors · Systems · Integrations · Operations</span><button class="footer-portal-link" id="cx-launch-portal" type="button">Click here to see something crazy →</button></div>
+      <div class="footer-actions"><span>Houston-area contractors · Systems · Integrations · Operations</span><button class="footer-portal-link cx-portal-launch-trigger" type="button">Click here to see something crazy →</button></div>
     </div>
   </footer>
 
@@ -1479,13 +1510,14 @@
 
   <script>
     (function(){
-      var launch=document.getElementById('cx-launch-portal');
+      var launches=Array.prototype.slice.call(document.querySelectorAll('.cx-portal-launch-trigger'));
+      var launch=null;
       var overlay=document.getElementById('cx-portal-overlay');
       var canvas=document.getElementById('cx-portal-canvas');
       var closeBtn=document.getElementById('cx-portal-close');
       var returnBtn=document.getElementById('cx-portal-return');
       var finalLogo=document.getElementById('cx-portal-logo');
-      if(!launch||!overlay||!canvas){return;}
+      if(!launches.length||!overlay||!canvas){return;}
 
       var ctx=canvas.getContext('2d',{alpha:false});
       var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1745,7 +1777,8 @@
         returnBtn.classList.add('show');
       }
 
-      function openPortal(){
+      function openPortal(event){
+        launch=event&&event.currentTarget?event.currentTarget:launches[0];
         overlay.setAttribute('aria-hidden','false');
         overlay.classList.add('is-open','is-igniting');
         oldOverflow=document.body.style.overflow;
@@ -1771,10 +1804,10 @@
           finalLogo.setAttribute('aria-hidden','true');
           returnBtn.classList.remove('show');
         },450);
-        launch.focus({preventScroll:true});
+        if(launch){launch.focus({preventScroll:true});}
       }
 
-      launch.addEventListener('click',openPortal);
+      launches.forEach(function(button){button.addEventListener('click',openPortal);});
       closeBtn.addEventListener('click',closePortal);
       returnBtn.addEventListener('click',closePortal);
       document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('is-open'))closePortal();});
