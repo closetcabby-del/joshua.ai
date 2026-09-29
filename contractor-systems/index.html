@@ -1168,6 +1168,7 @@
   <script>
     (function(){
       var desktopMedia=window.matchMedia('(min-width:681px)');
+      var mobileMedia=window.matchMedia('(max-width:680px)');
       function loadDesktopFrames(){
         if(!desktopMedia.matches){return;}
         document.querySelectorAll('iframe[data-desktop-src]').forEach(function(frame){
