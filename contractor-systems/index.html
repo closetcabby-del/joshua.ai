@@ -698,6 +698,45 @@
 
       .footer-actions{width:100%;align-items:center;text-align:center}
     }
+
+    /* Final interaction-fatigue reduction pass */
+    .working-process{margin-top:28px}
+    .working-trust{
+      display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px
+    }
+    .working-trust span{
+      min-height:54px;display:flex;align-items:center;padding:13px 15px;border:1px solid var(--line);
+      background:#fff;border-radius:8px;font-size:13px;font-weight:800;color:#45423d
+    }
+    .support-details{
+      margin-top:12px;border:1px solid var(--line);background:#fff;border-radius:9px;padding:0 16px
+    }
+    .support-details summary{font-weight:800}
+    .support-details .support-mini-grid{margin:0 0 16px}
+
+    .founder-section .section{padding-top:42px;padding-bottom:42px}
+    .founder-grid{grid-template-columns:120px minmax(0,1fr);gap:22px}
+    .founder-photo{width:110px}
+    .founder-copy h2{font-size:clamp(26px,3vw,38px)}
+    .founder-copy .lead{font-size:15px}
+
+    @media(max-width:680px){
+      .system-outcomes{display:none}
+      .working-process{margin-top:20px}
+      .working-trust{grid-template-columns:1fr;gap:7px;margin-top:9px}
+      .working-trust span{min-height:48px;padding:11px 13px;font-size:12.5px}
+      .support-details{margin-top:9px;padding:0 13px}
+      .support-details summary{min-height:52px;display:flex;align-items:center;font-size:13px}
+
+      .founder-section .section{padding-top:30px;padding-bottom:30px}
+      .founder-grid{grid-template-columns:78px minmax(0,1fr);gap:14px}
+      .founder-photo{width:76px}
+      .founder-copy .eyebrow{margin-bottom:7px}
+      .founder-copy h2{font-size:22px;margin-bottom:7px}
+      .founder-role{font-size:8.5px;margin-bottom:7px}
+      .founder-copy .lead{font-size:13px;line-height:1.5}
+      .founder-meta{display:none}
+    }
 </style>
   <!-- deployment refresh: founder-section-2026-09-28 -->
 </head>
@@ -734,7 +773,7 @@
           <span class="eyebrow">Built for small contractors</span>
           <h1>Get the lead.<br>Win the job.<br><span class="accent">Run the business.</span></h1>
           <p class="lead">Websites, business systems, automation and AI built around how contractors actually work.</p>
-          <div class="actions"><a class="btn accent-btn" href="#case-study">See a Real System</a><a class="btn secondary" href="#finder">Find What You Need</a></div>
+          <div class="actions"><a class="btn accent-btn" href="#finder">Find What to Fix</a><a class="btn secondary" href="#case-study">See Jeff Electric</a></div>
           <div class="trust"><span>Built around contractor operations</span><span>You own what we build</span><span>No forced monthly contract</span></div>
           <div class="mobile-system-strip" aria-label="Contractor system flow">
             <span>Website</span><b>→</b><span>Leads</span><b>→</b><span>Jobs</span><b>→</b><span>Operations</span><b>→</b><span>AI</span>
@@ -769,8 +808,8 @@
           <div class="tab-module case-tab-module" data-tabs="case">
             <div class="tab-list case-tabs" role="tablist" aria-label="Jeff Electric case study">
               <button class="tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="case-website" data-tab="website">Website</button>
-              <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="case-leads" data-tab="leads">Leads</button>
-              <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="case-ops" data-tab="ops">Operations</button>
+              <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="case-leads" data-tab="leads">Lead System</button>
+              <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="case-ops" data-tab="ops">Company HQ</button>
               <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="case-ai" data-tab="ai">AI + Automation</button>
             </div>
 
@@ -825,12 +864,12 @@
                 <path class="cos-mobile-signal" data-system="ai" d="M180 165 L51 247"/>
               </svg>
 
-              <button class="cos-mobile-node node-website active" type="button" data-system="website"><span>Website</span></button>
-              <button class="cos-mobile-node node-leads" type="button" data-system="leads"><span>Leads</span></button>
-              <button class="cos-mobile-node node-sales" type="button" data-system="sales"><span>Sales</span></button>
-              <button class="cos-mobile-node node-jobs" type="button" data-system="jobs"><span>Jobs</span></button>
-              <button class="cos-mobile-node node-ops" type="button" data-system="operations"><span>Operations</span></button>
-              <button class="cos-mobile-node node-ai" type="button" data-system="ai"><span>AI + Automation</span></button>
+              <button class="cos-mobile-node node-website active" type="button" data-system="website" aria-pressed="true"><span>Website</span></button>
+              <button class="cos-mobile-node node-leads" type="button" data-system="leads" aria-pressed="false"><span>Leads</span></button>
+              <button class="cos-mobile-node node-sales" type="button" data-system="sales" aria-pressed="false"><span>Sales</span></button>
+              <button class="cos-mobile-node node-jobs" type="button" data-system="jobs" aria-pressed="false"><span>Jobs</span></button>
+              <button class="cos-mobile-node node-ops" type="button" data-system="operations" aria-pressed="false"><span>Operations</span></button>
+              <button class="cos-mobile-node node-ai" type="button" data-system="ai" aria-pressed="false"><span>AI + Automation</span></button>
 
               <div class="cos-mobile-core" aria-hidden="true">
                 <svg class="cos-mobile-logo" viewBox="0 0 120 105" focusable="false">
@@ -1021,13 +1060,13 @@
         </div>
 
         <div class="pricing-tabs tab-list" role="tablist" aria-label="Project packages">
-          <button class="pricing-tab" type="button" role="tab" aria-selected="false" data-package="website">Website</button>
-          <button class="pricing-tab active" type="button" role="tab" aria-selected="true" data-package="growth">Leads</button>
-          <button class="pricing-tab" type="button" role="tab" aria-selected="false" data-package="lead">Sales</button>
-          <button class="pricing-tab" type="button" role="tab" aria-selected="false" data-package="ops">Operations</button>
+          <button class="pricing-tab" id="pricing-tab-website" type="button" role="tab" aria-selected="false" aria-controls="pricing-stage" data-package="website">Website</button>
+          <button class="pricing-tab active" id="pricing-tab-growth" type="button" role="tab" aria-selected="true" aria-controls="pricing-stage" data-package="growth">Leads</button>
+          <button class="pricing-tab" id="pricing-tab-lead" type="button" role="tab" aria-selected="false" aria-controls="pricing-stage" data-package="lead">Sales</button>
+          <button class="pricing-tab" id="pricing-tab-ops" type="button" role="tab" aria-selected="false" aria-controls="pricing-stage" data-package="ops">Operations</button>
         </div>
 
-        <div class="pricing-stage" id="pricing-stage" aria-live="polite"></div>
+        <div class="pricing-stage" id="pricing-stage" role="tabpanel" aria-labelledby="pricing-tab-growth" aria-live="polite" tabindex="-1"></div>
 
         <details class="addons-details">
           <summary>Optional add-ons</summary>
@@ -1055,7 +1094,7 @@
           <span class="eyebrow">Why I build this way</span>
           <h2>Systems thinking, applied to contractors.</h2>
           <div class="founder-role">Joshua Ly · Founder · AI Systems &amp; Operations for Contractors</div>
-          <p class="lead">My background spans business analysis, app development, data and automation. I use that systems-thinking approach to understand how a contractor operates first, then connect the right tools, automation and AI around it.</p>
+          <p class="lead">My background spans business analysis, app development, data and automation. I use that systems thinking to understand how a contractor operates, then connect the right tools, automation and AI around it.</p>
           <div class="founder-meta"><span>Business Analysis</span><span>Systems Design</span><span>Automation + AI</span></div>
         </div>
       </div>
@@ -1066,39 +1105,27 @@
         <span class="eyebrow">Working with Contractor Systems</span>
         <h2>Simple to start. Clear all the way through.</h2>
 
-        <div class="working-tabs tab-list" role="tablist" aria-label="Working with Contractor Systems">
-          <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-work-tab="process">How It Works</button>
-          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-work-tab="ownership">Ownership</button>
-          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-work-tab="support">Support</button>
+        <div class="process process-compact working-process">
+          <article class="card"><span class="num">01</span><h3>Understand</h3><p>We map the problem, process and tools.</p></article>
+          <article class="card"><span class="num">02</span><h3>Build + Test</h3><p>You review a working system before launch.</p></article>
+          <article class="card"><span class="num">03</span><h3>Launch</h3><p>We deploy, stabilize and hand it over.</p></article>
         </div>
 
-        <div class="working-panels">
-          <div class="working-panel active" data-work-panel="process">
-            <div class="process process-compact">
-              <article class="card"><span class="num">01</span><h3>Understand</h3><p>We map the problem, process and tools.</p></article>
-              <article class="card"><span class="num">02</span><h3>Build + Test</h3><p>You review a working system before launch.</p></article>
-              <article class="card"><span class="num">03</span><h3>Launch</h3><p>We deploy, stabilize and hand it over.</p></article>
-            </div>
-          </div>
-
-          <div class="working-panel" data-work-panel="ownership" hidden>
-            <div class="ownership-grid">
-              <div><strong>You own what we build.</strong><span>Your domain, website assets, core accounts and business data stay under your control.</span></div>
-              <div><strong>No forced retainer.</strong><span>Self-manage after handoff or bring us back only when you need help.</span></div>
-              <div><strong>Scope stays clear.</strong><span>Two structured revision rounds are included. New work is agreed before it starts.</span></div>
-            </div>
-          </div>
-
-          <div class="working-panel" data-work-panel="support" hidden>
-            <p class="working-lead">Optional ongoing support starts at <strong>$199/month</strong>. Choose the level that matches the system you want maintained.</p>
-            <div class="support-mini-grid">
-              <div><strong>Website Care</strong><span>$199/mo</span></div>
-              <div><strong>Growth Care</strong><span>$399/mo</span></div>
-              <div><strong>Systems Care</strong><span>$750/mo</span></div>
-              <div><strong>Digital Partner</strong><span>$1,250/mo</span></div>
-            </div>
-          </div>
+        <div class="working-trust" aria-label="Project commitments">
+          <span>✓ You own what we build</span>
+          <span>✓ No required monthly contract</span>
+          <span>✓ Optional support from $199/mo</span>
         </div>
+
+        <details class="support-details">
+          <summary>View optional support plans</summary>
+          <div class="support-mini-grid">
+            <div><strong>Website Care</strong><span>$199/mo</span></div>
+            <div><strong>Growth Care</strong><span>$399/mo</span></div>
+            <div><strong>Systems Care</strong><span>$750/mo</span></div>
+            <div><strong>Digital Partner</strong><span>$1,250/mo</span></div>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -1120,13 +1147,9 @@
         <span class="eyebrow">FAQ</span><h2>Questions contractors ask before starting.</h2>
         <div class="faq">
           <details><summary>Do I own the website and my business accounts?</summary><p>Yes. Your domain, website assets, analytics, CRM data, files and core business accounts stay under your control.</p></details>
-          <details><summary>Do I have to pay every month?</summary><p>No. Care plans are optional. You can self-manage after handoff or bring me back when you need help.</p></details>
-          <details><summary>Can you improve my current website instead of replacing it?</summary><p>Yes, if the current platform is worth keeping. I’ll tell you whether improving it or rebuilding it makes more sense.</p></details>
-          <details><summary>Do you write the website content?</summary><p>Yes. Core messaging, page structure and conversion copy are included within scope. Large content projects are quoted separately.</p></details>
-          <details><summary>How many revisions are included?</summary><p>Two structured revision rounds are included. New pages, new functionality or major direction changes are additional scope.</p></details>
-          <details><summary>What happens after launch?</summary><p>I handle final testing, handoff and agreed-scope fixes during a short post-launch period. After that, you can self-manage or choose ongoing support.</p></details>
-          <details><summary>Can you connect QuickBooks, Google Workspace or a CRM?</summary><p>Usually. QuickBooks, Google Workspace, CRMs and other tools can often be connected. I’ll confirm what is technically possible before including an integration in your scope.</p></details>
-          <details><summary>Do you build AI into every project?</summary><p>No. AI is only used when it makes the business easier to run. If a website, lead process or SOP system solves the problem, that’s what we’ll build.</p></details>
+          <details><summary>Do I have to pay every month?</summary><p>No. Ongoing support is optional. You can self-manage after handoff or bring me back when you need help.</p></details>
+          <details><summary>Can you connect the tools I already use?</summary><p>Usually. QuickBooks, Google Workspace, CRMs and other tools can often be connected. I’ll confirm what is technically possible before an integration is included in scope.</p></details>
+          <details><summary>Do you put AI into every project?</summary><p>No. AI is only used when it makes the business easier to run. If a website, lead process or SOP system solves the problem, that’s what we’ll build.</p></details>
         </div>
       </div>
     </section>
@@ -1136,7 +1159,7 @@
         <span class="eyebrow" style="color:#111">Next step</span>
         <h2>Stop running the business out of texts, spreadsheets and memory.</h2>
         <p>Build the system behind the work.</p>
-        <div class="actions"><a class="btn" href="#intake">Start the Project Intake</a><a class="btn secondary" href="#case-study">Review the Case Study</a></div>
+        <div class="actions"><a class="btn" href="#intake">Start the Project Intake</a></div>
       </div>
     </section>
   </main>
@@ -1216,6 +1239,7 @@
           tab.setAttribute('aria-selected',String(active));
         });
         var p=packages[key],m=packageMeta[key];
+        pricingStage.setAttribute('aria-labelledby','pricing-tab-'+key);
         pricingStage.classList.toggle('scope-open',!!openScope);
         pricingStage.innerHTML=
           '<div class="pricing-stage-head"><div><span class="eyebrow">'+m.label+'</span><div class="price">'+m.price+'</div><h3 class="pricing-stage-title">'+m.name+'</h3><p class="pricing-stage-use">'+p.text+'</p></div><span class="hours">'+p.timeline+'</span></div>'+
@@ -1228,8 +1252,19 @@
         });
       }
 
-      pricingTabs.forEach(function(tab){
+      pricingTabs.forEach(function(tab,index){
         tab.addEventListener('click',function(){selectPricingTab(tab.getAttribute('data-package'),false);});
+        tab.addEventListener('keydown',function(e){
+          if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft'&&e.key!=='Home'&&e.key!=='End'){return;}
+          e.preventDefault();
+          var next=index;
+          if(e.key==='ArrowRight'){next=(index+1)%pricingTabs.length;}
+          if(e.key==='ArrowLeft'){next=(index-1+pricingTabs.length)%pricingTabs.length;}
+          if(e.key==='Home'){next=0;}
+          if(e.key==='End'){next=pricingTabs.length-1;}
+          pricingTabs[next].focus();
+          selectPricingTab(pricingTabs[next].getAttribute('data-package'),false);
+        });
       });
       selectPricingTab('growth',false);
 
@@ -1294,8 +1329,20 @@
         if(Object.values(scores).every(function(v){return v===0;})){winner='growth';}
         var r=finderCopy[winner];
         selectPricingTab(winner,false);
-        finderResult.innerHTML='<span class="eyebrow">Recommended starting point</span><strong>'+r.name+'</strong><p>'+r.text+'</p><div class="actions" style="margin-top:14px"><a class="btn secondary" href="#pricing">See your recommended system</a><a class="btn accent-btn" href="#intake">Start project intake</a></div>';
+        finderResult.innerHTML='<span class="eyebrow">Recommended starting point</span><strong>'+r.name+'</strong><p>'+r.text+'</p><div class="actions" style="margin-top:14px"><a class="btn secondary recommended-system-link" href="#pricing">See your recommended system</a><a class="btn accent-btn" href="#intake">Start project intake</a></div>';
         finderResult.classList.add('show');
+        var recommendedLink=finderResult.querySelector('.recommended-system-link');
+        if(recommendedLink){
+          recommendedLink.addEventListener('click',function(event){
+            event.preventDefault();
+            selectPricingTab(winner,true);
+            document.getElementById('pricing').scrollIntoView({
+              behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',
+              block:'start'
+            });
+            window.setTimeout(function(){pricingStage.focus({preventScroll:true});},350);
+          });
+        }
         if(stickyCopy){stickyCopy.textContent='Ready to talk?';}
         if(stickyLink){stickyLink.textContent='Start project →';stickyLink.setAttribute('href','#intake');}
         finderResult.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});
@@ -1321,22 +1368,6 @@
         });
       });
 
-      var workButtons=Array.prototype.slice.call(document.querySelectorAll('[data-work-tab]'));
-      var workPanels=Array.prototype.slice.call(document.querySelectorAll('[data-work-panel]'));
-      workButtons.forEach(function(button,index){
-        button.addEventListener('click',function(){
-          var key=button.getAttribute('data-work-tab');
-          workButtons.forEach(function(b){var active=b===button;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});
-          workPanels.forEach(function(p){var active=p.getAttribute('data-work-panel')===key;p.classList.toggle('active',active);p.hidden=!active;});
-        });
-        button.addEventListener('keydown',function(e){
-          if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft'){return;}
-          e.preventDefault();
-          var next=(index+(e.key==='ArrowRight'?1:-1)+workButtons.length)%workButtons.length;
-          workButtons[next].focus();workButtons[next].click();
-        });
-      });
-
       // Mobile constellation interaction
       var systemCopy={
         website:{title:'Website',text:'Service pages, local search, trust signals and lead capture.'},
@@ -1350,11 +1381,15 @@
       document.querySelectorAll('.cos-mobile-node').forEach(function(node){
         node.addEventListener('click',function(){
           var key=node.getAttribute('data-system');
-          document.querySelectorAll('.cos-mobile-node').forEach(function(n){n.classList.remove('active');});
+          document.querySelectorAll('.cos-mobile-node').forEach(function(n){
+            n.classList.remove('active');
+            n.setAttribute('aria-pressed','false');
+          });
           document.querySelectorAll('.cos-mobile-signal').forEach(function(line){
             line.classList.toggle('active',line.getAttribute('data-system')===key);
           });
           node.classList.add('active');
+          node.setAttribute('aria-pressed','true');
           var item=systemCopy[key];
           if(item&&mobileDetail){mobileDetail.innerHTML='<strong>'+item.title+'.</strong><span>'+item.text+'</span>';}
         });
@@ -1405,20 +1440,25 @@
         cosSection.classList.add('motion-active');
       }
 
-      // Show a single mobile action after the hero; hide it near the intake.
-      var heroSection=document.querySelector('.hero-shell');
+      // Show the mobile action only after the visitor has finished the main proof section.
+      var caseStudySection=document.getElementById('case-study');
       var intakeSection=document.getElementById('intake');
-      var heroVisible=true,intakeVisible=false;
+      var caseStudyPassed=false,intakeVisible=false;
       function syncSticky(){
         if(!stickyCta){return;}
-        var show=mobileMedia.matches && !heroVisible && !intakeVisible && !nav.classList.contains('open');
+        var show=mobileMedia.matches && caseStudyPassed && !intakeVisible && !nav.classList.contains('open');
         stickyCta.classList.toggle('show',show);
         stickyCta.setAttribute('aria-hidden',String(!show));
       }
-      if('IntersectionObserver' in window && heroSection){
+      if('IntersectionObserver' in window && caseStudySection){
         new IntersectionObserver(function(entries){
-          entries.forEach(function(entry){heroVisible=entry.isIntersecting;syncSticky();});
-        },{threshold:.08}).observe(heroSection);
+          entries.forEach(function(entry){
+            if(entry.isIntersecting){caseStudyPassed=false;}
+            else if(entry.boundingClientRect.bottom<=0){caseStudyPassed=true;}
+            else if(entry.boundingClientRect.top>0){caseStudyPassed=false;}
+            syncSticky();
+          });
+        },{threshold:[0,.05]}).observe(caseStudySection);
       }
       if('IntersectionObserver' in window && intakeSection){
         new IntersectionObserver(function(entries){
@@ -1449,7 +1489,7 @@
 
       var ctx=canvas.getContext('2d',{alpha:false});
       var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var raf=0,start=0,running=false,w=0,h=0,dpr=1,focal=700;
+      var raf=0,start=0,running=false,w=0,h=0,dpr=1,focal=700,pausedAt=0;
       var stars=[],objects=[],oldOverflow='';
       var TWO_PI=Math.PI*2;
 
@@ -1714,7 +1754,7 @@
         finalLogo.classList.remove('show');
         finalLogo.setAttribute('aria-hidden','true');
         returnBtn.classList.remove('show');
-        start=0;sizeCanvas();running=true;
+        start=0;pausedAt=0;sizeCanvas();running=true;
         if(reduced){renderReduced();running=false;}else{cancelAnimationFrame(raf);raf=requestAnimationFrame(drawFrame);}
         window.setTimeout(function(){overlay.classList.remove('is-igniting');},1450);
         closeBtn.focus({preventScroll:true});
@@ -1722,7 +1762,7 @@
 
       function closePortal(){
         if(!overlay.classList.contains('is-open'))return;
-        running=false;cancelAnimationFrame(raf);
+        running=false;pausedAt=0;cancelAnimationFrame(raf);
         overlay.classList.remove('is-open','is-igniting');overlay.setAttribute('aria-hidden','true');
         document.body.classList.remove('cx-portal-locked');document.body.style.overflow=oldOverflow;
         window.setTimeout(function(){
@@ -1738,6 +1778,17 @@
       closeBtn.addEventListener('click',closePortal);
       returnBtn.addEventListener('click',closePortal);
       document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('is-open'))closePortal();});
+      document.addEventListener('visibilitychange',function(){
+        if(!overlay.classList.contains('is-open')||reduced){return;}
+        if(document.visibilityState!=='visible'&&running){
+          pausedAt=performance.now();
+          cancelAnimationFrame(raf);
+        }else if(document.visibilityState==='visible'&&running&&pausedAt){
+          if(start){start+=performance.now()-pausedAt;}
+          pausedAt=0;
+          raf=requestAnimationFrame(drawFrame);
+        }
+      });
       window.addEventListener('resize',function(){if(overlay.classList.contains('is-open'))sizeCanvas();});
     })();
   </script>
