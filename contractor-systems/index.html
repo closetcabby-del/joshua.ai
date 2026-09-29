@@ -92,7 +92,7 @@
     .card{border:1px solid var(--line);background:#fff;padding:26px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
     .card:hover{transform:translateY(-3px);border-color:#b8b1a4;box-shadow:var(--shadow)}
     .card .num{display:block;margin-bottom:32px;color:var(--accent);font-family:"Space Grotesk",sans-serif;font-size:12px;font-weight:800}.card p{margin-bottom:0;color:var(--muted);font-size:14px}
-    .flow{margin-top:42px;overflow-x:auto;padding-bottom:8px}.flow-track{min-width:920px;display:grid;grid-template-columns:repeat(7,1fr)}
+    .flow{margin-top:42px;overflow-x:auto;padding-bottom:8px}.flow-track{min-width:780px;display:grid;grid-template-columns:repeat(6,1fr)}
     .flow-step{min-height:94px;display:flex;align-items:center;justify-content:center;text-align:center;border:1px solid var(--line);background:#fff;font-size:13px;font-weight:800;position:relative}
     .flow-step:not(:last-child)::after{content:"→";position:absolute;right:-14px;z-index:2;width:28px;height:28px;display:grid;place-items:center;background:var(--paper);color:var(--accent);font-size:18px}
     .finder-section{background:#fff}
@@ -331,7 +331,7 @@
         <div class="brand-copy"><span class="contractor">CONTRACTOR</span><span class="systems">SYSTEMS</span></div>
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#services">Services</a><a href="#finder">Find Your Package</a><a href="#case-study">Case Study</a><a href="#about">About</a><a href="#pricing">Pricing</a><a href="#intake">Start</a><a href="#faq">FAQ</a>
+        <a href="#case-study">Case Study</a><a href="#services">Services</a><a href="#finder">Assessment</a><a href="#about">About</a><a href="#pricing">Pricing</a><a href="#intake">Start</a><a href="#faq">FAQ</a>
       </nav>
       <a class="btn accent-btn" href="#intake">Start a Project</a>
       <button class="mobile-toggle" id="mobile-toggle" type="button" aria-expanded="false">Menu</button>
@@ -344,51 +344,62 @@
         <div>
           <span class="eyebrow">Built for small contractors</span>
           <h1>Get the lead.<br>Win the job.<br><span class="accent">Run the business.</span></h1>
-          <p class="lead">Websites, lead systems and operations infrastructure for growing contractors.</p>
-          <div class="actions"><a class="btn accent-btn" href="#finder">Get a Systems Assessment</a><a class="btn secondary" href="#case-study">See What We Built for Jeff Electric</a></div>
-          <div class="trust"><span>Clear project scope</span><span>Two structured revision rounds</span><span>QA + launch support included</span></div>
+          <p class="lead">Websites, business systems, automation and AI built around how contractors actually work.</p>
+          <div class="actions"><a class="btn accent-btn" href="#case-study">See a Real System</a><a class="btn secondary" href="#finder">Find What You Need</a></div>
+          <div class="trust"><span>Built around contractor operations</span><span>You own what we build</span><span>No forced monthly contract</span></div>
         </div>
         <aside class="system-panel">
           <span class="eyebrow">The system behind a contractor</span>
           <div class="system-stack">
             <div class="system-row"><strong>01 · Get Found</strong><span>Website · Google · Reviews</span></div><div class="arrow">↓</div>
-            <div class="system-row"><strong>02 · Convert</strong><span>Forms · CRM · Follow-Up</span></div><div class="arrow">↓</div>
-            <div class="system-row"><strong>03 · Deliver</strong><span>Estimate · Job · Payment</span></div><div class="arrow">↓</div>
-            <div class="system-row"><strong>04 · Operate</strong><span>SOPs · Training · Automation</span></div>
+            <div class="system-row"><strong>02 · Win Work</strong><span>Calls · Forms · Follow-Up</span></div><div class="arrow">↓</div>
+            <div class="system-row"><strong>03 · Deliver + Get Paid</strong><span>Estimate · Job · Payment</span></div><div class="arrow">↓</div>
+            <div class="system-row"><strong>04 · Run the Team</strong><span>SOPs · Training · Automation</span></div>
           </div>
         </aside>
       </div>
     </section>
 
-    <section>
+    <section id="case-study" class="case-section">
       <div class="wrap section reveal">
-        <span class="eyebrow">Trust + ownership</span><h2>Built like a business asset,<br>not a website rental.</h2>
-        <div class="proof-strip">
-          <div><strong>Houston-area focus</strong><span>Built around local home-service and trades businesses.</span></div>
-          <div><strong>Contractor-specific</strong><span>Leads, estimates, follow-up, field operations and internal knowledge.</span></div>
-          <div><strong>Client-owned systems</strong><span>Your domain, files, analytics, CRM data and business accounts remain under your control.</span></div>
-          <div><strong>No forced retainer</strong><span>Care plans are optional. Project work can stand on its own after handoff.</span></div>
+        <span class="eyebrow">Real contractor proof</span><h2>A real contractor.<br><span class="accent">One connected system.</span></h2>
+        <p class="lead">See how the same thinking applies across a contractor business—from the live website and lead process to internal knowledge, automation and practical AI.</p>
+        <div class="case-grid">
+          <div>
+            <div class="case-browser">
+              <div class="browser-bar"><i></i><i></i><i></i><span class="small" style="margin-left:8px">Live Jeff Electric website</span></div>
+              <iframe class="live-frame" src="https://jeffelectric.online/" title="Live Jeff Electric website preview" loading="lazy"></iframe>
+            </div>
+            <div class="mobile-case-link">
+              <strong>See the live Jeff Electric website</strong>
+              <p>Open the production site directly instead of loading a desktop-style preview inside your phone.</p>
+              <a class="btn accent-btn" href="https://jeffelectric.online/" target="_blank" rel="noopener">Open Live Site</a>
+            </div>
+          </div>
+          <div class="case-list">
+            <article class="card"><span class="eyebrow">Live customer-facing work</span><h3>Get Found</h3><p>Website, service messaging, local search, trust signals and stronger lead capture.</p><p style="margin-top:14px"><a href="https://jeffelectric.online/" target="_blank" rel="noopener">Open live site →</a></p></article>
+            <article class="card"><span class="eyebrow">Implemented internal system</span><h3>Manage Leads</h3><p>Lead intake, CRM, estimate status, next actions and follow-up so the team knows where every opportunity stands.</p></article>
+            <article class="card"><span class="eyebrow">Implemented internal system</span><h3>Run the Team</h3><p>Company HQ, SOPs, price-book access, forms, training and information the team needs to do the work.</p></article>
+            <article class="card"><span class="eyebrow">Prototype + operating design</span><h3>Automate the Work</h3><p>Automation, knowledge assistants and practical AI concepts aimed at reducing repetitive work.</p></article>
+          </div>
         </div>
+        <div class="privacy-note"><strong>Case study boundary:</strong> the live website is shown directly. Lead-to-Cash, internal HQ, SOP and automation work is described without exposing private client systems or internal data.</div>
       </div>
     </section>
 
     <section id="services">
       <div class="wrap section reveal">
-        <span class="eyebrow">What we build</span><h2>One partner across the customer journey and the systems behind it.</h2>
+        <span class="eyebrow">What we build</span>
+        <h2>Connect the systems behind every job.</h2>
+        <p class="lead">From the first Google search to the final payment—and everything your team needs in between.</p>
         <div class="four-grid">
-          <article class="card"><span class="num">01</span><h3>Get Found</h3><p>Professional websites, local-search foundations, service pages, service areas and trust signals.</p></article>
-          <article class="card"><span class="num">02</span><h3>Convert Leads</h3><p>Quote forms, lead intake, CRM structure, follow-up workflows and sales visibility.</p></article>
-          <article class="card"><span class="num">03</span><h3>Run Operations</h3><p>Internal portals, SOPs, price books, forms, training resources and company knowledge.</p></article>
-          <article class="card"><span class="num">04</span><h3>Automate</h3><p>Workflow automation and AI where they reduce repetitive work and improve visibility.</p></article>
+          <article class="card"><span class="num">01</span><h3>Get Found</h3><p>Websites, service pages, local search, reviews and the trust signals that help customers choose you.</p></article>
+          <article class="card"><span class="num">02</span><h3>Win More Work</h3><p>Lead intake, estimates, follow-up and a clear view of where every opportunity stands.</p></article>
+          <article class="card"><span class="num">03</span><h3>Run the Business</h3><p>SOPs, forms, training, company information and tools that make the operation easier to manage.</p></article>
+          <article class="card"><span class="num">04</span><h3>Automate the Work</h3><p>Automate repetitive tasks and use AI where it makes the business faster, clearer or easier to run.</p></article>
         </div>
-        <div class="flow"><div class="flow-track"><div class="flow-step">Google / Website</div><div class="flow-step">Lead</div><div class="flow-step">CRM</div><div class="flow-step">Estimate</div><div class="flow-step">Job</div><div class="flow-step">Payment</div><div class="flow-step">Review</div></div></div>
-        <div class="operations-map">
-          <div class="operations-map-head"><h3>Built from real contractor operations.</h3><p>The customer journey is only half the system. Contractor Systems also connects the internal layer that keeps sales, delivery, knowledge and automation moving together.</p></div>
-          <div class="ops-lanes">
-            <div class="ops-lane"><div class="ops-label">Customer flow</div><div class="ops-node">Lead Capture</div><div class="ops-node active">Sales Pipeline</div><div class="ops-node">Job Delivery</div><div class="ops-node">Review + Growth</div></div>
-            <div class="ops-lane"><div class="ops-label">Operating layer</div><div class="ops-node">Forms + CRM</div><div class="ops-node active">Follow-Up + Estimates</div><div class="ops-node">SOPs + Company HQ</div><div class="ops-node">Automation + Reporting</div></div>
-          </div>
-        </div>
+        <div class="flow"><div class="flow-track"><div class="flow-step">Google / Website</div><div class="flow-step">Lead</div><div class="flow-step">Estimate</div><div class="flow-step">Job</div><div class="flow-step">Payment</div><div class="flow-step">Review</div></div></div>
+        <p class="small" style="margin-top:14px">Contractor Systems connects what happens between those steps so fewer leads, tasks and handoffs fall through the cracks.</p>
       </div>
     </section>
 
@@ -397,31 +408,31 @@
         <span class="eyebrow">Systems assessment</span><h2>Find the first system to fix.</h2><p class="lead">Answer four quick questions. You’ll get a recommended starting point based on where the business is actually breaking down.</p>
         <form class="assessment" id="systems-assessment">
           <fieldset class="assessment-question">
-            <legend>1 · How is your website performing?</legend>
+            <legend>1 · Is your website helping you win work?</legend>
             <div class="assessment-options">
               <label class="assessment-choice"><input type="radio" name="site" value="website:4" required><span>No website, outdated, weak on mobile or hard to trust.</span></label>
-              <label class="assessment-choice"><input type="radio" name="site" value="growth:3"><span>Looks decent, but it is not producing enough calls or form leads.</span></label>
+              <label class="assessment-choice"><input type="radio" name="site" value="growth:3"><span>It looks decent, but it is not producing enough calls or form leads.</span></label>
               <label class="assessment-choice"><input type="radio" name="site" value="none:0"><span>The website is not our main problem.</span></label>
             </div>
           </fieldset>
           <fieldset class="assessment-question">
-            <legend>2 · What happens with new leads?</legend>
+            <legend>2 · What happens when a new lead comes in?</legend>
             <div class="assessment-options">
-              <label class="assessment-choice"><input type="radio" name="leads" value="growth:4" required><span>We need more visibility, reviews or better conversion.</span></label>
+              <label class="assessment-choice"><input type="radio" name="leads" value="growth:4" required><span>We need more of them—visibility, reviews or conversion are weak.</span></label>
               <label class="assessment-choice"><input type="radio" name="leads" value="lead:3"><span>Leads come in, but follow-up is inconsistent.</span></label>
-              <label class="assessment-choice"><input type="radio" name="leads" value="none:0"><span>Lead volume and response are reasonably healthy.</span></label>
+              <label class="assessment-choice"><input type="radio" name="leads" value="none:0"><span>Lead flow and response are healthy.</span></label>
             </div>
           </fieldset>
           <fieldset class="assessment-question">
-            <legend>3 · Can you clearly see every lead and estimate?</legend>
+            <legend>3 · Do you know exactly where every lead and estimate stands?</legend>
             <div class="assessment-options">
               <label class="assessment-choice"><input type="radio" name="pipeline" value="lead:5" required><span>No. We use texts, memory, spreadsheets or scattered tools.</span></label>
               <label class="assessment-choice"><input type="radio" name="pipeline" value="lead:3"><span>We have a CRM, but the pipeline or statuses are messy.</span></label>
-              <label class="assessment-choice"><input type="radio" name="pipeline" value="none:0"><span>Yes. Ownership, status and next action are clear.</span></label>
+              <label class="assessment-choice"><input type="radio" name="pipeline" value="none:0"><span>Yes. The owner, status and next action are clear.</span></label>
             </div>
           </fieldset>
           <fieldset class="assessment-question">
-            <legend>4 · How organized are your internal operations?</legend>
+            <legend>4 · Can your team easily find and follow the right process?</legend>
             <div class="assessment-options">
               <label class="assessment-choice"><input type="radio" name="ops" value="ops:5" required><span>SOPs, files, forms and team knowledge are scattered everywhere.</span></label>
               <label class="assessment-choice"><input type="radio" name="ops" value="ops:3"><span>We have some structure, but growth is exposing gaps.</span></label>
@@ -437,56 +448,29 @@
       </div>
     </section>
 
-    <section id="case-study" class="case-section">
-      <div class="wrap section reveal">
-        <span class="eyebrow">Flagship case study</span><h2>Jeff Electric:<br><span class="accent">more than a website.</span></h2>
-        <p class="lead">Real contractor work spanning the public website, lead management, sales process, internal knowledge, operations structure and automation concepts.</p>
-        <div class="case-grid">
-          <div>
-            <div class="case-browser">
-              <div class="browser-bar"><i></i><i></i><i></i><span class="small" style="margin-left:8px">Live Jeff Electric website</span></div>
-              <iframe class="live-frame" src="https://jeffelectric.online/" title="Live Jeff Electric website preview" loading="lazy"></iframe>
-            </div>
-            <div class="mobile-case-link">
-              <strong>See the live Jeff Electric website</strong>
-              <p>Open the production site directly instead of loading a desktop-style preview inside your phone.</p>
-              <a class="btn accent-btn" href="https://jeffelectric.online/" target="_blank" rel="noopener">Open Live Site</a>
-            </div>
-          </div>
-          <div class="case-list">
-            <article class="card"><span class="eyebrow">Live customer-facing work</span><h3>Website + Growth</h3><p>Website, service messaging, conversion improvements, local-search structure and lead tracking.</p><p style="margin-top:14px"><a href="https://jeffelectric.online/" target="_blank" rel="noopener">Open live site →</a></p></article>
-            <article class="card"><span class="eyebrow">Implemented internal system</span><h3>Lead-to-Cash</h3><p>Lead intake, CRM fields, quote status, next actions, follow-up structure and sales resources.</p></article>
-            <article class="card"><span class="eyebrow">Implemented internal system</span><h3>Company HQ + Knowledge</h3><p>Workspace organization, internal portal, SOP library, price-book access, training and forms.</p></article>
-            <article class="card"><span class="eyebrow">Prototype + operating design</span><h3>Automation + AI</h3><p>Knowledge assistants, workflow automation and AI-enabled operational concepts.</p></article>
-          </div>
-        </div>
-        <div class="privacy-note"><strong>Case study boundary:</strong> the live website is shown directly. Lead-to-Cash, internal HQ, SOP and automation work is described without exposing private client systems or internal data.</div>
-      </div>
-    </section>
-
     <section class="founder-section" id="about">
       <div class="wrap section founder-grid reveal">
         <div class="founder-photo">
           <img src="data:image/jpeg;base64,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" alt="Joshua Ly, founder of Contractor Systems">
         </div>
         <div class="founder-copy">
-          <span class="eyebrow">Who is behind Contractor Systems</span>
-          <h2>Built from inside contractor operations.</h2>
-          <div class="founder-role">Joshua Ly · Founder · AI Systems &amp; Operations Specialist for Contractors</div>
-          <p class="lead">My background spans business analysis, app development, data, automation and cross-functional technology delivery. That experience shaped how I build AI systems today: understand the business first, map how people, data and tools work together, then design the simplest solution that improves the operation. Contractor Systems applies that framework to the trades—connecting leads, sales, operations, knowledge, automation and AI into systems contractors can actually use.</p>
-          <div class="founder-meta"><span>AI Systems</span><span>Operations Design</span><span>Automation &amp; Integration</span></div>
+          <span class="eyebrow">Why I build this way</span>
+          <h2>Systems thinking, applied to contractors.</h2>
+          <div class="founder-role">Joshua Ly · Founder · AI Systems &amp; Operations for Contractors</div>
+          <p class="lead">My background is in business analysis, app development, data and automation—working between business and technical teams to turn messy problems into working systems. I use that same approach with contractors: understand how the business works first, then connect the right tools, automation and AI around it.</p>
+          <div class="founder-meta"><span>Business Analysis</span><span>Systems Design</span><span>Automation + AI</span></div>
         </div>
       </div>
     </section>
 
     <section id="pricing">
       <div class="wrap section reveal">
-        <div class="pricing-intro"><div><span class="eyebrow">Packages</span><h2>Start where the business needs help.</h2><p class="lead">Pricing includes discovery, build, client review, revisions, QA, launch and stabilization—not only the first draft.</p></div><p class="small">Additional out-of-scope work: $125/hr</p></div>
+        <div class="pricing-intro"><div><span class="eyebrow">Packages</span><h2>Start where the business needs help.</h2><p class="lead">Each package includes planning, build, review, testing, launch and post-launch support.</p></div><p class="small">Extra work outside the agreed scope: $125/hr</p></div>
         <div class="pricing-grid">
           <article class="price-card" data-package="website"><span class="eyebrow">Foundation</span><div class="price">$2,250</div><h3>Contractor Website</h3><p class="small">For businesses that need a polished, credible lead-generating presence.</p><ul><li>Up to ~5 core pages</li><li>Responsive/mobile build</li><li>Local SEO foundation</li><li>Quote/contact forms</li><li>Two revision rounds</li><li>QA, launch + post-launch fixes</li></ul><button class="select-package" type="button">View full scope</button></article>
-          <article class="price-card featured active" data-package="growth"><span class="tag">Most Popular</span><span class="eyebrow">Growth Engine</span><div class="price">$4,000</div><h3>Website + Growth System</h3><p class="small">For contractors ready to improve both visibility and lead conversion.</p><ul><li>Conversion-focused website</li><li>Service + area structure</li><li>Reviews + GBP guidance</li><li>Analytics + lead intake</li><li>Two revision rounds</li><li>Launch + stabilization</li></ul><button class="select-package" type="button">View full scope</button></article>
-          <article class="price-card" data-package="lead"><span class="eyebrow">Systemize sales</span><div class="price">$6,500</div><h3>Lead-to-Cash System</h3><p class="small">For contractors losing visibility between inquiry, estimate and booked work.</p><ul><li>Growth Engine foundation</li><li>CRM + lead pipeline</li><li>Quote-status tracking</li><li>Follow-up workflows</li><li>Sales process resources</li><li>Team training + UAT</li></ul><button class="select-package" type="button">View full scope</button></article>
-          <article class="price-card" data-package="ops"><span class="eyebrow">Run the company</span><div class="price">$9,500+</div><h3>Operations System</h3><p class="small">For growing businesses that need structure behind sales and field operations.</p><ul><li>Lead-to-Cash system</li><li>Internal company HQ</li><li>SOP + knowledge structure</li><li>Workspace + forms</li><li>Training resources</li><li>Basic automation</li></ul><button class="select-package" type="button">View full scope</button></article>
+          <article class="price-card featured active" data-package="growth"><span class="tag">Most Popular</span><span class="eyebrow">Lead system</span><div class="price">$4,000</div><h3>Website + Lead System</h3><p class="small">For contractors ready to improve both visibility and lead conversion.</p><ul><li>Conversion-focused website</li><li>Service + area structure</li><li>Reviews + GBP guidance</li><li>Analytics + lead intake</li><li>Two revision rounds</li><li>Launch + stabilization</li></ul><button class="select-package" type="button">View full scope</button></article>
+          <article class="price-card" data-package="lead"><span class="eyebrow">Systemize sales</span><div class="price">$6,500</div><h3>Lead-to-Cash System</h3><p class="small">For contractors losing visibility between inquiry, estimate and booked work.</p><ul><li>Website + Lead System foundation</li><li>CRM + lead pipeline</li><li>Quote-status tracking</li><li>Follow-up workflows</li><li>Sales process resources</li><li>Team training + UAT</li></ul><button class="select-package" type="button">View full scope</button></article>
+          <article class="price-card" data-package="ops"><span class="eyebrow">Run the company</span><div class="price">$9,500+</div><h3>Business Operations System</h3><p class="small">For growing businesses that need structure behind sales and field operations.</p><ul><li>Lead-to-Cash system</li><li>Internal company HQ</li><li>SOP + knowledge structure</li><li>Workspace + forms</li><li>Training resources</li><li>Basic automation</li></ul><button class="select-package" type="button">View full scope</button></article>
         </div>
         <div class="package-detail" id="package-detail" aria-live="polite"></div>
         <div style="margin-top:50px">
@@ -496,31 +480,37 @@
             <div class="addon"><strong>CRM setup</strong><span>from $750</span></div><div class="addon"><strong>Additional automation workflow</strong><span>from $500</span></div><div class="addon"><strong>Internal company portal</strong><span>from $1,500</span></div>
             <div class="addon"><strong>SOP starter library</strong><span>from $750</span></div><div class="addon"><strong>Extra revision / change work</strong><span>$125/hr</span></div><div class="addon"><strong>Custom integration</strong><span>scoped</span></div>
           </div>
+          <div class="package-detail" style="margin-top:28px">
+            <strong>Need something more advanced?</strong>
+            <p>AI assistants, custom automation, integrations and reporting are scoped around the business problem—not added just for the sake of using AI.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="process">
       <div class="wrap section reveal">
-        <span class="eyebrow">How projects work</span><h2>A controlled process protects the client and the project.</h2><p class="lead">Client meetings, feedback, revisions, QA and launch are already part of the delivery model.</p>
+        <span class="eyebrow">How projects work</span>
+        <h2>You’ll know what happens at every step.</h2>
+        <p class="lead">A clear process keeps the project moving without burying you in technical language.</p>
         <div class="process">
-          <article class="card"><span class="num">01</span><h3>Discover</h3><p>Goals, services, customers, current systems and content.</p></article>
-          <article class="card"><span class="num">02</span><h3>Design + Build</h3><p>Create the first working version against agreed scope.</p></article>
-          <article class="card"><span class="num">03</span><h3>Client Review</h3><p>Present the system and collect one consolidated feedback list.</p></article>
-          <article class="card"><span class="num">04</span><h3>Revise + Test</h3><p>Two structured revision rounds plus responsive QA/UAT.</p></article>
-          <article class="card"><span class="num">05</span><h3>Launch</h3><p>Deployment, handoff and a defined stabilization period.</p></article>
+          <article class="card"><span class="num">01</span><h3>Understand the Business</h3><p>We learn your services, customers, current process and the tools you already use.</p></article>
+          <article class="card"><span class="num">02</span><h3>Design the System</h3><p>We map the simplest solution that solves the real problem.</p></article>
+          <article class="card"><span class="num">03</span><h3>Build It</h3><p>You get a working version to review against the agreed scope.</p></article>
+          <article class="card"><span class="num">04</span><h3>Test It Together</h3><p>Your feedback, revisions and team testing happen before launch.</p></article>
+          <article class="card"><span class="num">05</span><h3>Launch + Improve</h3><p>We deploy, fix agreed-scope issues and hand over the finished system.</p></article>
         </div>
         <div class="scope-box">
-          <article class="card"><span class="eyebrow">Revision boundary</span><h3>Two structured rounds</h3><p>One consolidated feedback list per round. New functionality is separately scoped.</p></article>
-          <article class="card"><span class="eyebrow">Payment structure</span><h3>Milestones, not surprises</h3><p>Smaller projects: 50/50. Larger systems: 40% kickoff, 30% system review, 30% before launch.</p></article>
-          <article class="card"><span class="eyebrow">Scope changes</span><h3>Protect the outcome</h3><p>Major direction changes, added pages or additional workflows are quoted before work begins.</p></article>
+          <article class="card"><span class="eyebrow">Reviews</span><h3>Two structured rounds</h3><p>Send one consolidated feedback list per round so changes stay clear and controlled.</p></article>
+          <article class="card"><span class="eyebrow">Payments</span><h3>Simple milestones</h3><p>Smaller projects use 50/50. Larger systems use 40% at kickoff, 30% at review and 30% before launch.</p></article>
+          <article class="card"><span class="eyebrow">Changes</span><h3>Agreed before we build</h3><p>New pages, features or workflows are quoted before extra work starts.</p></article>
         </div>
       </div>
     </section>
 
     <section id="care" class="care-section">
       <div class="wrap section reveal">
-        <span class="eyebrow">Ongoing support</span><h2>Keep the system healthy after launch.</h2><p class="lead">Care is optional. Clients can maintain ownership and return only when they need additional work.</p>
+        <span class="eyebrow">Ongoing support</span><h2>Need help after launch? Keep us involved.</h2><p class="lead">You do not need a monthly contract. Keep ownership, manage it yourself, or choose ongoing support.</p>
         <div class="care-grid">
           <article class="care-card"><span class="eyebrow">Care</span><div class="price">$199<span class="small">/mo</span></div><h3>Website Care</h3><ul><li>Monitoring + form checks</li><li>Small content updates</li><li>Up to 30 minutes changes</li></ul></article>
           <article class="care-card"><span class="eyebrow">Growth</span><div class="price">$399<span class="small">/mo</span></div><h3>Growth Care</h3><ul><li>SEO + offers</li><li>Analytics review</li><li>Up to 2 hours improvements</li></ul></article>
@@ -533,9 +523,8 @@
     <section id="intake" class="intake-section">
       <div class="wrap section intake-layout reveal">
         <div>
-          <span class="eyebrow">Start a project</span><h2>Tell me where the business is stuck.</h2>
-          <p class="lead">The intake captures the project details needed to review fit before a discovery conversation.</p>
-          <p class="small">The package finder helps a prospect orient themselves. The intake creates the actual lead record.</p>
+          <span class="eyebrow">Start a project</span><h2>Tell me what isn’t working.</h2>
+          <p class="lead">Answer a few questions about your business, current tools and where work is getting stuck. I’ll review it before we talk.</p>
         </div>
         <div class="form-shell">
           <iframe class="form-frame" data-desktop-src="https://form.jotform.com/262696430818062" title="Contractor Systems project intake form" loading="lazy"></iframe>
@@ -546,16 +535,16 @@
 
     <section id="faq">
       <div class="wrap section reveal">
-        <span class="eyebrow">FAQ</span><h2>Questions a contractor should not have to chase you for.</h2>
+        <span class="eyebrow">FAQ</span><h2>Questions contractors ask before starting.</h2>
         <div class="faq">
-          <details><summary>Do I own the website and my business accounts?</summary><p>Yes. The intended model is client ownership of the domain, website assets, analytics, CRM data, business files and core accounts. Ongoing support is optional.</p></details>
-          <details><summary>Do I have to pay every month?</summary><p>No. Monthly care plans are optional. Project packages are standalone implementations with handoff.</p></details>
-          <details><summary>Can you improve my current website instead of replacing it?</summary><p>Yes, when the current platform and code are workable. The first step is determining whether improvement is more economical than rebuilding.</p></details>
-          <details><summary>Do you write the website content?</summary><p>Basic messaging, page structure and conversion copy are included within the agreed scope. Large content inventories are separately scoped.</p></details>
-          <details><summary>How many revisions are included?</summary><p>Two structured revision rounds. Each round should be one consolidated list of feedback. New pages, new functionality or major direction changes are additional scope.</p></details>
-          <details><summary>What happens after launch?</summary><p>Launch includes QA, handoff and a short stabilization period for agreed-scope fixes. Then you can self-manage, request work as needed or choose a care plan.</p></details>
-          <details><summary>Can you connect QuickBooks, Google Workspace or a CRM?</summary><p>Yes when the tools expose the required integration path and permissions. Custom integrations are scoped separately because complexity varies.</p></details>
-          <details><summary>Do you build AI into every project?</summary><p>No. AI is used only where it creates a practical advantage. A contractor that mainly needs a website, lead process or SOP structure should not be forced into an AI project.</p></details>
+          <details><summary>Do I own the website and my business accounts?</summary><p>Yes. Your domain, website assets, analytics, CRM data, files and core business accounts stay under your control.</p></details>
+          <details><summary>Do I have to pay every month?</summary><p>No. Care plans are optional. You can self-manage after handoff or bring me back when you need help.</p></details>
+          <details><summary>Can you improve my current website instead of replacing it?</summary><p>Yes, if the current platform is worth keeping. I’ll tell you whether improving it or rebuilding it makes more sense.</p></details>
+          <details><summary>Do you write the website content?</summary><p>Yes. Core messaging, page structure and conversion copy are included within scope. Large content projects are quoted separately.</p></details>
+          <details><summary>How many revisions are included?</summary><p>Two structured revision rounds are included. New pages, new functionality or major direction changes are additional scope.</p></details>
+          <details><summary>What happens after launch?</summary><p>I handle final testing, handoff and agreed-scope fixes during a short post-launch period. After that, you can self-manage or choose ongoing support.</p></details>
+          <details><summary>Can you connect QuickBooks, Google Workspace or a CRM?</summary><p>Usually. QuickBooks, Google Workspace, CRMs and other tools can often be connected. I’ll confirm what is technically possible before including an integration in your scope.</p></details>
+          <details><summary>Do you build AI into every project?</summary><p>No. AI is only used when it makes the business easier to run. If a website, lead process or SOP system solves the problem, that’s what we’ll build.</p></details>
         </div>
       </div>
     </section>
@@ -563,7 +552,7 @@
     <section class="cta-wrap">
       <div class="wrap cta reveal">
         <span class="eyebrow" style="color:#111">Next step</span>
-        <h2>Your business shouldn't depend on texts, spreadsheets and memory.</h2>
+        <h2>Stop running the business out of texts, spreadsheets and memory.</h2>
         <p>Build the system behind the work.</p>
         <div class="actions"><a class="btn" href="#intake">Start the Project Intake</a><a class="btn secondary" href="#case-study">Review the Case Study</a></div>
       </div>
@@ -607,9 +596,9 @@
 
       var packages={
         website:{title:'Contractor Website — $2,250',hours:'12–15 total delivery hours',timeline:'Typical timeline: 2–3 weeks',payment:'Payment: 50% kickoff / 50% before launch',text:'For businesses that primarily need a credible, mobile-friendly lead-generating web presence.',included:['Discovery + content organization','Up to ~5 core pages','Responsive build','Basic local SEO setup','Quote/contact forms','2 revision rounds','QA + launch + short stabilization'],client:['Logo/brand assets if available','Services + service area details','Project photos/testimonials','Domain/account access as needed'],excluded:['Large content inventories','Custom CRM implementation','Complex integrations','Ongoing SEO or ad management']},
-        growth:{title:'Growth Engine — $4,000',hours:'22–28 total delivery hours',timeline:'Typical timeline: 3–4 weeks',payment:'Payment: 50% kickoff / 50% before launch',text:'For contractors ready to improve visibility and conversion, not only appearance.',included:['Conversion-focused website','Service + service-area structure','Lead intake improvements','Analytics + tracking setup','Review/GBP guidance','2 revision rounds','QA + launch + stabilization'],client:['Business/service details','Photos + proof assets','Google/analytics access where applicable','Consolidated feedback on schedule'],excluded:['Full CRM rollout','Paid ad management','Large-scale backlink campaigns','Unlimited revisions']},
-        lead:{title:'Lead-to-Cash System — $6,500',hours:'34–42 total delivery hours',timeline:'Typical timeline: 4–6 weeks',payment:'Payment: 40% kickoff / 30% system review / 30% before launch',text:'For contractors losing visibility between inquiry, estimate, follow-up and booked work.',included:['Growth Engine foundation','CRM/pipeline structure','Lead + quote statuses','Follow-up workflow','Sales templates/resources','Dashboard basics','Training + UAT','Launch stabilization'],client:['Current sales process walkthrough','CRM/account access','Lead/quote fields and definitions','Team availability for review + training'],excluded:['ERP replacement','Complex accounting migration','Unlimited custom automations','24/7 support']},
-        ops:{title:'Operations System — $9,500+',hours:'50–60 total delivery hours',timeline:'Typical timeline: 6–8 weeks',payment:'Payment: 40% kickoff / 30% system review / 30% before launch',text:'For growing contractors that need structure behind sales, field operations and internal knowledge.',included:['Lead-to-Cash system','Internal company HQ','SOP architecture','Workspace/file structure','Forms + templates','Training resources','Basic automations','Roles/permissions review','UAT + stabilization'],client:['Leadership discovery sessions','Access to current systems/files','Process owners for review','Timely approvals + team training'],excluded:['Enterprise ERP implementation','Custom software platform rebuilds','Unlimited integrations','Major change-management programs']}
+        growth:{title:'Website + Lead System — $4,000',hours:'22–28 total delivery hours',timeline:'Typical timeline: 3–4 weeks',payment:'Payment: 50% kickoff / 50% before launch',text:'For contractors ready to improve visibility and conversion, not only appearance.',included:['Conversion-focused website','Service + service-area structure','Lead intake improvements','Analytics + tracking setup','Review/GBP guidance','2 revision rounds','QA + launch + stabilization'],client:['Business/service details','Photos + proof assets','Google/analytics access where applicable','Consolidated feedback on schedule'],excluded:['Full CRM rollout','Paid ad management','Large-scale backlink campaigns','Unlimited revisions']},
+        lead:{title:'Lead-to-Cash System — $6,500',hours:'34–42 total delivery hours',timeline:'Typical timeline: 4–6 weeks',payment:'Payment: 40% kickoff / 30% system review / 30% before launch',text:'For contractors losing visibility between inquiry, estimate, follow-up and booked work.',included:['Growth Engine foundation','CRM/pipeline structure','Lead + quote statuses','Follow-up workflow','Sales templates/resources','Dashboard basics','Training + team testing','Post-launch support'],client:['Current sales process walkthrough','CRM/account access','Lead/quote fields and definitions','Team availability for review + training'],excluded:['ERP replacement','Complex accounting migration','Unlimited custom automations','24/7 support']},
+        ops:{title:'Business Operations System — $9,500+',hours:'50–60 total delivery hours',timeline:'Typical timeline: 6–8 weeks',payment:'Payment: 40% kickoff / 30% system review / 30% before launch',text:'For growing contractors that need structure behind sales, field operations and internal knowledge.',included:['Lead-to-Cash system','Internal company HQ','SOP structure','Workspace/file structure','Forms + templates','Training resources','Basic automations','Roles/permissions review','Team testing + post-launch support'],client:['Leadership discovery sessions','Access to current systems/files','Process owners for review','Timely approvals + team training'],excluded:['Enterprise ERP implementation','Custom software platform rebuilds','Unlimited integrations','Major change-management programs']}
       };
 
       function renderPackage(key){
@@ -643,9 +632,9 @@
       var assessment=document.getElementById('systems-assessment');
       var finderCopy={
         website:{name:'Contractor Website — $2,250',text:'Your first priority is credibility and lead capture. Fix the customer-facing foundation before adding more internal systems.'},
-        growth:{name:'Growth Engine — $4,000',text:'Your foundation exists, but visibility and conversion need work. Focus on service structure, local search, reviews, analytics and stronger lead capture.'},
+        growth:{name:'Website + Lead System — $4,000',text:'Your foundation exists, but visibility and conversion need work. Focus on service structure, local search, reviews, analytics and stronger lead capture.'},
         lead:{name:'Lead-to-Cash — $6,500',text:'The biggest gap is between inquiry and booked work. Build a clear pipeline, quote statuses, follow-up and next-action ownership.'},
-        ops:{name:'Operations System — $9,500+',text:'The business needs an operating layer behind sales: internal HQ, SOPs, forms, knowledge structure and targeted automation.'}
+        ops:{name:'Business Operations System — $9,500+',text:'The business needs an operating layer behind sales: internal HQ, SOPs, forms, knowledge structure and targeted automation.'}
       };
       assessment.addEventListener('submit',function(event){
         event.preventDefault();
