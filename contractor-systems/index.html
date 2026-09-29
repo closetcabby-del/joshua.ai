@@ -134,6 +134,7 @@
     .assessment{margin-top:34px;display:grid;gap:14px}
     .assessment-question{margin:0;border:1px solid var(--line);background:var(--paper);padding:22px}
     .assessment-question legend{padding:0 8px 0 0;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:17px}
+    .assessment-title{display:none}
     .assessment-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
     .assessment-choice{display:flex;align-items:flex-start;gap:10px;min-height:76px;padding:14px;border:1px solid var(--line);background:#fff;cursor:pointer}
     .assessment-choice:has(input:checked){border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:var(--accent-soft)}
@@ -451,23 +452,31 @@
       .cos-section.motion-active .cos-core-ring{animation-play-state:running}
 
       .assessment{margin-top:22px}
-      .assessment-progress{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+      .assessment-progress{display:flex;align-items:center;gap:12px;margin-bottom:18px}
       .assessment-progress>span{font-size:12px;font-weight:800;color:var(--muted);white-space:nowrap}
       .assessment-progress-track{height:4px;flex:1;background:var(--line);border-radius:999px;overflow:hidden}
       .assessment-progress-track i{display:block;width:25%;height:100%;background:var(--accent);border-radius:999px;transition:width .25s ease}
-      .assessment-question{display:none;padding:18px;min-height:320px}
+      .assessment-question{display:none;position:relative;padding:22px;border-radius:12px;min-height:0}
       .assessment-question.is-current{display:block}
-      .assessment-question legend{font-size:19px;line-height:1.2;margin-bottom:4px}
-      .assessment-options{gap:10px;margin-top:16px}
-      .assessment-choice{min-height:68px;padding:14px}
+      .assessment-question legend{
+        position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;
+        overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important
+      }
+      .assessment-title{
+        display:block;margin:0 0 18px;font-size:clamp(21px,6vw,24px);line-height:1.18;letter-spacing:-.03em
+      }
+      .assessment-options{gap:10px;margin-top:0}
+      .assessment-choice{min-height:66px;padding:14px;border-radius:9px}
       .assessment-choice span{font-size:14px;line-height:1.4}
-      .assessment-actions{grid-template-columns:auto 1fr;align-items:center;margin-top:10px}
+      .assessment-actions{
+        display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:12px;margin-top:14px
+      }
       .assessment-back{
-        display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 13px;
+        display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 14px;
         border:1px solid var(--line);background:#fff;border-radius:8px;font-weight:800;color:#55514b
       }
       .assessment-back:disabled{opacity:.35}
-      .assessment-note{font-size:12px}
+      .assessment-note{font-size:12px;line-height:1.4;color:var(--muted)}
       #assessment-submit{display:none;grid-column:1/-1}
       .assessment.is-final #assessment-submit{display:flex}
       .finder-result{margin-top:14px}
@@ -774,7 +783,8 @@
             <div class="assessment-progress-track"><i id="assessment-progress-bar"></i></div>
           </div>
           <fieldset class="assessment-question is-current" data-step="1">
-            <legend tabindex="-1">1 · Is your website helping you win work?</legend>
+            <legend>Is your website helping you win work?</legend>
+            <h3 class="assessment-title" tabindex="-1">Is your website helping you win work?</h3>
             <div class="assessment-options">
               <label class="assessment-choice"><input type="radio" name="site" value="website:4" required><span>No website, outdated, weak on mobile or hard to trust.</span></label>
               <label class="assessment-choice"><input type="radio" name="site" value="growth:3"><span>It looks decent, but it is not producing enough calls or form leads.</span></label>
@@ -782,7 +792,8 @@
             </div>
           </fieldset>
           <fieldset class="assessment-question" data-step="2">
-            <legend tabindex="-1">2 · What happens when a new lead comes in?</legend>
+            <legend>What happens when a new lead comes in?</legend>
+            <h3 class="assessment-title" tabindex="-1">What happens when a new lead comes in?</h3>
             <div class="assessment-options">
               <label class="assessment-choice"><input type="radio" name="leads" value="growth:4" required><span>We need more of them—visibility, reviews or conversion are weak.</span></label>
               <label class="assessment-choice"><input type="radio" name="leads" value="lead:3"><span>Leads come in, but follow-up is inconsistent.</span></label>
@@ -790,7 +801,8 @@
             </div>
           </fieldset>
           <fieldset class="assessment-question" data-step="3">
-            <legend tabindex="-1">3 · Do you know exactly where every lead and estimate stands?</legend>
+            <legend>Do you know exactly where every lead and estimate stands?</legend>
+            <h3 class="assessment-title" tabindex="-1">Do you know exactly where every lead and estimate stands?</h3>
             <div class="assessment-options">
               <label class="assessment-choice"><input type="radio" name="pipeline" value="lead:5" required><span>No. We use texts, memory, spreadsheets or scattered tools.</span></label>
               <label class="assessment-choice"><input type="radio" name="pipeline" value="lead:3"><span>We have a CRM, but the pipeline or statuses are messy.</span></label>
@@ -798,7 +810,8 @@
             </div>
           </fieldset>
           <fieldset class="assessment-question" data-step="4">
-            <legend tabindex="-1">4 · Can your team easily find and follow the right process?</legend>
+            <legend>Can your team easily find and follow the right process?</legend>
+            <h3 class="assessment-title" tabindex="-1">Can your team easily find and follow the right process?</h3>
             <div class="assessment-options">
               <label class="assessment-choice"><input type="radio" name="ops" value="ops:5" required><span>SOPs, files, forms and team knowledge are scattered everywhere.</span></label>
               <label class="assessment-choice"><input type="radio" name="ops" value="ops:3"><span>We have some structure, but growth is exposing gaps.</span></label>
@@ -1068,8 +1081,8 @@
         if(progressBar){progressBar.style.width=(assessmentStep*25)+'%';}
         if(backButton){backButton.disabled=assessmentStep===1;}
         if(focusLegend && mobileMedia.matches){
-          var legend=assessmentQuestions[assessmentStep-1].querySelector('legend');
-          if(legend){window.setTimeout(function(){legend.focus({preventScroll:true});},120);}
+          var title=assessmentQuestions[assessmentStep-1].querySelector('.assessment-title');
+          if(title){window.setTimeout(function(){title.focus({preventScroll:true});},120);}
         }
       }
 
