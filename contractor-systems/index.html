@@ -548,7 +548,37 @@
       .cos-mobile-signal{animation:none!important}
       .mobile-sticky-cta{transition:none}
     }
-</style>
+
+    /* Experimental intergalactic portal */
+    .cx-portal-teaser{position:relative;overflow:hidden;background:#0b0b0d;color:#fff;border-bottom:1px solid #252529}
+    .cx-portal-teaser::before{content:"";position:absolute;inset:-35%;background:radial-gradient(circle at 50% 50%,rgba(241,90,36,.18),transparent 18%),repeating-radial-gradient(circle at 50% 50%,rgba(255,255,255,.045) 0 1px,transparent 1px 38px);animation:cxPortalPulse 8s ease-in-out infinite;pointer-events:none}
+    .cx-portal-teaser-inner{position:relative;z-index:1;min-height:390px;display:grid;place-items:center;text-align:center;padding:84px 0}
+    .cx-portal-teaser-copy{max-width:760px}.cx-portal-teaser h2{margin:0 auto 16px;max-width:720px;font-size:clamp(38px,6vw,72px);line-height:.96}.cx-portal-teaser p{margin:0 auto;max-width:610px;color:#aaaab1;font-size:15px}
+    .cx-portal-launch{margin-top:28px;min-height:54px;padding:0 22px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:#fff;color:#0b0b0d;font-weight:900;cursor:pointer;box-shadow:0 0 0 0 rgba(241,90,36,.42),0 16px 42px rgba(0,0,0,.35);transition:transform .2s ease,box-shadow .2s ease}
+    .cx-portal-launch:hover,.cx-portal-launch:focus-visible{outline:none;transform:translateY(-2px) scale(1.01);box-shadow:0 0 0 8px rgba(241,90,36,.12),0 20px 48px rgba(0,0,0,.45)}
+    .cx-portal-note{display:block;margin-top:14px;color:#6f6f77;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+    .cx-portal-overlay{position:fixed;inset:0;z-index:9999;background:#000;overflow:hidden;isolation:isolate;opacity:0;visibility:hidden;transition:opacity .42s ease,visibility .42s ease}
+    .cx-portal-overlay.is-open{opacity:1;visibility:visible}.cx-portal-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+    .cx-portal-vignette{position:absolute;inset:-10%;pointer-events:none;z-index:2;background:radial-gradient(circle at 50% 50%,transparent 0 46%,rgba(0,0,0,.22) 67%,rgba(0,0,0,.94) 100%),linear-gradient(180deg,rgba(0,0,0,.26),transparent 24%,transparent 76%,rgba(0,0,0,.34));mix-blend-mode:multiply}
+    .cx-portal-grain{position:absolute;inset:-40%;z-index:3;opacity:.14;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");animation:cxGrain .18s steps(2) infinite}
+    .cx-portal-flash{position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0;background:radial-gradient(circle at 50% 50%,#fff 0,rgba(255,255,255,.95) 8%,rgba(241,90,36,.55) 24%,transparent 62%)}
+    .cx-portal-overlay.is-igniting .cx-portal-flash{animation:cxIgnite 1.45s cubic-bezier(.2,.8,.2,1) both}
+    .cx-portal-close{position:absolute;top:max(18px,env(safe-area-inset-top));right:18px;z-index:10;min-height:42px;padding:0 14px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(8,8,10,.46);backdrop-filter:blur(14px);color:#fff;font-size:12px;font-weight:800;cursor:pointer}
+    .cx-portal-hud{position:absolute;left:18px;right:18px;top:max(20px,env(safe-area-inset-top));z-index:7;display:flex;justify-content:space-between;align-items:center;gap:16px;pointer-events:none}
+    .cx-portal-phase{color:rgba(255,255,255,.72);font-size:9px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}.cx-portal-phase::before{content:"";display:inline-block;width:6px;height:6px;margin-right:8px;border-radius:50%;background:#f15a24;box-shadow:0 0 18px rgba(241,90,36,.9)}
+    .cx-portal-center-copy{position:absolute;left:50%;top:50%;z-index:7;width:min(86vw,720px);transform:translate(-50%,-50%);text-align:center;pointer-events:none;opacity:0}
+    .cx-portal-center-copy.show{animation:cxCopyIn 1s ease forwards}.cx-portal-center-copy .kicker{display:block;margin-bottom:10px;color:#f15a24;font-size:10px;font-weight:900;letter-spacing:.22em;text-transform:uppercase}.cx-portal-center-copy h2{margin:0;color:#fff;font-size:clamp(38px,10vw,86px);line-height:.9;text-shadow:0 0 30px rgba(255,255,255,.12)}.cx-portal-center-copy p{margin:14px auto 0;max-width:520px;color:rgba(255,255,255,.62);font-size:13px}
+    .cx-portal-return{position:absolute;left:50%;bottom:max(24px,calc(env(safe-area-inset-bottom) + 18px));z-index:9;transform:translateX(-50%) translateY(10px);opacity:0;pointer-events:none;min-height:48px;padding:0 18px;border:1px solid rgba(255,255,255,.24);border-radius:999px;background:rgba(12,12,14,.6);backdrop-filter:blur(14px);color:#fff;font-size:12px;font-weight:900;cursor:pointer}.cx-portal-return.show{animation:cxReturnIn .6s ease forwards;pointer-events:auto}
+    body.cx-portal-locked{overflow:hidden;touch-action:none}
+    @keyframes cxPortalPulse{0%,100%{transform:scale(.94) rotate(0deg);opacity:.6}50%{transform:scale(1.08) rotate(8deg);opacity:1}}
+    @keyframes cxGrain{0%{transform:translate3d(-2%,-2%,0)}25%{transform:translate3d(2%,1%,0)}50%{transform:translate3d(-1%,2%,0)}75%{transform:translate3d(1%,-2%,0)}100%{transform:translate3d(-2%,-2%,0)}}
+    @keyframes cxIgnite{0%{opacity:0;transform:scale(.2)}22%{opacity:.26}48%{opacity:1;transform:scale(.85)}67%{opacity:.8;transform:scale(1.2)}100%{opacity:0;transform:scale(2.4)}}
+    @keyframes cxCopyIn{from{opacity:0;transform:translate(-50%,-46%) scale(.96);filter:blur(10px)}to{opacity:1;transform:translate(-50%,-50%) scale(1);filter:blur(0)}}
+    @keyframes cxReturnIn{to{opacity:1;transform:translateX(-50%) translateY(0)}}
+    @media(max-width:680px){.cx-portal-teaser-inner{min-height:360px;padding:66px 0}.cx-portal-teaser p{font-size:13px;line-height:1.6}.cx-portal-launch{width:100%;max-width:330px}.cx-portal-close{top:max(12px,env(safe-area-inset-top));right:12px}.cx-portal-hud{left:14px;right:86px;top:max(20px,env(safe-area-inset-top))}}
+    @media(prefers-reduced-motion:reduce){.cx-portal-teaser::before,.cx-portal-grain,.cx-portal-overlay.is-igniting .cx-portal-flash{animation:none!important}.cx-portal-overlay,.cx-portal-launch{transition:none}}
+
+  </style>
   <!-- deployment refresh: founder-section-2026-09-28 -->
 </head>
 <body>
@@ -773,6 +803,27 @@
         </div>
       </div>
     </section>
+
+    <section class="cx-portal-teaser" aria-labelledby="cx-portal-heading">
+      <div class="wrap cx-portal-teaser-inner">
+        <div class="cx-portal-teaser-copy">
+          <span class="eyebrow" style="color:#8f8f96">Experimental mode</span>
+          <h2 id="cx-portal-heading">Want to see something completely unnecessary?</h2>
+          <p>A tiny reminder that digital systems can still have a little personality.</p>
+          <button class="cx-portal-launch" id="cx-launch-portal" type="button">Click here to see something crazy</button>
+          <span class="cx-portal-note">Best experienced full-screen on your phone</span>
+        </div>
+      </div>
+    </section>
+    <div class="cx-portal-overlay" id="cx-portal-overlay" aria-hidden="true">
+      <canvas class="cx-portal-canvas" id="cx-portal-canvas"></canvas>
+      <div class="cx-portal-vignette"></div><div class="cx-portal-grain"></div><div class="cx-portal-flash"></div>
+      <div class="cx-portal-hud"><span class="cx-portal-phase" id="cx-portal-phase">Igniting portal</span></div>
+      <button class="cx-portal-close" id="cx-portal-close" type="button" aria-label="Close portal">Close</button>
+      <div class="cx-portal-center-copy" id="cx-portal-copy" aria-live="polite"><span class="kicker">System restored</span><h2>From chaos to connected systems.</h2><p>Cool visuals are fun. Clean systems are better.</p></div>
+      <button class="cx-portal-return" id="cx-portal-return" type="button">Return to site</button>
+    </div>
+
 
     <section id="finder" class="finder-section">
       <div class="wrap section reveal">
@@ -1221,5 +1272,25 @@
       }
     })();
   </script>
+
+  <script>
+    (function(){
+      var launch=document.getElementById('cx-launch-portal'),overlay=document.getElementById('cx-portal-overlay'),canvas=document.getElementById('cx-portal-canvas'),closeBtn=document.getElementById('cx-portal-close'),returnBtn=document.getElementById('cx-portal-return'),phase=document.getElementById('cx-portal-phase'),finalCopy=document.getElementById('cx-portal-copy');
+      if(!launch||!overlay||!canvas){return;}
+      var ctx=canvas.getContext('2d',{alpha:false}),reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches,raf=0,start=0,running=false,stars=[],w=0,h=0,dpr=1,oldOverflow='',phaseText='Igniting portal';
+      function sizeCanvas(){dpr=Math.min(window.devicePixelRatio||1,2);w=Math.max(1,window.innerWidth);h=Math.max(1,window.innerHeight);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);buildStars();}
+      function buildStars(){var count=w<700?240:420;stars=[];for(var i=0;i<count;i++){stars.push({x:(Math.random()-.5)*w*1.8,y:(Math.random()-.5)*h*1.8,z:Math.random()+.08,pz:1,hue:Math.random()>.82?24:0,size:Math.random()*1.4+.25});}}
+      function resetStar(s){s.x=(Math.random()-.5)*w*1.8;s.y=(Math.random()-.5)*h*1.8;s.z=1;s.pz=1;}
+      function drawStars(t){var speed=t<1.25?.003:t<3.8?.022:t<6.7?.043:.009,cx=w/2,cy=h/2;ctx.save();ctx.globalCompositeOperation='lighter';for(var i=0;i<stars.length;i++){var s=stars[i];s.pz=s.z;s.z-=speed;if(s.z<.03)resetStar(s);var x=cx+s.x/s.z,y=cy+s.y/s.z,px=cx+s.x/s.pz,py=cy+s.y/s.pz;if(x<-80||x>w+80||y<-80||y>h+80){resetStar(s);continue;}var a=Math.max(.12,1-s.z);ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(x,y);ctx.lineWidth=Math.min(3.2,s.size+a*2.2);ctx.strokeStyle=s.hue===24?'rgba(241,90,36,'+(.3+a*.72)+')':'rgba(255,255,255,'+(.18+a*.82)+')';ctx.stroke();}ctx.restore();}
+      function drawPortal(t){var cx=w/2,cy=h/2,ignite=Math.min(1,t/1.35),warp=t>1.2?Math.min(1,(t-1.2)/1.4):0,base=Math.min(w,h)*(.08+ignite*.2+warp*.12);ctx.save();ctx.translate(cx,cy);ctx.globalCompositeOperation='lighter';for(var i=0;i<7;i++){var pulse=(Math.sin(t*4+i*.9)+1)/2;ctx.beginPath();ctx.arc(0,0,base+i*18+pulse*10,0,Math.PI*2);ctx.lineWidth=i===0?4:1.2;ctx.strokeStyle=i%2?'rgba(255,255,255,'+(.08+pulse*.17)+')':'rgba(241,90,36,'+(.14+pulse*.28)+')';ctx.stroke();}ctx.rotate(t*.32);for(var r=0;r<28;r++){var a=Math.PI*2/28*r,r1=base+30+Math.sin(t*3+r)*12,r2=r1+80+warp*220;ctx.beginPath();ctx.moveTo(Math.cos(a)*r1,Math.sin(a)*r1);ctx.lineTo(Math.cos(a)*r2,Math.sin(a)*r2);ctx.strokeStyle=r%4===0?'rgba(241,90,36,.34)':'rgba(255,255,255,.08)';ctx.lineWidth=r%4===0?1.5:.7;ctx.stroke();}ctx.restore();}
+      function poly(sides,r,rot){ctx.beginPath();for(var i=0;i<sides;i++){var a=rot+i*Math.PI*2/sides-Math.PI/2,x=Math.cos(a)*r,y=Math.sin(a)*r;if(!i)ctx.moveTo(x,y);else ctx.lineTo(x,y);}ctx.closePath();}
+      function drawGeometry(t){if(t<3.55)return;var local=t-3.55,cx=w/2,cy=h/2,maxR=Math.min(w,h)*.34;ctx.save();ctx.translate(cx,cy);ctx.globalCompositeOperation='lighter';for(var i=0;i<10;i++){var r=40+i*(maxR/9)+Math.sin(local*2+i)*12;ctx.save();ctx.rotate(local*(i%2?-.24:.18)+i*.42);ctx.scale(1,.62+Math.sin(local+i)*.12);ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.lineWidth=i%3===0?1.7:.8;ctx.strokeStyle=i%3===0?'rgba(241,90,36,.44)':'rgba(255,255,255,.14)';ctx.stroke();ctx.restore();}for(var j=0;j<6;j++){ctx.save();var dir=j%2?-1:1;ctx.rotate(local*.38*dir+j*.7);ctx.translate(Math.sin(local*.7+j)*maxR*.18,Math.cos(local*.55+j)*maxR*.12);var rad=70+j*23+Math.sin(local*1.6+j)*16;poly(j%3===0?3:j%3===1?4:6,rad,local*.55*dir);ctx.lineWidth=j===0?2.2:1.1;ctx.strokeStyle=j%2?'rgba(255,255,255,.30)':'rgba(241,90,36,.58)';ctx.stroke();ctx.restore();}var la=Math.max(0,Math.min(1,(t-5.5)/.9));if(la>0){ctx.save();ctx.globalAlpha=la;ctx.rotate(Math.sin(local*.55)*.08);var lr=Math.min(w,h)*.105,pts=[{x:0,y:-lr,c:'#f15a24'},{x:-lr*.9,y:lr*.64,c:'#f7f5f0'},{x:lr*.9,y:lr*.64,c:'#77736d'}];ctx.lineWidth=3;ctx.strokeStyle='rgba(255,255,255,.55)';ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);ctx.lineTo(pts[1].x,pts[1].y);ctx.lineTo(pts[2].x,pts[2].y);ctx.closePath();ctx.stroke();pts.forEach(function(p){ctx.beginPath();ctx.arc(p.x,p.y,10+Math.sin(t*4)*2,0,Math.PI*2);ctx.fillStyle='#070708';ctx.fill();ctx.lineWidth=4;ctx.strokeStyle=p.c;ctx.stroke();});ctx.restore();}ctx.restore();}
+      function frame(now){if(!running)return;if(!start)start=now;var t=(now-start)/1000;ctx.globalCompositeOperation='source-over';ctx.fillStyle=t>3.4?'rgba(0,0,0,.21)':'#000';ctx.fillRect(0,0,w,h);drawStars(t);drawPortal(t);drawGeometry(t);var next=t<1.45?'Igniting portal':t<3.55?'Entering warp':t<7.05?'Welcome to the weird part':'System restored';if(next!==phaseText){phaseText=next;phase.textContent=next;}if(t>7){finalCopy.classList.add('show');returnBtn.classList.add('show');}raf=requestAnimationFrame(frame);}
+      function openPortal(){overlay.setAttribute('aria-hidden','false');overlay.classList.add('is-open','is-igniting');oldOverflow=document.body.style.overflow;document.body.classList.add('cx-portal-locked');document.body.style.overflow='hidden';phase.textContent='Igniting portal';phaseText='Igniting portal';finalCopy.classList.remove('show');returnBtn.classList.remove('show');start=0;sizeCanvas();running=true;if(reduced){ctx.fillStyle='#000';ctx.fillRect(0,0,w,h);drawPortal(6.8);drawGeometry(6.8);finalCopy.classList.add('show');returnBtn.classList.add('show');phase.textContent='System restored';}else{cancelAnimationFrame(raf);raf=requestAnimationFrame(frame);}window.setTimeout(function(){overlay.classList.remove('is-igniting');},1500);closeBtn.focus({preventScroll:true});}
+      function closePortal(){if(!overlay.classList.contains('is-open'))return;running=false;cancelAnimationFrame(raf);overlay.classList.remove('is-open','is-igniting');overlay.setAttribute('aria-hidden','true');document.body.classList.remove('cx-portal-locked');document.body.style.overflow=oldOverflow;window.setTimeout(function(){ctx.clearRect(0,0,w,h);finalCopy.classList.remove('show');returnBtn.classList.remove('show');},450);launch.focus({preventScroll:true});}
+      launch.addEventListener('click',openPortal);closeBtn.addEventListener('click',closePortal);returnBtn.addEventListener('click',closePortal);document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('is-open'))closePortal();});window.addEventListener('resize',function(){if(overlay.classList.contains('is-open'))sizeCanvas();});
+    })();
+  </script>
+
 </body>
 </html>
