@@ -578,7 +578,16 @@
     @media(max-width:680px){.cx-portal-teaser-inner{min-height:360px;padding:66px 0}.cx-portal-teaser p{font-size:13px;line-height:1.6}.cx-portal-launch{width:100%;max-width:330px}.cx-portal-close{top:max(12px,env(safe-area-inset-top));right:12px}.cx-portal-hud{left:14px;right:86px;top:max(20px,env(safe-area-inset-top))}}
     @media(prefers-reduced-motion:reduce){.cx-portal-teaser::before,.cx-portal-grain,.cx-portal-overlay.is-igniting .cx-portal-flash{animation:none!important}.cx-portal-overlay,.cx-portal-launch{transition:none}}
 
-  </style>
+  
+    /* Portal destination logo */
+    .cx-portal-hud,.cx-portal-center-copy{display:none!important}
+    .cx-portal-logo{position:absolute;left:50%;top:50%;z-index:8;width:min(34vw,220px);transform:translate(-50%,-50%) scale(.06);opacity:0;filter:blur(18px);pointer-events:none;will-change:transform,opacity,filter}
+    .cx-portal-logo svg{display:block;width:100%;height:auto;filter:drop-shadow(0 0 24px rgba(241,90,36,.28)) drop-shadow(0 0 54px rgba(255,255,255,.12))}
+    .cx-portal-logo.show{animation:cxLogoDestination 1.55s cubic-bezier(.16,.76,.22,1) forwards}
+    @keyframes cxLogoDestination{0%{opacity:0;transform:translate(-50%,-50%) scale(.06);filter:blur(18px)}32%{opacity:.52;transform:translate(-50%,-50%) scale(.18);filter:blur(10px)}72%{opacity:1;transform:translate(-50%,-50%) scale(.72);filter:blur(1px)}100%{opacity:1;transform:translate(-50%,-50%) scale(1);filter:blur(0)}}
+    @media(max-width:680px){.cx-portal-logo{width:min(44vw,190px)}}
+    @media(prefers-reduced-motion:reduce){.cx-portal-logo.show{animation:none;opacity:1;transform:translate(-50%,-50%) scale(1);filter:none}}
+</style>
   <!-- deployment refresh: founder-section-2026-09-28 -->
 </head>
 <body>
@@ -818,9 +827,17 @@
     <div class="cx-portal-overlay" id="cx-portal-overlay" aria-hidden="true">
       <canvas class="cx-portal-canvas" id="cx-portal-canvas"></canvas>
       <div class="cx-portal-vignette"></div><div class="cx-portal-grain"></div><div class="cx-portal-flash"></div>
-      <div class="cx-portal-hud"><span class="cx-portal-phase" id="cx-portal-phase">Igniting portal</span></div>
       <button class="cx-portal-close" id="cx-portal-close" type="button" aria-label="Close portal">Close</button>
-      <div class="cx-portal-center-copy" id="cx-portal-copy" aria-live="polite"><span class="kicker">System restored</span><h2>From chaos to connected systems.</h2><p>Cool visuals are fun. Clean systems are better.</p></div>
+      <div class="cx-portal-logo" id="cx-portal-logo" aria-hidden="true">
+        <svg viewBox="0 0 120 105" focusable="false" aria-label="Contractor Systems logo">
+          <line x1="60" y1="22" x2="25" y2="82" stroke="#F7F5F0" stroke-width="12" stroke-linecap="round"/>
+          <line x1="60" y1="22" x2="95" y2="82" stroke="#F15A24" stroke-width="12" stroke-linecap="round"/>
+          <line x1="25" y1="82" x2="95" y2="82" stroke="#77736D" stroke-width="12" stroke-linecap="round"/>
+          <circle cx="60" cy="22" r="15" fill="#111111" stroke="#F15A24" stroke-width="8"/>
+          <circle cx="25" cy="82" r="15" fill="#111111" stroke="#F7F5F0" stroke-width="8"/>
+          <circle cx="95" cy="82" r="15" fill="#111111" stroke="#77736D" stroke-width="8"/>
+        </svg>
+      </div>
       <button class="cx-portal-return" id="cx-portal-return" type="button">Return to site</button>
     </div>
 
@@ -1280,14 +1297,13 @@
       var canvas=document.getElementById('cx-portal-canvas');
       var closeBtn=document.getElementById('cx-portal-close');
       var returnBtn=document.getElementById('cx-portal-return');
-      var phase=document.getElementById('cx-portal-phase');
-      var finalCopy=document.getElementById('cx-portal-copy');
+      var finalLogo=document.getElementById('cx-portal-logo');
       if(!launch||!overlay||!canvas){return;}
 
       var ctx=canvas.getContext('2d',{alpha:false});
       var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var raf=0,start=0,running=false,w=0,h=0,dpr=1,focal=700;
-      var stars=[],objects=[],oldOverflow='',phaseText='Vanishing point locked';
+      var stars=[],objects=[],oldOverflow='';
       var TWO_PI=Math.PI*2;
 
       function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
@@ -1525,9 +1541,11 @@
         drawVanishingPoint(t);
         drawFinalCollapse(t);
 
-        var next=t<1.2?'Vanishing point locked':t<2.5?'Accelerating':t<7.7?'Passing through':t<9.15?'Decelerating':'System restored';
-        if(next!==phaseText){phaseText=next;phase.textContent=next;}
-        if(t>9.12){finalCopy.classList.add('show');returnBtn.classList.add('show');}
+        if(t>7.75 && !finalLogo.classList.contains('show')){
+          finalLogo.classList.add('show');
+          finalLogo.setAttribute('aria-hidden','false');
+        }
+        if(t>9.12){returnBtn.classList.add('show');}
 
         raf=requestAnimationFrame(drawFrame);
       }
@@ -1535,8 +1553,8 @@
       function renderReduced(){
         ctx.fillStyle='#000';ctx.fillRect(0,0,w,h);
         drawVanishingPoint(9.3);
-        phase.textContent='System restored';
-        finalCopy.classList.add('show');
+        finalLogo.classList.add('show');
+        finalLogo.setAttribute('aria-hidden','false');
         returnBtn.classList.add('show');
       }
 
@@ -1546,8 +1564,9 @@
         oldOverflow=document.body.style.overflow;
         document.body.classList.add('cx-portal-locked');
         document.body.style.overflow='hidden';
-        phaseText='Vanishing point locked';phase.textContent=phaseText;
-        finalCopy.classList.remove('show');returnBtn.classList.remove('show');
+        finalLogo.classList.remove('show');
+        finalLogo.setAttribute('aria-hidden','true');
+        returnBtn.classList.remove('show');
         start=0;sizeCanvas();running=true;
         if(reduced){renderReduced();running=false;}else{cancelAnimationFrame(raf);raf=requestAnimationFrame(drawFrame);}
         window.setTimeout(function(){overlay.classList.remove('is-igniting');},1450);
@@ -1559,7 +1578,12 @@
         running=false;cancelAnimationFrame(raf);
         overlay.classList.remove('is-open','is-igniting');overlay.setAttribute('aria-hidden','true');
         document.body.classList.remove('cx-portal-locked');document.body.style.overflow=oldOverflow;
-        window.setTimeout(function(){ctx.clearRect(0,0,w,h);finalCopy.classList.remove('show');returnBtn.classList.remove('show');},450);
+        window.setTimeout(function(){
+          ctx.clearRect(0,0,w,h);
+          finalLogo.classList.remove('show');
+          finalLogo.setAttribute('aria-hidden','true');
+          returnBtn.classList.remove('show');
+        },450);
         launch.focus({preventScroll:true});
       }
 
