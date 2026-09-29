@@ -761,6 +761,26 @@
       .cx-portal-launch-trigger{width:100%;min-height:50px}
       .footer-portal-link.cx-portal-launch-trigger{width:auto;min-height:0}
     }
+
+    /* Hero easter egg */
+    .hero-chaos{display:flex;align-items:center;gap:9px;margin-top:15px}
+    .hero-chaos-trigger.cx-portal-launch-trigger{
+      width:auto;min-height:38px;padding:0 13px;border:1px solid #4a4a50;border-radius:999px;
+      background:#171719;color:#d6d6da;font-size:11px;font-weight:800;letter-spacing:.01em;
+      box-shadow:none
+    }
+    .hero-chaos-trigger.cx-portal-launch-trigger span{color:var(--accent);font-size:12px}
+    .hero-chaos-trigger.cx-portal-launch-trigger:hover,
+    .hero-chaos-trigger.cx-portal-launch-trigger:focus-visible{
+      border-color:var(--accent);background:#1d1715;color:#fff;transform:translateY(-1px)
+    }
+    .hero-chaos small{color:#707077;font-size:10px;font-style:italic}
+    @media(max-width:680px){
+      .hero-chaos{justify-content:center;margin-top:14px}
+      .hero-chaos-trigger.cx-portal-launch-trigger{
+        width:auto!important;min-height:40px!important;padding:0 14px!important
+      }
+    }
 </style>
   <!-- deployment refresh: founder-section-2026-09-28 -->
 </head>
@@ -798,6 +818,10 @@
           <h1>Get the lead.<br>Win the job.<br><span class="accent">Run the business.</span></h1>
           <p class="lead">Websites, business systems, automation and AI built around how contractors actually work.</p>
           <div class="actions"><a class="btn accent-btn" href="#finder">Find What to Fix</a><a class="btn secondary" href="#case-study">See Jeff Electric</a></div>
+          <div class="hero-chaos">
+            <button class="hero-chaos-trigger cx-portal-launch-trigger" type="button" aria-label="Don't push this button. Opens the experimental portal."><span aria-hidden="true">⚠</span> Don’t push this button</button>
+            <small>Seriously.</small>
+          </div>
           <div class="trust"><span>Built around contractor operations</span><span>You own what we build</span><span>No forced monthly contract</span></div>
           <div class="mobile-system-strip" aria-label="Contractor system flow">
             <span>Website</span><b>→</b><span>Leads</span><b>→</b><span>Jobs</span><b>→</b><span>Operations</span><b>→</b><span>AI</span>
