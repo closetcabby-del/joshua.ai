@@ -785,12 +785,13 @@
     .cx-portal-book{
       position:absolute;left:50%;top:calc(50% + 140px);bottom:auto;z-index:9;
       width:min(calc(100% - 48px),420px);min-height:64px;padding:10px 14px;
-      display:flex;align-items:center;justify-content:center;gap:16px;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
       border:1px solid rgba(255,255,255,.14);border-radius:16px;
       background:var(--accent);color:#111;box-shadow:0 22px 70px rgba(241,90,36,.24);
       transform:translateX(-50%) translateY(18px) scale(.97);opacity:0;pointer-events:none;
       text-decoration:none;will-change:transform,opacity
     }
+    .cx-portal-book span{max-width:230px;font-size:12px;font-weight:800;line-height:1.25}
     .cx-portal-book strong{font-family:"Space Grotesk";font-size:20px;letter-spacing:-.03em;white-space:nowrap}
     .cx-portal-book.show{animation:cxBookIn .72s cubic-bezier(.16,.76,.22,1) forwards;pointer-events:auto}
     .cx-portal-book:hover,.cx-portal-book:focus-visible{outline:none;box-shadow:0 24px 78px rgba(241,90,36,.38)}
@@ -803,6 +804,7 @@
         top:calc(50% + 122px);bottom:auto;width:min(calc(100% - 54px),340px);
         min-height:58px;padding:9px 12px;border-radius:14px
       }
+      .cx-portal-book span{max-width:180px;font-size:10.5px;line-height:1.25}
       .cx-portal-book strong{font-size:17px}
     }
     @media(prefers-reduced-motion:reduce){
@@ -1073,6 +1075,7 @@
         </svg>
       </div>
       <a class="cx-portal-book" id="cx-portal-book" href="https://form.jotform.com/262696430818062" target="_blank" rel="noopener">
+        <span>Want to see cool things like this on your site?</span>
         <strong>BOOK NOW</strong>
       </a>
       <button class="cx-portal-return" id="cx-portal-return" type="button">Return to site</button>
