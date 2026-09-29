@@ -781,6 +781,34 @@
         width:auto!important;min-height:40px!important;padding:0 14px!important
       }
     }
+
+    .cx-portal-book{
+      position:absolute;left:50%;bottom:max(78px,calc(env(safe-area-inset-bottom) + 72px));z-index:9;
+      width:min(calc(100% - 32px),560px);min-height:72px;padding:12px 16px;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      border:1px solid rgba(255,255,255,.14);border-radius:16px;
+      background:var(--accent);color:#111;box-shadow:0 22px 70px rgba(241,90,36,.24);
+      transform:translateX(-50%) translateY(18px) scale(.97);opacity:0;pointer-events:none;
+      text-decoration:none;will-change:transform,opacity
+    }
+    .cx-portal-book span{font-size:12px;font-weight:800;opacity:.72}
+    .cx-portal-book strong{font-family:"Space Grotesk";font-size:20px;letter-spacing:-.03em;white-space:nowrap}
+    .cx-portal-book.show{animation:cxBookIn .72s cubic-bezier(.16,.76,.22,1) forwards;pointer-events:auto}
+    .cx-portal-book:hover,.cx-portal-book:focus-visible{outline:none;box-shadow:0 24px 78px rgba(241,90,36,.38)}
+    @keyframes cxBookIn{
+      from{opacity:0;transform:translateX(-50%) translateY(18px) scale(.97)}
+      to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
+    }
+    @media(max-width:680px){
+      .cx-portal-book{
+        bottom:max(76px,calc(env(safe-area-inset-bottom) + 68px));min-height:68px;padding:11px 14px;border-radius:14px
+      }
+      .cx-portal-book span{font-size:10.5px}
+      .cx-portal-book strong{font-size:18px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .cx-portal-book.show{animation:none;opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
+    }
 </style>
   <!-- deployment refresh: founder-section-2026-09-28 -->
 </head>
@@ -1045,6 +1073,10 @@
           <circle cx="95" cy="82" r="15" fill="#111111" stroke="#77736D" stroke-width="8"/>
         </svg>
       </div>
+      <a class="cx-portal-book" id="cx-portal-book" href="https://form.jotform.com/262696430818062" target="_blank" rel="noopener">
+        <span>Ready to build yours?</span>
+        <strong>BOOK NOW →</strong>
+      </a>
       <button class="cx-portal-return" id="cx-portal-return" type="button">Return to site</button>
     </div>
 
@@ -1540,6 +1572,7 @@
       var canvas=document.getElementById('cx-portal-canvas');
       var closeBtn=document.getElementById('cx-portal-close');
       var returnBtn=document.getElementById('cx-portal-return');
+      var bookBtn=document.getElementById('cx-portal-book');
       var finalLogo=document.getElementById('cx-portal-logo');
       if(!launches.length||!overlay||!canvas){return;}
 
@@ -1788,7 +1821,10 @@
           finalLogo.classList.add('show');
           finalLogo.setAttribute('aria-hidden','false');
         }
-        if(t>9.12){returnBtn.classList.add('show');}
+        if(t>9.12){
+          returnBtn.classList.add('show');
+          bookBtn.classList.add('show');
+        }
 
         raf=requestAnimationFrame(drawFrame);
       }
@@ -1799,6 +1835,7 @@
         finalLogo.classList.add('show');
         finalLogo.setAttribute('aria-hidden','false');
         returnBtn.classList.add('show');
+        bookBtn.classList.add('show');
       }
 
       function openPortal(event){
@@ -1811,6 +1848,7 @@
         finalLogo.classList.remove('show');
         finalLogo.setAttribute('aria-hidden','true');
         returnBtn.classList.remove('show');
+        bookBtn.classList.remove('show');
         start=0;pausedAt=0;sizeCanvas();running=true;
         if(reduced){renderReduced();running=false;}else{cancelAnimationFrame(raf);raf=requestAnimationFrame(drawFrame);}
         window.setTimeout(function(){overlay.classList.remove('is-igniting');},1450);
@@ -1827,6 +1865,7 @@
           finalLogo.classList.remove('show');
           finalLogo.setAttribute('aria-hidden','true');
           returnBtn.classList.remove('show');
+          bookBtn.classList.remove('show');
         },450);
         if(launch){launch.focus({preventScroll:true});}
       }
