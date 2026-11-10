@@ -1,0 +1,43 @@
+{
+  "capturedAt": "2026-11-10T21:21:08.557Z",
+  "scope": "Local Chromium; timings are observations, not field benchmarks or a human usability study.",
+  "viewports": [
+    {
+      "width": 320,
+      "overflow": false,
+      "domContentLoadedMs": 155,
+      "ttfbMs": 124
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "domContentLoadedMs": 52,
+      "ttfbMs": 19
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "domContentLoadedMs": 30,
+      "ttfbMs": 14
+    },
+    {
+      "width": 1024,
+      "overflow": false,
+      "domContentLoadedMs": 32,
+      "ttfbMs": 12
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "domContentLoadedMs": 31,
+      "ttfbMs": 13
+    }
+  ],
+  "errors": [],
+  "axeViolations": [],
+  "analysis": {
+    "sourceLinks": 6,
+    "evidenceCards": 6,
+    "text": "LOCAL DEMONSTRATION\nA starting point for the conversation\nCopy results\n\nThis local demonstration uses keyword overlap to find records. It does not evaluate overall fit or infer qualifications.\n\nBusiness analysis and AI product practice\nReported but not independently verified\n\nJoshua Ly’s public portfolio describes using discovery, requirements, process mapping, MVP scope, human decision points, prototypes, and validation in AI-related work. This is a self-reported account, not independently verified employment or certification.\n\nReview evidence: ba-practice\nBuildBrief requirements prototype\nPrototype\n\nThe public portfolio includes a BuildBrief prototype described as capturing problem framing, scope, workflows, user stories, acceptance criteria, constraints, and verification requirements. Joshua reports shaping its business-analysis and product-owner workflow. Individual authorship and professional delivery have not been independently verified.\n\nReview evidence: buildbrief\nService-business workflow design\nReported but not independently verified\n\nJoshua’s public portfolio describes an active Jeff Electric operations project covering customer lifecycle mapping, lead workflows, company knowledge, internal-tool prototypes, and human approval points. The source says the broader field-service system is being developed in stages and some integration loops remain planned. No business impact metrics or completed end-to-end deployment are established by this account.\n\nReview evidence: service-workflows\nSoftware engineering\nNot established\n\nNo approved candidate evidence currently establishes this requirement. Ask for a specific example and supporting work.\n\nTesting and evaluation\nNot established\n\nNo approved candidate evidence currently establishes this requirement. Ask for a specific example and supporting work.\n\nProduction delivery\nNot established\n\nNo approved candidate evidence currently establishes this requirement. Ask for a specific example and supporting work.\n\nTake these into the interview\nWalk me through an AI workflow you designed. Where did you need a person to make the decision?\nWhich parts of a project did you implement yourself, which used coding assistance, and how did you verify the result?\nDescribe how you would turn a vague stakeholder request into testable requirements. What would you ask first?\nWhat would you test before allowing an AI system to take an action that affects a customer?\nWhat evidence can you share of operating a deployed system, including monitoring, failures, and your own responsibilities?\nChoose one project and explain the problem, your contribution, the tradeoffs, and what you would change.\nSupporting records\nBusiness analysis and AI product practice\nPublic portfolio at reviewed commit ↗\nBuildBrief requirements prototype\nBuildBrief case-study source ↗\nService-business workflow design\nPublic, self-reported operations case study ↗"
+  }
+}

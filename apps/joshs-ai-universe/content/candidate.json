@@ -1,0 +1,252 @@
+{
+  "name": "Joshua Ly",
+  "headline": "A closer look at the work. A better conversation about the fit.",
+  "intro": "Explore the projects, ask a question, or bring a job description. This portfolio helps you see what is supported by evidence and what still needs a conversation.",
+  "profileStatus": "Public portfolio reviewed; personal contributions remain self-reported",
+  "email": "joshualy986@gmail.com",
+  "resumeUrl": null,
+  "githubUrl": "https://github.com/closetcabby-del",
+  "experience": [],
+  "records": [
+    {
+      "id": "ba-practice",
+      "title": "Business analysis and AI product practice",
+      "claim": "Joshua Ly’s public portfolio describes using discovery, requirements, process mapping, MVP scope, human decision points, prototypes, and validation in AI-related work. This is a self-reported account, not independently verified employment or certification.",
+      "status": "Reported but not independently verified",
+      "approved": true,
+      "kind": "experience",
+      "tags": [
+        "business",
+        "analysis",
+        "stakeholder",
+        "requirements",
+        "discovery",
+        "process",
+        "AI"
+      ],
+      "sources": [
+        {
+          "label": "Public portfolio at reviewed commit",
+          "url": "https://github.com/closetcabby-del/joshua.ai/blob/d70c684b6ae35263497cfe5eae43cf6c4fb966d0/index.html"
+        }
+      ]
+    },
+    {
+      "id": "buildbrief",
+      "title": "BuildBrief requirements prototype",
+      "claim": "The public portfolio includes a BuildBrief prototype described as capturing problem framing, scope, workflows, user stories, acceptance criteria, constraints, and verification requirements. Joshua reports shaping its business-analysis and product-owner workflow. Individual authorship and professional delivery have not been independently verified.",
+      "status": "Prototype",
+      "approved": true,
+      "kind": "project",
+      "projectSlug": "buildbrief",
+      "tags": [
+        "requirements",
+        "workflow",
+        "AI",
+        "prototype",
+        "business",
+        "product",
+        "acceptance criteria"
+      ],
+      "sources": [
+        {
+          "label": "BuildBrief case-study source",
+          "url": "https://github.com/closetcabby-del/joshua.ai/blob/d70c684b6ae35263497cfe5eae43cf6c4fb966d0/index.html"
+        }
+      ]
+    },
+    {
+      "id": "backlog-planner",
+      "title": "Sprint and backlog planning sample",
+      "claim": "The public portfolio includes a standalone Sprint & Backlog Planner described as supporting ticket editing, board and table views, sprint selection, carryover, CSV transfer, and portable snapshots. Joshua reports shaping these workflows. Shared synchronization is outside the standalone sample, and individual contributions are not independently verified.",
+      "status": "Prototype",
+      "approved": true,
+      "kind": "project",
+      "projectSlug": "sprint-backlog-planner",
+      "tags": [
+        "planning",
+        "backlog",
+        "sprint",
+        "workflow",
+        "software",
+        "product",
+        "prototype"
+      ],
+      "sources": [
+        {
+          "label": "Planner case-study source",
+          "url": "https://github.com/closetcabby-del/joshua.ai/blob/d70c684b6ae35263497cfe5eae43cf6c4fb966d0/index.html"
+        }
+      ]
+    },
+    {
+      "id": "service-workflows",
+      "title": "Service-business workflow design",
+      "claim": "Joshua’s public portfolio describes an active Jeff Electric operations project covering customer lifecycle mapping, lead workflows, company knowledge, internal-tool prototypes, and human approval points. The source says the broader field-service system is being developed in stages and some integration loops remain planned. No business impact metrics or completed end-to-end deployment are established by this account.",
+      "status": "Reported but not independently verified",
+      "approved": true,
+      "kind": "experience",
+      "projectSlug": "service-business-workflows",
+      "tags": [
+        "automation",
+        "workflow",
+        "process",
+        "integration",
+        "AI",
+        "customer",
+        "discovery",
+        "requirements"
+      ],
+      "sources": [
+        {
+          "label": "Public, self-reported operations case study",
+          "url": "https://github.com/closetcabby-del/joshua.ai/blob/d70c684b6ae35263497cfe5eae43cf6c4fb966d0/index.html"
+        }
+      ]
+    },
+    {
+      "id": "public-portfolio-artifact",
+      "title": "Public portfolio source artifact",
+      "claim": "A public repository in the connected GitHub account contains Joshua Ly’s portfolio page and structured case-study data. This verifies the existence of a reviewable artifact; it does not independently establish who wrote each part, professional seniority, or commercial outcomes.",
+      "status": "Verified",
+      "approved": true,
+      "kind": "artifact",
+      "tags": ["portfolio", "repository", "source", "artifact"],
+      "sources": [
+        {
+          "label": "Reviewed public repository README",
+          "url": "https://github.com/closetcabby-del/joshua.ai/blob/d70c684b6ae35263497cfe5eae43cf6c4fb966d0/README.md"
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "buildbrief",
+      "slug": "buildbrief",
+      "title": "BuildBrief",
+      "category": "DISCOVERY & IMPLEMENTATION BRIEFS",
+      "status": "Prototype",
+      "number": "01",
+      "featured": true,
+      "summary": "A guided tool that helps turn a rough software idea into a structured brief with scope, workflows, acceptance criteria, and constraints.",
+      "tags": ["Requirements", "AI coding", "Product thinking"],
+      "problem": "People ask AI coding tools to build software before they have clarified the problem, scope, workflow, acceptance criteria, or constraints.",
+      "contribution": "The public portfolio reports: I turned Business Analysis and Product Owner thinking into a guided consumer experience rather than requiring the user to know formal requirements practices. This attribution has not been independently confirmed.",
+      "solution": "A working prototype that captures why, scope, workflows, user stories, acceptance criteria, platform/data/security choices, exclusions, definition of done, and verification requirements.",
+      "architecture": "A standalone browser-based work sample embedded in the public portfolio. The workflow captures requirements for an implementation brief.",
+      "testing": "The public source is reviewable at the linked commit. Its claims of functionality and individual contribution are separate from this portfolio’s own automated test suite. No independent client acceptance, load, security, or production-history evidence is claimed.",
+      "outcomes": "Give the next builder a clearer starting point. This is the intended purpose; no measured business impact is established here.",
+      "limitations": "A working standalone prototype is included. It helps structure requirements; it does not validate a business case or build the application for you. Personal contributions and commercial outcomes remain unverified.",
+      "repoUrl": "https://github.com/closetcabby-del/joshua.ai/blob/d70c684b6ae35263497cfe5eae43cf6c4fb966d0/index.html",
+      "demoUrl": "https://closetcabby-del.github.io/joshua.ai/#work",
+      "artifact": "/evidence#buildbrief"
+    },
+    {
+      "id": "backlog-planner",
+      "slug": "sprint-backlog-planner",
+      "title": "Sprint & Backlog Planner",
+      "category": "INTERNAL TOOLS & WORK PLANNING",
+      "status": "Prototype",
+      "number": "02",
+      "featured": true,
+      "summary": "A lightweight planning tool with board and table views, sprint selection, carryover, and portable exports.",
+      "tags": ["Sprint planning", "Carryover", "Portable exports"],
+      "problem": "Small teams can lose priorities, ownership, and unfinished work across spreadsheets and recurring planning conversations.",
+      "contribution": "The public portfolio reports: I shaped the planning workflow, refined the interface, added sprint and carryover behavior, and developed a portable way to capture and share a planning session. This attribution has not been independently confirmed.",
+      "solution": "A working HTML planning tool. The included blank sample supports ticket editing, sprint planning, carryover, CSV import/export, and portable file snapshots. Shared synchronization is outside this standalone sample.",
+      "architecture": "A standalone browser-based work sample embedded in the public portfolio. The source describes local editing and portable snapshots; shared synchronization is outside this sample.",
+      "testing": "The public source is reviewable at the linked commit. Its claims of functionality and individual contribution are separate from this portfolio’s own automated test suite. No independent client acceptance, load, security, or production-history evidence is claimed.",
+      "outcomes": "Give a small team a clearer planning conversation. This is the intended purpose; no measured business impact is established here.",
+      "limitations": "The included sample has been generalized and starts with no business records. Dates are example sprint iterations; this is a standalone work sample. Personal contributions and commercial outcomes remain unverified.",
+      "repoUrl": "https://github.com/closetcabby-del/joshua.ai/blob/d70c684b6ae35263497cfe5eae43cf6c4fb966d0/index.html",
+      "demoUrl": "https://closetcabby-del.github.io/joshua.ai/#work",
+      "artifact": "/evidence#backlog-planner"
+    },
+    {
+      "id": "jeff",
+      "slug": "service-business-workflows",
+      "title": "Jeff Electric Operations Hub",
+      "category": "SERVICE-BUSINESS OPERATIONS",
+      "status": "Reported but not independently verified",
+      "number": "03",
+      "featured": true,
+      "summary": "Bring customer context, lead intake, internal knowledge, and next actions into a clearer operating workflow.",
+      "tags": ["Lead intake", "Team handoffs", "Company knowledge"],
+      "problem": "A growing service business accumulates disconnected tools for calls, leads, quoting, jobs, documents, follow-up, marketing, and internal knowledge—forcing people to reconstruct context manually.",
+      "contribution": "The public portfolio reports: I mapped the operating model and customer lifecycle, designed and prototyped internal tools, organized company knowledge, and worked through how AI assistance should hand decisions back to the team. This attribution has not been independently confirmed.",
+      "solution": "An active project spanning lead workflows, internal applications, company knowledge, and customer context. The broader field-service system is being developed in stages; some integration and automation loops remain planned.",
+      "architecture": "The public source describes customer context, operational records, AI interpretation, deterministic execution, and human approval checkpoints. It distinguishes active development from the proposed future operating layer.",
+      "testing": "The public source is reviewable at the linked commit. Its claims of functionality and individual contribution are separate from this portfolio’s own automated test suite. No independent client acceptance, load, security, or production-history evidence is claimed.",
+      "outcomes": "Make the next action and its owner easier to see. This is the intended purpose; no measured business impact is established here.",
+      "limitations": "The example shown here uses fictional data to explain a handoff. It is not a live view of the company’s customer records. Personal contributions and commercial outcomes remain unverified.",
+      "repoUrl": "https://github.com/closetcabby-del/joshua.ai/blob/d70c684b6ae35263497cfe5eae43cf6c4fb966d0/index.html",
+      "demoUrl": "https://closetcabby-del.github.io/joshua.ai/#work",
+      "artifact": "/evidence#service-workflows"
+    },
+    {
+      "id": "portfolio",
+      "slug": "recruiter-workspace",
+      "title": "The recruiter workspace",
+      "category": "AI PRODUCT",
+      "status": "Prototype",
+      "number": "04",
+      "summary": "A portfolio you can ask questions of. Explore the thinking behind the experience you are using.",
+      "tags": ["Next.js", "OpenAI", "Evidence design"],
+      "problem": "Recruiters need a quick way to connect a candidate's experience to a role, with enough evidence to decide what to explore next.",
+      "contribution": "Built with AI coding assistance for this portfolio. Josh's independent engineering contributions have not been established.",
+      "solution": "An interactive workspace combines job-description analysis, a career assistant, interview prompts, and linked case studies. A local demonstration works without an API key.",
+      "architecture": "Next.js App Router and TypeScript serve the interface. A server route validates inputs with Zod. Structured candidate records ground the responses; an optional OpenAI integration selects evidence for review.",
+      "testing": "See the included validation report for actual automated test results. Test coverage is not evidence of Josh's prior professional experience.",
+      "outcomes": "A reviewable portfolio prototype. No business impact, hiring outcome, production operating history, or independent authorship is claimed.",
+      "limitations": "Professional materials, contact information, and a résumé have not been supplied. Live AI needs external configuration. Production readiness depends on deployment review.",
+      "repoUrl": null,
+      "demoUrl": "/#workspace",
+      "artifact": "/evidence#portfolio",
+      "featured": false
+    },
+    {
+      "id": "discovery",
+      "slug": "workflow-discovery",
+      "title": "Before the automation",
+      "category": "SOLUTION DISCOVERY",
+      "status": "Conceptual",
+      "number": "05",
+      "summary": "An example framework for finding where AI belongs in a business workflow, and where a simpler fix is enough.",
+      "tags": ["Process mapping", "Discovery", "Success criteria"],
+      "problem": "Automating an unclear process can make the wrong work happen faster.",
+      "contribution": "An illustrative case-study structure created for this portfolio. No completed client engagement or personal delivery is established.",
+      "solution": "Map the current process, identify the decision points, compare a rules-based approach with an AI approach, and agree on how to measure the result.",
+      "architecture": "Concept only: inputs → process map → decision criteria → proposed workflow → acceptance plan.",
+      "testing": "No implementation or test evidence exists for this concept.",
+      "outcomes": "A discussion prompt for an interview. No deployed system or measured improvement is claimed.",
+      "limitations": "This is conceptual material, not evidence of Josh's work history or skills.",
+      "repoUrl": null,
+      "demoUrl": null,
+      "artifact": null,
+      "featured": false
+    },
+    {
+      "id": "handoff",
+      "slug": "human-agent-handoff",
+      "title": "Knowing when to hand back",
+      "category": "AGENT WORKFLOWS",
+      "status": "Conceptual",
+      "number": "06",
+      "summary": "An example of designing an agent workflow around uncertainty, human review, and a clear audit trail.",
+      "tags": ["Human review", "Guardrails", "Evaluation"],
+      "problem": "An agent needs a defined boundary for decisions that require a person.",
+      "contribution": "An illustrative design concept created for this portfolio. No implementation by Josh has been established.",
+      "solution": "Define permitted actions, require supporting evidence, route uncertain cases to a person, and record the decision for evaluation.",
+      "architecture": "Concept only: request → bounded agent → evidence check → human review → approved action.",
+      "testing": "A future implementation would test unsupported claims, missing evidence, prompt injection, and failed handoffs. Those tests have not been run for this concept.",
+      "outcomes": "An interview topic about tradeoffs in agent design. No completed software or customer outcomes are claimed.",
+      "limitations": "Conceptual, with no repository, deployment, or independent verification.",
+      "repoUrl": null,
+      "demoUrl": null,
+      "artifact": null,
+      "featured": false
+    }
+  ],
+  "about": "Joshua Ly’s public portfolio describes a practice centered on business analysis, requirements, process mapping, AI-assisted workflows, and hands-on prototypes. These are self-reported areas of work; employment history, credentials, and independent engineering contributions have not been independently confirmed."
+}

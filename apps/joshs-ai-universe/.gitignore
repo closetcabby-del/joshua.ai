@@ -1,0 +1,13 @@
+node_modules/
+.next/
+.env*
+!.env.example
+test-results/
+playwright-report/
+work/
+*.tsbuildinfo
+.agents/skills/humanizer/.git/
+.DS_Store
+motion/.hyperframes/
+motion/out/
+intro-master.mp4
