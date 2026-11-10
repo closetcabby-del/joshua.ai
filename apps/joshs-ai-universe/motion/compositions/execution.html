@@ -1,0 +1,22 @@
+<template>
+<style>
+@font-face{font-family:Universe;src:url('assets/fonts/manrope-400.ttf');font-weight:400}@font-face{font-family:Universe;src:url('assets/fonts/manrope-700.ttf');font-weight:700}
+#root{position:absolute;inset:0;font-family:Universe,Inter,sans-serif;background:#141414;color:#f0f0f0;overflow:hidden}
+.scene-content{position:absolute;inset:0}.label{position:absolute;left:195px;top:159px;font-size:28px;letter-spacing:5px;color:#b0b0b0}.title{position:absolute;left:190px;top:320px;font-size:104px;line-height:1.22;letter-spacing:-.045em;font-weight:400}.title span{display:block}.line-mask{overflow:hidden}.accent{color:#d8d8d8}.detail{position:absolute;left:197px;top:640px;font-size:29px;line-height:1.5;max-width:840px;color:#b0b0b0}.diagram{position:absolute;left:1210px;top:305px;width:410px;height:450px;color:#d8d8d8;display:flex;align-items:center;justify-content:center}.diagram-label{position:absolute;bottom:0;left:-100px;width:610px;text-align:center;font-size:30px;letter-spacing:2px;color:#b0b0b0}.stage-number{font-family:Universe,sans-serif;font-size:190px;font-weight:700;line-height:1;letter-spacing:-9px;margin-bottom:70px;color:#d8d8d8}.end-monogram{font-style:normal;background:#303030;width:250px;height:250px;border-radius:48px;display:flex;align-items:center;justify-content:center;letter-spacing:-5px}.progress{position:absolute;left:195px;top:856px;height:2px;width:1530px;background:#b0b0b0;opacity:.4}.progress-fill{height:3px;width:100%;background:#d8d8d8;transform-origin:left}.stage-index{position:absolute;top:890px;left:195px;font-size:29px;color:#b0b0b0;letter-spacing:3px}
+</style>
+<div id="root" data-composition-id="execution" data-width="1920" data-height="1080" data-duration="2.4">
+<div id="execution-clip" class="clip" data-start="0" data-duration="2.4" data-track-index="0"><div class="scene-content" id="execution-content">
+<div class="label" id="execution-label">04 / AGENT-ASSISTED EXECUTION</div><div class="title"><div class="line-mask"><span id="execution-line1">Build with</span></div><div class="line-mask"><span id="execution-line2" class="accent">clear boundaries.</span></div></div>
+<p class="detail" id="execution-detail">Use agents. Keep human judgment.</p><div class="diagram" id="execution-diagram"><div class="stage-number">04</div><span class="diagram-label">BUILD → REVIEW → REFINE</span></div>
+<div class="progress"><div class="progress-fill" id="execution-progress"></div></div><span class="stage-index">04 / 05</span>
+</div></div></div>
+<script>
+const tl=gsap.timeline({paused:true});
+tl.fromTo("#execution-line1",{x:65,opacity:0},{x:0,opacity:1,duration:.55,ease:"power4.out"},.08);tl.fromTo("#execution-line2",{y:100,opacity:0},{y:0,opacity:1,duration:.65,ease:"expo.out"},.20);
+tl.fromTo("#execution-label",{opacity:.7},{opacity:1,duration:.35},0);
+tl.fromTo("#execution-detail",{opacity:0},{opacity:1,duration:.4,ease:"none"},.40);
+tl.fromTo("#execution-diagram",{scale:.88,opacity:0},{scale:1,opacity:1,duration:.65,ease:"power3.out"},.15);
+tl.fromTo("#execution-progress",{scaleX:0.5},{scaleX:0.6666666666666666,duration:2.1999999999999997,ease:"none"},.1);
+tl.to("#execution-content",{opacity:0,x:-35,duration:.18,ease:"power3.in"},2.2199999999999998);
+window.__timelines=window.__timelines||{};window.__timelines["execution"]=tl;
+</script></template>

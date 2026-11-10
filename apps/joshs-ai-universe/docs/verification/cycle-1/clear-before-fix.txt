@@ -1,0 +1,91 @@
+
+Running 3 tests using 1 worker
+
+(node:14932) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [desktop] › tests/e2e/cancellation.spec.ts:81:1 › Clear prevents a delayed reply from restoring results or conversation (6.0s)
+(node:15013) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [desktop] › tests/e2e/cancellation.spec.ts:123:1 › an old completion cannot stop or overwrite a fresh request after Clear (5.9s)
+(node:15101) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [desktop] › tests/e2e/cancellation.spec.ts:149:1 › switching tabs while pending cancels the old request and preserves the new tool (1.2s)
+
+
+  1) [desktop] › tests/e2e/cancellation.spec.ts:81:1 › Clear prevents a delayed reply from restoring results or conversation 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.results')
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.results') with timeout 5000ms
+      - waiting for locator('.results')
+        14 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      86 |   await page.getByRole("button", { name: "Clear", exact: true }).click();
+      87 |   await release(page, 0, "Stale reply");
+    > 88 |   await expect(page.locator(".results")).toHaveCount(0);
+         |                                          ^
+      89 |   await expect(page.locator(".conversation-history")).toHaveCount(0);
+      90 |   await expect(
+      91 |     page.getByRole("textbox", { name: "Your question", exact: true }),
+        at /workspace/work/josh-universe/tests/e2e/cancellation.spec.ts:88:42
+
+    Error Context: test-results/cancellation-Clear-prevent-5d7ef-ing-results-or-conversation-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/cancellation-Clear-prevent-5d7ef-ing-results-or-conversation-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/cancellation-Clear-prevent-5d7ef-ing-results-or-conversation-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests/e2e/cancellation.spec.ts:123:1 › an old completion cannot stop or overwrite a fresh request after Clear 
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator: getByRole('button', { name: 'Ask a question', exact: true })
+    Expected: enabled
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeEnabled" getByRole('button', { name: 'Ask a question', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'Ask a question', exact: true })
+
+
+      129 |   await expect(
+      130 |     page.getByRole("button", { name: "Ask a question", exact: true }),
+    > 131 |   ).toBeEnabled();
+          |     ^
+      132 |   await ask(page, "Fresh request while old reply remains held", 2);
+      133 |   await release(page, 0, "Stale overlapping reply");
+      134 |   await expect(
+        at /workspace/work/josh-universe/tests/e2e/cancellation.spec.ts:131:5
+
+    Error Context: test-results/cancellation-an-old-comple-3ff4b-a-fresh-request-after-Clear-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/cancellation-an-old-comple-3ff4b-a-fresh-request-after-Clear-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/cancellation-an-old-comple-3ff4b-a-fresh-request-after-Clear-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests/e2e/cancellation.spec.ts:81:1 › Clear prevents a delayed reply from restoring results or conversation 
+    [desktop] › tests/e2e/cancellation.spec.ts:123:1 › an old completion cannot stop or overwrite a fresh request after Clear 
+  1 passed (15.9s)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice

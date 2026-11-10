@@ -1,0 +1,147 @@
+{
+  "name": "Joshua Ly",
+  "headline": "I use AI to build for a real business.",
+  "intro": "Jeff Electric is my main body of work: using AI to help turn disconnected business processes into clearer workflows, useful tools, and a more connected operation.",
+  "profileStatus": "Jeff Electric case study; contributions described by Josh",
+  "email": "joshualy986@gmail.com",
+  "resumeUrl": null,
+  "githubUrl": "https://github.com/closetcabby-del",
+  "experience": [],
+  "records": [
+    {
+      "id": "jeff-problem-framing",
+      "title": "Understand the business before building",
+      "claim": "Josh describes mapping Jeff Electric’s operating model and customer lifecycle, including scattered calls, leads, quoting, jobs, documents, and follow-up. His reported contribution is turning those business needs into a clearer direction for the work.",
+      "status": "Reported but not independently verified",
+      "approved": true,
+      "kind": "experience",
+      "projectSlug": "service-business-workflows",
+      "tags": [
+        "business",
+        "discovery",
+        "requirements",
+        "stakeholder",
+        "process",
+        "customer",
+        "Jeff Electric"
+      ],
+      "sources": [
+        {
+          "label": "Reviewed Jeff Electric portfolio source",
+          "url": "https://github.com/closetcabby-del/joshua.ai/blob/d70c684b6ae35263497cfe5eae43cf6c4fb966d0/index.html"
+        }
+      ]
+    },
+    {
+      "id": "jeff-ai-direction",
+      "title": "Direct AI around the work",
+      "claim": "Josh’s public Jeff Electric account describes working through how AI assistance should use business context and hand decisions back to the team. This supports a discussion of his approach to AI; it does not independently establish the behavior of every proposed agent or integration.",
+      "status": "Reported but not independently verified",
+      "approved": true,
+      "kind": "skill",
+      "projectSlug": "service-business-workflows",
+      "tags": [
+        "AI",
+        "agent",
+        "context",
+        "automation",
+        "workflow",
+        "Jeff Electric"
+      ],
+      "sources": [
+        {
+          "label": "Reviewed Jeff Electric portfolio source",
+          "url": "https://github.com/closetcabby-del/joshua.ai/blob/d70c684b6ae35263497cfe5eae43cf6c4fb966d0/index.html"
+        }
+      ]
+    },
+    {
+      "id": "jeff-workflow-building",
+      "title": "Turn requirements into tools and workflows",
+      "claim": "The Jeff Electric case study describes internal-tool prototypes, lead workflows, company knowledge, and customer context developed in stages. Josh reports designing and prototyping these tools. Some integration and automation loops remain planned; this record does not establish a completed end-to-end deployment.",
+      "status": "Prototype",
+      "approved": true,
+      "kind": "project",
+      "projectSlug": "service-business-workflows",
+      "tags": [
+        "prototype",
+        "software",
+        "workflow",
+        "integration",
+        "product",
+        "requirements",
+        "Jeff Electric"
+      ],
+      "sources": [
+        {
+          "label": "Reviewed Jeff Electric portfolio source",
+          "url": "https://github.com/closetcabby-del/joshua.ai/blob/d70c684b6ae35263497cfe5eae43cf6c4fb966d0/index.html"
+        }
+      ]
+    },
+    {
+      "id": "jeff-human-judgment",
+      "title": "Keep consequential decisions with people",
+      "claim": "The public Jeff Electric workflow illustrates a human owner for the next decision, including what to quote, schedule, or escalate. Josh reports designing how AI assistance should hand decisions back to the team. This describes a design approach, not independent verification of all production controls.",
+      "status": "Reported but not independently verified",
+      "approved": true,
+      "kind": "contribution",
+      "projectSlug": "service-business-workflows",
+      "tags": [
+        "AI",
+        "human review",
+        "guardrail",
+        "evaluation",
+        "decision",
+        "process",
+        "Jeff Electric"
+      ],
+      "sources": [
+        {
+          "label": "Reviewed Jeff Electric portfolio source",
+          "url": "https://github.com/closetcabby-del/joshua.ai/blob/d70c684b6ae35263497cfe5eae43cf6c4fb966d0/index.html"
+        }
+      ]
+    },
+    {
+      "id": "jeff-public-artifact",
+      "title": "Inspect the public website artifact",
+      "claim": "The reviewed portfolio contains a Jeff Electric customer-website preview and a link to jeffelectric.online. The source artifact is available to inspect. Its existence does not establish conversion rates, business impact, or individual authorship.",
+      "status": "Verified",
+      "approved": true,
+      "kind": "artifact",
+      "projectSlug": "service-business-workflows",
+      "tags": ["website", "portfolio", "source", "artifact", "Jeff Electric"],
+      "sources": [
+        {
+          "label": "Reviewed Jeff Electric portfolio source",
+          "url": "https://github.com/closetcabby-del/joshua.ai/blob/d70c684b6ae35263497cfe5eae43cf6c4fb966d0/assets/jeff-electric-live-preview.jpg"
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "jeff",
+      "slug": "service-business-workflows",
+      "title": "Jeff Electric: building a business with AI",
+      "category": "MY MAIN BODY OF WORK",
+      "status": "Reported but not independently verified",
+      "number": "01",
+      "featured": true,
+      "summary": "How I use AI to work through business problems, shape useful solutions, and build around the people doing the work.",
+      "tags": ["Lead intake", "Team handoffs", "Company knowledge"],
+      "problem": "Customer context lived across calls, leads, quoting, jobs, documents, and follow-up. People had to reconstruct what was happening and who should act next.",
+      "contribution": "I mapped the operating model and customer lifecycle, designed and prototyped internal tools, organized company knowledge, and worked through how AI assistance should hand decisions back to the team. This is my account of the work; the linked public sources describe its scope.",
+      "solution": "Start with the workflow. Use AI assistance to explore and shape possible solutions, turn the requirements into prototypes, and refine the result around the team’s decisions. The work spans customer context, lead intake, internal tools, and company knowledge.",
+      "architecture": "A growing operating layer: business context and requirements guide the tools, AI assistance helps interpret the work, and people retain consequential decisions. The broader field-service system is being developed in stages; some integrations remain planned.",
+      "testing": "Review the public source, the website artifact, and the proposed handoffs. The tests for this recruiter portfolio verify the portfolio itself. They do not verify every Jeff Electric system or measure its business impact.",
+      "outcomes": "The public account shows a customer-facing website, internal-tool prototypes, and an evolving workflow design. The intended benefit is clearer context, ownership, and next actions. Measured time savings, revenue gains, and a completed end-to-end integration are not established by the reviewed source.",
+      "limitations": "This is an active body of work, with public artifacts, prototypes, and planned integration work at different stages. Contributions are described by Josh. No private customer records or unverified impact figures are included.",
+      "repoUrl": "https://github.com/closetcabby-del/joshua.ai/blob/d70c684b6ae35263497cfe5eae43cf6c4fb966d0/index.html",
+      "demoUrl": "https://jeffelectric.online/",
+      "artifact": "/evidence#jeff-problem-framing"
+    }
+  ],
+  "about": "My work at Jeff Electric brings together business understanding and building with AI. I work through the customer journey, shape requirements, develop and refine prototypes, and decide where AI can help the team. The public case study describes my role; the linked records make its scope clear."
+}
