@@ -25,4 +25,4 @@
 - Added four capability explanations and a labeled public website preview from the reviewed source.
 - Replaced the active catalog and knowledge base with one Jeff Electric project and five scoped records. Retired project URLs redirect to the Jeff Electric story.
 - Kept recruiter tools, source boundaries, cancellation, the Manrope design, and the existing video. No deployment or live configuration changes.
-- Unit/API, type, lint, and build checks passed. Current browser QA and new screenshots are tracked separately from the prior cycle's evidence.
+- 31 unit/API tests, type, lint, and build checks passed in the review environment. Separate exact-commit QA passed all 26 desktop/mobile browser checks; 12 page/width inspections had no overflow. Fresh viewport screenshots and the raw QA log are recorded alongside the source.

@@ -1,3 +1,5 @@
+> Current revision: Jeff Electric is the only active story. See [Jeff Electric focus](../docs/JEFF_ELECTRIC_FOCUS.md) and `docs/verification/jeff-electric-focus/` for the latest 31 unit/API and 26 browser results. The earlier multi-project cycle below is retained as historical evidence.
+
 # Supervised cycle 1 — implementation and validation
 
 Source: `/workspace/work/josh-universe`, local branch `improvement/recruiter-evidence-2026-11-10`. The exact snapshot commit is supplied in the cycle handoff and draft PR. This is a review candidate, not a deployed release.

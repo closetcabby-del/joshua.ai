@@ -23,6 +23,6 @@ The new story component renders on the server, uses static capability data with 
 
 ## Verification status
 
-31 unit/API tests, TypeScript, ESLint, and the production build passed after the content/routing changes. Browser readiness was attempted in the review environment; Chromium still cannot launch under the current socket restrictions. Current full browser results and screenshots must be obtained before they are claimed. Older cycle-1 screenshots are historical and do not depict this new layout.
+31 unit/API tests, TypeScript, ESLint, and the production build passed after the content/routing changes. Browser readiness was attempted in the review environment; Chromium still cannot launch under the current socket restrictions. A separate isolated QA checkout of commit `319753ad2325511bf4f6f8be423298bf0553f590` then passed all 26 desktop/mobile Chromium checks in 32.0 seconds. Supplemental inspection found no overflow in 12 page/width combinations (three pages at 320, 390, 768, and 1440 pixels); all five redirects returned 308, the unknown route returned 404, and the website image loaded with the source-matching blob SHA. Current viewport screenshots, the actual browser log, and the read-only QA report are in `docs/verification/jeff-electric-focus/`. The QA checkout remained clean. Older cycle-1 screenshots are historical and do not depict this new layout.
 
 Live AI and deployment remain unconfigured; this is a draft source change, not a release. The existing process-introduction video is retained, so no new HyperFrames render is claimed.
