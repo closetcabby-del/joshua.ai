@@ -18,3 +18,11 @@
 
 - Corrected the old missing-contact limitation and the privacy description of local interview questions versus optional AI evidence selection. No runtime logic or motion assets changed.
 - Independently fetched and reviewed the remote candidate; all original root files remain unchanged. After the copy corrections, all 31 unit/API tests, TypeScript, lint, and production build passed. Generated HTML reflects both corrections. Browser results remain the implementation workspace's 24 passing checks on the prior candidate.
+
+## 2026-11-10 — Jeff Electric as the only case study
+
+- Repositioned the homepage around using AI to build for Jeff Electric; the business story now precedes recruiter tools.
+- Added four capability explanations and a labeled public website preview from the reviewed source.
+- Replaced the active catalog and knowledge base with one Jeff Electric project and five scoped records. Retired project URLs redirect to the Jeff Electric story.
+- Kept recruiter tools, source boundaries, cancellation, the Manrope design, and the existing video. No deployment or live configuration changes.
+- Unit/API, type, lint, and build checks passed. Current browser QA and new screenshots are tracked separately from the prior cycle's evidence.

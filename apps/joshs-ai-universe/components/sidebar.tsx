@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 import { Brand } from "./brand";
 const links = [
   ["/#workspace", "Recruiter workspace"],
-  ["/#projects", "Selected projects"],
+  ["/#projects", "Jeff Electric"],
   ["/#about", "About Josh"],
   ["/evidence", "Evidence library"],
 ];

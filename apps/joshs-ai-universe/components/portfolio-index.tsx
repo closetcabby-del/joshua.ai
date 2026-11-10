@@ -17,8 +17,8 @@ export function PortfolioIndex() {
         <Link href="#projects">
           <span>02</span>
           <div>
-            I want to see the projects.
-            <small>Explore decisions and contributions.</small>
+            Show me the Jeff Electric work.
+            <small>See how Josh uses AI for the business.</small>
           </div>
           <ArrowUpRight size={17} />
         </Link>

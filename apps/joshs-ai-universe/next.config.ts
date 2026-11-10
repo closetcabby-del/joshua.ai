@@ -1,6 +1,19 @@
 import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    return [
+      "buildbrief",
+      "sprint-backlog-planner",
+      "recruiter-workspace",
+      "workflow-discovery",
+      "human-agent-handoff",
+    ].map((slug) => ({
+      source: `/projects/${slug}`,
+      destination: "/projects/service-business-workflows",
+      permanent: true,
+    }));
+  },
   async headers() {
     return [
       {

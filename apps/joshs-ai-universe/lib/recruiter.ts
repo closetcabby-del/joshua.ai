@@ -38,13 +38,13 @@ export const topics = [
     re: /\b(ai|llm|openai|agent|generative|rag)\b/i,
     label: "AI systems and agent design",
     question:
-      "Walk me through an AI workflow you designed. Where did you need a person to make the decision?",
+      "Walk me through an AI workflow in the Jeff Electric work. What direction did you give AI, and where did a person need to decide?",
   },
   {
     re: /\b(automat\w*|workflow|integration|process)\b/i,
     label: "Automation and workflow design",
     question:
-      "How would you decide whether this workflow needs AI, a rules-based automation, or a process change?",
+      "Using Jeff Electric as an example, how did you decide whether a workflow needed AI, rules-based automation, or a process change?",
   },
   {
     re: /\b(python|typescript|javascript|react|next\.?js|software|engineer|code)\b/i,
@@ -76,7 +76,7 @@ export function questionsFor(input: string) {
   return [
     ...new Set([
       ...matched,
-      "Choose one project and explain the problem, your contribution, the tradeoffs, and what you would change.",
+      "Choose one Jeff Electric workflow and explain the business problem, your use of AI, the tradeoffs, and what you would change.",
       "Which requirements of this role would be new to you, and how would you approach that learning?",
     ]),
   ].slice(0, 6);
@@ -118,7 +118,7 @@ export function demoResult(
     items.push({
       title: "Candidate evidence needed",
       status: "Not established",
-      text: "No reviewed records support an answer to this specific question. Project examples do not establish employment history, certifications, seniority, or independently verified personal contributions.",
+      text: "No reviewed records support an answer to this specific question. The Jeff Electric case study does not establish employment history, certifications, seniority, or independently verified personal contributions.",
       evidenceIds: [],
     });
   return {

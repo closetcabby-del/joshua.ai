@@ -14,11 +14,11 @@ import { Sidebar } from "@/components/sidebar";
 import "./globals.css";
 export const metadata: Metadata = {
   title: {
-    default: "Josh’s AI universe — A portfolio with context",
+    default: "Josh’s AI universe — Building with AI at Jeff Electric",
     template: "%s | Josh’s AI universe",
   },
   description:
-    "Explore an interactive portfolio built for recruiters. Ask questions, bring a job description, and review the evidence behind the work.",
+    "Explore how Joshua Ly uses AI to build solutions for Jeff Electric. Review the business problems, his approach, and the evidence behind the work.",
   robots: { index: false, follow: false },
 };
 export default function RootLayout({

@@ -6,7 +6,7 @@ test("recruiter can analyze a role and prepare an interview", async ({
   await page.goto("/");
   await expect(
     page.getByRole("heading", {
-      name: /Get to know Josh\.\s*Start with the work\./,
+      name: /I use AI to build\s*for a real business\./,
     }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Try an example" }).click();
@@ -31,7 +31,7 @@ test("recruiter can analyze a role and prepare an interview", async ({
   ).toBeVisible();
   await expect(
     page.getByText(
-      "How would you decide whether this workflow needs AI, a rules-based automation, or a process change?",
+      "Using Jeff Electric as an example, how did you decide whether a workflow needed AI, rules-based automation, or a process change?",
     ),
   ).toBeVisible();
 });
@@ -56,20 +56,22 @@ test("assistant is honest about missing evidence and can be cleared", async ({
   await expect(page.getByLabel("Your question")).toHaveValue("");
   await expect(page.locator(".results")).toHaveCount(0);
 });
-test("case studies show status and contribution boundaries", async ({
+test("Jeff Electric story shows the approach and clear contribution boundaries", async ({
   page,
 }) => {
-  await page.goto("/projects/workflow-discovery");
-  await expect(
-    page.getByRole("heading", { name: "Before the automation." }),
-  ).toBeVisible();
-  await expect(page.getByText("Conceptual", { exact: true })).toBeVisible();
-  await expect(page.getByText(/No completed client engagement/)).toBeVisible();
-  await page.goto("/evidence");
+  await page.goto("/projects/service-business-workflows");
   await expect(
     page.getByRole("heading", {
-      name: "Public sources reviewed. Contributions need context.",
+      name: "Jeff Electric: building a business with AI.",
     }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "How I use AI", exact: true }),
+  ).toBeVisible();
+  await expect(page.getByText(/This is my account of the work/)).toBeVisible();
+  await page.goto("/evidence");
+  await expect(
+    page.getByRole("heading", { name: "One business. Clear sources." }),
   ).toBeVisible();
 });
 test("keyboard navigation and mobile menu work", async ({ page }, testInfo) => {
@@ -77,7 +79,7 @@ test("keyboard navigation and mobile menu work", async ({ page }, testInfo) => {
   if (testInfo.project.name === "mobile") {
     await page.getByRole("button", { name: "Open navigation" }).click();
     await page
-      .getByRole("link", { name: "Selected projects", exact: true })
+      .getByRole("link", { name: "Jeff Electric", exact: true })
       .click();
     await expect(
       page.getByRole("button", { name: "Open navigation" }),
@@ -184,28 +186,58 @@ test("empty input is blocked and server errors are understandable", async ({
   ).toBeEnabled();
 });
 
-test("real portfolio sources are visible and candidate contributions remain qualified", async ({
+test("only Jeff Electric is showcased and its actual public artifact is visible", async ({
   page,
 }) => {
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: "BuildBrief", exact: true }),
+    page.getByRole("heading", { name: "Jeff Electric.", exact: true }),
   ).toBeVisible();
-  await page.goto("/projects/buildbrief");
+  await expect(page.locator("main")).not.toContainText(
+    /BuildBrief|Sprint & Backlog|Before the automation|Knowing when to hand back/,
+  );
+  const photo = page.getByRole("img", {
+    name: /Jeff Electric’s public customer website/,
+  });
+  await expect(photo).toBeVisible();
+  await expect
+    .poll(() => photo.evaluate((img: HTMLImageElement) => img.naturalWidth))
+    .toBeGreaterThan(0);
+  await page
+    .getByRole("link", { name: "Read the Jeff Electric story" })
+    .click();
   await expect(
-    page.getByText(/not been independently confirmed/),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("link", { name: /View repository/ }),
+    page.getByRole("link", { name: /Review the public case-study source/ }),
   ).toHaveAttribute(
     "href",
     /github\.com\/closetcabby-del\/joshua\.ai\/blob\/[a-f0-9]{40}/,
   );
   await page.goto("/evidence");
-  await expect(
-    page.getByRole("heading", { name: "BuildBrief requirements prototype" }),
-  ).toBeVisible();
-  await expect(page.locator("#buildbrief .evidence-badge")).toHaveText(
-    "Prototype",
+  await expect(page.locator(".record-card")).toHaveCount(5);
+  await expect(page.locator("main")).not.toContainText(
+    /BuildBrief|Sprint & Backlog|Conceptual work is a discussion/,
   );
+  await expect(
+    page.locator("#jeff-workflow-building .evidence-badge"),
+  ).toHaveText("Prototype");
+});
+
+test("old project bookmarks lead to the Jeff Electric story", async ({
+  page,
+}) => {
+  for (const old of [
+    "buildbrief",
+    "sprint-backlog-planner",
+    "recruiter-workspace",
+    "workflow-discovery",
+    "human-agent-handoff",
+  ]) {
+    await page.goto(`/projects/${old}`);
+    await expect(page).toHaveURL(/\/projects\/service-business-workflows$/);
+    await expect(
+      page.getByRole("heading", {
+        name: "Jeff Electric: building a business with AI.",
+      }),
+    ).toBeVisible();
+  }
 });

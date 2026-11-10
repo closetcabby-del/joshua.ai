@@ -14,20 +14,20 @@ export default function Evidence() {
         Back to the universe
       </Link>
       <span className="eyebrow">KNOW WHAT YOU’RE LOOKING AT</span>
-      <h1>The evidence library.</h1>
+      <h1>The Jeff Electric evidence.</h1>
       <p className="document-lead">
-        A claim is useful when you can see what supports it. This library keeps
-        the source, scope, and uncertainty in view.
+        Follow the Jeff Electric story back to its sources. These records
+        support a conversation about how Josh uses AI to build for the business.
       </p>
       <div className="evidence-callout">
         <ShieldCheck size={22} />
         <div>
-          <h2>Public sources reviewed. Contributions need context.</h2>
+          <h2>One business. Clear sources.</h2>
           <p>
-            The records below come from Joshua Ly’s existing public portfolio.
-            Personal contributions remain self-reported. Formal employment,
-            certifications, and commercial outcomes are not independently
-            verified.
+            The records below describe the Jeff Electric work in Joshua Ly’s
+            public portfolio. Personal contributions remain self-reported.
+            Formal employment, certifications, and commercial outcomes are not
+            independently verified.
           </p>
         </div>
       </div>
@@ -42,21 +42,8 @@ export default function Evidence() {
           ))}
         </div>
       </section>
-      <section id="portfolio">
-        <h2>Portfolio prototype</h2>
-        <p>
-          The website is a prototype built with AI coding assistance for Josh’s
-          portfolio. Its implementation can be reviewed in the delivered source
-          package. It is not independent proof of Josh’s prior professional
-          work.
-        </p>
-        <Link className="subtle-link" href="/projects/recruiter-workspace">
-          Review the case study
-          <ArrowUpRight size={14} />
-        </Link>
-      </section>
       <section>
-        <h2>Approved candidate records</h2>
+        <h2>Jeff Electric records</h2>
         {approvedRecords.length ? (
           approvedRecords.map((r) => (
             <article key={r.id} id={r.id} className="record-card">
@@ -78,7 +65,7 @@ export default function Evidence() {
         )}
       </section>
       <section>
-        <h2>Case-study status</h2>
+        <h2>The full Jeff Electric story</h2>
         {candidate.projects.map((p) => (
           <article key={p.id} className="evidence-project-row">
             <Link href={`/projects/${p.slug}`}>
@@ -100,10 +87,9 @@ export default function Evidence() {
           When live AI is configured and approved records exist, your input and
           recent conversation context are sent to OpenAI to select relevant
           evidence. Interview questions come from a local role-topic library.
-          API requests use{" "}
-          <code>store: false</code>; provider retention and deployment-platform
-          logs are governed by those services’ policies. Avoid pasting
-          confidential or personal information.
+          API requests use <code>store: false</code>; provider retention and
+          deployment-platform logs are governed by those services’ policies.
+          Avoid pasting confidential or personal information.
         </p>
         <p>
           Rate limiting uses short-lived, hashed network identifiers. A shared

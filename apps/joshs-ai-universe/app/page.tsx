@@ -4,13 +4,14 @@ import { candidate, approvedRecords } from "@/lib/knowledge";
 import { liveEnabled } from "@/lib/rate-limit";
 import { Workspace } from "@/components/workspace";
 import { PortfolioIndex } from "@/components/portfolio-index";
+import { JeffElectricStory } from "@/components/jeff-electric-story";
 import { IntroVideo } from "@/components/intro-video";
 export const dynamic = "force-dynamic";
 export default function Home() {
   return (
     <>
       <div className="topbar">
-        <span>THE INTERACTIVE PORTFOLIO OF JOSH</span>
+        <span>JOSHUA LY / BUILDING WITH AI</span>
         <a href="/evidence">
           <span className="status-dot" />
           Evidence, before assumptions
@@ -22,106 +23,56 @@ export default function Home() {
           <div className="hero-copy">
             <div className="hero-eyebrow">JOSH’S AI UNIVERSE</div>
             <h1>
-              Get to know Josh.
+              I use AI to build
               <br />
-              <span>Start with the work.</span>
+              <span>for a real business.</span>
             </h1>
             <p className="hero-description">
-              A working portfolio for recruiters and hiring teams. Bring a job
-              description, explore the projects, and see what the evidence
-              supports.
+              Jeff Electric is my main body of work: using AI to help turn
+              business problems into useful tools, clearer workflows, and a more
+              connected operation.
             </p>
             <div className="hero-actions">
-              <a className="primary-button" href="#workspace">
-                Try the recruiter tools
+              <a className="primary-button" href="#projects">
+                Explore the Jeff Electric work
                 <ArrowUpRight size={17} />
               </a>
               <IntroVideo />
             </div>
             <div className="hero-reassurance">
-              <span>Grounded in evidence. Honest about the gaps.</span>
+              <span>
+                Business understanding. AI direction. Hands-on building.
+              </span>
             </div>
           </div>
           <PortfolioIndex />
         </section>
         <div className="context-strip">
-          <span>AN OPEN INVITATION TO LOOK CLOSER</span>
-          <span>No account needed.</span>
-          <span>Questions welcome.</span>
+          <span>ONE BUSINESS. A GROWING BODY OF WORK.</span>
+          <span>Jeff Electric.</span>
+          <span>Built around the team.</span>
           <a href="#workspace" aria-label="Go to recruiter workspace">
             <ArrowDown size={17} />
           </a>
         </div>
+        <JeffElectricStory />
         <Workspace live={liveEnabled() && approvedRecords.length > 0} />
-        <section id="projects" className="projects-section section-anchor">
-          <div className="section-heading">
-            <div>
-              <span className="eyebrow">
-                <span className="short-line" /> SELECTED EXPLORATIONS
-              </span>
-              <h2>Look inside the work.</h2>
-              <p>Problems, decisions, and the details that matter.</p>
-            </div>
-            <Link className="subtle-link" href="/evidence">
-              Browse evidence
-              <ArrowUpRight size={14} />
-            </Link>
-          </div>
-          <div className="project-grid">
-            {candidate.projects
-              .filter((p) => p.featured)
-              .map((p) => (
-                <Link
-                  className="project-card"
-                  href={`/projects/${p.slug}`}
-                  key={p.id}
-                >
-                  <span className="project-row-number" aria-hidden="true">
-                    {p.number}
-                  </span>
-                  <div className="project-info">
-                    <div className="project-category">
-                      <span>{p.category}</span>
-                      <span
-                        className={`evidence-badge ${p.status === "Prototype" ? "prototype" : ""}`}
-                      >
-                        {p.status}
-                      </span>
-                    </div>
-                    <h3>{p.title}</h3>
-                    <p>{p.summary}</p>
-                    <div className="project-tags">
-                      {p.tags.map((t) => (
-                        <span key={t}>{t}</span>
-                      ))}
-                    </div>
-                    <div className="case-link">
-                      Read the case study
-                      <ArrowUpRight size={15} />
-                    </div>
-                  </div>
-                </Link>
-              ))}
-          </div>
-          <p className="projects-note">
-            Labels describe the evidence status. Conceptual work is a discussion
-            example; it does not establish completed delivery.
-          </p>
-        </section>
         <section id="about" className="about-section section-anchor">
           <div>
             <span className="eyebrow">
-              <span className="short-line" /> THE PERSON BEHIND THE PORTFOLIO
+              <span className="short-line" /> THE PERSON GUIDING THE WORK
             </span>
             <h2>
-              Start with curiosity.
+              Business context.
               <br />
-              Follow the evidence.
+              AI as a building tool.
             </h2>
             <p>{candidate.about}</p>
             <p>
-              Explore the public project sources and ask how the work was done.
-              Formal employment history and a résumé have not yet been supplied.
+              The question I want this work to answer: how can I use AI to build
+              something useful for the people running a business? Explore the
+              Jeff Electric case study, then ask me about the decisions behind
+              it.
             </p>
             <a className="subtle-link" href="/evidence">
               What’s established so far
@@ -138,20 +89,18 @@ export default function Home() {
             </h3>
             <dl>
               <div>
-                <dt>Professional experience</dt>
+                <dt>Business context</dt>
+                <dd>Jeff Electric · residential electrical services</dd>
+              </div>
+              <div>
+                <dt>What I bring</dt>
+                <dd>Business framing, AI direction, and solution building</dd>
+              </div>
+              <div>
+                <dt>My role</dt>
                 <dd>
-                  {candidate.experience.length
-                    ? `${candidate.experience.length} records available`
-                    : "See the self-reported public portfolio"}
+                  Shape requirements, prototype tools, and design handoffs
                 </dd>
-              </div>
-              <div>
-                <dt>Technical capabilities</dt>
-                <dd>Requirements, workflows, and prototypes</dd>
-              </div>
-              <div>
-                <dt>Independent contributions</dt>
-                <dd>Self-reported; review the sources</dd>
               </div>
               <div>
                 <dt>Supporting evidence</dt>
@@ -185,7 +134,9 @@ export default function Home() {
           <div>
             <span className="eyebrow">THE NEXT STEP IS A CONVERSATION</span>
             <h2>Bring your questions.</h2>
-            <p>Explore a role, challenge an idea, or ask what’s missing.</p>
+            <p>
+              Ask how I used AI, what I built, or what I would do differently.
+            </p>
           </div>
           <div className="contact-actions">
             <a className="primary-button" href="#workspace">

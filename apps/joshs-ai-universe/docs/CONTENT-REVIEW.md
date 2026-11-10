@@ -230,3 +230,31 @@ These factual corrections align the copy with the current profile and code. The 
 ### Next step
 
 Accepted copy is implemented in the profile and evidence page.
+
+## Jeff Electric focus — humanized draft
+
+Voice: generic. Density: low -> light pass. Text hygiene: no suspicious characters visible.
+
+I use AI to build for a real business.
+
+Jeff Electric is my main body of work: using AI to help turn business problems into useful tools, clearer workflows, and a more connected operation.
+
+Frame the problem. Direct the AI. Shape the solution. Keep people in control.
+
+The tools are useful. The story is how I decide what to build and guide the work.
+
+### What changed
+
+The introduction now leads with Josh's stated business example and how he uses AI. One Jeff Electric story replaces the unrelated project catalog. The complete accepted case and evidence wording is in `content/candidate.json`; the capability explanations are in `components/jeff-electric-story.tsx`.
+
+### Deliberately left alone
+
+Prototype and contribution labels remain specific. The source snapshot date, incomplete integrations, and absence of measured business impact retain their meaning. The brand and the Manrope visual direction are preserved.
+
+### Meaning check
+
+The new positioning follows Josh's instruction and the reviewed public account. No new employment details, certifications, measured gains, independently verified personal contributions, or completed integration claims were added. No invisible-character cleanup was needed.
+
+### Next step
+
+The accepted copy is implemented in the draft application. Further detail should come from reviewable Jeff Electric artifacts and Josh's account of specific decisions.

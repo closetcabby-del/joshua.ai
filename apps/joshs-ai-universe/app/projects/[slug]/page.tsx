@@ -29,7 +29,7 @@ export default async function Project({
     <div className="page-inner document-page">
       <Link className="back-link" href="/#projects">
         <ArrowLeft size={15} />
-        Back to selected explorations
+        Back to the Jeff Electric work
       </Link>
       <span className="eyebrow">
         CASE STUDY / {p.number} / {p.category}
@@ -44,11 +44,11 @@ export default async function Project({
       </div>
       {[
         ["The problem", p.problem],
-        ["Role and contributions", p.contribution],
-        ["The approach", p.solution],
-        ["Architecture and technology", p.architecture],
-        ["Testing evidence", p.testing],
-        ["Outcomes", p.outcomes],
+        ["My role", p.contribution],
+        ["How I use AI", p.solution],
+        ["How the work connects", p.architecture],
+        ["What you can inspect", p.testing],
+        ["What exists and what is still developing", p.outcomes],
         ["Limits and open questions", p.limitations],
       ].map(([title, text]) => (
         <section key={title}>
@@ -60,13 +60,13 @@ export default async function Project({
       <div className="case-actions">
         {p.demoUrl && (
           <Link className="primary-button" href={p.demoUrl}>
-            Explore the prototype
+            View public website
             <ArrowUpRight size={15} />
           </Link>
         )}
         {p.repoUrl && (
           <a className="subtle-link" href={p.repoUrl}>
-            View repository
+            Review the public case-study source
             <ArrowUpRight size={14} />
           </a>
         )}

@@ -21,8 +21,7 @@ const tools = [
 const samples: Record<ToolName, string> = {
   analyze:
     "We are hiring an AI Solutions Consultant to lead stakeholder discovery, translate business requirements into AI workflows, build prototypes using Python or TypeScript, and evaluate systems before production deployment.",
-  assistant:
-    "What evidence is available about Josh’s experience with AI systems and automation?",
+  assistant: "How has Josh used AI to build solutions for Jeff Electric?",
   interview:
     "AI Solutions Consultant: stakeholder discovery, workflow automation, agent design, and evaluation.",
 };
@@ -47,7 +46,7 @@ const descriptions: Record<
   assistant: {
     title: "Skip the résumé guessing game.",
     detail:
-      "Ask about projects, experience, or the thinking behind the work. Answers stay close to the available evidence.",
+      "Ask how Josh approaches AI, business problems, and the Jeff Electric work. Answers stay close to the available evidence.",
     label: "Your question",
     placeholder: "What would you like to know about Josh?",
     cta: "Ask a question",
@@ -253,9 +252,9 @@ export function Workspace({ live }: { live: boolean }) {
                   aria-label="Suggested questions"
                 >
                   {[
-                    "What AI work is supported by evidence?",
+                    "How does Josh use AI at Jeff Electric?",
                     "What should I ask in an interview?",
-                    "Which projects can I explore?",
+                    "What did Josh contribute at Jeff Electric?",
                   ].map((q) => (
                     <button key={q} type="button" onClick={() => setInput(q)}>
                       {q}

@@ -99,16 +99,27 @@ describe("evidence boundaries", () => {
       }).success,
     ).toBe(false);
   });
-  it("treats conceptual projects as separate from professional records", () => {
-    const conceptualIds = candidate.projects
-      .filter((p) => p.status === "Conceptual")
-      .map((p) => p.id);
-    expect(candidate.records.every((r) => !conceptualIds.includes(r.id))).toBe(
-      true,
+  it("keeps the recruiter catalog and all evidence focused on Jeff Electric", () => {
+    expect(candidate.projects).toHaveLength(1);
+    expect(candidate.projects[0].slug).toBe("service-business-workflows");
+    expect(
+      candidate.records.every(
+        (r) => r.projectSlug === "service-business-workflows",
+      ),
+    ).toBe(true);
+    const result = demoResult(
+      "assistant",
+      "How does Josh use AI for the business?",
+    );
+    expect(result.sources.length).toBeGreaterThan(0);
+    expect(JSON.stringify(result)).not.toMatch(
+      /BuildBrief|Sprint & Backlog|Conceptual/,
     );
     expect(
-      candidate.projects.filter((p) => p.status === "Conceptual"),
-    ).toHaveLength(2);
+      result.sources.every(
+        (r) => r.projectSlug === "service-business-workflows",
+      ),
+    ).toBe(true);
   });
 });
 describe("input limits and useful questions", () => {

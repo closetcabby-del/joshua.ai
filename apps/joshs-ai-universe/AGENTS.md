@@ -22,3 +22,7 @@ Read this file, IMPROVEMENT_BACKLOG.md, QUALITY_SCORECARD.md, and the latest CHA
 - Record work, evidence, unresolved limitations, and next priorities in the existing root improvement documents. Do not duplicate completed work or claim continuous execution after a turn ends.
 
 Clear and tab switching must abort active requests, invalidate late completions, reset all tool state, and allow a fresh request. Preserve the controlled cancellation regression suite, including the non-cooperative delayed response and overlapping-request scenarios. Scope alert checks to the workspace rather than Next.js’s route announcer.
+
+## Current positioning — Jeff Electric only
+
+Josh selected Jeff Electric as the sole portfolio story. Lead with his use of AI to build business solutions. Keep active case studies and candidate records limited to Jeff Electric; individual tools support that story. Do not restore unrelated project showcases. Keep sources and development stages clear, with no invented outcomes. Old project URLs redirect to the Jeff Electric story. See `docs/JEFF_ELECTRIC_FOCUS.md` for this revision's acceptance criteria and evidence.

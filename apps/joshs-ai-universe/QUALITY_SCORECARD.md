@@ -36,3 +36,7 @@ The supervisor reported independently running `npm ci`, the prior clean-app ZIPâ
 ## Review gate and next improvement
 
 Stop after this cycle. Highest-impact remaining defect: keyword matching does not reliably distinguish directly supported requirements, transferable experience, partial evidence, and absent qualifications. Proposed next cycle: implement explicit relationship labels and requirement coverage, preserve evidence status, and add positive/negative role-matching tests. Await supervisor review before implementation.
+
+## Jeff Electric focus revision
+
+The active application now uses one business story and five Jeff Electric records. The four homepage capabilities explain problem framing, AI direction, solution building, and human judgment. Prior cycle-1 visual scores/screenshots describe the earlier multi-project layout, not this revision. No new numeric quality score or business-impact measurement is claimed. Current verification is tracked in `docs/JEFF_ELECTRIC_FOCUS.md`.

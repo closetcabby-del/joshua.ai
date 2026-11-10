@@ -18,3 +18,7 @@ Next three: improve requirement matching; verify the optional live provider cont
 Clear while a request was pending restored stale results/history and left busy state set. Controlled browser reproduction failed twice before the fix; tab-switch cancellation was the passing control. The shared reset now aborts the controller, invalidates the request generation, resets input/busy/result/history/error/copied, and fences stale success/error/finally/copy callbacks. Three lifecycle scenarios passed on desktop and mobile. Whole-word matching also prevents paid → AI false matches.
 
 Speculative broader analysis/live-generation changes were shelved before baseline and are not part of the tested branch. Do not apply that stash wholesale; select the next scoped change only after supervisor review.
+
+## Current direction — Jeff Electric only
+
+Josh authorized a new focus cycle: Jeff Electric is the sole public story. Replace the tool catalog with a capability narrative and keep the recruiter knowledge base in that context. Implementation and acceptance criteria are in `docs/JEFF_ELECTRIC_FOCUS.md`. Old screenshots are historical; refresh visual and browser evidence for this layout. Preserve the existing pending-request regressions. Requirement coverage and live-provider setup remain separate future work.
