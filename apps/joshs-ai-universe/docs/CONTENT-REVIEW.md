@@ -202,3 +202,31 @@ Candidate descriptions and three featured case studies are based on the existing
 Accepted copy includes: “Public sources reviewed. Contributions need context.” and “Local demo using reviewed public sources. Self-reported contributions are labeled.” The full accepted claims and case-study text are in content/candidate.json.
 
 What changed: replaced empty placeholders with attributed public material; kept scope, incomplete integration warnings, and prototype limitations. Deliberately left alone: source technical terms and the user-selected Manrope visual direction. Meaning check: no qualifications, metrics, dates of employment, commercial results, or independent contributions were invented.
+
+
+## Final reviewer consistency corrections
+
+### Humanized draft
+
+Voice: generic. Density: low -> light pass. Text hygiene: no suspicious characters visible.
+
+Public contact details are available; a résumé and independently verified professional materials are still needed. Live AI needs external configuration. Production readiness depends on deployment review.
+
+When live AI is configured and approved records exist, your input and recent conversation context are sent to OpenAI to select relevant evidence. Interview questions come from a local role-topic library.
+
+### What changed
+
+- Corrected the old missing-contact statement against the public contact now included in the profile.
+- Corrected the privacy description against the implemented API: the optional model selects evidence IDs; questions use the existing local library. Live question generation remains deferred.
+
+### Deliberately left alone
+
+- Existing evidence qualifications, provider-retention wording, and production limitations remain explicit.
+
+### Meaning check
+
+These factual corrections align the copy with the current profile and code. The subsequent light prose review adds no personal achievements or functional claims. No invisible-character cleanup was needed; meaningful Unicode was preserved.
+
+### Next step
+
+Accepted copy is implemented in the profile and evidence page.

@@ -199,7 +199,7 @@
       "architecture": "Next.js App Router and TypeScript serve the interface. A server route validates inputs with Zod. Structured candidate records ground the responses; an optional OpenAI integration selects evidence for review.",
       "testing": "See the included validation report for actual automated test results. Test coverage is not evidence of Josh's prior professional experience.",
       "outcomes": "A reviewable portfolio prototype. No business impact, hiring outcome, production operating history, or independent authorship is claimed.",
-      "limitations": "Professional materials, contact information, and a résumé have not been supplied. Live AI needs external configuration. Production readiness depends on deployment review.",
+      "limitations": "Public contact details are available; a résumé and independently verified professional materials are still needed. Live AI needs external configuration. Production readiness depends on deployment review.",
       "repoUrl": null,
       "demoUrl": "/#workspace",
       "artifact": "/evidence#portfolio",

@@ -38,3 +38,10 @@ Live OpenAI calls remain unverified and disabled without credentials. Interview 
 Highest-impact next defect: role matching is still a keyword heuristic and does not fully separate direct support, transferable skills, partial evidence, and absent requirements. Recommend one scoped requirement-coverage improvement with evidence-strength guards and positive/negative tests, after supervisor review.
 
 The new app is proposed under `apps/joshs-ai-universe` in an isolated draft-PR branch. Existing root main/Pages source and deployment workflow are preserved. Do not deploy or merge this proposal automatically.
+
+
+## Final independent reviewer follow-up
+
+The reviewer fetched remote candidate `4b2406609ab4465014f0ea675de260db93a55b16` and confirmed all 228 additions were confined to `apps/joshs-ai-universe/`, with no original root files changed. Two stale statements were corrected: the recruiter-workspace case study now acknowledges public contact details, and the privacy page accurately distinguishes optional AI evidence selection from local interview prompts. The Humanizer review records these corrections. No runtime logic or motion assets changed in this follow-up.
+
+Independent final checks after those corrections: `npm ci --no-audit --no-fund`, `npm test` (31 passed across 3 files), `npm run typecheck`, `npm run lint`, and `npm run build` all passed. Generated HTML was inspected to confirm both corrected statements render. The 24 desktop/mobile browser results remain the implementation workspace's checks on the preceding candidate; the reviewer's browser launch remained socket-restricted, so no independent browser rerun is claimed.

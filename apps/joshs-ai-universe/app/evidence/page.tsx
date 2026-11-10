@@ -99,7 +99,8 @@ export default function Evidence() {
         <p>
           When live AI is configured and approved records exist, your input and
           recent conversation context are sent to OpenAI to select relevant
-          evidence and draft hypothetical interview questions. API requests use{" "}
+          evidence. Interview questions come from a local role-topic library.
+          API requests use{" "}
           <code>store: false</code>; provider retention and deployment-platform
           logs are governed by those services’ policies. Avoid pasting
           confidential or personal information.

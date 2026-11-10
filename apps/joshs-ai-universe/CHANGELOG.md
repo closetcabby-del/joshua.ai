@@ -13,3 +13,8 @@
 - Our final checks: 31 unit/API tests, 24 browser tests, TypeScript, lint, and local production build passed. Existing video retained; HyperFrames lint passed, and playback passed on both browser profiles.
 - Supervisor independently reported prior-ZIP npm install/tests/typecheck/build results; those are recorded separately in QUALITY_SCORECARD.md.
 - No deployment, merge, purchase, permission expansion, or live configuration change. Next cycle requires user review.
+
+### Final independent reviewer follow-up
+
+- Corrected the old missing-contact limitation and the privacy description of local interview questions versus optional AI evidence selection. No runtime logic or motion assets changed.
+- Independently fetched and reviewed the remote candidate; all original root files remain unchanged. After the copy corrections, all 31 unit/API tests, TypeScript, lint, and production build passed. Generated HTML reflects both corrections. Browser results remain the implementation workspace's 24 passing checks on the prior candidate.

@@ -31,7 +31,7 @@ Test evidence and screenshots: `docs/verification/baseline/` and `docs/verificat
 
 ## Independent supervisor report — separate evidence
 
-The supervisor reported independently running `npm ci`, the prior clean-app ZIP’s 25 unit/API tests, TypeScript, and production build successfully, and confirming included Humanizer/HyperFrames provenance. The supervisor reported that their browser runner could not launch because `socket()` was restricted. Those are supervisor-reported checks of the earlier ZIP, not our post-cycle results or independent verification of this new revision.
+The supervisor reported independently running `npm ci`, the prior clean-app ZIP’s 25 unit/API tests, TypeScript, and production build successfully, and confirming included Humanizer/HyperFrames provenance. The supervisor reported that their browser runner could not launch because `socket()` was restricted. Those are checks of the earlier ZIP. During final review, the supervisor fetched remote candidate `4b24066`, confirmed path isolation, corrected two stale contact/privacy statements, and independently passed all 31 unit/API tests, TypeScript, lint, and production build. Generated HTML confirmed the corrected copy. The 24 browser results remain attributable to the implementation workspace; no independent browser rerun is claimed.
 
 ## Review gate and next improvement
 
