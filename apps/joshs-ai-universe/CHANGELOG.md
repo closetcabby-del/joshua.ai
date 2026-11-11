@@ -1,3 +1,7 @@
+## 2026-11-11 — Add floating surfaces and restrained motion
+
+Added the requested suspended-in-air presentation: detached glass navigation, orbital hero/process tiles, illuminated project surfaces, bounded pointer tilt and scroll reveals. Pause/resume and reduced-motion handling retain a readable static page; ambient animation pauses offscreen. The exact seven-project selection, native case links, tools, media and APIs are retained. 49 tests and desktop/narrow manual checks are documented in docs/FLOATING_MOTION_RELEASE.md, along with browser-emulation and existing dependency limits.
+
 ## 2026-11-11 — Correct showcase to Josh's exact seven projects
 
 Replaced the three-project gallery and extra AI Lab concepts with the seven explicitly selected projects in order. Added individual project stories, honest evidence boundaries and editorial covers in the approved navy/cyan design. Retained original demos/tools/media, redirected old case bookmarks and added exact-selection regression coverage. 47 tests, TypeScript and lint pass; all seven case journeys checked at desktop/narrow CSS widths. See docs/SEVEN_SELECTED_PROJECTS.md.

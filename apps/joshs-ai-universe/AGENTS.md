@@ -50,3 +50,7 @@ Josh rejected the systems-laboratory presentation as unclear and overengineered,
 ## Current explicit project selection — seven projects only
 
 Josh corrected the showcase to exactly: Jeff Electric Daily Operations Hub; EV Guided Site Survey Suite; Jeff Electric Homework Hub; Facebook Lead Discovery Agent; Jeff Electric Service Academy; Pilates with Moni; Jeff Electric AI Agents & Skills. This supersedes the earlier three-project/AI Lab scope. The active registry is lib/selected-projects.ts. Preserve the approved original navy/cyan personal-portfolio design. Do not reintroduce BuildBrief, the planner or extra concepts into the showcase. Retain their underlying files/tools as unpromoted legacy assets. Never imply a private app is a public demo or an editorial cover is its UI.
+
+## Current motion direction — suspended in air
+
+Josh explicitly requested an advanced floating presentation. The scoped air.css/AirMotion layer adds a glass navigation island, orbital ambient motion, elevated project surfaces and restrained mouse perspective. Preserve the exact seven projects, readable static fallback, native links, pause control and OS reduced-motion behavior. Do not add a new renderer or unrelated content merely to add effects.

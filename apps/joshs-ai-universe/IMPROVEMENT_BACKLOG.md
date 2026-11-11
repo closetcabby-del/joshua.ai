@@ -1,3 +1,7 @@
+## Current motion treatment
+
+The requested floating presentation is implemented without adding dependencies or expanding the seven-project scope. Preserve pause/static fallbacks. Review the live motion with Josh before another design cycle. Remaining verification: physical-device usability, controlled browser/axe suite and OS reduced-motion emulation. Existing dependency upgrades remain a separately tested hosting task. See docs/FLOATING_MOTION_RELEASE.md.
+
 ## Current approved scope — exact seven selections
 
 Show only the seven projects in lib/selected-projects.ts. Completed the gallery/case correction while retaining the approved original design. Next: reviewed redacted UI artifacts or safe demonstrations for these projects; do not restore unrelated projects. See docs/SEVEN_SELECTED_PROJECTS.md.

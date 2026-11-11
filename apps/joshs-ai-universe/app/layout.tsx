@@ -14,6 +14,7 @@ import { Sidebar } from "@/components/sidebar";
 import "./globals.css";
 import "./studio.css";
 import "./portfolio.css";
+import "./air.css";
 export const metadata: Metadata = {
   title: {
     default: "Joshua Ly — Business, Product & AI Solutions",

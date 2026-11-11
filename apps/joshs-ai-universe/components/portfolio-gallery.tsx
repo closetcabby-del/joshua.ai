@@ -17,6 +17,7 @@ export function PortfolioGallery() {
           {selectedProjects.map((project, index) => (
             <article
               className={`pf-project-card ${index === 0 ? "pf-project-flagship" : ""}`}
+              data-air-reveal
               key={project.slug}
             >
               <a

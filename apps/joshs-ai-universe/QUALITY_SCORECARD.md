@@ -1,3 +1,7 @@
+## Floating presentation — 2026-11-11
+
+49 unit/API/static-render tests pass; bounded-tilt tests caught a deliberate clamp mutation. TypeScript and lint pass. Managed Chrome checks cover native hover/reset, pause/resume, offscreen ambient pause, all seven case/return links at 1363/340 CSS pixels, 681px homepage fit and short menu focus/scroll behavior. No new numeric score, automated accessibility result or physical-device/performance result is claimed. Full evidence/limits: docs/FLOATING_MOTION_RELEASE.md.
+
 ## Seven-project correction — 2026-11-11
 
 47 unit/API/static-render tests pass, with exact-selection regression coverage. TypeScript and lint pass. Manual managed-Chrome checks cover all seven cases/return links at 1363 and 340 CSS pixels with no horizontal overflow, menu Escape/focus return and Contact. No new numeric score, physical-device test, accessibility audit or business outcome is claimed. See docs/SEVEN_SELECTED_PROJECTS.md.

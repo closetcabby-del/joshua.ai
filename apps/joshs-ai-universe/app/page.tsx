@@ -8,6 +8,7 @@ import {
   Layers3,
   Wrench,
 } from "lucide-react";
+import { AirMotion } from "@/components/air-motion";
 import { PortfolioGallery } from "@/components/portfolio-gallery";
 import { candidate } from "@/lib/knowledge";
 const methodSteps = [
@@ -33,6 +34,7 @@ export default function Home() {
   return (
     <div className="pf-home">
       <section className="pf-hero" aria-label="Introduction">
+        <AirMotion />
         <div className="pf-hero-content pf-container">
           <div className="pf-avatar">
             <Image
@@ -90,7 +92,7 @@ export default function Home() {
       </section>
       <PortfolioGallery />
       <section className="pf-about section-anchor" id="about">
-        <div className="pf-container pf-about-grid">
+        <div className="pf-container pf-about-grid" data-air-reveal>
           <div>
             <p className="pf-eyebrow">About Josh</p>
             <h2>
@@ -137,7 +139,11 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="pf-contact section-anchor" id="contact">
+      <section
+        className="pf-contact section-anchor"
+        id="contact"
+        data-air-reveal
+      >
         <div className="pf-container">
           <p className="pf-eyebrow">Let’s connect</p>
           <h2>
