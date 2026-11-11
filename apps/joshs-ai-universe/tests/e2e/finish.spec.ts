@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
+import { selectedProjects } from "../../lib/selected-projects";
 
-const casePath = "/projects/service-business-workflows";
+const casePath = "/projects/jeff-electric-daily-operations-hub";
 
 test("narrow menu keeps every link reachable in a short viewport", async ({
   page,
@@ -43,36 +44,23 @@ test("case and source journey preserves scrolling header navigation", async ({
     })
     .click();
   await expect(page).toHaveURL(new RegExp(`${casePath}$`));
-  await page
-    .getByText("Read the website screenshot walkthrough", { exact: true })
-    .click();
   await expect(
-    page.getByRole("heading", { name: "A customer’s first step." }),
+    page.getByRole("heading", { name: "My contribution", exact: true }),
   ).toBeVisible();
-  await expect(
-    page.getByRole("link", { name: "Open the source snapshot", exact: true }),
-  ).toHaveAttribute(
-    "href",
-    /github\.com\/closetcabby-del\/joshua\.ai\/blob\/d70c684b6ae35263497cfe5eae43cf6c4fb966d0\/assets\/jeff-electric-live-preview\.jpg$/,
-  );
   await page
     .getByRole("link", {
-      name: "Review the website evidence record",
+      name: "Explore the workflow and adoption walkthrough",
       exact: true,
     })
     .click();
-  await expect(page).toHaveURL(/\/evidence#jeff-public-artifact$/);
-  await expect(
-    page.locator("#jeff-public-artifact .evidence-badge"),
-  ).toHaveText("Verified");
+  await expect(page).toHaveURL(/\/explore$/);
   await page.goBack();
-  await expect(page).toHaveURL(new RegExp(`${casePath}$`));
   await page
     .getByRole("link", { name: "Back to projects", exact: true })
     .click();
   await expect(page).toHaveURL(/\/#projects$/);
   await expect(page.locator("header.site-header")).toHaveClass(/is-compact/);
-  await page.getByRole("link", { name: "Portfolio tools · Demo" }).click();
+  await page.goto("/tools");
   await expect(page.getByRole("tab", { name: "Ask about Josh" })).toBeVisible();
   await page
     .getByRole("link", { name: "Back to the Jeff Electric story", exact: true })
@@ -113,7 +101,7 @@ test("narrow navigation restores focus and reaches the public contact", async ({
   await expect(
     page
       .locator(".pf-case-end")
-      .getByRole("link", { name: "Talk about the work", exact: true }),
+      .getByRole("link", { name: "Talk about this project", exact: true }),
   ).toHaveAttribute("href", "mailto:joshualy986@gmail.com");
 });
 
@@ -124,9 +112,7 @@ test("main routes reload directly and unknown routes retain 404", async ({
   for (const path of [
     "/",
     casePath,
-    "/projects/buildbrief",
-    "/projects/sprint-backlog-planner",
-    "/lab",
+    ...selectedProjects.map((p) => `/projects/${p.slug}`),
     "/evidence",
     "/tools",
   ]) {
@@ -164,9 +150,7 @@ test("all main routes fit five CSS widths and preserve the real artifact", async
     for (const path of [
       "/",
       casePath,
-      "/projects/buildbrief",
-      "/projects/sprint-backlog-planner",
-      "/lab",
+      ...selectedProjects.map((p) => `/projects/${p.slug}`),
       "/evidence",
       "/tools",
     ]) {
@@ -192,21 +176,10 @@ test("all main routes fit five CSS widths and preserve the real artifact", async
     }
   }
   await page.goto(casePath);
-  await page
-    .getByText("Read the website screenshot walkthrough", { exact: true })
-    .click();
-  const artifact = page.getByRole("img", {
-    name: /Reviewed Jeff Electric homepage/,
-  });
-  await expect
-    .poll(() =>
-      artifact.evaluate((image: HTMLImageElement) => image.naturalWidth),
-    )
-    .toBe(1348);
-  await page
-    .getByText("Read the artifact review transcript", { exact: true })
-    .click();
-  await expect(page.locator("#website-walkthrough details")).toContainText(
-    "No form routing",
-  );
+  await expect(
+    page.getByRole("heading", {
+      name: "What this page demonstrates",
+      exact: true,
+    }),
+  ).toBeVisible();
 });

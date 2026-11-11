@@ -46,3 +46,7 @@ The November 11 user mission supersedes the earlier Jeff-only project and visual
 ## Current direction — original portfolio visual reset
 
 Josh rejected the systems-laboratory presentation as unclear and overengineered, selected https://josh986.github.io/joshua-ly-portfolio/ as the visual baseline, and approved a complete visual reset. Lead with his portrait and name in a dark navy hero with blue/cyan accents; use clear white project sections, actual previews, concise contribution stories and direct contact. Keep architecture optional inside projects, preserve working demos/tools and existing assets, and avoid importing unverified old metrics or resume claims. This supersedes prior homepage architecture and editorial-studio styling requirements. Refresh the native Site access state: it is currently public; preserve that existing audience.
+
+## Current explicit project selection — seven projects only
+
+Josh corrected the showcase to exactly: Jeff Electric Daily Operations Hub; EV Guided Site Survey Suite; Jeff Electric Homework Hub; Facebook Lead Discovery Agent; Jeff Electric Service Academy; Pilates with Moni; Jeff Electric AI Agents & Skills. This supersedes the earlier three-project/AI Lab scope. The active registry is lib/selected-projects.ts. Preserve the approved original navy/cyan personal-portfolio design. Do not reintroduce BuildBrief, the planner or extra concepts into the showcase. Retain their underlying files/tools as unpromoted legacy assets. Never imply a private app is a public demo or an editorial cover is its UI.

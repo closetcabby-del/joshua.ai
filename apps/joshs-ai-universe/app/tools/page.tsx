@@ -1,4 +1,5 @@
 import { ArrowLeft } from "lucide-react";
+import { IntroVideo } from "@/components/intro-video";
 import { Workspace } from "@/components/workspace";
 import { approvedRecords } from "@/lib/knowledge";
 import { liveEnabled } from "@/lib/rate-limit";
@@ -18,6 +19,7 @@ export default function Tools() {
         the case study to see the work in context.
       </p>
       <Workspace live={liveEnabled() && approvedRecords.length > 0} />
+      <IntroVideo />
     </div>
   );
 }

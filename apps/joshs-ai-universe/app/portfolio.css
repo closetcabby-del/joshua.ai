@@ -1043,3 +1043,99 @@ body {
     transform: none;
   }
 }
+
+/* The approved seven-project selection, in the existing navy/cyan system. */
+.pf-project-cover {
+  min-height: 205px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 19px;
+  color: #e8f5ff;
+  background: linear-gradient(135deg, #0e2243, #17456d);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.pf-project-cover::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border: 1px solid #a7dcff20;
+  border-radius: 50%;
+  right: -75px;
+  top: -75px;
+  pointer-events: none;
+}
+.pf-project-cover > svg {
+  color: #67dcf5;
+}
+.pf-project-cover > span {
+  font-size: 23px;
+  font-weight: 650;
+  line-height: 1.25;
+  max-width: 260px;
+  letter-spacing: -0.025em;
+}
+.pf-project-cover > small {
+  font-size: 10px;
+  color: #b8cde2;
+}
+.pf-cover-pilates {
+  background: linear-gradient(135deg, #263655, #395867);
+}
+.pf-cover-academy,
+.pf-cover-homework {
+  background: linear-gradient(135deg, #152c53, #245a78);
+}
+.pf-project-image {
+  padding: 14px;
+}
+.pf-project-flagship {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.pf-project-flagship .pf-project-cover {
+  min-height: 260px;
+}
+.pf-project-flagship .pf-project-copy {
+  padding: 32px;
+}
+.pf-project-flagship h3 {
+  font-size: 29px;
+}
+.pf-case-header > .pf-project-cover {
+  min-height: 290px;
+}
+.pf-case-end > .pf-link {
+  max-width: 430px;
+}
+@media (max-width: 1000px) and (min-width: 761px) {
+  .pf-project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .pf-project-flagship {
+    display: flex;
+  }
+  .pf-project-flagship .pf-project-cover {
+    min-height: 205px;
+  }
+  .pf-project-flagship .pf-project-copy {
+    padding: 24px;
+  }
+  .pf-project-flagship h3 {
+    font-size: 23px;
+  }
+  .pf-project-cover {
+    min-height: 190px;
+  }
+  .pf-case-header > .pf-project-cover {
+    min-height: 210px;
+  }
+}

@@ -31,7 +31,9 @@ test("native homepage entry, chapter deep links and case return", async ({
   await page
     .getByRole("link", { name: "Inspect the Jeff Electric case and sources" })
     .click();
-  await expect(page).toHaveURL(/\/projects\/service-business-workflows$/);
+  await expect(page).toHaveURL(
+    /\/projects\/jeff-electric-daily-operations-hub$/,
+  );
   expect(errors).toEqual([]);
 });
 
@@ -283,7 +285,7 @@ test("video failure exposes the transcript and original introduction remains rea
   await expect(page.locator(".systems-film details")).toContainText(
     "No customer records",
   );
-  await page.goto("/");
+  await page.goto("/tools");
   await expect(
     page.getByRole("button", { name: "Watch the idea", exact: true }),
   ).toBeVisible();

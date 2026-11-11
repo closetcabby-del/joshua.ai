@@ -1,3 +1,5 @@
+// Retained legacy architecture and prototype regression fixtures.
+// Active showcase: lib/selected-projects.ts (Josh's exact seven selected projects).
 export type PortfolioNode = {
   id: string;
   label: string;

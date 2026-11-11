@@ -1,37 +1,33 @@
-import Image from "next/image";
-import type { PortfolioProject } from "@/lib/portfolio";
-export function ProjectPreview({ project }: { project: PortfolioProject }) {
-  const preview =
-    project.demo === "buildbrief"
-      ? {
-          src: "/buildbrief-preview.jpg",
-          alt: "Actual BuildBrief prototype showing the problem-discovery form with a clearly fictional example.",
-          caption: "Working prototype · fictional example",
-        }
-      : project.demo === "planner"
-        ? {
-            src: "/planner-preview.jpg",
-            alt: "Actual Sprint Planner prototype showing the empty board and planning controls.",
-            caption: "Original working sample · empty demonstration board",
-          }
-        : {
-            src: "/jeff-electric-website.jpg",
-            alt: "Jeff Electric public website snapshot, with its customer introduction and team photograph.",
-            caption: "Public website snapshot",
-          };
+import {
+  CalendarDays,
+  Camera,
+  ClipboardCheck,
+  GraduationCap,
+  ScanSearch,
+  Sparkles,
+  Workflow,
+} from "lucide-react";
+import type { SelectedProject } from "@/lib/selected-projects";
+const icons = {
+  operations: Workflow,
+  survey: Camera,
+  homework: ClipboardCheck,
+  leads: ScanSearch,
+  academy: GraduationCap,
+  pilates: CalendarDays,
+  agents: Sparkles,
+};
+/** Editorial project cover, deliberately not a simulated application screenshot. */
+export function ProjectPreview({ project }: { project: SelectedProject }) {
+  const Icon = icons[project.icon];
   return (
-    <figure
-      className={`pf-preview ${project.number === "01" ? "pf-preview-jeff" : ""}`}
+    <div
+      className={`pf-project-cover pf-cover-${project.icon}`}
+      aria-hidden="true"
     >
-      <Image
-        src={preview.src}
-        alt={preview.alt}
-        width={1348}
-        height={800}
-        unoptimized
-        sizes="(max-width:760px) 90vw, 450px"
-      />
-      <figcaption>{preview.caption}</figcaption>
-    </figure>
+      <Icon size={32} strokeWidth={1.5} />
+      <span>{project.cover}</span>
+      <small>{project.category}</small>
+    </div>
   );
 }

@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { selectedProjects } from "../../lib/selected-projects";
 import AxeBuilder from "@axe-core/playwright";
 test("recruiter can analyze a role and prepare an interview", async ({
   page,
@@ -60,20 +61,20 @@ test("assistant is honest about missing evidence and can be cleared", async ({
 test("Jeff Electric story shows the approach and clear contribution boundaries", async ({
   page,
 }) => {
-  await page.goto("/projects/service-business-workflows");
+  await page.goto("/projects/jeff-electric-daily-operations-hub");
   await expect(
     page.getByRole("heading", {
-      name: "Jeff Electric",
+      name: "Jeff Electric Daily Operations Hub",
     }),
   ).toBeVisible();
   await expect(
     page.getByRole("heading", {
-      name: "What I brought to it.",
+      name: "My contribution",
       exact: true,
     }),
   ).toBeVisible();
   await expect(
-    page.getByText(/I mapped workflows and requirements/),
+    page.getByText(/I mapped the operational workflow/),
   ).toBeVisible();
   await page.goto("/evidence");
   await expect(
@@ -105,7 +106,7 @@ test("keyboard navigation and mobile menu work", async ({ page }, testInfo) => {
 test("intro is a playable video with a static poster and no autoplay", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/tools");
   await page.getByRole("button", { name: /Watch the idea/ }).click();
   const video = page.locator("video");
   await expect(video).toBeVisible();
@@ -145,7 +146,7 @@ test("home, case, evidence and tools have no WCAG A/AA violations", async ({
 }) => {
   for (const path of [
     "/",
-    "/projects/service-business-workflows",
+    "/projects/jeff-electric-daily-operations-hub",
     "/evidence",
     "/tools",
   ]) {
@@ -219,32 +220,28 @@ test("empty input is blocked and server errors are understandable", async ({
   ).toBeEnabled();
 });
 
-test("three projects lead to their own cases and genuine work samples", async ({
+test("exactly seven selected projects lead to their own cases", async ({
   page,
 }) => {
   await page.goto("/");
-  for (const [name, path] of [
-    ["BuildBrief", "buildbrief"],
-    ["Sprint & Backlog Planner", "sprint-backlog-planner"],
-  ]) {
+  await expect(page.locator("#projects h3")).toHaveText(
+    selectedProjects.map((p) => p.name),
+  );
+  for (const project of selectedProjects) {
     await page
-      .getByRole("link", { name: `Explore ${name}`, exact: true })
+      .getByRole("link", { name: `Explore ${project.name}`, exact: true })
       .click();
-    await expect(page).toHaveURL(new RegExp(`/projects/${path}$`));
-    await page
-      .getByRole("button", { name: "Launch prototype", exact: true })
-      .first()
-      .click();
+    await expect(page).toHaveURL(new RegExp(`/projects/${project.slug}$`));
+    await expect(page.locator("main h1")).toHaveText(project.name);
     await expect(
-      page.getByRole("dialog", { name: `${name} prototype` }),
+      page.getByRole("heading", {
+        name: "What this page demonstrates",
+        exact: true,
+      }),
     ).toBeVisible();
-    await expect(page.locator("iframe")).toHaveAttribute(
-      "sandbox",
-      "allow-scripts allow-forms allow-downloads allow-modals",
-    );
-    await page.keyboard.press("Escape");
-    await expect(page.locator("iframe")).toHaveCount(0);
-    await page.goto("/");
+    await page
+      .getByRole("link", { name: "Back to projects", exact: true })
+      .click();
   }
 });
 
@@ -257,10 +254,12 @@ test("old project bookmarks lead to the Jeff Electric story", async ({
     "human-agent-handoff",
   ]) {
     await page.goto(`/projects/${old}`);
-    await expect(page).toHaveURL(/\/projects\/service-business-workflows$/);
+    await expect(page).toHaveURL(
+      /\/projects\/jeff-electric-daily-operations-hub$/,
+    );
     await expect(
       page.getByRole("heading", {
-        name: "Jeff Electric",
+        name: "Jeff Electric Daily Operations Hub",
       }),
     ).toBeVisible();
   }
@@ -283,7 +282,7 @@ test("homepage leads with the case study and keeps tools optional", async ({
       name: "Start with Jeff Electric",
       exact: true,
     }),
-  ).toHaveAttribute("href", "/projects/service-business-workflows");
+  ).toHaveAttribute("href", "/projects/jeff-electric-daily-operations-hub");
   await page
     .locator(".pf-hero")
     .getByRole("link", {
@@ -293,7 +292,7 @@ test("homepage leads with the case study and keeps tools optional", async ({
     .click();
   await expect(
     page.getByRole("heading", {
-      name: "Jeff Electric",
+      name: "Jeff Electric Daily Operations Hub",
     }),
   ).toBeVisible();
   await page.getByRole("link", { name: "Back to projects" }).click();
@@ -302,7 +301,7 @@ test("homepage leads with the case study and keeps tools optional", async ({
       name: "Ideas made practical.",
     }),
   ).toBeVisible();
-  await page.getByRole("link", { name: "Portfolio tools · Demo" }).click();
+  await page.goto("/tools");
   await expect(
     page.getByRole("tab", { name: "Analyze a job description" }),
   ).toBeVisible();

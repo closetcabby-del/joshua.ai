@@ -1,3 +1,7 @@
+## Current approved scope — exact seven selections
+
+Show only the seven projects in lib/selected-projects.ts. Completed the gallery/case correction while retaining the approved original design. Next: reviewed redacted UI artifacts or safe demonstrations for these projects; do not restore unrelated projects. See docs/SEVEN_SELECTED_PROJECTS.md.
+
 ## 2026-11-11 — Return to the original personal portfolio design
 
 Josh approved resetting the presentation around his original Josh986 portfolio. Restored a navy hero with the portrait/name, blue/cyan accents and genuine background; simplified the homepage to selected projects, About and contact. Replaced illustrated thumbnails with real interfaces and moved architecture/source detail behind optional project expanders. Existing demos, tools, APIs, media and URLs are retained. 45 tests, TypeScript and lint pass; manual narrow-layout and core browser checks are documented in docs/ORIGINAL_DESIGN_RESET.md. Native Site access is currently public and remains unchanged.

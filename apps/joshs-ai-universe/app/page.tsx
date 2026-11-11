@@ -9,7 +9,6 @@ import {
   Wrench,
 } from "lucide-react";
 import { PortfolioGallery } from "@/components/portfolio-gallery";
-import { IntroVideo } from "@/components/intro-video";
 import { candidate } from "@/lib/knowledge";
 const methodSteps = [
   {
@@ -74,7 +73,7 @@ export default function Home() {
             </a>
           </div>
           <a
-            href="/projects/service-business-workflows"
+            href="/projects/jeff-electric-daily-operations-hub"
             className="pf-hero-featured"
           >
             Start with Jeff Electric{" "}
@@ -114,7 +113,10 @@ export default function Home() {
               work—from customer intake and operational handoffs to internal
               tools and team adoption.
             </p>
-            <a className="pf-link" href="/projects/service-business-workflows">
+            <a
+              className="pf-link"
+              href="/projects/jeff-electric-daily-operations-hub"
+            >
               See how that looks at Jeff Electric{" "}
               <ArrowUpRight size={16} aria-hidden="true" />
             </a>
@@ -171,10 +173,8 @@ export default function Home() {
         <div className="pf-container">
           <a href="/">Josh’s AI Universe</a>
           <div>
-            <a href="/lab">More experiments</a>
+            <a href="/#projects">Selected projects</a>
             <a href="/evidence">Project sources</a>
-            <a href="/tools">Portfolio tools · Demo</a>
-            <IntroVideo />
           </div>
           <p>© 2026 Joshua Ly</p>
         </div>

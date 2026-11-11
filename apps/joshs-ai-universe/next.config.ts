@@ -3,14 +3,22 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   async redirects() {
     return [
-      "recruiter-workspace",
-      "workflow-discovery",
-      "human-agent-handoff",
-    ].map((slug) => ({
-      source: `/projects/${slug}`,
-      destination: "/projects/service-business-workflows",
-      permanent: true,
-    }));
+      ...[
+        "recruiter-workspace",
+        "workflow-discovery",
+        "human-agent-handoff",
+        "service-business-workflows",
+      ].map((slug) => ({
+        source: `/projects/${slug}`,
+        destination: "/projects/jeff-electric-daily-operations-hub",
+        permanent: true,
+      })),
+      ...["buildbrief", "sprint-backlog-planner"].map((slug) => ({
+        source: `/projects/${slug}`,
+        destination: "/#projects",
+        permanent: false,
+      })),
+    ];
   },
   async headers() {
     return [

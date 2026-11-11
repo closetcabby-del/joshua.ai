@@ -1,3 +1,7 @@
+## 2026-11-11 — Correct showcase to Josh's exact seven projects
+
+Replaced the three-project gallery and extra AI Lab concepts with the seven explicitly selected projects in order. Added individual project stories, honest evidence boundaries and editorial covers in the approved navy/cyan design. Retained original demos/tools/media, redirected old case bookmarks and added exact-selection regression coverage. 47 tests, TypeScript and lint pass; all seven case journeys checked at desktop/narrow CSS widths. See docs/SEVEN_SELECTED_PROJECTS.md.
+
 ## 2026-11-11 — Return to the original personal portfolio design
 
 Josh approved resetting the presentation around his original Josh986 portfolio. Restored a navy hero with the portrait/name, blue/cyan accents and genuine background; simplified the homepage to selected projects, About and contact. Replaced illustrated thumbnails with real interfaces and moved architecture/source detail behind optional project expanders. Existing demos, tools, APIs, media and URLs are retained. 45 tests, TypeScript and lint pass; manual narrow-layout and core browser checks are documented in docs/ORIGINAL_DESIGN_RESET.md. Native Site access is currently public and remains unchanged.
