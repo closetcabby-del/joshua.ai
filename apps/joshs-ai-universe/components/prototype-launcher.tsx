@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
+import { useHydrated } from "@/lib/use-hydrated";
 
 export function PrototypeLauncher({
   demo,
@@ -10,6 +11,7 @@ export function PrototypeLauncher({
   title: string;
   className?: string;
 }) {
+  const ready = useHydrated();
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
@@ -19,6 +21,7 @@ export function PrototypeLauncher({
         type="button"
         className={className}
         ref={trigger}
+        disabled={!ready}
         onClick={() => {
           setOpen(true);
           dialog.current?.showModal();

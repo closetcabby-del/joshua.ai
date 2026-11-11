@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import type { PortfolioProject } from "@/lib/portfolio";
+import { useHydrated } from "@/lib/use-hydrated";
 
 export function ArchitectureExplorer({
   project,
@@ -10,6 +11,7 @@ export function ArchitectureExplorer({
   project: PortfolioProject;
   compact?: boolean;
 }) {
+  const ready = useHydrated();
   const [view, setView] = useState<"business" | "technical">("business");
   const [selected, setSelected] = useState(0);
   const [zoom, setZoom] = useState(1);
@@ -111,6 +113,7 @@ export function ArchitectureExplorer({
         <div className="view-switch" role="group" aria-label="Exploration mode">
           <button
             type="button"
+            disabled={!ready}
             aria-pressed={view === "business"}
             onClick={() => setView("business")}
           >
@@ -118,6 +121,7 @@ export function ArchitectureExplorer({
           </button>
           <button
             type="button"
+            disabled={!ready}
             aria-pressed={view === "technical"}
             onClick={() => setView("technical")}
           >
@@ -132,7 +136,7 @@ export function ArchitectureExplorer({
           <button
             type="button"
             aria-label="Zoom out"
-            disabled={zoom <= 0.75}
+            disabled={!ready || zoom <= 0.75}
             onClick={() => setZoom((z) => Math.max(0.75, z - 0.25))}
           >
             −
@@ -140,6 +144,7 @@ export function ArchitectureExplorer({
           <button
             type="button"
             aria-label="Reset diagram view"
+            disabled={!ready}
             onClick={resetView}
           >
             {Math.round(zoom * 100)}%
@@ -147,7 +152,7 @@ export function ArchitectureExplorer({
           <button
             type="button"
             aria-label="Zoom in"
-            disabled={zoom >= 1.75}
+            disabled={!ready || zoom >= 1.75}
             onClick={() => setZoom((z) => Math.min(1.75, z + 0.25))}
           >
             +
@@ -228,6 +233,7 @@ export function ArchitectureExplorer({
                 buttons.current[index] = button;
               }}
               className="system-node"
+              disabled={!ready}
               aria-pressed={selected === index}
               aria-controls={`${marker}-inspector`}
               onClick={() => select(index)}
@@ -262,6 +268,7 @@ export function ArchitectureExplorer({
         <span>Arrows move between components · Enter selects</span>
         <button
           type="button"
+          disabled={!ready}
           aria-pressed={motion}
           onClick={() => setMotion((value) => !value)}
         >

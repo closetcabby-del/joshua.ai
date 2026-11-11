@@ -1,8 +1,10 @@
 "use client";
 import { useRef, useState } from "react";
 import { SystemsFilm } from "./systems-film";
+import { useHydrated } from "@/lib/use-hydrated";
 
 export function StudioMotion() {
+  const ready = useHydrated();
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
@@ -10,6 +12,7 @@ export function StudioMotion() {
     <>
       <button
         ref={trigger}
+        disabled={!ready}
         className="studio-text-link"
         type="button"
         onClick={() => {

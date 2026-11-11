@@ -19,6 +19,12 @@ describe("interactive portfolio evidence", () => {
         createElement(ArchitectureExplorer, { project }),
       );
       expect(markup).toContain("Business View");
+      // Premature clicks must not be discarded before hydration.
+      const renderedButtons = markup.match(/<button\b[^>]*>/g) ?? [];
+      expect(renderedButtons.length).toBeGreaterThan(6);
+      expect(
+        renderedButtons.every((button) => button.includes('disabled=""')),
+      ).toBe(true);
       expect(markup).toContain("Technical View");
       expect(markup).toContain("Read the architecture as text");
       for (const node of project.nodes) {

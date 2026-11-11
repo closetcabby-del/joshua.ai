@@ -36,3 +36,9 @@ Both HTML files were extracted unchanged from the embedded work samples in GitHu
 The architecture is explanatory; no operational CRM, scheduling, model, social-media or messaging connection runs here. Internal Jeff Electric functionality and the seven newly selected projects remain self-reported unless a reviewed artifact establishes a narrower capability. No personal authorship, revenue, time saving or adoption metric is independently established. A genuine redacted internal-workflow trace remains the highest-value evidence improvement.
 
 Automatic approval review rejected copying an unverified screenshot binary into public GitHub. The safer GitHub source snapshot excludes newly introduced binary images rather than exposing them. Existing private Sites assets remain preserved. Do not claim that public GitHub is a byte-identical media mirror of the private Site.
+
+## Production follow-up
+
+The initial source a6d2e42 was deployed successfully; native deployment appgdep_6af4e1c2ea1c819190e0272adff69237. Production Chrome verified homepage Technical View, the original 25-second film playing at 1280 pixels with captions, both embedded prototype launches, live demo analyzer completion and Clear. A fast navigation-to-click sequence exposed a hydration timing gap. Added a useSyncExternalStore readiness guard to the new architecture, prototype and motion controls: server-rendered buttons remain disabled until handlers can respond. The static architecture text and native navigation remain available. The original live site’s audience remains owner-private.
+
+GitHub source is committed in isolated branch improvement/interactive-product-studio and draft PR16, preserving main and Pages. New binary media was excluded as described above.
