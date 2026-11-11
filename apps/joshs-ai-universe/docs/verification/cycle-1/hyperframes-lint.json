@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "errorCount": 0,
+  "warningCount": 0,
+  "infoCount": 0,
+  "findings": [],
+  "filesScanned": 7,
+  "unmountedCompositions": [],
+  "_meta": {
+    "version": "0.9.30",
+    "updateAvailable": false
+  }
+}

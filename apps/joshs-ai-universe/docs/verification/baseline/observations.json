@@ -1,0 +1,43 @@
+{
+  "capturedAt": "2026-11-10T21:15:42.573Z",
+  "scope": "Local Chromium; timings are observations, not field benchmarks or a human usability study.",
+  "viewports": [
+    {
+      "width": 320,
+      "overflow": false,
+      "domContentLoadedMs": 39,
+      "ttfbMs": 14
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "domContentLoadedMs": 39,
+      "ttfbMs": 13
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "domContentLoadedMs": 27,
+      "ttfbMs": 8
+    },
+    {
+      "width": 1024,
+      "overflow": false,
+      "domContentLoadedMs": 31,
+      "ttfbMs": 8
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "domContentLoadedMs": 29,
+      "ttfbMs": 9
+    }
+  ],
+  "errors": [],
+  "axeViolations": [],
+  "analysis": {
+    "sourceLinks": 0,
+    "evidenceCards": 5,
+    "text": "LOCAL DEMONSTRATION\nA starting point for the conversation\nCopy results\n\nThis is a local demonstration. Josh’s professional materials have not been approved, so a supported assessment of his fit is not yet available.\n\nAI systems and agent design\nNot established\n\nNo approved candidate evidence currently establishes this requirement. Ask for a specific example and supporting work.\n\nSoftware engineering\nNot established\n\nNo approved candidate evidence currently establishes this requirement. Ask for a specific example and supporting work.\n\nDiscovery and business analysis\nNot established\n\nNo approved candidate evidence currently establishes this requirement. Ask for a specific example and supporting work.\n\nTesting and evaluation\nNot established\n\nNo approved candidate evidence currently establishes this requirement. Ask for a specific example and supporting work.\n\nProduction delivery\nNot established\n\nNo approved candidate evidence currently establishes this requirement. Ask for a specific example and supporting work.\n\nTake these into the interview\nWalk me through an AI workflow you designed. Where did you need a person to make the decision?\nWhich parts of a project did you implement yourself, which used coding assistance, and how did you verify the result?\nDescribe how you would turn a vague stakeholder request into testable requirements. What would you ask first?\nWhat would you test before allowing an AI system to take an action that affects a customer?\nWhat evidence can you share of operating a deployed system, including monitoring, failures, and your own responsibilities?\nChoose one project and explain the problem, your contribution, the tradeoffs, and what you would change."
+  }
+}

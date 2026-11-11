@@ -1,0 +1,82 @@
+.figure {
+  margin: 24px 0;
+}
+.image {
+  position: relative;
+}
+.image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.marker {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: clamp(22px, 3vw, 32px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #fff;
+  color: #163d78;
+  border: 2px solid #2355a2;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 0 0 3px #fff;
+}
+.one { left: 3%; top: 23%; }
+.two { left: 91%; top: 30%; }
+.three { left: 3%; top: 65%; }
+.figure figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.figure a, .links a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.notes {
+  padding-left: 24px;
+  list-style: decimal;
+}
+.notes li::marker { color: var(--accent); font-weight: 700; }
+.notes li {
+  margin-bottom: 22px;
+  padding-left: 7px;
+}
+.notes h3, .boundary h3 {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+.notes p, .boundary p, .transcript p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+.boundary {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #f0f5fc;
+}
+.transcript {
+  margin-top: 22px;
+  padding-block: 16px;
+  border-block: 1px solid var(--line);
+}
+.transcript summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+.transcript p { margin-top: 14px; }
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-top: 20px;
+}
