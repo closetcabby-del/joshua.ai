@@ -1,3 +1,7 @@
+## 2026-11-11 — Return to the original personal portfolio design
+
+Josh approved resetting the presentation around his original Josh986 portfolio. Restored a navy hero with the portrait/name, blue/cyan accents and genuine background; simplified the homepage to selected projects, About and contact. Replaced illustrated thumbnails with real interfaces and moved architecture/source detail behind optional project expanders. Existing demos, tools, APIs, media and URLs are retained. 45 tests, TypeScript and lint pass; manual narrow-layout and core browser checks are documented in docs/ORIGINAL_DESIGN_RESET.md. Native Site access is currently public and remains unchanged.
+
 ## 2026-11-11 — Three-project interactive portfolio
 
 Rebuilt the homepage as a practical systems portfolio with Jeff Electric, BuildBrief and Sprint & Backlog Planner; restored two exact original working prototypes, added reusable Business/Technical architecture exploration and included the seven selected AI-built projects with accurate scope labels. Preserved existing APIs, tools, media and /explore. Baseline 40 and final 45 tests pass; TypeScript and lint pass. Managed-browser checks and remaining limitations are recorded in docs/PRODUCT_STUDIO_RELEASE.md. Public GitHub media copying has an automatic-review limitation; existing private Sites assets are retained.

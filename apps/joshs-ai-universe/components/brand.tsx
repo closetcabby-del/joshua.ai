@@ -8,10 +8,7 @@ export function Mark({ small = false }: { small?: boolean }) {
 export function Brand() {
   return (
     <a href="/" className="brand" aria-label="Josh's AI universe home">
-      <Mark />
-      <span>
-        Joshua Ly<span className="brand-sub">AI universe</span>
-      </span>
+      Joshua<span className="brand-last">Ly</span>
     </a>
   );
 }

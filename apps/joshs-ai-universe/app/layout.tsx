@@ -13,13 +13,14 @@ const manrope = localFont({
 import { Sidebar } from "@/components/sidebar";
 import "./globals.css";
 import "./studio.css";
+import "./portfolio.css";
 export const metadata: Metadata = {
   title: {
-    default: "Joshua Ly — Interactive AI Systems Portfolio",
+    default: "Joshua Ly — Business, Product & AI Solutions",
     template: "%s | Josh’s AI universe",
   },
   description:
-    "Explore Joshua Ly’s business analysis, product thinking and AI systems through Jeff Electric, BuildBrief and the Sprint & Backlog Planner.",
+    "Joshua Ly’s work in business analysis, product ownership and practical AI solutions. Explore Jeff Electric and try his working project prototypes.",
   robots: { index: false, follow: false },
 };
 export default function RootLayout({

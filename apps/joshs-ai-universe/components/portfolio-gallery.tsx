@@ -1,76 +1,45 @@
+import { ArrowUpRight } from "lucide-react";
 import { portfolioProjects } from "@/lib/portfolio";
 import { ProjectPreview } from "./project-preview";
-import { PrototypeLauncher } from "./prototype-launcher";
-
+const descriptions = [
+  "Mapping the customer journey and building practical tools for a service business.",
+  "Turning an early idea into clear scope, requirements and a build-ready handoff.",
+  "Organizing requests, priorities and unfinished work into a usable sprint plan.",
+];
 export function PortfolioGallery() {
   return (
-    <section
-      id="projects"
-      className="studio-section studio-gallery section-anchor"
-    >
-      <div className="studio-section-head">
-        <div>
-          <span className="studio-kicker">SELECTED SYSTEMS / 01—03</span>
-          <h2>
-            Explore the work.
-            <br />
-            <span>Inspect the thinking.</span>
-          </h2>
+    <section id="projects" className="pf-work section-anchor">
+      <div className="pf-container">
+        <div className="pf-section-heading">
+          <p className="pf-eyebrow">Selected work</p>
+          <h2>Ideas made practical.</h2>
+          <p>Explore the problem, my contribution, and the work you can try.</p>
         </div>
-        <p>
-          One business transformation.
-          <br />
-          Two working tools.
-          <br />
-          Different problems, the same practical approach.
-        </p>
-      </div>
-      <div className="portfolio-grid">
-        {portfolioProjects.map((project) => (
-          <article
-            className={`portfolio-card project-${project.accent}`}
-            key={project.slug}
-          >
-            <a
-              className="project-preview-link"
-              href={`/projects/${project.slug}`}
-              aria-label={`Explore ${project.shortName}`}
-            >
-              <ProjectPreview project={project} />
-            </a>
-            <div className="portfolio-card-copy">
-              <div className="card-meta">
-                <span>
-                  {project.number} / {project.category}
+        <div className="pf-project-grid">
+          {portfolioProjects.map((project, index) => (
+            <article className="pf-project-card" key={project.slug}>
+              <a
+                className="pf-project-image"
+                href={`/projects/${project.slug}`}
+                aria-label={`Explore ${project.shortName}`}
+              >
+                <ProjectPreview project={project} />
+              </a>
+              <div className="pf-project-copy">
+                <span className="pf-project-type">
+                  {index === 0 ? "Business workflows" : "Working prototype"}
                 </span>
-                <span>
-                  {project.demo ? "Working prototype" : "Flagship case"}
-                </span>
-              </div>
-              <h3>
-                <a href={`/projects/${project.slug}`}>
-                  {project.shortName} <span aria-hidden="true">↗</span>
+                <h3>
+                  <a href={`/projects/${project.slug}`}>{project.shortName}</a>
+                </h3>
+                <p>{descriptions[index]}</p>
+                <a className="pf-link" href={`/projects/${project.slug}`}>
+                  View project <ArrowUpRight size={17} aria-hidden="true" />
                 </a>
-              </h3>
-              <p>{project.summary}</p>
-              <div className="project-card-actions">
-                <a
-                  href={`/projects/${project.slug}`}
-                  className="studio-text-link"
-                >
-                  Explore the case <span aria-hidden="true">→</span>
-                </a>
-                {project.demo && (
-                  <PrototypeLauncher
-                    demo={project.demo}
-                    title={project.shortName}
-                    className="studio-button studio-button-small"
-                  />
-                )}
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

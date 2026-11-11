@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { ArchitectureExplorer } from "@/components/architecture-explorer";
 import { PrototypeLauncher } from "@/components/prototype-launcher";
 import { ProjectPreview } from "@/components/project-preview";
@@ -11,8 +13,25 @@ import {
   flagshipProjects,
 } from "@/lib/portfolio";
 import { candidate } from "@/lib/knowledge";
+const caseCopy: Record<string, { headline: string; contribution: string }> = {
+  "service-business-workflows": {
+    headline: "Making the next step clearer for a service business.",
+    contribution:
+      "I mapped workflows and requirements, used AI to prototype internal tools, and worked through where the team needs to review information and decide what happens next.",
+  },
+  buildbrief: {
+    headline: "A clearer brief before the build.",
+    contribution:
+      "I turned my BA and Product Owner approach into a guided tool for defining a problem, choosing scope and preparing a clear implementation brief.",
+  },
+  "sprint-backlog-planner": {
+    headline: "A practical plan for the next sprint.",
+    contribution:
+      "I shaped the planning workflow and built a portable sample for capturing requests, setting priorities and keeping unfinished work visible.",
+  },
+};
 export function generateStaticParams() {
-  return portfolioProjects.map((p) => ({ slug: p.slug }));
+  return portfolioProjects.map((project) => ({ slug: project.slug }));
 }
 export async function generateMetadata({
   params,
@@ -30,218 +49,221 @@ export default async function Project({
   const { slug } = await params;
   const project = getPortfolioProject(slug);
   if (!project) notFound();
+  const copy = caseCopy[slug];
   return (
-    <div className="studio-case">
-      <a className="studio-back" href="/#projects">
-        ← Back to selected work
+    <div className="pf-case pf-container">
+      <a className="pf-back" href="/#projects">
+        <ArrowLeft size={16} aria-hidden="true" />
+        Back to projects
       </a>
-      <header className="studio-case-hero">
+      <header className="pf-case-header">
         <div>
-          <span className="studio-kicker">
-            {project.number} / {project.category}
-          </span>
-          <p className="case-project-name">{project.shortName}</p>
-          <h1>{project.title}</h1>
-          <p>{project.summary}</p>
-          <div className="case-primary-actions">
-            <a className="studio-button" href="#architecture">
-              Explore the architecture <span aria-hidden="true">↓</span>
-            </a>
-            {project.demo && (
+          <p className="pf-eyebrow">{project.category}</p>
+          <h1>{project.shortName}</h1>
+          <p className="pf-case-headline">{copy.headline}</p>
+          <div className="pf-actions">
+            {project.demo ? (
               <PrototypeLauncher
                 demo={project.demo}
                 title={project.shortName}
-                className="studio-button studio-button-outline"
+                className="pf-button"
               />
+            ) : (
+              <a className="pf-button" href="#demonstration">
+                See the work <ArrowUpRight size={17} aria-hidden="true" />
+              </a>
             )}
+            <a className="pf-link" href="#overview">
+              Read the story
+            </a>
           </div>
-          <span className="case-stage">{project.status}</span>
+          <p className="pf-case-status">{project.status}</p>
         </div>
         <ProjectPreview project={project} />
       </header>
-      <nav className="case-jump-nav" aria-label="Case study sections">
-        <a href="#problem">The problem</a>
-        <a href="#contribution">My contribution</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#demonstration">
-          {project.demo ? "Working prototype" : "Walkthrough"}
-        </a>
-        <a href="#evidence">Evidence & limits</a>
-      </nav>
-      <div className="case-context-grid">
-        <section id="problem" className="section-anchor">
-          <span className="studio-kicker">THE ORIGINAL PROBLEM</span>
+      <section id="overview" className="pf-case-overview section-anchor">
+        <article id="problem" className="section-anchor">
+          <p className="pf-eyebrow">The problem</p>
           <h2>What needed to change?</h2>
           <p>{project.problem}</p>
-        </section>
-        <section id="contribution" className="section-anchor">
-          <span className="studio-kicker">MY CONTRIBUTION</span>
-          <h2>Where I did the thinking.</h2>
-          <p>{project.contribution}</p>
-          <details className="source-disclosure">
-            <summary>Source and contribution scope</summary>
-            <p>
-              The project description is Josh’s account. The linked original
-              portfolio and included artifacts support inspection; they do not
-              independently establish every contribution or business outcome.
-            </p>
-            <a href={portfolioSource} target="_blank" rel="noopener noreferrer">
-              Review the immutable portfolio source ↗
-            </a>
-          </details>
-        </section>
-      </div>
-      <section className="case-decisions">
-        <span className="studio-kicker">APPROACH & DESIGN DECISIONS</span>
-        <div>
-          <article>
-            <h2>Start with the work.</h2>
-            <p>{project.approach}</p>
-          </article>
-          <article>
-            <h2>Choose the tradeoff.</h2>
-            <p>{project.tradeoff}</p>
-          </article>
-        </div>
+        </article>
+        <article id="contribution" className="section-anchor">
+          <p className="pf-eyebrow">My contribution</p>
+          <h2>What I brought to it.</h2>
+          <p>{copy.contribution}</p>
+        </article>
       </section>
-      {project.number === "01" && (
-        <section className="flagship-projects">
-          <span className="studio-kicker">
-            INSIDE THE FLAGSHIP / SELECTED AI-BUILT PROJECTS
-          </span>
-          <h2>Six ways into the business.</h2>
-          <p>
-            Josh selected these tools and agents as examples of his work with
-            AI. Open each one to see its purpose and evidence boundary. Private
-            operational systems remain separate from this portfolio.
-          </p>
-          <div className="flagship-project-list">
-            {flagshipProjects.map((item) => (
-              <details key={item.name}>
-                <summary>{item.name}</summary>
-                <p>{item.purpose}</p>
-                <p>
-                  <strong>Evidence boundary:</strong> {item.boundary}
-                </p>
-              </details>
-            ))}
-          </div>
-        </section>
-      )}
-      <section
-        id="architecture"
-        className="studio-section case-architecture section-anchor"
-      >
-        <div className="studio-section-head">
-          <div>
-            <span className="studio-kicker">TAKE THE SYSTEM APART</span>
-            <h2>
-              One system.
-              <br />
-              <span>Two ways to understand it.</span>
-            </h2>
-          </div>
-          <p>
-            Business View explains the work and decisions. Technical View shows
-            data, components and boundaries.
-          </p>
-        </div>
-        <ArchitectureExplorer project={project} />
+      <section className="pf-case-approach">
+        <p className="pf-eyebrow">The approach</p>
+        <h2>
+          {project.number === "01"
+            ? "Start with a handoff people recognize."
+            : "Keep the first version useful."}
+        </h2>
+        <p>{project.approach}</p>
+        <p>{project.tradeoff}</p>
       </section>
-      <section
-        id="demonstration"
-        className="studio-section case-demonstration section-anchor"
-      >
-        <span className="studio-kicker">
-          {project.demo ? "TRY THE ORIGINAL TOOL" : "INSPECT THE ARTIFACTS"}
-        </span>
+      <section id="demonstration" className="pf-case-demo section-anchor">
+        <p className="pf-eyebrow">
+          {project.demo ? "Try it yourself" : "A visible part of the work"}
+        </p>
         <h2>
           {project.demo
-            ? "Don’t just read the case. Try it."
-            : "The work you can inspect."}
+            ? "Open the working prototype."
+            : "The customer’s first step."}
         </h2>
         {project.demo ? (
           <>
             <p>
               {project.demo === "buildbrief"
-                ? "Take a fictional idea through the guided steps and inspect the handoff it produces."
-                : "Start with the empty sample. Add a fictional request, change its stage, and explore its planning views."}
+                ? "Take a fictional idea through the questions, choose the first version, and generate a handoff with acceptance checks."
+                : "Add a fictional request, set its stage and priority, and explore the board, table and sprint views."}
             </p>
-            <PrototypeLauncher demo={project.demo} title={project.shortName} />
-            <a
-              className="studio-text-link"
-              href={`/demos/${project.demo}.html`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open standalone in a new tab ↗
-            </a>
-            <p className="demo-boundary">
-              Original browser-only work sample extracted from the public
-              portfolio. No live customer records, external AI calls or shared
-              team backend.
+            <div className="pf-actions">
+              <PrototypeLauncher
+                demo={project.demo}
+                title={project.shortName}
+                className="pf-button"
+              />
+              <a
+                className="pf-link"
+                href={`/demos/${project.demo}.html`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open standalone <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+            </div>
+            <p className="pf-demo-note">
+              Browser-only work sample. Use fictional information and export
+              anything you want to keep. No live business integrations are
+              connected.
             </p>
           </>
         ) : (
           <>
-            <WebsiteWalkthrough />
-            <div className="case-motion">
-              <SystemsFilm />
-            </div>
-            <a className="studio-text-link" href="/explore">
-              Explore the detailed process and adoption guide →
+            <p>
+              The public website gives customers a place to describe their
+              concern and a clear route to contact the business.
+            </p>
+            <figure
+              id="public-website-preview"
+              className="pf-artifact section-anchor"
+            >
+              <Image
+                src="/jeff-electric-website.jpg"
+                alt="Jeff Electric’s public website snapshot showing its customer introduction, team photograph and contact actions."
+                width={1348}
+                height={926}
+                sizes="(max-width:760px) 94vw, 1050px"
+                unoptimized
+              />
+              <figcaption>
+                Public website snapshot from the original portfolio.{" "}
+                <a
+                  href="https://github.com/closetcabby-del/joshua.ai/blob/d70c684b6ae35263497cfe5eae43cf6c4fb966d0/assets/jeff-electric-live-preview.jpg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View source
+                </a>
+                .
+              </figcaption>
+            </figure>
+            <a className="pf-link" href="/explore">
+              Explore the workflow and adoption walkthrough{" "}
+              <ArrowUpRight size={16} aria-hidden="true" />
             </a>
           </>
         )}
       </section>
+      {project.number === "01" && (
+        <section className="pf-case-related">
+          <p className="pf-eyebrow">More of my work at Jeff Electric</p>
+          <h2>Tools built around the team’s work.</h2>
+          <p>
+            My selected AI-assisted projects cover daily operations, site
+            surveys, learning and reusable business guidance.
+          </p>
+          <div>
+            {flagshipProjects.map((item) => (
+              <article key={item.name}>
+                <h3>{item.name}</h3>
+                <p>{item.purpose}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
       <section
-        id="evidence"
-        className="studio-section case-evidence section-anchor"
+        className="pf-case-details"
+        aria-label="Optional project details"
       >
-        <div>
-          <span className="studio-kicker">CAPABILITIES & LIMITATIONS</span>
-          <h2>
-            Know what
-            <br />
-            <span>you’re looking at.</span>
-          </h2>
+        <p className="pf-eyebrow">Want to go deeper?</p>
+        <details id="architecture" className="section-anchor">
+          <summary>Explore the architecture</summary>
+          <p>
+            Switch between the business workflow and the technical components.
+            Select a node to read its purpose, design decision and scope.
+          </p>
+          <ArchitectureExplorer project={project} />
+        </details>
+        <details id="evidence" className="section-anchor">
+          <summary>Project notes, capabilities & sources</summary>
+          <p>
+            These descriptions are my account of the work. The included
+            artifacts establish what you can inspect or try; no measured
+            business results are claimed.
+          </p>
+          <h3>Available to inspect</h3>
+          <ul>
+            {project.capabilities.map((text) => (
+              <li key={text}>{text}</li>
+            ))}
+          </ul>
+          <h3>Current scope</h3>
+          <ul>
+            {project.limitations.map((text) => (
+              <li key={text}>{text}</li>
+            ))}
+          </ul>
           <a
-            className="studio-text-link"
+            className="pf-link"
             href={portfolioSource}
             target="_blank"
             rel="noopener noreferrer"
           >
-            Inspect the original source ↗
+            Read the original portfolio source{" "}
+            <ArrowUpRight size={16} aria-hidden="true" />
           </a>
-        </div>
-        <div>
-          <h3>Available to inspect</h3>
-          <ul>
-            {project.capabilities.map((x) => (
-              <li key={x}>{x}</li>
-            ))}
-          </ul>
-          <h3>The boundary</h3>
-          <ul>
-            {project.limitations.map((x) => (
-              <li key={x}>{x}</li>
-            ))}
-          </ul>
-        </div>
+        </details>
+        {project.number === "01" && (
+          <>
+            <details>
+              <summary>Watch the workflow concept · 25 seconds</summary>
+              <SystemsFilm />
+            </details>
+            <details>
+              <summary>Read the website screenshot walkthrough</summary>
+              <WebsiteWalkthrough />
+            </details>
+          </>
+        )}
       </section>
-      <section className="studio-section case-learning">
-        <span className="studio-kicker">LESSONS & NEXT IMPROVEMENTS</span>
+      <section className="pf-case-learning">
+        <p className="pf-eyebrow">What I learned</p>
         <h2>{project.lesson}</h2>
         <p>
-          <strong>The next useful test:</strong> {project.next}
+          <strong>What I would test next:</strong> {project.next}
         </p>
       </section>
-      <div className="case-end">
-        <a className="studio-back" href="/#projects">
-          ← Explore another project
+      <div className="pf-case-end">
+        <a className="pf-back" href="/#projects">
+          <ArrowLeft size={16} aria-hidden="true" />
+          Explore another project
         </a>
-        <a className="studio-button" href={`mailto:${candidate.email}`}>
-          Talk about the work ↗
+        <a className="pf-button" href={`mailto:${candidate.email}`}>
+          Talk about the work <ArrowUpRight size={17} aria-hidden="true" />
         </a>
       </div>
     </div>

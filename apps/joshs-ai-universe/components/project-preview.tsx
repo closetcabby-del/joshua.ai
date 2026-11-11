@@ -1,85 +1,37 @@
+import Image from "next/image";
 import type { PortfolioProject } from "@/lib/portfolio";
-
 export function ProjectPreview({ project }: { project: PortfolioProject }) {
+  const preview =
+    project.demo === "buildbrief"
+      ? {
+          src: "/buildbrief-preview.jpg",
+          alt: "Actual BuildBrief prototype showing the problem-discovery form with a clearly fictional example.",
+          caption: "Working prototype · fictional example",
+        }
+      : project.demo === "planner"
+        ? {
+            src: "/planner-preview.jpg",
+            alt: "Actual Sprint Planner prototype showing the empty board and planning controls.",
+            caption: "Original working sample · empty demonstration board",
+          }
+        : {
+            src: "/jeff-electric-website.jpg",
+            alt: "Jeff Electric public website snapshot, with its customer introduction and team photograph.",
+            caption: "Public website snapshot",
+          };
   return (
-    <div
-      className={`project-preview preview-${project.accent}`}
-      aria-hidden="true"
+    <figure
+      className={`pf-preview ${project.number === "01" ? "pf-preview-jeff" : ""}`}
     >
-      {project.number === "01" ? (
-        <>
-          <div className="preview-context">
-            <span className="preview-dot" />
-            CUSTOMER CONTEXT<strong>One story. A clear next step.</strong>
-            <div className="preview-flow">
-              <span>Intake</span>
-              <i>→</i>
-              <span>Review</span>
-              <i>→</i>
-              <span>Action</span>
-            </div>
-          </div>
-          <div className="preview-floating">
-            <span>HUMAN DECISION</span>
-            <strong>Review before action.</strong>
-            <div className="preview-meter">
-              <i />
-            </div>
-          </div>
-        </>
-      ) : project.demo === "buildbrief" ? (
-        <div className="preview-paper">
-          <div>
-            <span>BUILD / BRIEF</span>
-            <span>01 — DISCOVERY</span>
-          </div>
-          <h4>
-            Think first.
-            <br />
-            Build better.
-          </h4>
-          <p>The problem → Scope → Acceptance criteria</p>
-          <div className="preview-lines">
-            <i />
-            <i />
-            <i />
-          </div>
-          <span className="preview-cta">Prepare the handoff ↗</span>
-        </div>
-      ) : (
-        <div className="preview-planner">
-          <div>
-            <strong>Iteration / 01</strong>
-            <span>Illustrative view</span>
-          </div>
-          <div className="preview-columns">
-            {["To discuss", "This sprint", "Reviewed"].map((name, i) => (
-              <div key={name}>
-                <span>{name}</span>
-                <article>
-                  <i className={`mini-priority p${i}`} />
-                  <strong>
-                    {
-                      [
-                        "Clarify the request",
-                        "Make the work visible",
-                        "Capture the decision",
-                      ][i]
-                    }
-                  </strong>
-                  <small>Fictional example</small>
-                </article>
-                {i === 0 && <article className="ghost-ticket" />}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-      <span className="preview-caption">
-        {project.number === "01"
-          ? "Workflow illustration · inspect the actual artifact in the case"
-          : "Interface illustration · launch the original prototype below"}
-      </span>
-    </div>
+      <Image
+        src={preview.src}
+        alt={preview.alt}
+        width={1348}
+        height={800}
+        unoptimized
+        sizes="(max-width:760px) 90vw, 450px"
+      />
+      <figcaption>{preview.caption}</figcaption>
+    </figure>
   );
 }

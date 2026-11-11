@@ -9,7 +9,13 @@ test("native homepage entry, chapter deep links and case return", async ({
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
   await page
-    .getByRole("link", { name: "Explore how I build", exact: true })
+    .getByRole("link", { name: "Start with Jeff Electric", exact: true })
+    .click();
+  await page
+    .getByRole("link", {
+      name: "Explore the workflow and adoption walkthrough",
+      exact: true,
+    })
     .click();
   await expect(page).toHaveURL(/\/explore$/);
   const navigation = page.getByRole("navigation", { name: "Explore chapters" });

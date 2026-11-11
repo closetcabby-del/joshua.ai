@@ -6,7 +6,7 @@ test("recruiter can analyze a role and prepare an interview", async ({
   await page.goto("/");
   await expect(
     page.getByRole("heading", {
-      name: /Turning messy work\s*into useful systems\./,
+      name: "Joshua Ly",
     }),
   ).toBeVisible();
   await page.goto("/tools");
@@ -63,16 +63,18 @@ test("Jeff Electric story shows the approach and clear contribution boundaries",
   await page.goto("/projects/service-business-workflows");
   await expect(
     page.getByRole("heading", {
-      name: "The work between the handoffs.",
+      name: "Jeff Electric",
     }),
   ).toBeVisible();
   await expect(
     page.getByRole("heading", {
-      name: "Where I did the thinking.",
+      name: "What I brought to it.",
       exact: true,
     }),
   ).toBeVisible();
-  await expect(page.getByText(/This is my account of the work/)).toBeVisible();
+  await expect(
+    page.getByText(/I mapped workflows and requirements/),
+  ).toBeVisible();
   await page.goto("/evidence");
   await expect(
     page.getByRole("heading", { name: "One business. Clear sources." }),
@@ -82,9 +84,7 @@ test("keyboard navigation and mobile menu work", async ({ page }, testInfo) => {
   await page.goto("/");
   if (testInfo.project.name === "mobile") {
     await page.getByRole("button", { name: "Open navigation" }).click();
-    await page
-      .getByRole("link", { name: "Selected work", exact: true })
-      .click();
+    await page.getByRole("link", { name: "Projects", exact: true }).click();
     await expect(
       page.getByRole("button", { name: "Open navigation" }),
     ).toBeVisible();
@@ -169,8 +169,8 @@ test("reduced motion remains usable without background video", async ({
   await expect(page.locator("video")).toHaveCount(0);
   await expect(
     page
-      .locator(".studio-hero")
-      .getByRole("link", { name: "Explore Jeff Electric", exact: true }),
+      .locator(".pf-hero")
+      .getByRole("link", { name: "Start with Jeff Electric", exact: true }),
   ).toBeVisible();
   await page.goto("/tools");
   await expect(
@@ -260,7 +260,7 @@ test("old project bookmarks lead to the Jeff Electric story", async ({
     await expect(page).toHaveURL(/\/projects\/service-business-workflows$/);
     await expect(
       page.getByRole("heading", {
-        name: "The work between the handoffs.",
+        name: "Jeff Electric",
       }),
     ).toBeVisible();
   }
@@ -275,31 +275,31 @@ test("homepage leads with the case study and keeps tools optional", async ({
   ).toHaveCount(0);
   await expect(
     page.getByRole("heading", {
-      name: "Explore the work. Inspect the thinking.",
+      name: "Ideas made practical.",
     }),
   ).toBeVisible();
   await expect(
-    page.locator(".studio-hero").getByRole("link", {
-      name: "Explore Jeff Electric",
+    page.locator(".pf-hero").getByRole("link", {
+      name: "Start with Jeff Electric",
       exact: true,
     }),
   ).toHaveAttribute("href", "/projects/service-business-workflows");
   await page
-    .locator(".studio-hero")
+    .locator(".pf-hero")
     .getByRole("link", {
-      name: "Explore Jeff Electric",
+      name: "Start with Jeff Electric",
       exact: true,
     })
     .click();
   await expect(
     page.getByRole("heading", {
-      name: "The work between the handoffs.",
+      name: "Jeff Electric",
     }),
   ).toBeVisible();
-  await page.getByRole("link", { name: "← Back to selected work" }).click();
+  await page.getByRole("link", { name: "Back to projects" }).click();
   await expect(
     page.getByRole("heading", {
-      name: "Explore the work. Inspect the thinking.",
+      name: "Ideas made practical.",
     }),
   ).toBeVisible();
   await page.getByRole("link", { name: "Portfolio tools · Demo" }).click();

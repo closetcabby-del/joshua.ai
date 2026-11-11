@@ -2,14 +2,15 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Brand } from "./brand";
+import { useHydrated } from "@/lib/use-hydrated";
 const links = [
-  ["/#projects", "Selected work"],
-  ["/#approach", "Approach"],
-  ["/lab", "AI Lab"],
-  ["/#about", "About Josh"],
-  ["/#contact", "Contact Josh"],
+  ["/#projects", "Projects"],
+  ["/#about", "About"],
+  ["https://www.linkedin.com/in/joshua-ly/", "LinkedIn"],
+  ["/#contact", "Contact"],
 ];
 export function Sidebar() {
+  const ready = useHydrated();
   const [open, setOpen] = useState(false);
   const [compact, setCompact] = useState(false);
   useEffect(() => {
@@ -32,6 +33,7 @@ export function Sidebar() {
         <Brand />
         <button
           id="navigation-toggle"
+          disabled={!ready}
           className="nav-toggle"
           aria-label={open ? "Close navigation" : "Open navigation"}
           aria-expanded={open}
@@ -50,6 +52,10 @@ export function Sidebar() {
             <a
               key={href}
               href={href}
+              target={href.startsWith("https:") ? "_blank" : undefined}
+              rel={
+                href.startsWith("https:") ? "noopener noreferrer" : undefined
+              }
               className={href === "/#contact" ? "nav-contact" : undefined}
             >
               {label}

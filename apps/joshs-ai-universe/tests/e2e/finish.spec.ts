@@ -17,7 +17,7 @@ test("narrow menu keeps every link reachable in a short viewport", async ({
     ),
   ).toBeLessThanOrEqual(234);
   const contact = navigation.getByRole("link", {
-    name: "Contact Josh",
+    name: "Contact",
     exact: true,
   });
   await contact.focus();
@@ -36,13 +36,16 @@ test("case and source journey preserves scrolling header navigation", async ({
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
   await page
-    .locator(".studio-hero")
+    .locator(".pf-hero")
     .getByRole("link", {
-      name: "Explore Jeff Electric",
+      name: "Start with Jeff Electric",
       exact: true,
     })
     .click();
   await expect(page).toHaveURL(new RegExp(`${casePath}$`));
+  await page
+    .getByText("Read the website screenshot walkthrough", { exact: true })
+    .click();
   await expect(
     page.getByRole("heading", { name: "A customer’s first step." }),
   ).toBeVisible();
@@ -65,7 +68,7 @@ test("case and source journey preserves scrolling header navigation", async ({
   await page.goBack();
   await expect(page).toHaveURL(new RegExp(`${casePath}$`));
   await page
-    .getByRole("link", { name: "← Back to selected work", exact: true })
+    .getByRole("link", { name: "Back to projects", exact: true })
     .click();
   await expect(page).toHaveURL(/\/#projects$/);
   await expect(page.locator("header.site-header")).toHaveClass(/is-compact/);
@@ -74,9 +77,7 @@ test("case and source journey preserves scrolling header navigation", async ({
   await page
     .getByRole("link", { name: "Back to the Jeff Electric story", exact: true })
     .click();
-  await expect(
-    page.getByRole("heading", { name: /Turning messy work/ }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Joshua Ly" })).toBeVisible();
   expect(errors).toEqual([]);
 });
 
@@ -89,7 +90,7 @@ test("narrow navigation restores focus and reaches the public contact", async ({
   await toggle.click();
   await page
     .locator("#main-navigation")
-    .getByRole("link", { name: "Contact Josh", exact: true })
+    .getByRole("link", { name: "Contact", exact: true })
     .focus();
   await page.keyboard.press("Escape");
   await expect(toggle).toBeFocused();
@@ -97,13 +98,13 @@ test("narrow navigation restores focus and reaches the public contact", async ({
   await toggle.click();
   await page
     .locator("#main-navigation")
-    .getByRole("link", { name: "Contact Josh", exact: true })
+    .getByRole("link", { name: "Contact", exact: true })
     .click();
   await expect(page).toHaveURL(/\/#contact$/);
   await expect(toggle).toHaveAttribute("aria-expanded", "false");
   const homeContact = page
     .locator("#contact")
-    .getByRole("link", { name: "Talk with Josh", exact: true });
+    .getByRole("link", { name: "Email Josh", exact: true });
   await expect(homeContact).toHaveAttribute(
     "href",
     "mailto:joshualy986@gmail.com",
@@ -111,8 +112,8 @@ test("narrow navigation restores focus and reaches the public contact", async ({
   await page.goto(casePath);
   await expect(
     page
-      .locator(".case-end")
-      .getByRole("link", { name: "Talk about the work ↗", exact: true }),
+      .locator(".pf-case-end")
+      .getByRole("link", { name: "Talk about the work", exact: true }),
   ).toHaveAttribute("href", "mailto:joshualy986@gmail.com");
 });
 
@@ -191,6 +192,9 @@ test("all main routes fit five CSS widths and preserve the real artifact", async
     }
   }
   await page.goto(casePath);
+  await page
+    .getByText("Read the website screenshot walkthrough", { exact: true })
+    .click();
   const artifact = page.getByRole("img", {
     name: /Reviewed Jeff Electric homepage/,
   });
