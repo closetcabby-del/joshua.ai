@@ -1,0 +1,126 @@
+{
+  "base_commit": "319753ad2325511bf4f6f8be423298bf0553f590",
+  "installed": [
+    {
+      "repository": "addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/code-review-and-quality",
+      "installed_path": ".agents/skills/code-review-and-quality",
+      "modification": "None"
+    },
+    {
+      "repository": "addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/security-and-hardening",
+      "installed_path": ".agents/skills/security-and-hardening",
+      "modification": "None"
+    },
+    {
+      "repository": "microsoft/playwright-cli",
+      "commit": "8297c9b12432ea12c1707cd64995fc96768bdb70",
+      "upstream_path": "skills/playwright-cli",
+      "installed_path": ".agents/skills/playwright-cli",
+      "modification": "None"
+    },
+    {
+      "repository": "blader/humanizer",
+      "commit": "b48c832f0f809c1b5658edbb838c2521b72f2413",
+      "upstream_path": "SKILL.md",
+      "installed_path": ".agents/skills/humanizer-blader/SKILL.md",
+      "modification": "Humanizer name aliased to humanizer-blader to preserve existing hannsxpeter skill"
+    }
+  ],
+  "reviewed": [
+    {
+      "repository": "heygen-com/hyperframes",
+      "commit": "7ff8ece461e87282e17f3da14f0b83d0cbe9d38f",
+      "readme": "https://github.com/heygen-com/hyperframes/blob/7ff8ece461e87282e17f3da14f0b83d0cbe9d38f/README.md",
+      "license": "Apache-2.0"
+    },
+    {
+      "repository": "googleworkspace/cli",
+      "commit": "cd3697e07eb520056dcf142d0c7439bbb9ba32e9",
+      "readme": "https://github.com/googleworkspace/cli/blob/cd3697e07eb520056dcf142d0c7439bbb9ba32e9/README.md",
+      "license": "Apache-2.0"
+    },
+    {
+      "repository": "apify/apify-mcp-server",
+      "commit": "1bcf5abe5459f45351cda50d88368d108d1187d9",
+      "readme": "https://github.com/apify/apify-mcp-server/blob/1bcf5abe5459f45351cda50d88368d108d1187d9/README.md",
+      "license": "MIT"
+    },
+    {
+      "repository": "nateherkai/scroll-craft",
+      "commit": "75d81f74e83692add18cd7a8a8e078b8a887a579",
+      "readme": "https://github.com/nateherkai/scroll-craft/blob/75d81f74e83692add18cd7a8a8e078b8a887a579/README.md",
+      "license": "MIT"
+    },
+    {
+      "repository": "blader/humanizer",
+      "commit": "b48c832f0f809c1b5658edbb838c2521b72f2413",
+      "readme": "https://github.com/blader/humanizer/blob/b48c832f0f809c1b5658edbb838c2521b72f2413/README.md",
+      "license": "MIT"
+    },
+    {
+      "repository": "addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "readme": "https://github.com/addyosmani/agent-skills/blob/301b02b12bff98e4688e6984af6556802322bbde/README.md",
+      "license": "MIT"
+    },
+    {
+      "repository": "expo/skills",
+      "commit": "a9e5bd3fa00b4e61f632e43f85da73aee1942582",
+      "readme": "https://github.com/expo/skills/blob/a9e5bd3fa00b4e61f632e43f85da73aee1942582/README.md",
+      "license": "MIT"
+    },
+    {
+      "repository": "supabase/agent-skills",
+      "commit": "c9be0e931b7930f7d02126d04774d904c381e7d7",
+      "readme": "https://github.com/supabase/agent-skills/blob/c9be0e931b7930f7d02126d04774d904c381e7d7/README.md",
+      "license": "MIT"
+    },
+    {
+      "repository": "stripe/ai",
+      "commit": "d8e14797c726086c4376f576f6fb7cbb908e5f15",
+      "readme": "https://github.com/stripe/ai/blob/d8e14797c726086c4376f576f6fb7cbb908e5f15/README.md",
+      "license": "MIT"
+    },
+    {
+      "repository": "microsoft/playwright-cli",
+      "commit": "8297c9b12432ea12c1707cd64995fc96768bdb70",
+      "readme": "https://github.com/microsoft/playwright-cli/blob/8297c9b12432ea12c1707cd64995fc96768bdb70/README.md",
+      "license": "Apache-2.0"
+    },
+    {
+      "repository": "anthropics/claude-code-security-review",
+      "commit": "0c6a49f1fa56a1d472575da86a94dbc1edb78eda",
+      "readme": "https://github.com/anthropics/claude-code-security-review/blob/0c6a49f1fa56a1d472575da86a94dbc1edb78eda/README.md",
+      "license": "MIT"
+    },
+    {
+      "repository": "every-app/open-seo",
+      "commit": "46b815be34723e46ceeefe9b2b907bb62b62fd76",
+      "readme": "https://github.com/every-app/open-seo/blob/46b815be34723e46ceeefe9b2b907bb62b62fd76/README.md",
+      "license": "MIT"
+    }
+  ],
+  "notes": [
+    "Only selected skill folders were installed; no external service was activated.",
+    "HyperFrames is retained at the previously installed v0.9.30; current upstream README was reviewed but no version upgrade was performed."
+  ],
+  "interactive_cycle": {
+    "source_base": "4d09782373820e9f429bbec1a5a166142294f75a",
+    "scrollcraft": {
+      "repository": "nateherkai/scroll-craft",
+      "commit": "75d81f74e83692add18cd7a8a8e078b8a887a579",
+      "engine_source": "plugins/nateherk-design/skills/scroll-craft/engine/scrollcraft.js",
+      "vendored_path": "public/vendor/scrollcraft/scrollcraft.js",
+      "license": "MIT",
+      "modified": false
+    },
+    "humanizer": ".agents/skills/humanizer-blader/SKILL.md",
+    "hyperframes_version": "0.9.30",
+    "hyperframes_entry": "motion/systems.html",
+    "original_intro_preserved": true
+  }
+}

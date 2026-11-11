@@ -1,0 +1,1900 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sprint Planner — Portfolio Sample</title>
+<style>
+  :root {
+    --bg:       #0f1117;
+    --surface:  #1a1d27;
+    --card:     #22263a;
+    --border:   #2e3347;
+    --accent:   #4f8ef7;
+    --green:    #2dce89;
+    --yellow:   #f5a623;
+    --red:      #f5365c;
+    --gray:     #8898aa;
+    --text:     #e8eaf2;
+    --subtext:  #a0a8c0;
+    --sprint-hdr:  #1b3a6b;
+    --backlog-hdr: #1a3320;
+    --handoff-hdr: #3a2a10;
+    --done-hdr:    #1a2230;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 28px;
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  }
+  .logo { font-size: 1.15rem; font-weight: 700; }
+  .logo span { color: var(--accent); }
+  .header-meta { font-size: .78rem; color: var(--subtext); }
+  .header-actions { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn { padding: 7px 16px; border-radius: 6px; border: none; cursor: pointer; font-size: .82rem; font-weight: 600; transition: opacity .15s; }
+  .btn:hover { opacity: .85; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-outline  { background: transparent; border: 1px solid var(--border); color: var(--text); }
+  .btn-success  { background: var(--green); color: #fff; }
+  .btn-danger   { background: var(--red); color: #fff; }
+  .btn-warn     { background: var(--yellow); color: #000; }
+
+  .toolbar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 10px 28px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  .view-tabs { display: flex; gap: 6px; }
+  .vtab {
+    padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border);
+    background: transparent; color: var(--subtext); cursor: pointer; font-size: .82rem; font-weight: 600;
+  }
+  .vtab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .save-btn {
+    padding: 6px 14px; border-radius: 6px; border: 1px solid #2ecc71;
+    background: transparent; color: #2ecc71; cursor: pointer; font-size: .82rem; font-weight: 700;
+    margin-left: auto; white-space: nowrap;
+  }
+  .save-btn:hover { background: #2ecc71; color: #0d1117; }
+  .sync-wrap { display:flex; align-items:center; gap:8px; margin-left:auto; white-space:nowrap; }
+  .sync-state {
+    display:inline-flex; align-items:center; gap:7px; padding:6px 10px; border-radius:14px;
+    border:1px solid var(--border); background:var(--card); color:var(--subtext);
+    font-size:.76rem; font-weight:700;
+  }
+  .sync-state::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--gray); }
+  .sync-state.loading::before, .sync-state.syncing::before, .sync-state.saving::before { background:var(--yellow); }
+  .sync-state.saved::before { background:var(--green); }
+  .sync-state.error::before { background:var(--red); }
+  .btn[disabled] { opacity:.45; cursor:not-allowed; }
+  .search-box {
+    flex: 1; min-width: 180px; max-width: 300px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+    padding: 6px 12px; color: var(--text); font-size: .85rem;
+  }
+  .search-box:focus { outline: none; border-color: var(--accent); }
+  .filter-select {
+    background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+    padding: 6px 10px; color: var(--text); font-size: .82rem; cursor: pointer;
+  }
+
+  .stats-bar {
+    display: flex; gap: 14px; padding: 12px 28px;
+    background: var(--bg); border-bottom: 1px solid var(--border); flex-wrap: wrap;
+  }
+  .stat-chip {
+    display: flex; align-items: center; gap: 7px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 5px 14px; font-size: .8rem; font-weight: 600;
+  }
+  .stat-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* KANBAN */
+  .kanban-wrap { display: flex; gap: 16px; padding: 20px 28px; overflow-x: auto; min-height: calc(100vh - 215px); }
+  .col {
+    flex: 1; min-width: 260px; max-width: 360px;
+    background: var(--surface); border-radius: 10px; border: 1px solid var(--border);
+    display: flex; flex-direction: column;
+  }
+  .col-header {
+    padding: 14px 16px 12px; border-radius: 10px 10px 0 0;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .col-header.sprint  { background: var(--sprint-hdr);  border-bottom: 2px solid var(--accent); }
+  .col-header.backlog { background: var(--backlog-hdr); border-bottom: 2px solid var(--green); }
+  .col-header.handoff { background: var(--handoff-hdr); border-bottom: 2px solid var(--yellow); }
+  .col-header.done    { background: var(--done-hdr);    border-bottom: 2px solid var(--gray); }
+  .col-title { font-size: .92rem; font-weight: 700; }
+  .col-count { margin-left: auto; background: rgba(255,255,255,.12); border-radius: 10px; padding: 2px 9px; font-size: .78rem; font-weight: 700; }
+  .col-body { padding: 12px; display: flex; flex-direction: column; gap: 10px; flex: 1; overflow-y: auto; max-height: calc(100vh - 285px); }
+  .col-body.drag-over { background: rgba(79,142,247,.08); }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 13px 14px; cursor: pointer;
+    transition: border-color .15s, transform .1s;
+    user-select: none; -webkit-user-drag: element;
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .card.dragging { opacity: .4; transform: rotate(1.5deg); }
+  .card-title { font-size: .88rem; font-weight: 600; line-height: 1.35; margin-bottom: 8px; }
+  .card-meta { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .badge {
+    font-size: .7rem; font-weight: 700; border-radius: 4px;
+    padding: 2px 7px; text-transform: uppercase; letter-spacing: .5px;
+  }
+  .badge-must   { background: rgba(245,54,92,.2);  color: #f5365c; }
+  .badge-nice   { background: rgba(79,142,247,.2); color: var(--accent); }
+  .badge-na     { background: rgba(136,152,170,.15); color: var(--gray); }
+  .card-requestor { font-size: .73rem; color: var(--subtext); margin-top: 6px; }
+  .priority-pip { font-size: .7rem; font-weight: 700; color: var(--yellow); }
+  .empty-col { padding: 24px; text-align: center; color: var(--subtext); font-size: .85rem; }
+
+  /* TABLE */
+  .table-wrap { padding: 20px 28px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+  thead th {
+    background: var(--surface); padding: 10px 14px;
+    text-align: left; font-size: .77rem; font-weight: 700; color: var(--subtext);
+    text-transform: uppercase; letter-spacing: .6px; border-bottom: 1px solid var(--border);
+    cursor: pointer; white-space: nowrap;
+  }
+  thead th:hover { color: var(--accent); }
+  tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
+  tbody tr:hover { background: var(--surface); cursor: pointer; }
+  tbody td { padding: 10px 14px; vertical-align: middle; }
+  .stage-pill { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: .75rem; font-weight: 700; }
+  .stage-sprint  { background: rgba(79,142,247,.2); color: var(--accent); }
+  .stage-backlog { background: rgba(45,206,137,.2); color: var(--green); }
+  .stage-handoff { background: rgba(245,166,35,.2); color: var(--yellow); }
+  .stage-done    { background: rgba(136,152,170,.15); color: var(--gray); }
+
+  /* PRESENTER */
+  .presenter-wrap { padding: 24px 28px; }
+  .presenter-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .presenter-title { font-size: 1.3rem; font-weight: 700; }
+  .presenter-stage-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+  .pstab {
+    padding: 7px 18px; border-radius: 6px; border: 1px solid var(--border);
+    background: transparent; color: var(--subtext); cursor: pointer; font-size: .85rem; font-weight: 600;
+  }
+  .pstab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .presenter-grid { display: flex; flex-direction: column; gap: 14px; }
+  .pcard {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px 24px; display: flex; gap: 20px; align-items: flex-start;
+    cursor: pointer; transition: border-color .15s;
+  }
+  .pcard:hover { border-color: var(--accent); }
+  .pcard-num { font-size: 2rem; font-weight: 800; min-width: 48px; text-align: center; line-height: 1; padding-top: 4px; }
+  .pcard-body { flex: 1; }
+  .pcard-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; line-height: 1.35; }
+  .pcard-summary { font-size: .85rem; color: var(--subtext); line-height: 1.55; margin-bottom: 10px; }
+  .pcard-footer { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .pcard-requestor { font-size: .8rem; color: var(--subtext); }
+
+  /* DETAIL MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,.65); z-index: 100;
+    justify-content: center; align-items: center; padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; width: 100%; max-width: 700px; max-height: 88vh; overflow-y: auto;
+  }
+  .modal-head {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 22px 24px 16px; border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; background: var(--surface);
+  }
+  .modal-head-text { flex: 1; }
+  .modal-id { font-size: .75rem; color: var(--subtext); margin-bottom: 4px; }
+  .modal-title { font-size: 1.05rem; font-weight: 700; line-height: 1.35; }
+  .modal-body { padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
+  .field-group { display: flex; flex-direction: column; gap: 4px; }
+  .field-label { font-size: .72rem; font-weight: 700; color: var(--subtext); text-transform: uppercase; letter-spacing: .6px; }
+  .field-value { font-size: .88rem; line-height: 1.55; }
+  .note-block {
+    background: var(--card); border-left: 3px solid var(--accent);
+    border-radius: 4px; padding: 10px 14px; font-size: .84rem; line-height: 1.55; color: var(--subtext);
+  }
+  .modal-actions { display: flex; gap: 10px; padding: 16px 24px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-row.single { grid-template-columns: 1fr; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: .75rem; font-weight: 700; color: var(--subtext); text-transform: uppercase; }
+  .form-control {
+    background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+    padding: 8px 12px; color: var(--text); font-size: .85rem; width: 100%;
+  }
+  .form-control:focus { outline: none; border-color: var(--accent); }
+  textarea.form-control { resize: vertical; min-height: 90px; font-family: inherit; }
+
+  /* CHANGE LOG */
+  .log-panel {
+    position: fixed; bottom: 0; right: 0; width: 340px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px 10px 0 0; z-index: 50;
+    transition: transform .3s; transform: translateY(calc(100% - 44px));
+    display: flex; flex-direction: column;
+  }
+  .log-panel.open { transform: translateY(0); }
+  .log-toggle {
+    padding: 10px 16px; display: flex; align-items: center; gap: 8px;
+    cursor: pointer; font-size: .84rem; font-weight: 700; border-bottom: 1px solid var(--border);
+  }
+  .log-badge { background: var(--accent); color: #fff; border-radius: 10px; padding: 1px 7px; font-size: .72rem; font-weight: 700; }
+  .log-body { padding: 12px; max-height: 240px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+  .log-entry { font-size: .78rem; color: var(--subtext); background: var(--card); border-radius: 5px; padding: 7px 10px; border-left: 3px solid var(--accent); }
+  .log-time { font-size: .7rem; color: var(--gray); }
+
+  /* IMPORT */
+  .import-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,.7); justify-content: center; align-items: center; padding: 20px;
+  }
+  .import-overlay.open { display: flex; }
+  .import-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px; max-width: 480px; width: 100%; text-align: center;
+  }
+  .drop-zone {
+    border: 2px dashed var(--border); border-radius: 8px;
+    padding: 30px 20px; margin: 18px 0; cursor: pointer; transition: border-color .2s;
+  }
+  .drop-zone.drag-active { border-color: var(--accent); background: rgba(79,142,247,.06); }
+  .import-choice { display: flex; gap: 10px; justify-content: center; margin-top: 14px; }
+
+  #toast {
+    position: fixed; bottom: 64px; right: 20px; z-index: 200;
+    background: var(--green); color: #fff; border-radius: 8px;
+    padding: 10px 18px; font-size: .85rem; font-weight: 600;
+    opacity: 0; transition: opacity .3s; pointer-events: none;
+  }
+  #toast.show { opacity: 1; }
+
+
+  .attach-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .attach-thumb {
+    position: relative; width: 100px; height: 80px;
+    border-radius: 6px; overflow: hidden; border: 1px solid var(--border);
+    background: var(--card); flex-shrink: 0;
+  }
+  .attach-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .attach-thumb .remove-btn {
+    position: absolute; top: 3px; right: 3px;
+    background: rgba(245,54,92,.85); color: #fff; border: none; border-radius: 50%;
+    width: 20px; height: 20px; font-size: .7rem; cursor: pointer; line-height: 20px; text-align: center;
+    display: flex; align-items: center; justify-content: center; font-weight: 700;
+  }
+  .attach-add-btn {
+    width: 100px; height: 80px; border-radius: 6px;
+    border: 2px dashed var(--border); background: transparent;
+    color: var(--subtext); font-size: 1.5rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color .2s;
+  }
+  .attach-add-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .detail-attachment { margin-top: 8px; }
+  .detail-attachment img {
+    width: 100%; border-radius: 6px; display: block; cursor: pointer;
+    transition: opacity .15s;
+  }
+  .detail-attachment img:hover { opacity: .9; }
+  .detail-attachment .attach-caption { font-size: .75rem; color: var(--subtext); margin-top: 4px; }
+  /* lightbox */
+  #lightbox {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.88);
+    z-index: 300; justify-content: center; align-items: center; cursor: zoom-out;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img { max-width: 95vw; max-height: 92vh; border-radius: 8px; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+
+  /* -----------------------------------------------------------
+     AMP LIGHT THEME - inspired by the supplied 2026 partner guide
+     Uses original AMP/BEUSA identity; no Atlassian marks, fonts or assets.
+     ----------------------------------------------------------- */
+  :root {
+    --bg: #F7F8FA;
+    --surface: #FFFFFF;
+    --card: #FFFFFF;
+    --border: #DFE1E6;
+    --accent: #0C66E4;
+    --accent-soft: #E9F2FF;
+    --navy: #17325C;
+    --navy-2: #1D3B67;
+    --green: #1F845A;
+    --green-soft: #E3FCEF;
+    --yellow: #B65C02;
+    --yellow-soft: #FFF7D6;
+    --red: #C9372C;
+    --red-soft: #FFECEB;
+    --purple: #6E5DC6;
+    --gray: #6B778C;
+    --text: #172B4D;
+    --subtext: #5E6C84;
+    --sprint-hdr: #E9F2FF;
+    --backlog-hdr: #E3FCEF;
+    --handoff-hdr: #FFF7D6;
+    --done-hdr: #F1F2F4;
+    --shadow-sm: 0 1px 2px rgba(9,30,66,.08), 0 1px 1px rgba(9,30,66,.05);
+    --shadow-md: 0 8px 24px rgba(9,30,66,.12);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", Arial, system-ui, sans-serif;
+    letter-spacing: 0;
+  }
+
+  header {
+    position: relative;
+    background: var(--navy);
+    color: #fff;
+    border-bottom: 0;
+    padding: 22px 30px 20px;
+    box-shadow: 0 2px 10px rgba(9,30,66,.18);
+    overflow: hidden;
+  }
+  header::before, header::after {
+    content: "";
+    position: absolute;
+    border: 10px solid rgba(82,156,255,.85);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  header::before { width: 66px; height: 66px; right: 34px; top: -46px; }
+  header::after  { width: 48px; height: 48px; left: -31px; bottom: -38px; opacity: .65; }
+  header > * { position: relative; z-index: 1; }
+  .logo {
+    font-size: 1.28rem;
+    font-weight: 700;
+    letter-spacing: -.015em;
+  }
+  .logo span { color: #85B8FF; }
+  .header-meta {
+    margin-top: 4px;
+    color: #C7D5EE;
+    font-size: .75rem;
+    letter-spacing: .035em;
+  }
+  .header-actions { gap: 8px; }
+  header .btn-outline {
+    color: #FFFFFF;
+    border-color: rgba(255,255,255,.38);
+    background: rgba(255,255,255,.05);
+  }
+  header .btn-outline:hover { background: rgba(255,255,255,.12); }
+
+  .btn {
+    border-radius: 5px;
+    padding: 8px 14px;
+    font-weight: 650;
+    transition: background .12s ease, border-color .12s ease, box-shadow .12s ease, transform .12s ease;
+  }
+  .btn:hover { opacity: 1; transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); box-shadow: 0 1px 2px rgba(9,30,66,.16); }
+  .btn-primary:hover { background: #0055CC; }
+  .btn-outline { background: #fff; color: var(--text); border: 1px solid var(--border); }
+  .btn-outline:hover { background: #F1F2F4; border-color: #B7C0CD; }
+  .btn-success { background: var(--green); }
+  .btn-danger { background: var(--red); }
+  .btn-warn { background: #F5CD47; color: var(--text); }
+
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(255,255,255,.97);
+    border-bottom: 1px solid var(--border);
+    padding: 11px 28px;
+    box-shadow: 0 1px 0 rgba(9,30,66,.03);
+  }
+  .view-tabs {
+    background: #F1F2F4;
+    padding: 3px;
+    border-radius: 7px;
+    gap: 2px;
+  }
+  .vtab {
+    border: 0;
+    background: transparent;
+    color: var(--subtext);
+    border-radius: 5px;
+    padding: 7px 13px;
+  }
+  .vtab:hover { background: #E9EBEE; color: var(--text); }
+  .vtab.active {
+    background: #fff;
+    color: var(--accent);
+    border: 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .search-box, .filter-select, .form-control {
+    background: #fff;
+    border: 1px solid #B7C0CD;
+    color: var(--text);
+    border-radius: 5px;
+    min-height: 34px;
+  }
+  .search-box::placeholder, .form-control::placeholder { color: #8590A2; }
+  .search-box:focus, .form-control:focus, .filter-select:focus {
+    outline: 2px solid #85B8FF;
+    outline-offset: 1px;
+    border-color: var(--accent);
+  }
+  .sync-state {
+    background: #F7F8F9;
+    color: var(--subtext);
+    border-color: var(--border);
+    border-radius: 999px;
+  }
+  .save-btn {
+    border-radius: 5px;
+    border-color: #B7C0CD;
+    color: var(--text);
+    background: #fff;
+  }
+  .save-btn:hover { background: #F1F2F4; color: var(--text); }
+
+  .stats-bar {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    gap: 8px;
+    padding: 10px 28px;
+  }
+  .stat-chip {
+    background: #F7F8F9;
+    border: 1px solid #EBECF0;
+    color: var(--subtext);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-weight: 600;
+  }
+
+  .kanban-wrap { gap: 14px; padding: 22px 28px 28px; }
+  .col {
+    background: #F1F2F4;
+    border: 1px solid #E4E6EA;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+  .col-header {
+    border-radius: 8px 8px 0 0;
+    padding: 12px 14px 10px;
+    color: var(--text);
+  }
+  .col-header.sprint  { background: var(--sprint-hdr);  border-bottom: 2px solid var(--accent); }
+  .col-header.backlog { background: var(--backlog-hdr); border-bottom: 2px solid var(--green); }
+  .col-header.handoff { background: var(--handoff-hdr); border-bottom: 2px solid #F5CD47; }
+  .col-header.done    { background: var(--done-hdr);    border-bottom: 2px solid #8590A2; }
+  .col-title { color: var(--text); letter-spacing: -.005em; }
+  .col-count { background: rgba(23,43,77,.08); color: var(--subtext); }
+  .col-body { padding: 10px; }
+  .col-body.drag-over { background: #DEEBFF; }
+
+  .card {
+    background: #fff;
+    border: 1px solid #EBECF0;
+    border-radius: 7px;
+    padding: 13px 14px;
+    box-shadow: var(--shadow-sm);
+  }
+  .card:hover {
+    border-color: #85B8FF;
+    box-shadow: 0 4px 12px rgba(9,30,66,.12);
+  }
+  .card-title { color: var(--text); font-weight: 650; }
+  .card-requestor { color: var(--subtext); }
+  .priority-pip { color: #974F0C; }
+  .badge { text-transform: none; letter-spacing: 0; border-radius: 999px; padding: 3px 8px; }
+  .badge-must { background: var(--red-soft); color: #AE2A19; }
+  .badge-nice { background: var(--accent-soft); color: #0055CC; }
+  .badge-na { background: #F1F2F4; color: #626F86; }
+
+  .table-wrap { padding: 22px 28px 30px; }
+  table {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  thead th {
+    background: #F7F8F9;
+    color: #44546F;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: .04em;
+  }
+  tbody tr { border-bottom-color: #EBECF0; }
+  tbody tr:hover { background: #F7F8F9; }
+  .stage-pill { border-radius: 999px; padding: 4px 9px; }
+  .stage-sprint { background: var(--accent-soft); color: #0055CC; }
+  .stage-backlog { background: var(--green-soft); color: #216E4E; }
+  .stage-handoff { background: var(--yellow-soft); color: #974F0C; }
+  .stage-done { background: #F1F2F4; color: #626F86; }
+
+  .presenter-wrap { padding: 28px; }
+  .presenter-title { color: var(--navy); letter-spacing: -.02em; }
+  .pstab {
+    background: #fff;
+    color: var(--subtext);
+    border-color: var(--border);
+    border-radius: 5px;
+  }
+  .pstab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .pcard {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+  .pcard:hover { border-color: #85B8FF; box-shadow: 0 4px 14px rgba(9,30,66,.10); }
+  .pcard-title { color: var(--navy); }
+  .pcard-summary, .pcard-requestor { color: var(--subtext); }
+
+  .modal-overlay, .import-overlay { background: rgba(9,30,66,.54); backdrop-filter: blur(2px); }
+  .modal, .import-box {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: var(--shadow-md);
+  }
+  .modal-head {
+    background: #fff;
+    border-bottom-color: var(--border);
+  }
+  .modal-id { color: var(--accent); font-weight: 700; }
+  .modal-title { color: var(--navy); }
+  .field-label, .form-group label { color: #44546F; letter-spacing: .04em; }
+  .field-value { color: var(--text); }
+  .note-block {
+    background: #F7F8F9;
+    border-left-color: var(--accent);
+    color: var(--subtext);
+  }
+  .modal-actions { border-top-color: var(--border); background: #FAFBFC; }
+
+  .log-panel {
+    background: #fff;
+    border-color: var(--border);
+    box-shadow: var(--shadow-md);
+  }
+  .log-toggle { border-bottom-color: var(--border); color: var(--navy); }
+  .log-entry { background: #F7F8F9; color: var(--subtext); border-left-color: var(--accent); }
+  .log-time { color: #8590A2; }
+
+  .drop-zone { border-color: #B7C0CD; background: #FAFBFC; }
+  .drop-zone.drag-active { border-color: var(--accent); background: var(--accent-soft); }
+  #toast { background: #216E4E; box-shadow: var(--shadow-md); }
+  .attach-thumb { background: #F7F8F9; border-color: var(--border); }
+  .attach-add-btn { border-color: #B7C0CD; color: #626F86; background: #FAFBFC; }
+  .attach-add-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  ::-webkit-scrollbar-thumb { background: #B7C0CD; }
+
+  @media (max-width: 760px) {
+    header { padding: 18px 18px 16px; }
+    .toolbar, .stats-bar { padding-left: 16px; padding-right: 16px; }
+    .kanban-wrap, .table-wrap, .presenter-wrap { padding-left: 16px; padding-right: 16px; }
+    .search-box { max-width: none; width: 100%; order: 3; }
+    .sync-wrap { width: 100%; margin-left: 0; justify-content: flex-start; flex-wrap: wrap; }
+  }
+
+  /* Jira reference lockup - top-left header treatment. */
+  .platform-branding {
+    display:flex; align-items:center; gap:0; margin-left:0; margin-right:14px; order:-1;
+    background:#FFFFFF; border:1px solid #DFE1E6; border-radius:4px; overflow:hidden;
+    box-shadow:0 1px 2px rgba(9,30,66,.12); min-height:42px;
+  }
+  .platform-branding-label { display:none; }
+  .platform-brand {
+    display:flex; align-items:center; gap:8px; min-height:42px; padding:8px 12px;
+    color:#44546F; text-decoration:none; font-size:1.02rem; font-weight:500;
+    letter-spacing:-.01em; white-space:nowrap; background:#FFFFFF;
+  }
+  .platform-brand img { width:22px; height:22px; display:block; object-fit:contain; flex:0 0 auto; }
+  .platform-brand:hover { background:#F7F8F9; opacity:1; }
+  .platform-brand.jira-brand { padding-right:14px; }
+  .trademark-note {
+    padding:10px 28px 14px; color:#6B778C; font-size:.68rem; line-height:1.45;
+    text-align:center; background:#F7F8FA; border-top:1px solid #DFE1E6;
+  }
+  @media (max-width: 880px) {
+    .platform-branding { order:-1; width:auto; margin:0 10px 0 0; justify-content:flex-start; }
+    .platform-branding-label { margin-right:auto; }
+  }
+
+
+
+  /* ===========================================================
+     JIRA-INSPIRED LIGHT THEME TOKENS - user supplied
+     =========================================================== */
+  :root {
+    --page-bg: #FFFFFF;
+    --surface: #FFFFFF;
+    --surface-subtle: #F7F8F9;
+    --surface-muted: #F1F2F4;
+
+    --border: #DFE1E6;
+    --border-subtle: #EBECF0;
+
+    --text-primary: #172B4D;
+    --text-secondary: #44546F;
+    --text-muted: #626F86;
+
+    --jira-blue: #0C66E4;
+    --jira-blue-hover: #0055CC;
+    --jira-blue-light: #E9F2FF;
+
+    --success: #1F845A;
+    --success-bg: #DCFFF1;
+
+    --warning: #E2B203;
+    --danger: #C9372C;
+
+    --radius-sm: 3px;
+    --radius-md: 6px;
+
+    /* Legacy variable mapping so existing components inherit the new system */
+    --bg: var(--page-bg);
+    --card: var(--surface);
+    --accent: var(--jira-blue);
+    --accent-soft: var(--jira-blue-light);
+    --green: var(--success);
+    --green-soft: var(--success-bg);
+    --yellow: var(--warning);
+    --red: var(--danger);
+    --gray: var(--text-muted);
+    --text: var(--text-primary);
+    --subtext: var(--text-secondary);
+    --navy: var(--text-primary);
+    --navy-2: var(--text-secondary);
+    --sprint-hdr: var(--surface-muted);
+    --backlog-hdr: var(--surface-muted);
+    --handoff-hdr: var(--surface-muted);
+    --done-hdr: var(--surface-muted);
+    --shadow-sm: 0 1px 1px rgba(9,30,66,.08);
+    --shadow-md: 0 8px 20px rgba(9,30,66,.12);
+  }
+
+  html, body { background: var(--page-bg); }
+  body { color: var(--text-primary); font-family: "Segoe UI", Arial, system-ui, sans-serif; }
+
+  /* Jira-like product bar */
+  header {
+    background: var(--surface);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 16px;
+    min-height: 52px;
+    box-shadow: none;
+    overflow: visible;
+    gap: 14px;
+  }
+  header::before, header::after { display:none !important; }
+  .platform-branding {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    min-height: 36px;
+    margin-right: 8px;
+  }
+  .platform-brand {
+    min-height: 36px;
+    padding: 6px 4px;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    border-radius: var(--radius-sm);
+  }
+  .platform-brand img { width: 21px; height: 21px; }
+  .platform-brand:hover { background: var(--surface-subtle); }
+  .amp-brand-block { padding-left: 14px; border-left: 1px solid var(--border); }
+  .logo { font-size: 1rem; color: var(--text-primary); }
+  .logo span { color: var(--jira-blue); }
+  .header-meta { color: var(--text-muted); margin-top: 2px; font-size: .72rem; letter-spacing: 0; }
+  .header-actions { gap: 6px; }
+
+  .btn {
+    border-radius: var(--radius-sm);
+    padding: 7px 12px;
+    box-shadow: none;
+    transform: none !important;
+  }
+  .btn-primary { background: var(--jira-blue); color:#fff; box-shadow:none; }
+  .btn-primary:hover { background: var(--jira-blue-hover); }
+  .btn-outline { background: var(--surface); border:1px solid var(--border); color:var(--text-secondary); }
+  .btn-outline:hover { background: var(--surface-subtle); border-color: var(--border); }
+  header .btn-outline { color:var(--text-secondary); border-color:var(--border); background:var(--surface); }
+  header .btn-outline:hover { background:var(--surface-subtle); }
+  .btn-success { background:var(--success); }
+  .btn-danger { background:var(--danger); }
+  .btn-warn { background:#F5CD47; color:var(--text-primary); }
+
+  .toolbar {
+    top:0;
+    background:var(--surface);
+    border-bottom:1px solid var(--border-subtle);
+    padding:8px 16px;
+    box-shadow:none;
+  }
+  .view-tabs { background:transparent; padding:0; gap:2px; border-radius:0; }
+  .vtab {
+    color:var(--text-secondary);
+    border:0;
+    border-radius:var(--radius-sm);
+    padding:7px 11px;
+  }
+  .vtab:hover { background:var(--surface-subtle); color:var(--text-primary); }
+  .vtab.active {
+    background:var(--jira-blue-light);
+    color:var(--jira-blue);
+    box-shadow:none;
+  }
+
+  .search-box, .filter-select, .form-control {
+    background:var(--surface);
+    border:1px solid var(--border);
+    color:var(--text-primary);
+    border-radius:var(--radius-sm);
+  }
+  .search-box::placeholder, .form-control::placeholder { color:var(--text-muted); }
+  .search-box:focus, .filter-select:focus, .form-control:focus {
+    outline:2px solid #579DFF;
+    outline-offset:0;
+    border-color:var(--jira-blue);
+  }
+  .sync-state {
+    background:var(--surface-subtle);
+    border-color:var(--border-subtle);
+    color:var(--text-secondary);
+    border-radius:var(--radius-md);
+  }
+  .save-btn {
+    border-radius:var(--radius-sm);
+    border-color:var(--border);
+    color:var(--text-secondary);
+    background:var(--surface);
+  }
+  .save-btn:hover { background:var(--surface-subtle); color:var(--text-primary); }
+
+  .stats-bar {
+    background:var(--surface);
+    border-bottom:1px solid var(--border-subtle);
+    padding:8px 16px;
+  }
+  .stat-chip {
+    background:var(--surface-subtle);
+    border:1px solid var(--border-subtle);
+    color:var(--text-secondary);
+    border-radius:var(--radius-md);
+    padding:5px 9px;
+  }
+
+  /* Jira-style board: neutral columns, status shown through content not column decoration */
+  .kanban-wrap { background:var(--page-bg); padding:20px 16px 28px; gap:10px; }
+  .col {
+    background:var(--surface-muted);
+    border:0;
+    border-radius:var(--radius-md);
+  }
+  .col-header,
+  .col-header.sprint,
+  .col-header.backlog,
+  .col-header.handoff,
+  .col-header.done {
+    background:transparent;
+    border-bottom:0;
+    color:var(--text-secondary);
+    padding:12px 12px 9px;
+  }
+  .col-title { color:var(--text-secondary); font-size:.76rem; text-transform:uppercase; letter-spacing:.025em; }
+  .col-count { background:transparent; color:var(--text-muted); padding:0; }
+  .col-body { padding:0 6px 8px; gap:8px; }
+  .col-body.drag-over { background:var(--jira-blue-light); }
+
+  .card {
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-sm);
+    box-shadow:none;
+    padding:12px;
+  }
+  .card:hover { border-color:#B3B9C4; box-shadow:0 1px 2px rgba(9,30,66,.14); transform:none; }
+  .card-title { color:var(--text-primary); font-weight:500; }
+  .card-requestor { color:var(--text-muted); }
+  .priority-pip { color:var(--text-secondary); }
+  .badge { border-radius:var(--radius-sm); padding:2px 6px; font-size:.68rem; font-weight:700; }
+  .badge-must { background:#FFECEB; color:var(--danger); }
+  .badge-nice { background:var(--jira-blue-light); color:var(--jira-blue); }
+  .badge-carryover { background:var(--jira-blue-light); color:var(--jira-blue); border:1px solid #B8C7E0; }
+  .btn-carryover { background:var(--jira-blue-light); color:var(--jira-blue); border:1px solid #B8C7E0; }
+  .btn-carryover:hover { background:#CCE0FF; color:var(--jira-blue-hover); border-color:#85B8FF; }
+  .badge-na { background:var(--surface-muted); color:var(--text-muted); }
+
+  .table-wrap { background:var(--page-bg); padding:20px 16px 28px; }
+  table { border:1px solid var(--border); border-radius:var(--radius-md); box-shadow:none; }
+  thead th { background:var(--surface-subtle); color:var(--text-secondary); border-bottom:1px solid var(--border); }
+  tbody tr { border-bottom-color:var(--border-subtle); }
+  tbody tr:hover { background:var(--surface-subtle); }
+  .stage-pill { border-radius:var(--radius-sm); padding:3px 7px; }
+  .stage-sprint { background:var(--jira-blue-light); color:var(--jira-blue); }
+  .stage-backlog { background:var(--success-bg); color:var(--success); }
+  .stage-handoff { background:#FFF7D6; color:#7F5F01; }
+  .stage-done { background:var(--surface-muted); color:var(--text-muted); }
+
+  .presenter-wrap { background:var(--page-bg); padding:22px 16px; }
+  .presenter-title, .pcard-title, .modal-title, .log-toggle { color:var(--text-primary); }
+  .pstab { border-radius:var(--radius-sm); border-color:var(--border); color:var(--text-secondary); }
+  .pstab.active { background:var(--jira-blue); border-color:var(--jira-blue); }
+  .pcard { border-radius:var(--radius-md); border-color:var(--border); box-shadow:none; }
+  .pcard:hover { border-color:#B3B9C4; box-shadow:0 1px 2px rgba(9,30,66,.12); }
+  .pcard-summary, .pcard-requestor { color:var(--text-secondary); }
+
+  .modal-overlay, .import-overlay { background:rgba(9,30,66,.36); backdrop-filter:none; }
+  .modal, .import-box { border-radius:var(--radius-md); border-color:var(--border); box-shadow:var(--shadow-md); }
+  .modal-head { border-bottom-color:var(--border-subtle); }
+  .modal-id { color:var(--jira-blue); }
+  .field-label, .form-group label { color:var(--text-secondary); }
+  .field-value { color:var(--text-primary); }
+  .note-block { background:var(--surface-subtle); border-left-color:var(--jira-blue); color:var(--text-secondary); }
+  .modal-actions { border-top-color:var(--border-subtle); background:var(--surface-subtle); }
+
+  .log-panel { border-color:var(--border); box-shadow:var(--shadow-md); }
+  .log-entry { background:var(--surface-subtle); color:var(--text-secondary); border-left-color:var(--jira-blue); }
+  .log-time { color:var(--text-muted); }
+  .drop-zone { background:var(--surface-subtle); border-color:var(--border); }
+  .drop-zone.drag-active { border-color:var(--jira-blue); background:var(--jira-blue-light); }
+  #toast { background:var(--success); }
+  .attach-thumb { background:var(--surface-subtle); border-color:var(--border); }
+  .attach-add-btn { background:var(--surface-subtle); border-color:var(--border); color:var(--text-muted); }
+  .attach-add-btn:hover { background:var(--jira-blue-light); border-color:var(--jira-blue); color:var(--jira-blue); }
+  .trademark-note { background:var(--surface-subtle); border-top-color:var(--border-subtle); color:var(--text-muted); }
+  ::-webkit-scrollbar-thumb { background:#B3B9C4; }
+
+
+  /* SPRINT CALENDAR / ITERATION PLANNING */
+  .sprint-calendar-btn.active { background:var(--jira-blue-light); border-color:var(--jira-blue); color:var(--jira-blue); }
+  .sprint-calendar-panel {
+    display:none; background:var(--page-bg); border-bottom:1px solid var(--border);
+    padding:16px 28px 18px;
+  }
+  .sprint-calendar-panel.open { display:block; }
+  .sprint-calendar-inner { max-width:980px; display:grid; grid-template-columns:minmax(300px,.9fr) minmax(420px,1.4fr); gap:20px; }
+  .sprint-calendar-section { border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface); overflow:hidden; }
+  .sprint-calendar-section summary {
+    list-style:none; cursor:pointer; padding:12px 14px; font-weight:700; color:var(--text-primary);
+    background:var(--surface-subtle); border-bottom:1px solid var(--border-subtle); user-select:none;
+  }
+  .sprint-calendar-section summary::-webkit-details-marker { display:none; }
+  .sprint-calendar-section summary::before { content:'▶'; font-size:.72rem; margin-right:8px; color:var(--text-secondary); }
+  .sprint-calendar-section[open] summary::before { content:'▼'; }
+  .sprint-calendar-body { padding:12px 14px 14px; }
+  .sprint-table { width:100%; border-collapse:collapse; font-size:.84rem; }
+  .sprint-table th { background:var(--surface-muted); color:var(--text-secondary); font-size:.73rem; text-transform:uppercase; letter-spacing:.45px; padding:8px 10px; border:1px solid var(--border); cursor:default; }
+  .sprint-table td { padding:9px 10px; border:1px solid var(--border); color:var(--text-primary); }
+  .sprint-table tr.sprint-selectable { cursor:pointer; }
+  .sprint-table tr.sprint-selectable:hover td { background:var(--jira-blue-light); }
+  .sprint-table tr.sprint-selected td { background:var(--jira-blue-light); color:var(--jira-blue); font-weight:700; }
+  .sprint-context { margin-top:10px; font-size:.84rem; color:var(--text-secondary); line-height:1.45; }
+  .sprint-pill { display:inline-flex; align-items:center; gap:5px; padding:2px 7px; border-radius:999px; background:var(--jira-blue-light); color:var(--jira-blue); font-size:.69rem; font-weight:700; white-space:nowrap; }
+  .sprint-pill.future { background:var(--surface-muted); color:var(--text-secondary); }
+  .sprint-move-box { background:var(--surface-subtle); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:10px 12px; }
+  .sprint-move-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:7px; }
+  .sprint-move-row .form-control { width:auto; min-width:210px; flex:1; }
+  .toolbar .sprint-filter { min-width:180px; max-width:230px; }
+  @media (max-width: 820px) {
+    .sprint-calendar-panel { padding-left:16px; padding-right:16px; }
+    .sprint-calendar-inner { grid-template-columns:1fr; }
+    .toolbar .sprint-filter { min-width:150px; }
+  }
+
+
+  /* Standalone package affordances; original visual theme remains in force. */
+  .amp-portable .amp-demo-banner {display:none!important;}
+  .amp-portable #amp-package-notice {display:block!important;padding:9px 28px;background:var(--surface);border-bottom:1px solid var(--border);color:var(--subtext);font-size:.78rem;}
+  .amp-locked .amp-edit-only,.amp-locked [data-amp-edit],.amp-locked .sprint-move-row,.amp-locked .sprint-calendar-btn,.amp-locked .sprint-filter {display:none!important;}
+  .amp-locked .card {cursor:pointer;}
+  #amp-print {display:none;}
+  @media print {
+    body {background:white!important;color:black!important;}
+    body > *:not(#amp-print) {display:none!important;}
+    #amp-print {display:block;font:11pt 'Segoe UI',sans-serif;color:black;}
+    #amp-print h1{font-size:20pt;margin:0 0 12px;} #amp-print h2{font-size:14pt;margin:15px 0 8px;}
+    #amp-print h3{font-size:11pt;margin:8px 0 3px;} #amp-print p{margin:6px 0;white-space:pre-wrap;overflow-wrap:anywhere;}
+    #amp-print article {padding:10px 0;margin:12px 0;border-top:1px solid #bbb;break-inside:avoid;}
+    @page {margin:16mm;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="platform-branding" aria-label="Jira product reference">
+    <span class="platform-brand jira-brand">Planning sample</span>
+  </div>
+
+  <div class="amp-brand-block">
+    <div class="amp-demo-banner" style="display:inline-flex;align-items:center;gap:6px;margin-bottom:5px;padding:2px 7px;border-radius:3px;background:#E9F2FF;color:#0C66E4;font-size:.68rem;font-weight:700;letter-spacing:.35px;">DEMO DATA · RESETS ON REFRESH</div>
+    <div class="logo">Sprint <span>Planner</span> Backlog</div>
+    <div class="header-meta" id="last-updated">Joshua Ly · Portfolio sample · Local portable copy</div>
+  </div>
+
+  <div class="header-actions">
+    <button class="btn btn-outline amp-edit-only" onclick="openImport()">⬆ Import CSV</button>
+    <button class="btn btn-outline" onclick="exportCSV()">⬇ Export CSV</button>
+    <button class="btn btn-primary amp-edit-only" onclick="openAdd()">+ New Ticket</button>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="view-tabs">
+    <button class="vtab" id="vtab-kanban" onclick="setView('kanban')">⬜ Board</button>
+    <button class="vtab active" id="vtab-table" onclick="setView('table')">☰ Table</button>
+    <button class="vtab" id="vtab-presenter" onclick="setView('presenter')">📢 Presenter</button>
+  </div>
+  <button class="btn btn-outline sprint-calendar-btn" id="sprint-calendar-btn" onclick="toggleSprintCalendar()">▣ Sprint Calendar</button>
+  <select class="filter-select sprint-filter" id="sprint-filter" onchange="setSprintFilter(this.value)" title="Choose the sprint iteration shown in the Sprint column"><option value="all">All Sprint Iterations</option><option value="Sprint 13 - 2026">Sprint 13 - 2026</option><option value="Sprint 14 - 2026">Sprint 14 - 2026</option><option value="Sprint 15 - 2026">Sprint 15 - 2026</option><option value="Sprint 16 - 2026">Sprint 16 - 2026</option><option value="Sprint 17 - 2026">Sprint 17 - 2026</option></select>
+  <input class="search-box" id="search" placeholder="🔍 Search tickets…" oninput="render()">
+  <select class="filter-select" id="filter-urgency" onchange="render()">
+    <option value="">All Urgency</option>
+    <option>Must Have</option>
+    <option>Nice to have</option>
+  </select>
+  <button class="btn btn-primary amp-edit-only" onclick="openPackage()">🔒 Lock In Sprint</button>
+  <button class="btn btn-outline" onclick="appSavePDF()">Save PDF</button>
+  <button class="btn btn-outline amp-edit-only" onclick="document.getElementById('amp-json-input').click()">Restore JSON</button>
+  <div class="sync-wrap">
+    <span class="sync-state saved" id="sync-state">Saved</span>
+    <button class="btn btn-outline" id="refresh-btn" onclick="refreshFromShared(true)">↻ Refresh</button>
+    <button class="save-btn" onclick="exportHTML()" title="Download this frontend file">💾 Save File</button>
+  </div>
+</div>
+
+<section class="sprint-calendar-panel" id="sprint-calendar-panel" aria-label="Sprint calendar">
+  <div class="sprint-calendar-inner" id="sprint-calendar-inner">
+    <details class="sprint-calendar-section" open="">
+      <summary>Current Sprint</summary><div class="sprint-calendar-body">
+        <table class="sprint-table"><thead><tr><th>Sprint</th><th>Start</th><th>End</th></tr></thead><tbody><tr class="sprint-selectable " onclick="setSprintFilter('Sprint 13 - 2026')"><td>Sprint 13 - 2026</td><td>Sep 14</td><td>Oct 2, 2026</td></tr></tbody></table>
+        <div class="sprint-context">You're in week 2 of 3 (Sep 25 today — 7 days remaining).</div>
+      </div>
+    </details>
+    <details class="sprint-calendar-section" open="">
+      <summary>Upcoming Sprints</summary><div class="sprint-calendar-body">
+        <table class="sprint-table"><thead><tr><th>Sprint</th><th>Start</th><th>End</th></tr></thead><tbody><tr class="sprint-selectable sprint-selected" onclick="setSprintFilter('Sprint 14 - 2026')"><td>Sprint 14 - 2026</td><td>Oct 5</td><td>Oct 23, 2026</td></tr><tr class="sprint-selectable " onclick="setSprintFilter('Sprint 15 - 2026')"><td>Sprint 15 - 2026</td><td>Oct 26</td><td>Nov 13, 2026</td></tr><tr class="sprint-selectable " onclick="setSprintFilter('Sprint 16 - 2026')"><td>Sprint 16 - 2026</td><td>Nov 16</td><td>Dec 4, 2026</td></tr><tr class="sprint-selectable " onclick="setSprintFilter('Sprint 17 - 2026')"><td>Sprint 17 - 2026</td><td>Dec 7</td><td>Dec 25, 2026</td></tr></tbody></table>
+        <div class="sprint-context">Click any sprint to switch the board's Sprint column to that iteration. Use a ticket's detail view to move it between iterations.</div>
+      </div>
+    </details></div>
+</section>
+
+<div id="amp-package-notice" style="display:none"></div>
+<div class="stats-bar" id="stats-bar"></div>
+
+<div id="view-kanban" style="display:none"><div class="kanban-wrap" id="kanban-board"></div></div>
+<div id="view-table"><div class="table-wrap"><table><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div></div>
+<div id="view-presenter" style="display:none">
+  <div class="presenter-wrap">
+    <div class="presenter-header">
+      <div class="presenter-title">Session View</div>
+      <div class="presenter-stage-tabs" id="presenter-tabs"></div>
+    </div>
+    <div class="presenter-grid" id="presenter-grid"></div>
+  </div>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="detail-overlay" onclick="closeDetailBg(event)">
+  <div class="modal" id="detail-modal">
+    <div class="modal-head">
+      <div class="modal-head-text">
+        <div class="modal-id" id="d-id"></div>
+        <div class="modal-title" id="d-title"></div>
+      </div>
+      <div id="d-stage-pill"></div>
+    </div>
+    <div class="modal-body" id="detail-body"></div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="d-edit-btn" data-amp-edit="true">✏️ Edit</button>
+      <button class="btn btn-carryover" id="d-carry-btn" data-amp-edit="true">↻ Carry to Sprint 15 - 2026</button>
+      <button class="btn btn-danger" id="d-del-btn" data-amp-edit="true">🗑 Delete</button>
+      <button class="btn btn-outline" onclick="closeDetailModal()">✕ Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal-overlay" id="edit-overlay" onclick="closeEditBg(event)">
+  <div class="modal">
+    <div class="modal-head"><div class="modal-head-text"><div class="modal-title" id="edit-modal-title">Edit Ticket</div></div></div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label>Ticket ID</label><input class="form-control" id="f-id" placeholder="e.g. 19999"></div>
+        <div class="form-group"><label>Stage</label>
+          <select class="form-control" id="f-stage">
+            <option>This Sprint</option><option>Backlog</option><option>Handed Off</option><option>Done</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row single"><div class="form-group" id="f-sprint-group"><label>Sprint Iteration</label><select class="form-control" id="f-sprint"><option value="Sprint 13 - 2026">Sprint 13 - 2026 · Sep 14 - Oct 2</option><option value="Sprint 14 - 2026">Sprint 14 - 2026 · Oct 5 - Oct 23</option><option value="Sprint 15 - 2026">Sprint 15 - 2026 · Oct 26 - Nov 13</option><option value="Sprint 16 - 2026">Sprint 16 - 2026 · Nov 16 - Dec 4</option><option value="Sprint 17 - 2026">Sprint 17 - 2026 · Dec 7 - Dec 25</option></select></div></div>
+      <div class="form-row single"><div class="form-group"><label>Request Title</label><input class="form-control" id="f-title" placeholder="Short, clear title"></div></div>
+      <div class="form-row single"><div class="form-group"><label>Executive Summary</label><textarea class="form-control" id="f-summary" rows="4" placeholder="What is the problem and the proposed solution?"></textarea></div></div>
+      <div class="form-row">
+        <div class="form-group"><label>Requestor</label><input class="form-control" id="f-requestor" placeholder="Name / Department"></div>
+        <div class="form-group"><label>Urgency</label>
+          <select class="form-control" id="f-urgency"><option>Must Have</option><option>Nice to have</option><option>N/A</option></select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Priority (#)</label><input class="form-control" id="f-priority" type="number" min="1" placeholder="Optional"></div>
+        <div class="form-group"><label>Goal Alignment</label>
+          <select class="form-control" id="f-align"><option>Yes</option><option>No</option><option>N/A</option></select>
+        </div>
+      </div>
+      <div class="form-row single"><div class="form-group"><label>Notes</label><textarea class="form-control" id="f-notes" rows="3" placeholder="Any additional context or updates…"></textarea></div></div>
+      <div class="form-group" style="padding:0 0 4px">
+        <label>Attachments (Images)</label>
+        <div class="attach-grid" id="f-attach-grid"><button class="attach-add-btn" type="button" onclick="document.getElementById('attach-file-input').click()" title="Add image">+</button></div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-success" onclick="saveTicket()">💾 Save</button>
+      <button class="btn btn-outline" onclick="closeEditModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Import Overlay -->
+<div class="import-overlay" id="import-overlay">
+  <div class="import-box">
+    <div style="font-size:1.1rem;font-weight:700;margin-bottom:6px;">Import CSV</div>
+    <div style="font-size:.85rem;color:var(--subtext)">Export from ADO, then drag your file here.</div>
+    <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
+      <div style="font-size:2rem;margin-bottom:8px">📂</div>
+      <div style="font-size:.9rem;color:var(--subtext)">Drag &amp; drop CSV here, or click to browse</div>
+    </div>
+    <input type="file" id="file-input" accept=".csv" style="display:none" onchange="handleFile(this.files[0])">
+    <div id="import-actions" class="import-choice" style="display:none">
+      <button class="btn btn-primary" onclick="doImport('merge')">Merge (keep existing)</button>
+      <button class="btn btn-warn" onclick="doImport('replace')">Replace all</button>
+    </div>
+    <div style="margin-top:14px"><button class="btn btn-outline" onclick="closeImport()">Cancel</button></div>
+  </div>
+</div>
+
+<!-- Change Log -->
+<div class="log-panel" id="log-panel">
+  <div class="log-toggle" onclick="toggleLog()">
+    📋 Session Change Log <span class="log-badge" id="log-count">0</span>
+    <span id="log-arrow" style="margin-left:auto">▲</span>
+  </div>
+  <div class="log-body" id="log-body"></div>
+</div>
+
+<div id="toast"></div>
+<div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src=""></div>
+<input type="file" id="attach-file-input" accept="image/*" multiple="" style="display:none">
+
+<script id="amp-package-data" type="application/json">{"version":1,"mode":"portable","key":"amp_blank_9bccae733a0c47fda3c3a562aff5926e","locked":false,"meta":null,"tickets":[]}</script>
+<script>
+/* ── SEED DATA from example backlog ── */
+const SEED = [];
+
+/* ── STATE ── */
+const STAGES = ["Backlog","This Sprint","Handed Off","Done"];
+const STAGE_KEY   = {"This Sprint":"sprint","Backlog":"backlog","Handed Off":"handoff","Done":"done","New":"backlog"};
+const STAGE_LABEL = {sprint:"🏃 This Sprint",backlog:"📋 Backlog",handoff:"✈️ Handed Off",done:"✅ Done"};
+const STAGE_COLOR = {sprint:"var(--accent)",backlog:"var(--green)",handoff:"var(--yellow)",done:"var(--gray)"};
+
+const SPRINTS = [
+  {name:"Sprint 13 - 2026",start:"2026-09-14",end:"2026-10-02"},
+  {name:"Sprint 14 - 2026",start:"2026-10-05",end:"2026-10-23"},
+  {name:"Sprint 15 - 2026",start:"2026-10-26",end:"2026-11-13"},
+  {name:"Sprint 16 - 2026",start:"2026-11-16",end:"2026-12-04"},
+  {name:"Sprint 17 - 2026",start:"2026-12-07",end:"2026-12-25"}
+];
+function localDateOnly(d=new Date()){ return new Date(d.getFullYear(),d.getMonth(),d.getDate()); }
+function parseLocalDate(iso){ const [y,m,d]=iso.split("-").map(Number); return new Date(y,m-1,d); }
+function currentSprint(){
+  const today=localDateOnly();
+  return SPRINTS.find(sp=>today>=parseLocalDate(sp.start)&&today<=parseLocalDate(sp.end)) || SPRINTS[0];
+}
+function sprintNameFor(t){ return t?.sprint || (t?.stage==="This Sprint"?currentSprint().name:null); }
+function sprintIndex(name){ return SPRINTS.findIndex(sp=>sp.name===name); }
+function nextSprint(name){ const i=sprintIndex(name); return i>=0&&i<SPRINTS.length-1?SPRINTS[i+1]:null; }
+let selectedSprint=currentSprint().name;
+
+let tickets=[], changeLog=[], currentView="table", editingId=null, pendingCSV=null;
+let presenterStage="Backlog", sortCol=null, sortDir=1, draggingId=null;
+let editingVersion=null, syncTimer=null, syncInFlight=false, lastSyncAt=null;
+const SYNC_INTERVAL_MS = 8000;
+
+/* ── SHARED DATA ADAPTER CONTRACT ─────────────────────────────────────────────
+   The Microsoft host/wrapper must set window.AMP_SHARED_DATA_ADAPTER before init().
+   Required async methods:
+     list()                 -> Ticket[]
+     create(ticket)         -> saved Ticket (include _itemId / _modified when available)
+     update(ticket)         -> saved Ticket
+     delete(ticket)         -> void
+   Optional async method:
+     replaceAttachments(ticket, attachments) -> saved Ticket / void
+
+   IMPORTANT: no passwords, client secrets, or bearer tokens belong in this file.
+   In the preferred Power Apps Code App deployment, the adapter delegates to the
+   generated SharePoint service so Microsoft Entra + the SharePoint connector own auth.
+────────────────────────────────────────────────────────────────────────────── */
+function sharedAdapter(){ return window.AMP_SHARED_DATA_ADAPTER || null; }
+function isEditing(){ return document.getElementById("edit-overlay")?.classList.contains("open"); }
+function setSyncState(label, kind){
+  const el=document.getElementById("sync-state");
+  if(!el) return;
+  el.textContent=label; el.className="sync-state "+(kind||"");
+}
+function normalizeTicket(t){
+  return {
+    id: t.id ?? t.TicketID ?? t.ticketId ?? Date.now(),
+    stage: STAGES.includes(t.stage)?t.stage:(STAGES.includes(t.Stage)?t.Stage:"Backlog"),
+    bu: t.bu ?? t.BusinessUnit ?? "AMP",
+    title: t.title ?? t.Title ?? t.RequestTitle ?? "Untitled",
+    summary: t.summary ?? t.ExecutiveSummary ?? "",
+    requestor: t.requestor ?? t.Requestor ?? "",
+    urgency: t.urgency ?? t.Urgency ?? "N/A",
+    priority: (t.priority ?? t.Priority ?? null),
+    align: t.align ?? t.GoalAlignment ?? "N/A",
+    notes: Array.isArray(t.notes)?t.notes:(Array.isArray(t.Notes)?t.Notes:(t.notes||t.Notes?[String(t.notes??t.Notes)]:[])),
+    status: t.status ?? t.Status ?? null,
+    sprint: t.sprint ?? t.Sprint ?? t.Iteration ?? t.IterationName ?? (String(t.stage??t.Stage)==="This Sprint"?currentSprint().name:null),
+    attachments: Array.isArray(t.attachments)?t.attachments:[],
+    _itemId: t._itemId ?? t.ID ?? t.itemId ?? null,
+    _modified: t._modified ?? t.Modified ?? t.modified ?? null
+  };
+}
+function ticketPayload(t){
+  return {
+    id:t.id, stage:t.stage, bu:t.bu||"AMP", title:t.title||"", summary:t.summary||"",
+    requestor:t.requestor||"", urgency:t.urgency||"N/A", priority:t.priority||null,
+    align:t.align||"N/A", notes:Array.isArray(t.notes)?t.notes:[], status:t.status||null, sprint:t.sprint||null,
+    _itemId:t._itemId||null, _modified:t._modified||null
+  };
+}
+
+function carryoverCount(t){
+  const m=String(t?.status||"").match(/^Carryover(?:\s*x(\d+))?$/i);
+  return m ? parseInt(m[1]||"1",10) : 0;
+}
+function isCarryover(t){ return carryoverCount(t)>0; }
+function carryoverBadge(t){
+  const n=carryoverCount(t);
+  return n ? `<span class="badge badge-carryover">↻ Carryover${n>1?` ×${n}`:""}</span>` : "";
+}
+
+
+
+function fmtSprintDate(iso,withYear=false){
+  const d=parseLocalDate(iso);
+  return d.toLocaleDateString(undefined,{month:"short",day:"numeric",...(withYear?{year:"numeric"}:{})});
+}
+function renderSprintControls(){
+  const sel=document.getElementById("sprint-filter");
+  if(sel){
+    sel.innerHTML=`<option value="all">All Sprint Iterations</option>`+SPRINTS.map(sp=>`<option value="${sp.name}">${sp.name}</option>`).join("");
+    sel.value=selectedSprint;
+  }
+  const fsel=document.getElementById("f-sprint");
+  if(fsel) fsel.innerHTML=SPRINTS.map(sp=>`<option value="${sp.name}">${sp.name} · ${fmtSprintDate(sp.start)} - ${fmtSprintDate(sp.end)}</option>`).join("");
+  renderSprintCalendar();
+}
+function setSprintFilter(name){ if(APP_LOCKED&&name!==APP_PACKAGE.meta?.iteration)return;
+  selectedSprint=name||"all";
+  const sel=document.getElementById("sprint-filter"); if(sel&&sel.value!==selectedSprint) sel.value=selectedSprint;
+  renderSprintCalendar(); render();
+}
+function toggleSprintCalendar(){
+  const panel=document.getElementById("sprint-calendar-panel"),btn=document.getElementById("sprint-calendar-btn");
+  const open=panel.classList.toggle("open"); btn.classList.toggle("active",open);
+  btn.textContent=open?"▾ Sprint Calendar":"▣ Sprint Calendar";
+  if(open) renderSprintCalendar();
+}
+function sprintProgressText(sp){
+  const today=localDateOnly(),start=parseLocalDate(sp.start),end=parseLocalDate(sp.end),day=86400000;
+  if(today<start) return `Starts in ${Math.ceil((start-today)/day)} day${Math.ceil((start-today)/day)===1?"":"s"}.`;
+  if(today>end) return `Ended ${Math.ceil((today-end)/day)} day${Math.ceil((today-end)/day)===1?"":"s"} ago.`;
+  const week=Math.min(3,Math.floor((today-start)/day/7)+1);
+  const remaining=Math.max(0,Math.ceil((end-today)/day));
+  return `You're in week ${week} of 3 (${fmtSprintDate(today.toISOString().slice(0,10))} today — ${remaining} day${remaining===1?"":"s"} remaining).`;
+}
+function renderSprintCalendar(){
+  const host=document.getElementById("sprint-calendar-inner"); if(!host) return;
+  const cur=currentSprint(); const curIdx=sprintIndex(cur.name); const upcoming=SPRINTS.slice(curIdx+1);
+  const row=sp=>`<tr class="sprint-selectable ${selectedSprint===sp.name?"sprint-selected":""}" onclick="setSprintFilter('${sp.name}')"><td>${sp.name}</td><td>${fmtSprintDate(sp.start)}</td><td>${fmtSprintDate(sp.end,true)}</td></tr>`;
+  host.innerHTML=`
+    <details class="sprint-calendar-section" open>
+      <summary>Current Sprint</summary><div class="sprint-calendar-body">
+        <table class="sprint-table"><thead><tr><th>Sprint</th><th>Start</th><th>End</th></tr></thead><tbody>${row(cur)}</tbody></table>
+        <div class="sprint-context">${sprintProgressText(cur)}</div>
+      </div>
+    </details>
+    <details class="sprint-calendar-section" open>
+      <summary>Upcoming Sprints</summary><div class="sprint-calendar-body">
+        <table class="sprint-table"><thead><tr><th>Sprint</th><th>Start</th><th>End</th></tr></thead><tbody>${upcoming.map(row).join("")}</tbody></table>
+        <div class="sprint-context">Click any sprint to switch the board's Sprint column to that iteration. Use a ticket's detail view to move it between iterations.</div>
+      </div>
+    </details>`;
+}
+function sprintBadge(t){
+  const name=sprintNameFor(t); if(!name) return "";
+  const future=sprintIndex(name)>sprintIndex(currentSprint().name);
+  return `<span class="sprint-pill ${future?"future":""}">▣ ${appEscape(name)}</span>`;
+}
+async function moveTicketToSprint(id,target,markCarryover=false){ if(APP_LOCKED)return;
+  const t=tickets.find(x=>x.id===id); if(!t||!target) return;
+  const old=sprintNameFor(t)||"Unassigned";
+  if(old===target && t.stage==="This Sprint"){ toast(`Already in ${target}`); return; }
+  let status=t.status,notes=Array.isArray(t.notes)?[...t.notes]:[];
+  if(markCarryover){
+    const nextCount=carryoverCount(t)+1;
+    status=nextCount===1?"Carryover":`Carryover x${nextCount}`;
+    notes.push(`Carried from ${old} to ${target} on ${new Date().toLocaleDateString()}${nextCount>1?` (carryover ${nextCount})`:""}.`);
+  }else{
+    notes.push(`Sprint iteration changed from ${old} to ${target} on ${new Date().toLocaleDateString()}.`);
+  }
+  const candidate={...t,stage:"This Sprint",sprint:target,status,notes};
+  setSyncState("Saving","saving");
+  try{
+    const saved=await updateSharedTicket(candidate);
+    Object.assign(t,saved,{stage:"This Sprint",sprint:target,status,notes});
+    lastSyncAt=new Date(); updTS();
+    logChange(`#${t.id} moved ${old} → ${target}: "${t.title}"`);
+    selectedSprint=target; renderSprintControls(); render();
+    toast(markCarryover?`Carried to ${target} ✓`:`Moved to ${target} ✓`); setSyncState("Saved","saved");
+    if(document.getElementById("detail-overlay")?.classList.contains("open")) openDetail(id);
+    setTimeout(()=>refreshFromShared(false),500);
+  }catch(err){ console.error(err); setSyncState("Connection error","error"); toast("Sprint move was not saved"); }
+}
+
+/* ── EXPORT HTML ── */
+function exportHTML(){
+  if(!appEditClosed())return;
+  const html=appHTML(tickets,APP_LOCKED,APP_PACKAGE.meta);
+  appDownload(html,'Sprint_Planner_Portable_'+new Date().toISOString().slice(0,10)+'.html','text/html');
+  toast('Portable HTML download requested — contains current tickets and images.');
+}
+
+/* ── INIT / SHARED SYNC ── */
+async function init(){
+  const l=APP_PACKAGE.mode==='demo'?localStorage.getItem("amp_log_v6"):null;
+  if(l){try{changeLog=JSON.parse(l);}catch{}}
+  renderLog(); renderSprintControls(); render();
+  await refreshFromShared(true);
+  if(syncTimer) clearInterval(syncTimer);
+  if(APP_PACKAGE.mode==='demo')syncTimer=setInterval(()=>refreshFromShared(false),SYNC_INTERVAL_MS);
+}
+
+async function refreshFromShared(force=false){
+  const adapter=sharedAdapter();
+  if(!adapter || typeof adapter.list!=="function"){
+    setSyncState("Connection error","error");
+    document.getElementById("last-updated").textContent="Joshua Ly · Portfolio sample · Microsoft List connection not configured";
+    return false;
+  }
+  if(syncInFlight) return false;
+  if(isEditing() && !force){
+    setSyncState("Saved","saved");
+    return false;
+  }
+  syncInFlight=true;
+  setSyncState(force?"Loading":"Syncing",force?"loading":"syncing");
+  try{
+    const rows=await adapter.list();
+    if(!Array.isArray(rows)) throw new Error("Shared adapter list() did not return an array.");
+    tickets=rows.map(normalizeTicket);
+    renderSprintControls();
+    lastSyncAt=new Date();
+    updTS(); render();
+    setSyncState(APP_LOCKED?"Locked":"Saved","saved");
+    return true;
+  }catch(err){
+    console.error("AMP shared sync failed",err);
+    setSyncState("Connection error","error");
+    toast(APP_PACKAGE.mode==='portable'?"Could not load the portable file":"Could not sync Microsoft List");
+    return false;
+  }finally{ syncInFlight=false; }
+}
+
+function updTS(){
+  const stamp=lastSyncAt?lastSyncAt.toLocaleTimeString():"Not synced";
+  document.getElementById("last-updated").textContent=APP_PACKAGE.mode==='portable'
+    ?'Joshua Ly · Portfolio sample · '+(APP_LOCKED?'Locked sprint snapshot': 'Local portable copy · Save File to share')
+    :'Joshua Ly · Portfolio sample · Synced: '+stamp;
+}
+
+async function createSharedTicket(t){
+  const adapter=sharedAdapter();
+  if(!adapter?.create) throw new Error("Shared create is not configured.");
+  const saved=normalizeTicket(await adapter.create(ticketPayload(t)));
+  if(t.attachments?.length && adapter.replaceAttachments){
+    await adapter.replaceAttachments(saved,t.attachments);
+  }
+  return saved;
+}
+async function updateSharedTicket(t){
+  const adapter=sharedAdapter();
+  if(!adapter?.update) throw new Error("Shared update is not configured.");
+  const saved=normalizeTicket(await adapter.update(ticketPayload(t)));
+  if(adapter.replaceAttachments){ await adapter.replaceAttachments(saved,t.attachments||[]); }
+  return saved;
+}
+async function deleteSharedTicket(t){
+  const adapter=sharedAdapter();
+  if(!adapter?.delete) throw new Error("Shared delete is not configured.");
+  return adapter.delete(ticketPayload(t));
+}
+
+/* ── FILTER ── */
+function filtered(){
+  const q=document.getElementById("search").value.toLowerCase();
+  const u=document.getElementById("filter-urgency").value;
+  return tickets.filter(t=>{
+    if(u&&t.urgency!==u) return false;
+    if(selectedSprint!=="all" && t.stage==="This Sprint" && sprintNameFor(t)!==selectedSprint) return false;
+    if(q&&!([t.title,t.requestor,t.summary,String(t.id),sprintNameFor(t)||""].join(" ").toLowerCase().includes(q))) return false;
+    return true;
+  });
+}
+
+/* ── RENDER ── */
+function render(){
+  const d=filtered();
+  renderStats(d);
+  if(currentView==="kanban")    renderKanban(d);
+  if(currentView==="table")     renderTable(d);
+  if(currentView==="presenter") renderPresenter(d);
+}
+
+function renderStats(data){
+  const c={sprint:0,backlog:0,handoff:0,done:0};
+  data.forEach(t=>{ const k=STAGE_KEY[t.stage]||"backlog"; c[k]=(c[k]||0)+1; });
+  const carryovers=data.filter(isCarryover).length;
+  document.getElementById("stats-bar").innerHTML=
+    Object.entries(STAGE_LABEL).map(([k,l])=>
+      `<div class="stat-chip"><div class="stat-dot" style="background:${STAGE_COLOR[k]}"></div>${l} <strong>${c[k]||0}</strong></div>`
+    ).join("") + (selectedSprint!=="all"?`<div class="stat-chip"><span style="color:var(--jira-blue);font-weight:800">▣</span> Viewing <strong>${selectedSprint}</strong></div>`:"") + (carryovers?`<div class="stat-chip"><span style="color:var(--jira-blue);font-weight:800">↻</span> Carryovers <strong>${carryovers}</strong></div>`:"") + `<div class="stat-chip" style="margin-left:auto">Total <strong>${data.length}</strong></div>`;
+}
+
+/* ── KANBAN ── */
+function renderKanban(data){
+  const by={};
+  STAGES.forEach(s=>by[s]=[]);
+  data.forEach(t=>{ const s=STAGES.includes(t.stage)?t.stage:"Backlog"; by[s].push(t); });
+  document.getElementById("kanban-board").innerHTML=STAGES.map(stage=>{
+    const k=STAGE_KEY[stage];
+    const cards=by[stage].sort((a,b)=>(a.priority||999)-(b.priority||999));
+    return`<div class="col" data-stage="${stage}"
+               ondragover="onDragOver(event)" ondrop="onDrop(event,this)" ondragleave="onDragLeave(event)">
+      <div class="col-header ${k}">
+        <span class="col-title">${stage==="This Sprint"?(selectedSprint==="all"?"🏃 Sprint Work":`🏃 ${selectedSprint}`):STAGE_LABEL[k]}</span>
+        <span class="col-count">${cards.length}</span>
+      </div>
+      <div class="col-body">
+        ${cards.length===0?`<div class="empty-col">No tickets</div>`:cards.map(t=>cardHTML(t)).join("")}
+      </div></div>`;
+  }).join("");
+  document.querySelectorAll(".card").forEach(el=>{
+    el.addEventListener("click",function(){
+      if(!this._moved) openDetail(parseInt(this.dataset.id));
+    });
+    el.addEventListener("dragstart",function(e){
+      if(APP_LOCKED){e.preventDefault();return;} draggingId=parseInt(this.dataset.id); this._moved=false;
+      e.dataTransfer.effectAllowed="move";
+      setTimeout(()=>this.classList.add("dragging"),0);
+    });
+    el.addEventListener("drag",function(){ this._moved=true; });
+    el.addEventListener("dragend",function(){ this.classList.remove("dragging"); setTimeout(()=>{this._moved=false;},300); });
+  });
+}
+
+function cardHTML(t){
+  const ub=t.urgency==="Must Have"?"badge-must":t.urgency==="Nice to have"?"badge-nice":"badge-na";
+  return`<div class="card" draggable="${!APP_LOCKED}" data-id="${t.id}">
+    <div class="card-title">${appEscape(t.title)}</div>
+    <div class="card-meta">
+      <span class="badge ${ub}">${appEscape(t.urgency||"N/A")}</span>
+      ${carryoverBadge(t)}
+      ${t.stage==="This Sprint"?sprintBadge(t):""}
+      ${t.priority?`<span class="priority-pip">⭐ #${appEscape(t.priority)}</span>`:""}
+    </div>
+    <div class="card-requestor">👤 ${appEscape(t.requestor||"—")}</div>
+  </div>`;
+}
+
+function onDragOver(e){ if(APP_LOCKED)return; e.preventDefault(); e.currentTarget.querySelector(".col-body").classList.add("drag-over"); }
+function onDragLeave(e){ e.currentTarget.querySelector(".col-body").classList.remove("drag-over"); }
+async function onDrop(e,col){ if(APP_LOCKED){e.preventDefault();return;} e.preventDefault(); col.querySelector(".col-body").classList.remove("drag-over");
+  const ns=col.dataset.stage; if(!draggingId||!ns) return;
+  const t=tickets.find(t=>t.id===draggingId); if(!t) return;
+  if(t.stage!==ns){
+    const old=t.stage;
+    const assignedSprint=ns==="This Sprint"?(selectedSprint!=="all"?selectedSprint:(t.sprint||currentSprint().name)):(ns==="Backlog"?null:t.sprint);
+    const candidate={...t,stage:ns,sprint:assignedSprint};
+    setSyncState("Saving","saving");
+    try{
+      const saved=await updateSharedTicket(candidate);
+      Object.assign(t,saved,{stage:ns,sprint:assignedSprint});
+      lastSyncAt=new Date(); updTS();
+      logChange(`#${t.id} moved "${old}" → "${ns}"`); toast(`Moved to ${ns}`); render();
+      setSyncState("Saved","saved");
+    }catch(err){
+      console.error(err); setSyncState("Connection error","error"); toast("Stage change was not saved"); render();
+    }
+  }
+  draggingId=null;
+}
+
+/* ── TABLE ── */
+function renderTable(data){
+  const cols=[{key:"id",label:"ID"},{key:"stage",label:"Stage"},{key:"sprint",label:"Sprint"},{key:"title",label:"Request Title"},{key:"requestor",label:"Requestor"},{key:"urgency",label:"Urgency"},{key:"priority",label:"Priority"}];
+  document.getElementById("table-head").innerHTML=`<tr>${cols.map(c=>`<th onclick="sortBy('${c.key}')">${c.label}${sortCol===c.key?(sortDir>0?" ▲":" ▼"):""}</th>`).join("")}</tr>`;
+  let rows=[...data];
+  if(sortCol) rows.sort((a,b)=>{
+    let va=a[sortCol]??"",vb=b[sortCol]??"";
+    return(typeof va==="number"&&typeof vb==="number"?(va-vb)*sortDir:String(va).localeCompare(String(vb))*sortDir);
+  });
+  document.getElementById("table-body").innerHTML=rows.map(t=>{
+    const k=STAGE_KEY[t.stage]||"backlog";
+    return`<tr onclick="openDetail(${t.id})">
+      <td style="color:var(--subtext);font-size:.78rem">${t.id}</td>
+      <td><span class="stage-pill stage-${k}">${appEscape(t.stage)}</span></td>
+      <td>${t.stage==="This Sprint"?sprintBadge(t):"—"}</td>
+      <td style="font-weight:600">${appEscape(t.title)}${isCarryover(t)?`<div style="margin-top:5px">${carryoverBadge(t)}</div>`:""}</td>
+      <td style="color:var(--subtext)">${appEscape(t.requestor||"—")}</td>
+      <td><span class="badge ${t.urgency==="Must Have"?"badge-must":t.urgency==="Nice to have"?"badge-nice":"badge-na"}">${appEscape(t.urgency||"N/A")}</span></td>
+      <td style="color:var(--yellow)">${appEscape(t.priority?"#"+t.priority:"—")}</td>
+    </tr>`;
+  }).join("");
+}
+function sortBy(col){ sortCol===col?sortDir*=-1:(sortCol=col,sortDir=1); render(); }
+
+/* ── PRESENTER ── */
+function renderPresenter(data){
+  document.getElementById("presenter-tabs").innerHTML=STAGES.map(s=>`<button class="pstab ${s===presenterStage?"active":""}" onclick="presenterStage='${s}';render()">${STAGE_LABEL[STAGE_KEY[s]]}</button>`).join("");
+  const sd=data.filter(t=>(STAGES.includes(t.stage)?t.stage:"Backlog")===presenterStage).sort((a,b)=>(a.priority||999)-(b.priority||999));
+  if(!sd.length){ document.getElementById("presenter-grid").innerHTML=`<div class="empty-col" style="padding:40px">No tickets in this stage.</div>`; return; }
+  const col=STAGE_COLOR[STAGE_KEY[presenterStage]]||"var(--accent)";
+  document.getElementById("presenter-grid").innerHTML=sd.map((t,i)=>`<div class="pcard" onclick="openDetail(${t.id})">
+    <div class="pcard-num" style="color:${col}">${appEscape(t.priority||(i+1))}</div>
+    <div class="pcard-body">
+      <div class="pcard-title">${appEscape(t.title)}</div>
+      <div class="pcard-summary">${appEscape(t.summary)}</div>
+      <div class="pcard-footer">
+        <span class="badge ${t.urgency==="Must Have"?"badge-must":t.urgency==="Nice to have"?"badge-nice":"badge-na"}">${appEscape(t.urgency||"N/A")}</span>
+        ${carryoverBadge(t)}
+        ${t.stage==="This Sprint"?sprintBadge(t):""}
+        <span class="pcard-requestor">👤 ${appEscape(t.requestor||"—")}</span>
+        <span style="font-size:.75rem;color:var(--subtext);margin-left:auto">ADO #${t.id}</span>
+      </div>
+    </div></div>`).join("");
+}
+
+/* ── DETAIL ── */
+function openDetail(id){
+  const t=tickets.find(t=>t.id===id); if(!t) return;
+  const k=STAGE_KEY[t.stage]||"backlog";
+  document.getElementById("d-id").textContent=`ADO #${t.id}`;
+  document.getElementById("d-title").textContent=t.title;
+  document.getElementById("d-stage-pill").innerHTML=`<span class="stage-pill stage-${k}">${appEscape(t.stage)}</span>`;
+  const notes=Array.isArray(t.notes)?t.notes:(t.notes?[t.notes]:[]);
+  document.getElementById("detail-body").innerHTML=`
+    <div class="form-row">
+      <div class="field-group"><div class="field-label">Requestor</div><div class="field-value">${appEscape(t.requestor||"—")}</div></div>
+      <div class="field-group"><div class="field-label">Urgency</div><div class="field-value"><span class="badge ${t.urgency==="Must Have"?"badge-must":t.urgency==="Nice to have"?"badge-nice":"badge-na"}">${appEscape(t.urgency||"N/A")}</span></div></div>
+    </div>
+    <div class="form-row">
+      <div class="field-group"><div class="field-label">Goal Alignment</div><div class="field-value">${appEscape(t.align||"—")}</div></div>
+      <div class="field-group"><div class="field-label">Business Unit</div><div class="field-value">${appEscape(t.bu||"AMP")}</div></div>
+    </div>
+    ${t.stage==="This Sprint"?`<div class="sprint-move-box"><div class="field-label">Sprint Iteration</div><div class="field-value" style="margin-top:4px">${sprintBadge(t)}</div><div class="sprint-move-row"><select class="form-control" id="d-move-sprint">${SPRINTS.map(sp=>`<option value="${sp.name}" ${sp.name===sprintNameFor(t)?"selected":""}>${sp.name} · ${fmtSprintDate(sp.start)} - ${fmtSprintDate(sp.end)}</option>`).join("")}</select><button class="btn btn-outline" onclick="moveTicketToSprint(${t.id},document.getElementById('d-move-sprint').value,false)">Move to Sprint</button></div></div>`:""}
+    ${isCarryover(t)?`<div class="field-group"><div class="field-label">Sprint Carryover</div><div class="field-value">${carryoverBadge(t)} <span style="margin-left:6px;color:var(--text-secondary)">Carried into ${carryoverCount(t)} subsequent sprint${carryoverCount(t)===1?"":"s"}.</span></div></div>`:""}
+    <div class="field-group"><div class="field-label">Executive Summary</div><div class="field-value" style="line-height:1.6">${appEscape(t.summary||"—")}</div></div>
+    ${notes.length?`<div class="field-group"><div class="field-label">Notes & Updates</div>${notes.map(n=>n.startsWith("data:image")?`<div class="note-block note-image"><img src="${appSafeImage(n)}" style="width:100%;border-radius:4px;display:block;cursor:pointer" onclick="openLightbox(this.src)"></div>`:`<div class="note-block">${appEscape(n)}</div>`).join("")}</div>`:""}
+    ${(t.attachments&&t.attachments.length)?`<div class="field-group"><div class="field-label">Attachments</div><div class="attach-grid" style="flex-direction:column;gap:12px">${t.attachments.map((a,i)=>`<div class="detail-attachment"><img src="${appSafeImage(a.data)}" alt="${appEscape(a.name)}" onclick="openLightbox(this.src)" title="Click to expand"><div class="attach-caption">📎 ${appEscape(a.name)}</div></div>`).join("")}</div></div>`:""}` ;
+  document.getElementById("d-edit-btn").onclick=()=>{ closeDetailModal(); openEdit(id); };
+  const carryBtn=document.getElementById("d-carry-btn");
+  if(t.stage==="This Sprint"){
+    carryBtn.style.display="";
+    const n=carryoverCount(t);
+    const nxt=nextSprint(sprintNameFor(t)||currentSprint().name);
+    carryBtn.textContent=n?`↻ Carry Over Again (${n}×)`:(nxt?`↻ Carry to ${nxt.name}`:`↻ No Later Sprint`);
+    carryBtn.disabled=!nxt;
+    carryBtn.onclick=()=>carryToNextSprint(id);
+  }else{
+    carryBtn.style.display="none";
+    carryBtn.disabled=false;
+    carryBtn.onclick=null;
+  }
+  document.getElementById("d-del-btn").onclick=()=>{ if(confirm("Delete this ticket?")){ deleteTicket(id); closeDetailModal(); } };
+  document.getElementById("detail-overlay").classList.add("open");
+}
+function closeDetailBg(e){ if(e.target===document.getElementById("detail-overlay")) closeDetailModal(); }
+function closeDetailModal(){ document.getElementById("detail-overlay").classList.remove("open"); }
+
+/* ── EDIT/ADD ── */
+function openAdd(){ if(APP_LOCKED)return;
+  editingId=null; editingVersion=null;
+  document.getElementById("edit-modal-title").textContent="New Ticket";
+  ["f-id","f-title","f-summary","f-requestor","f-priority","f-notes"].forEach(id=>document.getElementById(id).value="");
+  document.getElementById("f-stage").value="Backlog";
+  renderSprintControls(); document.getElementById("f-sprint").value=selectedSprint!=="all"?selectedSprint:currentSprint().name;
+  document.getElementById("f-urgency").value="Must Have";
+  document.getElementById("f-align").value="Yes";
+  currentAttachments=[];
+  renderAttachGrid();
+  document.getElementById("edit-overlay").classList.add("open");
+}
+function openEdit(id){ if(APP_LOCKED)return;
+  const t=tickets.find(t=>t.id===id); if(!t) return;
+  editingId=id;
+  editingVersion=t._modified||null;
+  document.getElementById("edit-modal-title").textContent="Edit Ticket";
+  document.getElementById("f-id").value=t.id;
+  document.getElementById("f-stage").value=STAGES.includes(t.stage)?t.stage:"Backlog";
+  renderSprintControls(); document.getElementById("f-sprint").value=sprintNameFor(t)||currentSprint().name;
+  document.getElementById("f-title").value=t.title||"";
+  document.getElementById("f-summary").value=t.summary||"";
+  document.getElementById("f-requestor").value=t.requestor||"";
+  document.getElementById("f-urgency").value=t.urgency||"Must Have";
+  document.getElementById("f-priority").value=t.priority||"";
+  document.getElementById("f-align").value=t.align||"Yes";
+  const notes=Array.isArray(t.notes)?t.notes.join("\n\n"):(t.notes||"");
+  document.getElementById("f-notes").value=notes;
+  // load existing attachments
+  currentAttachments = (t.attachments||[]).map(a=>({...a}));
+  renderAttachGrid();
+  document.getElementById("edit-overlay").classList.add("open");
+}
+async function saveTicket(){ if(APP_LOCKED)return;
+  const title=document.getElementById("f-title").value.trim();
+  if(!title){ alert("Title is required."); return; }
+  const id=parseInt(document.getElementById("f-id").value)||Date.now();
+  const notesRaw=document.getElementById("f-notes").value.trim();
+  const notesArr=notesRaw?notesRaw.split(/\n\n+/).map(s=>s.trim()).filter(Boolean):[];
+  const existing=editingId!==null?tickets.find(t=>t.id===editingId):null;
+  const chosenStage=document.getElementById("f-stage").value;
+  const chosenSprint=document.getElementById("f-sprint").value||currentSprint().name;
+  const data={id,stage:chosenStage,sprint:chosenStage==="This Sprint"?chosenSprint:(existing?.sprint||null),bu:"AMP",title,summary:document.getElementById("f-summary").value.trim(),requestor:document.getElementById("f-requestor").value.trim(),urgency:document.getElementById("f-urgency").value,priority:parseInt(document.getElementById("f-priority").value)||null,align:document.getElementById("f-align").value,notes:notesArr,status:existing?.status||null,attachments:[...currentAttachments],_itemId:existing?._itemId||null,_modified:existing?._modified||null};
+  setSyncState("Saving","saving");
+  try{
+    if(existing && editingVersion){
+      const adapter=sharedAdapter();
+      if(adapter?.list){
+        const fresh=(await adapter.list()).map(normalizeTicket).find(x=>(x._itemId&&existing._itemId?String(x._itemId)===String(existing._itemId):x.id===existing.id));
+        if(fresh?._modified && fresh._modified!==editingVersion){
+          setSyncState("Connection error","error");
+          alert("This ticket changed in Microsoft Lists while you were editing it. Your changes were not saved. Close and reopen the ticket to review the latest version.");
+          return;
+        }
+      }
+    }
+    const saved=existing?await updateSharedTicket(data):await createSharedTicket(data);
+    if(existing){ const i=tickets.findIndex(t=>t.id===editingId); if(i>=0) tickets[i]=saved; logChange(`#${id} updated: "${title}"`); }
+    else{ tickets.push(saved); logChange(`#${id} added: "${title}" → ${data.stage}`); }
+    lastSyncAt=new Date(); updTS(); closeEditModal(); render(); toast("Ticket saved ✓"); setSyncState("Saved","saved");
+    // Pull canonical server values after save without interrupting the user.
+    setTimeout(()=>refreshFromShared(false),500);
+  }catch(err){
+    console.error(err); setSyncState("Connection error","error"); toast("Ticket was not saved");
+  }
+}
+async function carryToNextSprint(id){ if(APP_LOCKED)return;
+  const t=tickets.find(x=>x.id===id); if(!t) return;
+  if(t.stage!=="This Sprint"){ toast("Only tickets in sprint work can be carried over"); return; }
+  const from=sprintNameFor(t)||currentSprint().name;
+  const target=nextSprint(from);
+  if(!target){ toast("No later sprint is configured in the calendar"); return; }
+  const nextCount=carryoverCount(t)+1;
+  const message=nextCount===1
+    ? `Carry this ticket from ${from} into ${target.name}?`
+    : `Carry this ticket from ${from} into ${target.name}? This will mark it as carryover ×${nextCount}.`;
+  if(!confirm(message)) return;
+  await moveTicketToSprint(id,target.name,true);
+}
+
+async function deleteTicket(id){ if(APP_LOCKED)return;
+  const t=tickets.find(t=>t.id===id); if(!t) return;
+  setSyncState("Saving","saving");
+  try{
+    await deleteSharedTicket(t);
+    tickets=tickets.filter(x=>x.id!==id); logChange(`#${t.id} deleted: "${t.title}"`); render(); toast("Deleted"); setSyncState("Saved","saved");
+  }catch(err){ console.error(err); setSyncState("Connection error","error"); toast("Ticket was not deleted"); }
+}
+function closeEditBg(e){ if(e.target===document.getElementById("edit-overlay")) closeEditModal(); }
+function closeEditModal(){ document.getElementById("edit-overlay").classList.remove("open"); editingVersion=null; setTimeout(()=>refreshFromShared(false),150); }
+
+/* ── VIEW ── */
+function setView(v){
+  currentView=v;
+  ["kanban","table","presenter"].forEach(n=>{ document.getElementById("view-"+n).style.display=n===v?"":"none"; document.getElementById("vtab-"+n).classList.toggle("active",n===v); });
+  render();
+}
+
+/* ── IMPORT/EXPORT ── */
+function openImport(){ if(APP_LOCKED)return; document.getElementById("import-overlay").classList.add("open"); }
+function closeImport(){ document.getElementById("import-overlay").classList.remove("open"); document.getElementById("import-actions").style.display="none"; pendingCSV=null; }
+const dz=document.getElementById("drop-zone");
+dz.addEventListener("dragover",e=>{e.preventDefault();dz.classList.add("drag-active");});
+dz.addEventListener("dragleave",()=>dz.classList.remove("drag-active"));
+dz.addEventListener("drop",e=>{e.preventDefault();dz.classList.remove("drag-active");if(e.dataTransfer.files[0])handleFile(e.dataTransfer.files[0]);});
+document.getElementById("file-input").addEventListener("change",function(){if(this.files[0])handleFile(this.files[0]);});
+function handleFile(f){ if(APP_LOCKED)return;
+  if(!f||!f.name.endsWith(".csv")){alert("Please select a CSV file.");return;}
+  const r=new FileReader();
+  r.onload=e=>{pendingCSV=parseCSV(e.target.result);document.getElementById("import-actions").style.display="flex";dz.innerHTML=`<div style="font-size:1.5rem">✅</div><div style="font-size:.9rem;margin-top:6px;color:var(--green)"><strong>${pendingCSV.length}</strong> rows ready — merge or replace?</div>`;};
+  r.readAsText(f);
+}
+async function doImport(mode){ if(APP_LOCKED)return;
+  if(!pendingCSV) return;
+  if(mode==="replace"){
+    alert("Replace all is disabled for the shared Microsoft List to avoid deleting company records. Use Merge instead.");
+    return;
+  }
+  let a=0,u=0; setSyncState("Saving","saving");
+  try{
+    for(const imp of pendingCSV){
+      const existing=tickets.find(t=>t.id===imp.id);
+      if(existing){ await updateSharedTicket({...existing,...imp,_itemId:existing._itemId,_modified:existing._modified}); u++; }
+      else{ await createSharedTicket(imp); a++; }
+    }
+    logChange(`CSV merged — ${a} added, ${u} updated`); closeImport();
+    await refreshFromShared(true); toast("Import complete ✓");
+  }catch(err){ console.error(err); setSyncState("Connection error","error"); toast("Import stopped because a shared save failed"); }
+}
+function parseCSV(text){
+  const lines=text.split(/\r?\n/).filter(l=>l.trim());
+  const headers=lines[0].split(",").map(h=>h.replace(/^"|"$/g,"").trim().toLowerCase());
+  return lines.slice(1).map(line=>{
+    const vals=splitCSV(line),row={};
+    headers.forEach((h,i)=>row[h]=(vals[i]||"").replace(/^"|"$/g,"").trim());
+    const stage=["This Sprint","Backlog","Handed Off","Done"].includes(row.stage)?row.stage:"Backlog";
+    return{id:parseInt(row["ticket id"]||row.id)||Date.now(),stage,sprint:row["sprint"]||row["iteration"]||(stage==="This Sprint"?currentSprint().name:null),bu:row["bus. unit"]||"AMP",title:row["request title"]||row.title||"Untitled",summary:row["executive summary"]||row.summary||"",requestor:row["requestor name"]||row.requestor||"",align:row["goal alignment? (y/n)"]||"N/A",urgency:row["urgency"]||"N/A",priority:parseInt(row["top priority"]||row.priority)||null,status:null,notes:row.notes?[row.notes]:[]};
+  }).filter(t=>t.title&&t.title!=="Untitled");
+}
+function splitCSV(l){const r=[];let c="",q=false;for(let i=0;i<l.length;i++){if(l[i]==='"'){if(q&&l[i+1]==='"'){c+='"';i++;}else q=!q;}else if(l[i]===','&&!q){r.push(c);c="";}else c+=l[i];}r.push(c);return r;}
+function exportCSV(){
+  const h=["Ticket ID","Stage","Sprint","Bus. Unit","Request Title","Executive Summary","Requestor Name","Goal Alignment? (Y/N)","Urgency ","Top Priority","Status","Notes"];
+  const rows=tickets.map(t=>[t.id,t.stage,t.sprint||"",t.bu||"AMP",t.title,t.summary||"",t.requestor||"",t.align||"N/A",t.urgency||"N/A",t.priority||"",t.status||"",Array.isArray(t.notes)?t.notes.join(" | "):(t.notes||"")].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(","));
+  const blob=new Blob([h.join(",")+"\n"+rows.join("\n")],{type:"text/csv"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`Sprint_Planner_${new Date().toISOString().slice(0,10)}.csv`;a.click();
+  logChange("CSV exported"); toast("Export downloaded ✓");
+}
+
+/* ── LOG ── */
+function logChange(msg){
+  changeLog.unshift({time:new Date().toLocaleTimeString(),msg});
+  if(APP_PACKAGE.mode==='demo')try{localStorage.setItem("amp_log_v6",JSON.stringify(changeLog.slice(0,100)));}catch(e){/* Log is optional. */}
+  renderLog();
+}
+function renderLog(){
+  document.getElementById("log-count").textContent=changeLog.length;
+  document.getElementById("log-body").innerHTML=changeLog.map(e=>`<div class="log-entry"><div>${appEscape(e.msg)}</div><div class="log-time">${appEscape(e.time)}</div></div>`).join("")||`<div style="font-size:.8rem;color:var(--subtext)">No changes yet this session.</div>`;
+}
+function toggleLog(){ const p=document.getElementById("log-panel"),o=p.classList.toggle("open"); document.getElementById("log-arrow").textContent=o?"▼":"▲"; }
+
+/* ── TOAST ── */
+function toast(m){ const e=document.getElementById("toast");e.textContent=m;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),2200); }
+
+/* ── KEYBOARD ── */
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){closeDetailModal();closeEditModal();closeImport();closeLightbox();document.getElementById("package-overlay").classList.remove("open");} });
+
+
+/* ── ATTACHMENTS ── */
+let currentAttachments = [];
+
+document.getElementById("attach-file-input").addEventListener("change", function(){
+  if(APP_LOCKED)return;
+  const files = Array.from(this.files);
+  let loaded = 0;
+  files.forEach(file => {
+    if (!file.type.startsWith("image/")) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      currentAttachments.push({ name: file.name, data: e.target.result });
+      loaded++;
+      if (loaded === files.length) renderAttachGrid();
+    };
+    reader.readAsDataURL(file);
+  });
+  this.value = "";
+});
+
+function renderAttachGrid() {
+  const grid = document.getElementById("f-attach-grid");
+  if (!grid) return;
+  grid.innerHTML = currentAttachments.map((a, i) =>
+    `<div class="attach-thumb">
+      <img src="${appSafeImage(a.data)}" alt="${appEscape(a.name)}" title="${appEscape(a.name)}">
+      <button class="remove-btn" onclick="removeAttachment(${i})" title="Remove">✕</button>
+    </div>`
+  ).join("") +
+  `<button class="attach-add-btn" type="button" onclick="document.getElementById('attach-file-input').click()" title="Add image">+</button>`;
+}
+
+function removeAttachment(i) { if(APP_LOCKED)return;
+  currentAttachments.splice(i, 1);
+  renderAttachGrid();
+}
+
+/* ── LIGHTBOX ── */
+function openLightbox(src) {
+  document.getElementById("lightbox-img").src = src;
+  document.getElementById("lightbox").classList.add("open");
+}
+function closeLightbox() {
+  document.getElementById("lightbox").classList.remove("open");
+  document.getElementById("lightbox-img").src = "";
+}
+
+
+/* ── DEMO-ONLY IN-MEMORY SHARED ADAPTER ─────────────────────────────────────
+   This adapter exists only so the demo file behaves like a connected shared app.
+   Data resets to SEED whenever the browser page is refreshed.
+────────────────────────────────────────────────────────────────────────────── */
+let DEMO_DB = SEED.map((t,i)=>({...t,_itemId:i+1,_modified:new Date(Date.now()-i*60000).toISOString(),attachments:t.attachments||[]}));
+window.AMP_SHARED_DATA_ADAPTER = {
+  async list(){ return DEMO_DB.map(t=>structuredClone(t)); },
+  async create(ticket){
+    const now=new Date().toISOString();
+    const item={...ticket,_itemId:Math.max(0,...DEMO_DB.map(x=>Number(x._itemId)||0))+1,_modified:now,attachments:ticket.attachments||[]};
+    DEMO_DB.push(item); return structuredClone(item);
+  },
+  async update(ticket){
+    const idx=DEMO_DB.findIndex(x=>ticket._itemId ? String(x._itemId)===String(ticket._itemId) : String(x.id)===String(ticket.id));
+    if(idx<0) throw new Error("Demo ticket not found.");
+    const item={...DEMO_DB[idx],...ticket,_modified:new Date().toISOString()};
+    DEMO_DB[idx]=item; return structuredClone(item);
+  },
+  async delete(ticket){
+    const idx=DEMO_DB.findIndex(x=>ticket._itemId ? String(x._itemId)===String(ticket._itemId) : String(x.id)===String(ticket.id));
+    if(idx>=0) DEMO_DB.splice(idx,1);
+  },
+  async replaceAttachments(ticket,attachments){
+    const idx=DEMO_DB.findIndex(x=>ticket._itemId ? String(x._itemId)===String(ticket._itemId) : String(x.id)===String(ticket.id));
+    if(idx>=0){ DEMO_DB[idx].attachments=structuredClone(attachments||[]); DEMO_DB[idx]._modified=new Date().toISOString(); }
+  }
+};
+
+/* Optional portable sprint package layer. The original demo and its sprint flows remain intact. */
+const APP_PACKAGE=JSON.parse(document.getElementById('amp-package-data').textContent);
+const APP_TEMPLATE='<!doctype html>\n'+document.documentElement.outerHTML;
+const APP_LOCKED=APP_PACKAGE.mode==='portable'&&!!APP_PACKAGE.locked;
+function appEscape(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function appSafeImage(v){return /^data:image\/(png|jpeg|jpg|gif|webp|bmp);base64,[a-z0-9+/=\s]+$/i.test(String(v))?v:'';}
+function appNewKey(){return Date.now().toString(36)+'_'+Math.random().toString(36).slice(2);}
+function appDownload(data,name,mime){const url=URL.createObjectURL(data instanceof Blob?data:new Blob([data],{type:mime}));const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);}
+function appHTML(records,locked,meta){
+  const content={version:1,mode:'portable',key:appNewKey(),locked,meta:meta||null,tickets:records};
+  const json=JSON.stringify(content).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
+  return APP_TEMPLATE.replace(/const SEED\s*=\s*\[[\s\S]*?\];/,'const SEED = [];')
+    .replace(/(<script id="amp-package-data" type="application\/json">)[\s\S]*?(<\/script>)/,(_,start,end)=>start+json+end);
+}
+function appZip(files){
+  const enc=new TextEncoder(),parts=[],central=[];let offset=0;
+  function crc(bytes){let c=0xffffffff;for(const b of bytes){c^=b;for(let j=0;j<8;j++)c=(c>>>1)^((c&1)?0xedb88320:0);}return (c^0xffffffff)>>>0;}
+  for(const [path,value] of Object.entries(files)){
+    const name=enc.encode(path),data=enc.encode(value),sum=crc(data);
+    if(name.length>65535||data.length>0xffffffff||offset+data.length>0xffffffff)throw Error('Package is too large for a standard ZIP.');
+    const h=new Uint8Array(30+name.length),v=new DataView(h.buffer);
+    v.setUint32(0,0x04034b50,true);v.setUint16(4,20,true);v.setUint16(6,0x800,true);v.setUint16(12,33,true);v.setUint32(14,sum,true);v.setUint32(18,data.length,true);v.setUint32(22,data.length,true);v.setUint16(26,name.length,true);h.set(name,30);
+    const c=new Uint8Array(46+name.length),w=new DataView(c.buffer);
+    w.setUint32(0,0x02014b50,true);w.setUint16(4,20,true);w.setUint16(6,20,true);w.setUint16(8,0x800,true);w.setUint16(14,33,true);w.setUint32(16,sum,true);w.setUint32(20,data.length,true);w.setUint32(24,data.length,true);w.setUint16(28,name.length,true);w.setUint32(42,offset,true);c.set(name,46);
+    parts.push(h,data);central.push(c);offset+=h.length+data.length;
+  }
+  const total=central.reduce((n,x)=>n+x.length,0),end=new Uint8Array(22),v=new DataView(end.buffer);
+  v.setUint32(0,0x06054b50,true);v.setUint16(8,central.length,true);v.setUint16(10,central.length,true);v.setUint32(12,total,true);v.setUint32(16,offset,true);
+  return new Blob([...parts,...central,end],{type:'application/zip'});
+}
+function appCSV(rows){
+  const header=['Ticket ID','Stage','Sprint','Bus. Unit','Request Title','Executive Summary','Requestor Name','Goal Alignment','Urgency','Priority','Status','Notes'];
+  function cell(v){let s=String(v??'');if(/^[\s]*[=+\-@]/.test(s)||/^[\t\r\n]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}
+  return '\ufeff'+[header,...rows.map(t=>[t.id,t.stage,t.sprint,t.bu,t.title,t.summary,t.requestor,t.align,t.urgency,t.priority,t.status,(t.notes||[]).map(n=>String(n).startsWith('data:image')?'[Embedded image: see HTML and JSON]':n).join('\n\n')])].map(r=>r.map(cell).join(',')).join('\r\n');
+}
+function appPackageFiles(meta){
+  const all=tickets.map(t=>structuredClone(t));
+  const scope=all.filter(t=>t.stage==='This Sprint'&&sprintNameFor(t)===meta.iteration);
+  return {
+    'Backlog.html':appHTML(all,false,meta),
+    'Sprint_Locked.html':appHTML(scope,true,meta),
+    'Backlog_Data.json':JSON.stringify({version:1,sprint:meta,tickets:all},null,2),
+    'Sprint_Summary.csv':appCSV(scope),
+    'README.txt':`AMP Service Ops Backlog — ${meta.name}\nIteration: ${meta.iteration}\nDates: ${meta.start} through ${meta.end}\nCaptured: ${meta.capturedAt}\nTickets: ${scope.length} in locked sprint; ${all.length} in full backlog.\n\nExtract this ZIP and open the HTML files in a browser. Backlog.html is editable and contains all sprint iterations, the Jira-style views, calendar, and carryover. Sprint_Locked.html is a read-only planning snapshot of the selected iteration. These HTML files run as local portable copies; they do not update Microsoft Lists or other computers.\nEdits in Backlog.html save to this browser when local storage is available. Use Save File to download an updated portable HTML. Use Lock In Sprint to download a new ZIP after changes; the existing disk file is never overwritten automatically.\nBacklog_Data.json includes complete tickets and embedded images; use Restore JSON inside editable Backlog.html for recovery. Sprint_Summary.csv is a readable summary and excludes images.\nFor a PDF, open Sprint_Locked.html and click Save PDF, choose Save as PDF in the print dialog, and place the resulting file in this extracted folder. PDF creation is a separate manual step.\nUpload the latest package into your restricted Teams/SharePoint folder manually and ask one person to edit each version at a time. The locked HTML is a planning snapshot, not tamper-proof.\n`
+  };
+}
+function appEditClosed(){if(document.getElementById('edit-overlay').classList.contains('open')){alert('Save or cancel the ticket edit before downloading.');return false;}return true;}
+function appChosenSprint(){return SPRINTS.find(s=>s.name===document.getElementById('package-iteration').value);}
+function openPackage(){
+  if(APP_LOCKED||!appEditClosed())return;
+  const chosen=SPRINTS.find(s=>s.name===selectedSprint)||currentSprint();
+  const sel=document.getElementById('package-iteration');sel.innerHTML=SPRINTS.map(sp=>'<option value="'+appEscape(sp.name)+'">'+appEscape(sp.name)+'</option>').join('');sel.value=chosen.name;
+  appUpdateScope();document.getElementById('package-overlay').classList.add('open');
+}
+function appUpdateScope(){
+  const sp=appChosenSprint();if(!sp)return;
+  document.getElementById('package-name').value=sp.name;
+  document.getElementById('package-dates').textContent=sp.start+' — '+sp.end;
+  const count=tickets.filter(t=>t.stage==='This Sprint'&&sprintNameFor(t)===sp.name).length;
+  document.getElementById('package-count').textContent=count+' tickets assigned to this sprint iteration. Other sprint iterations remain in Backlog.html.';
+}
+async function downloadSprintPackage(){
+  if(APP_LOCKED||!appEditClosed())return;
+  const sp=appChosenSprint(),name=document.getElementById('package-name').value.trim();
+  if(!sp||!name){alert('Choose an iteration and enter a sprint name.');return;}
+  if(!tickets.some(t=>t.stage==='This Sprint'&&sprintNameFor(t)===sp.name)){alert('The chosen iteration has no sprint tickets. Choose another iteration or move tickets into it.');return;}
+  const button=document.getElementById('package-download');button.disabled=true;button.textContent='Building ZIP…';
+  try{
+    await new Promise(resolve=>setTimeout(resolve,20));
+    const meta={name,iteration:sp.name,start:sp.start,end:sp.end,capturedAt:new Date().toISOString()};
+    const folder=(name.replace(/[^a-z0-9_-]+/gi,'_').slice(0,65)||'AMP_Sprint')+'_'+meta.capturedAt.replace(/[:.]/g,'-');
+    const files=appPackageFiles(meta),entries={};for(const [file,contents] of Object.entries(files))entries[folder+'/'+file]=contents;
+    appDownload(appZip(entries),folder+'.zip','application/zip');document.getElementById('package-overlay').classList.remove('open');toast('Sprint ZIP download requested. Extract it to verify the snapshot.');
+  }catch(e){alert('Could not build the ZIP: '+e.message+' Your tickets remain open.');}
+  finally{button.disabled=false;button.textContent='Lock In & Download ZIP';}
+}
+function appSavePDF(){
+  if(!appEditClosed())return;
+  const iteration=APP_LOCKED?APP_PACKAGE.meta?.iteration:(selectedSprint==='all'?currentSprint().name:selectedSprint);
+  const scope=tickets.filter(t=>t.stage==='This Sprint'&&sprintNameFor(t)===iteration);
+  if(!scope.length){alert('There are no tickets for the selected sprint iteration.');return;}
+  const sp=SPRINTS.find(s=>s.name===iteration),meta=APP_PACKAGE.meta;
+  const print=document.getElementById('amp-print');
+  print.innerHTML='<h1>AMP Service Ops Backlog</h1><h2>'+appEscape(APP_LOCKED?meta?.name:iteration)+'</h2><p>'+appEscape((sp?.start||meta?.start||'')+' — '+(sp?.end||meta?.end||''))+' · '+appEscape(APP_LOCKED?'Captured '+(meta?.capturedAt||''):'Working sprint summary, '+new Date().toLocaleString())+'</p><p>'+scope.length+' tickets · Images are retained in HTML and JSON, and attachment names are listed below.</p>'+scope.sort((a,b)=>(a.priority||999)-(b.priority||999)).map(t=>'<article><h2>#'+appEscape(t.id)+' — '+appEscape(t.title)+'</h2><p>Priority '+appEscape(t.priority||'—')+' · '+appEscape(t.stage)+' · '+appEscape(t.urgency)+' · '+appEscape(t.sprint||'')+'</p><p>Requestor: '+appEscape(t.requestor)+' · Business Unit: '+appEscape(t.bu||'AMP')+' · Goal Alignment: '+appEscape(t.align)+' · Status: '+appEscape(t.status||'—')+'</p><h3>Executive Summary</h3><p>'+appEscape(t.summary)+'</p><h3>Notes</h3><p>'+appEscape((Array.isArray(t.notes)?t.notes:[t.notes||'']).map(n=>String(n).startsWith('data:image')?'[Embedded image in HTML and JSON]':n).join('\n\n'))+'</p><p>Attachments: '+appEscape((t.attachments||[]).map(a=>a.name).join(', ')||'None')+'</p></article>').join('');
+  window.print();
+}
+function appRestoreJSON(input){
+  if(APP_LOCKED)return;const f=input.files[0];input.value='';if(!f)return;
+  const reader=new FileReader();reader.onload=async()=>{
+    try{
+      if(APP_PACKAGE.mode!=='portable')throw Error('Restore is available in the editable Backlog.html from a sprint package. Importing a backup into the demo cannot write to Microsoft Lists.');
+      const obj=JSON.parse(reader.result),rows=Array.isArray(obj)?obj:obj.tickets;
+      if(!Array.isArray(rows)||!rows.every(t=>t&&Number.isSafeInteger(t.id)&&typeof t.title==='string'&&typeof t.stage==='string'&&(!t.attachments||Array.isArray(t.attachments)))||new Set(rows.map(t=>t.id)).size!==rows.length)throw Error('This is not a valid AMP ticket backup.');
+      if(!confirm('Replace this local working backlog with '+rows.length+' tickets from the backup? Use Save File first if you need the current copy.'))return;
+      await window.AMP_SHARED_DATA_ADAPTER.replaceAll(rows);
+      await refreshFromShared(true);toast('Local JSON backup restored. Use Save File to keep a portable copy.');
+    }catch(e){alert('Restore failed: '+e.message);}
+  };reader.onerror=()=>alert('Could not read the backup.');reader.readAsText(f);
+}
+function appPortableAdapter(content){
+  const key='jly_portfolio_planner_'+content.key;
+  let rows=structuredClone(content.tickets);
+  if(!content.locked){try{const saved=localStorage.getItem(key);if(saved){const parsed=JSON.parse(saved);if(Array.isArray(parsed)&&confirm('Restore the browser draft for this file? Cancel opens the tickets embedded in the downloaded HTML.'))rows=parsed;}}catch(e){console.warn('Browser draft unavailable',e);}}
+  function persist(){if(content.locked)throw Error('Locked sprint snapshot cannot be edited.');try{localStorage.setItem(key,JSON.stringify(rows));}catch(e){const notice=document.getElementById('amp-package-notice');if(notice)notice.textContent='Session-only preview · Use Save File to download your changes.';}}
+  function locate(t){return rows.findIndex(x=>t._itemId!=null?String(x._itemId)===String(t._itemId):String(x.id)===String(t.id));}
+  return {
+    async list(){return structuredClone(rows);},
+    async create(t){if(content.locked)throw Error('Locked sprint snapshot');if(rows.some(x=>String(x.id)===String(t.id)))throw Error('Ticket ID already exists.');const item={...structuredClone(t),_itemId:Math.max(0,...rows.map(x=>Number(x._itemId)||0))+1,_modified:new Date().toISOString(),attachments:structuredClone(t.attachments||[])};const before=rows;rows=[...rows,item];try{persist();}catch(e){rows=before;throw e;}return structuredClone(item);},
+    async update(t){if(content.locked)throw Error('Locked sprint snapshot');const i=locate(t);if(i<0)throw Error('Ticket not found.');if(rows.some((x,index)=>index!==i&&String(x.id)===String(t.id)))throw Error('Ticket ID already exists.');const previous=rows,updated={...rows[i],...structuredClone(t),_modified:new Date().toISOString()};rows=rows.map((x,n)=>n===i?updated:x);try{persist();}catch(e){rows=previous;throw e;}return structuredClone(updated);},
+    async delete(t){if(content.locked)throw Error('Locked sprint snapshot');const previous=rows;rows=rows.filter((x,i)=>i!==locate(t));try{persist();}catch(e){rows=previous;throw e;}},
+    async replaceAttachments(t,attachments){if(content.locked)throw Error('Locked sprint snapshot');const i=locate(t);if(i<0)throw Error('Ticket not found.');const previous=rows,updated={...rows[i],attachments:structuredClone(attachments||[]),_modified:new Date().toISOString()};rows=rows.map((x,n)=>n===i?updated:x);try{persist();}catch(e){rows=previous;throw e;}return structuredClone(updated);},
+    async replaceAll(next){if(content.locked)throw Error('Locked sprint snapshot');const previous=rows;rows=structuredClone(next);try{persist();}catch(e){rows=previous;throw e;}}
+  };
+}
+if(APP_PACKAGE.mode==='portable'){
+  window.AMP_SHARED_DATA_ADAPTER=appPortableAdapter(APP_PACKAGE);
+  document.body.classList.add('amp-portable');
+  if(APP_LOCKED){document.body.classList.add('amp-locked');selectedSprint=APP_PACKAGE.meta?.iteration||currentSprint().name;presenterStage='This Sprint';}
+}
+
+if(APP_PACKAGE.mode==='portable'){
+  document.getElementById('amp-package-notice').textContent=APP_LOCKED?'🔒 Locked snapshot · ' + (APP_PACKAGE.meta?.name||'Sprint') + '. View the captured iteration; use Backlog.html for edits.':'Portable backlog · Edits save in this browser. Use Save File or Lock In Sprint to download a version to share.';
+}
+init();
+</script>
+
+
+
+</body></html>

@@ -1,0 +1,22 @@
+<template>
+<style>
+@font-face{font-family:Universe;src:url('assets/fonts/manrope-400.ttf');font-weight:400}@font-face{font-family:Universe;src:url('assets/fonts/manrope-700.ttf');font-weight:700}
+#root{position:absolute;inset:0;font-family:Universe,Inter,sans-serif;background:#141414;color:#f0f0f0;overflow:hidden}
+.scene-content{position:absolute;inset:0}.label{position:absolute;left:195px;top:159px;font-size:28px;letter-spacing:5px;color:#b0b0b0}.title{position:absolute;left:190px;top:320px;font-size:104px;line-height:1.22;letter-spacing:-.045em;font-weight:400}.title span{display:block}.line-mask{overflow:hidden}.accent{color:#d8d8d8}.detail{position:absolute;left:197px;top:640px;font-size:29px;line-height:1.5;max-width:840px;color:#b0b0b0}.diagram{position:absolute;left:1210px;top:305px;width:410px;height:450px;color:#d8d8d8;display:flex;align-items:center;justify-content:center}.diagram-label{position:absolute;bottom:0;left:-100px;width:610px;text-align:center;font-size:30px;letter-spacing:2px;color:#b0b0b0}.stage-number{font-family:Universe,sans-serif;font-size:190px;font-weight:700;line-height:1;letter-spacing:-9px;margin-bottom:70px;color:#d8d8d8}.end-monogram{font-style:normal;background:#303030;width:250px;height:250px;border-radius:48px;display:flex;align-items:center;justify-content:center;letter-spacing:-5px}.progress{position:absolute;left:195px;top:856px;height:2px;width:1530px;background:#b0b0b0;opacity:.4}.progress-fill{height:3px;width:100%;background:#d8d8d8;transform-origin:left}.stage-index{position:absolute;top:890px;left:195px;font-size:29px;color:#b0b0b0;letter-spacing:3px}
+</style>
+<div id="root" data-composition-id="end" data-width="1920" data-height="1080" data-duration="3">
+<div id="end-clip" class="clip" data-start="0" data-duration="3" data-track-index="0"><div class="scene-content" id="end-content">
+<div class="label" id="end-label">A PORTFOLIO WITH CONTEXT</div><div class="title"><div class="line-mask"><span id="end-line1">Josh’s AI</span></div><div class="line-mask"><span id="end-line2" class="accent">universe.</span></div></div>
+<p class="detail" id="end-detail">Good questions. Useful AI. A clearer fit.</p><div class="diagram" id="end-diagram"><div class="stage-number end-monogram">J</div><span class="diagram-label" data-var-text="brand">Josh’s AI universe</span></div>
+<div class="progress"><div class="progress-fill" id="end-progress"></div></div><span class="stage-index">A PORTFOLIO WITH CONTEXT</span>
+</div></div></div>
+<script>
+const tl=gsap.timeline({paused:true});
+tl.fromTo("#end-line1",{x:65,opacity:0},{x:0,opacity:1,duration:.55,ease:"power4.out"},.08);tl.fromTo("#end-line2",{y:100,opacity:0},{y:0,opacity:1,duration:.65,ease:"expo.out"},.20);
+tl.fromTo("#end-label",{opacity:.7},{opacity:1,duration:.35},0);
+tl.fromTo("#end-detail",{opacity:0},{opacity:1,duration:.4,ease:"none"},.40);
+tl.fromTo("#end-diagram",{scale:.88,opacity:0},{scale:1,opacity:1,duration:.65,ease:"power3.out"},.15);
+tl.fromTo("#end-progress",{scaleX:0.8333333333333334},{scaleX:1.0,duration:2.8,ease:"none"},.1);
+
+window.__timelines=window.__timelines||{};window.__timelines["end"]=tl;
+</script></template>
